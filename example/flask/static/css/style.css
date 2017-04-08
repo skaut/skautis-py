@@ -1,0 +1,17 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+
+.centering {
+    margin: auto;
+    position: absolute;
+    min-width: 200px;
+    max-width: 400px;
+    padding: 40px;
+    height: 50%;
+    bottom: 0; 
+    right: 0;
+    left: 0; 
+    top: 0;
+}
