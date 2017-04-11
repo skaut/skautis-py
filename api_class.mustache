@@ -1,0 +1,20 @@
+# -*- coding: utf-8 -*-
+
+import zeep
+
+# {{doc}}
+class {{class_name}}(object):
+    __module__ = 'skautis'
+
+    def __init__(self, test):
+        if test:
+            self._client = zeep.Client('https://test-is.skaut.cz/JunakWebservice/{{class_name}}.asmx?wsdl')
+        else:
+            self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/{{class_name}}.asmx?wsdl')
+
+    {{#methods}}
+    # {{doc}}
+    def {{name}}({{def_args}}):
+        return self._client.service.{{name}}({{args}})
+
+    {{/methods}}

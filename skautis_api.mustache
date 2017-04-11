@@ -1,0 +1,17 @@
+{{#sections}}
+from .{{module}} import {{class}}
+{{/sections}}
+
+class SkautisApi(object):
+    def __init__(self, appId, test=False):
+        self._appId = appId
+        self._test = test
+        
+        {{#sections}}
+        self.{{module}} = {{class}}(test)
+        {{/sections}}
+
+    def get_login_url(self):
+        if self._test:
+            return "https://test-is.skaut.cz/Login/?appid={}".format(self._appId)
+        return "https://is.skaut.cz/Login/?appid={}".format(self._appId)
