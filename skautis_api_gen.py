@@ -19,13 +19,11 @@ reload(sys)
 sys.setdefaultencoding('UTF8')
 
 
+
 def get_soup(url):
     resp = requests.get(url)
     resp.raise_for_status()
     return Soup(resp.content)
-    #with open('temp.wsdl') as f:
-    #    x = f.read()
-    #return Soup(x)
 
 def main():
     sections = get_sections()

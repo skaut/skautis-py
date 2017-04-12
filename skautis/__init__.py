@@ -51,3 +51,8 @@ class SkautisApi(object):
         if self._test:
             return "https://test-is.skaut.cz/Login/?appid={}".format(self._appId)
         return "https://is.skaut.cz/Login/?appid={}".format(self._appId)
+
+    def get_logout_url(self, ID_Login):
+        if self._test:
+            return "https://test-is.skaut.cz/Login/LogOut.aspx?appid={}&Token={}".format(self._appId, ID_Login)
+        return "https://is.skaut.cz/Login/LogOut.aspx?appid={}&Token={}".format(self._appId, ID_Login)
