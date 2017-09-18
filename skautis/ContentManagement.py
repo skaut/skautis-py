@@ -45,8 +45,8 @@ class ContentManagement(object):
         return self._client.service.MenuAllRootHtml({"ID_Login": ID_Login, "BaseUrl": BaseUrl})
 
     # Načíst detail stránky
-    def PageDetail(self, ID_Login, ID, Url=None, UrlParameter=None):
-        return self._client.service.PageDetail({"ID_Login": ID_Login, "ID": ID, "Url": Url, "UrlParameter": UrlParameter})
+    def PageDetail(self, ID_Login, ID, CheckPermissions, Url=None, UrlParameter=None):
+        return self._client.service.PageDetail({"ID_Login": ID_Login, "ID": ID, "CheckPermissions": CheckPermissions, "Url": Url, "UrlParameter": UrlParameter})
 
     # Načíst detail pohledu
     def PageStateDetail(self, ID_Login, ID, ID_Page, UrlParameter=None):
@@ -79,4 +79,8 @@ class ContentManagement(object):
     # Načíst seznam záložek
     def TabAll(self, ID_Login, ID, IsOrderSet, MasterPage=None):
         return self._client.service.TabAll({"ID_Login": ID_Login, "ID": ID, "IsOrderSet": IsOrderSet, "MasterPage": MasterPage})
+
+    # Načíst validační hlášky
+    def ValidateAll(self, ID_Login, ID, ProcedureName=None, ID_Action=None):
+        return self._client.service.ValidateAll({"ID_Login": ID_Login, "ID": ID, "ProcedureName": ProcedureName, "ID_Action": ID_Action})
 

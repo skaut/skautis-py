@@ -69,8 +69,8 @@ class Reports(object):
         return self._client.service.EventEducationExport({"ID_Login": ID_Login, "ID": ID, "ID_EventEducationType": ID_EventEducationType, "FileFormat": FileFormat, "ID_EventEducationGroup": ID_EventEducationGroup, "DisplayNameFilter": DisplayNameFilter})
 
     # Tisková sestava: Členská karty
-    def MemberCardDetail(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None):
-        return self._client.service.MemberCardDetail({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact})
+    def MemberCardDetail(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
+        return self._client.service.MemberCardDetail({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
 
     # Tisková sestava: Čárový kód položky faktury STS
     def EnrollInvoiceDetailBarcode(self, ID_Login, ID, SpaydString=None):
@@ -101,8 +101,8 @@ class Reports(object):
         return self._client.service.EvaluationShiftTable({"ID_Login": ID_Login, "ID": ID, "MostImportant": MostImportant, "Format": Format})
 
     # Tisková sestava: Přehled hlášenek pro MHMP
-    def EventCampCapitalSummary(self, IsFuture, IsRelation, IsChildDirect, IsChildUnit, ID_Login, ID_Unit, Started, Year, ForEvaluation, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
-        return self._client.service.EventCampCapitalSummary({"IsFuture": IsFuture, "IsRelation": IsRelation, "IsChildDirect": IsChildDirect, "IsChildUnit": IsChildUnit, "ID_Login": ID_Login, "ID_Unit": ID_Unit, "Started": Started, "Year": Year, "ForEvaluation": ForEvaluation, "DisplayName": DisplayName, "ID_EventCampState": ID_EventCampState, "RegistrationNumber": RegistrationNumber, "Location": Location})
+    def EventCampCapitalSummary(self, ID_Login, ID_Unit, IsFuture, Started, Year, IsRelation, IsChildDirect, IsChildUnit, ForEvaluation, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
+        return self._client.service.EventCampCapitalSummary({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsFuture": IsFuture, "Started": Started, "Year": Year, "IsRelation": IsRelation, "IsChildDirect": IsChildDirect, "IsChildUnit": IsChildUnit, "ForEvaluation": ForEvaluation, "DisplayName": DisplayName, "ID_EventCampState": ID_EventCampState, "RegistrationNumber": RegistrationNumber, "Location": Location})
 
     # Tisková sestava: Grafický pohled na hodnocení podřízených jednotek
     def EvaluationGraphSummary(self, ID_Login, Year, ID_EvaluationSubtype):
@@ -113,8 +113,8 @@ class Reports(object):
         return self._client.service.EvaluationParticipationSummary({"ID_Login": ID_Login, "Year": Year})
 
     # Tisková sestava: Náhled členské karty
-    def MemberCardThumbnail(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None):
-        return self._client.service.MemberCardThumbnail({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact})
+    def MemberCardThumbnail(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
+        return self._client.service.MemberCardThumbnail({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
 
     # Tisková sestava: Výpis z registru OJ
     def RegistryMinistry(self, ID_Login):
@@ -149,8 +149,8 @@ class Reports(object):
         return self._client.service.EnrollInviceSummary({"ID_Login": ID_Login, "DateFrom": DateFrom, "DateTo": DateTo})
 
     # Tisková sestava: Přehled hlášenek
-    def EventCampSummary(self, IsFuture, IsRelation, IsChildDirect, IsChildUnit, ID_Login, ID_Unit, Started, Year, ForEvaluation, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
-        return self._client.service.EventCampSummary({"IsFuture": IsFuture, "IsRelation": IsRelation, "IsChildDirect": IsChildDirect, "IsChildUnit": IsChildUnit, "ID_Login": ID_Login, "ID_Unit": ID_Unit, "Started": Started, "Year": Year, "ForEvaluation": ForEvaluation, "DisplayName": DisplayName, "ID_EventCampState": ID_EventCampState, "RegistrationNumber": RegistrationNumber, "Location": Location})
+    def EventCampSummary(self, ID_Login, ID_Unit, IsFuture, Started, Year, IsRelation, IsChildDirect, IsChildUnit, ForEvaluation, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
+        return self._client.service.EventCampSummary({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsFuture": IsFuture, "Started": Started, "Year": Year, "IsRelation": IsRelation, "IsChildDirect": IsChildDirect, "IsChildUnit": IsChildUnit, "ForEvaluation": ForEvaluation, "DisplayName": DisplayName, "ID_EventCampState": ID_EventCampState, "RegistrationNumber": RegistrationNumber, "Location": Location})
 
     # Vygenerování tiskové sestavy
     def Report(self, ID_Login, ID, ReportName=None, FileFormat=None, FileName=None):

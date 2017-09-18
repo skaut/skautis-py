@@ -25,8 +25,8 @@ class DocumentStorage(object):
         return self._client.service.CloudDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit cloudový záznam
-    def CloudInsert(self, ID_Login, ID, ID_DocumentVersion, ValidTo, DocumentVersion=None, ID_CloudState=None, CloudState=None, CloudGuid=None):
-        return self._client.service.CloudInsert({"ID_Login": ID_Login, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ValidTo": ValidTo, "DocumentVersion": DocumentVersion, "ID_CloudState": ID_CloudState, "CloudState": CloudState, "CloudGuid": CloudGuid})
+    def CloudInsert(self, ID_Login, ID_Application, ID, ID_DocumentVersion, ValidTo, DocumentVersion=None, ID_CloudState=None, CloudState=None, CloudGuid=None):
+        return self._client.service.CloudInsert({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ValidTo": ValidTo, "DocumentVersion": DocumentVersion, "ID_CloudState": ID_CloudState, "CloudState": CloudState, "CloudGuid": CloudGuid})
 
     # Načíst seznam požadavků na dokument
     def CloudRequestAll(self, ID_Login, ID_Cloud, ID, ID_User):
@@ -57,12 +57,12 @@ class DocumentStorage(object):
         return self._client.service.CloudStateDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Upravit cloudový záznam
-    def CloudUpdateDocumentVersion(self, ID_Login, ID, ID_DocumentVersion, ValidTo, DocumentVersion=None, ID_CloudState=None, CloudState=None, CloudGuid=None):
-        return self._client.service.CloudUpdateDocumentVersion({"ID_Login": ID_Login, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ValidTo": ValidTo, "DocumentVersion": DocumentVersion, "ID_CloudState": ID_CloudState, "CloudState": CloudState, "CloudGuid": CloudGuid})
+    def CloudUpdateDocumentVersion(self, ID_Login, ID_Application, ID, ID_DocumentVersion, ValidTo, DocumentVersion=None, ID_CloudState=None, CloudState=None, CloudGuid=None):
+        return self._client.service.CloudUpdateDocumentVersion({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ValidTo": ValidTo, "DocumentVersion": DocumentVersion, "ID_CloudState": ID_CloudState, "CloudState": CloudState, "CloudGuid": CloudGuid})
 
     # Upravit cloudový záznam
-    def CloudUpdate(self, ID_Login, ID, ID_DocumentVersion, ValidTo, DocumentVersion=None, ID_CloudState=None, CloudState=None, CloudGuid=None):
-        return self._client.service.CloudUpdate({"ID_Login": ID_Login, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ValidTo": ValidTo, "DocumentVersion": DocumentVersion, "ID_CloudState": ID_CloudState, "CloudState": CloudState, "CloudGuid": CloudGuid})
+    def CloudUpdate(self, ID_Login, ID_Application, ID, ID_DocumentVersion, ValidTo, DocumentVersion=None, ID_CloudState=None, CloudState=None, CloudGuid=None):
+        return self._client.service.CloudUpdate({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ValidTo": ValidTo, "DocumentVersion": DocumentVersion, "ID_CloudState": ID_CloudState, "CloudState": CloudState, "CloudGuid": CloudGuid})
 
     # Načíst seznam dokumentů
     def DocumentAll(self, ID_Application, ID_Login, ID, ID_DocumentVersion, ID_DocumentClass=None):

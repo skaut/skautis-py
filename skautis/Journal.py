@@ -12,6 +12,10 @@ class Journal(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Journal.asmx?wsdl')
 
+    # Nastavit ID_Document se zipem
+    def JournalCopyOrderUpdateDocument(self, ID_Login, ID, DateSent, ID_Journal, ID_Document, DisplayName=None, Journal=None, Message=None):
+        return self._client.service.JournalCopyOrderUpdateDocument({"ID_Login": ID_Login, "ID": ID, "DateSent": DateSent, "ID_Journal": ID_Journal, "ID_Document": ID_Document, "DisplayName": DisplayName, "Journal": Journal, "Message": Message})
+
     # Načíst seznam fakturovaných časopisů
     def JournalCopySentAllIInvoiceSummaryVat(self, ID_Login, ID_Invoice):
         return self._client.service.JournalCopySentAllIInvoiceSummaryVat({"ID_Login": ID_Login, "ID_Invoice": ID_Invoice})
@@ -61,12 +65,12 @@ class Journal(object):
         return self._client.service.JournalCopyOrderItemDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Odeslat připravené zprávy
-    def JournalCopyOrderUpdateSendMessage(self, ID_Login, ID, DateSent, ID_Journal, DisplayName=None, Journal=None, Message=None):
-        return self._client.service.JournalCopyOrderUpdateSendMessage({"ID_Login": ID_Login, "ID": ID, "DateSent": DateSent, "ID_Journal": ID_Journal, "DisplayName": DisplayName, "Journal": Journal, "Message": Message})
+    def JournalCopyOrderUpdateSendMessage(self, ID_Login, ID, DateSent, ID_Journal, ID_Document, DisplayName=None, Journal=None, Message=None):
+        return self._client.service.JournalCopyOrderUpdateSendMessage({"ID_Login": ID_Login, "ID": ID, "DateSent": DateSent, "ID_Journal": ID_Journal, "ID_Document": ID_Document, "DisplayName": DisplayName, "Journal": Journal, "Message": Message})
 
     # Vygenerovat soubory s rozesílkou a odeslat IZS
-    def JournalCopyUpdateSendMessage(self, ID_Login, DateSent, SendMessage):
-        return self._client.service.JournalCopyUpdateSendMessage({"ID_Login": ID_Login, "DateSent": DateSent, "SendMessage": SendMessage})
+    def JournalCopyUpdateSendMessage(self, ID_Login, DateSent, SendMessage, OrderVIP):
+        return self._client.service.JournalCopyUpdateSendMessage({"ID_Login": ID_Login, "DateSent": DateSent, "SendMessage": SendMessage, "OrderVIP": OrderVIP})
 
     # Načíst seznam VIP časopisů
     def JournalCopyVipAll(self, ID_Login, ID, ID_Person, ID_Journal, ID_JournalAttachment, ID_PersonCreate, DateSent, Person=None):
@@ -81,12 +85,12 @@ class Journal(object):
         return self._client.service.JournalCopyVipDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit VIP časopis
-    def JournalCopyVipInsert(self, ID_Login, ID, ID_Person, ID_Journal, ID_JournalAttachment, DateSent, ID_PersonCreate, Person=None, Journal=None, JournalAttachment=None, PersonCreate=None, FirstLine=None, Street=None, City=None, Postcode=None):
-        return self._client.service.JournalCopyVipInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Journal": ID_Journal, "ID_JournalAttachment": ID_JournalAttachment, "DateSent": DateSent, "ID_PersonCreate": ID_PersonCreate, "Person": Person, "Journal": Journal, "JournalAttachment": JournalAttachment, "PersonCreate": PersonCreate, "FirstLine": FirstLine, "Street": Street, "City": City, "Postcode": Postcode})
+    def JournalCopyVipInsert(self, ID_Login, ID, ID_Person, ID_Journal, ID_JournalAttachment, DateSent, ID_PersonCreate, ValidTo, Person=None, Journal=None, JournalAttachment=None, PersonCreate=None, FirstLine=None, Street=None, City=None, Postcode=None):
+        return self._client.service.JournalCopyVipInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Journal": ID_Journal, "ID_JournalAttachment": ID_JournalAttachment, "DateSent": DateSent, "ID_PersonCreate": ID_PersonCreate, "ValidTo": ValidTo, "Person": Person, "Journal": Journal, "JournalAttachment": JournalAttachment, "PersonCreate": PersonCreate, "FirstLine": FirstLine, "Street": Street, "City": City, "Postcode": Postcode})
 
     # Upravit VIP časopis
-    def JournalCopyVipUpdate(self, ID_Login, ID, ID_Person, ID_Journal, ID_JournalAttachment, DateSent, ID_PersonCreate, Person=None, Journal=None, JournalAttachment=None, PersonCreate=None, FirstLine=None, Street=None, City=None, Postcode=None):
-        return self._client.service.JournalCopyVipUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Journal": ID_Journal, "ID_JournalAttachment": ID_JournalAttachment, "DateSent": DateSent, "ID_PersonCreate": ID_PersonCreate, "Person": Person, "Journal": Journal, "JournalAttachment": JournalAttachment, "PersonCreate": PersonCreate, "FirstLine": FirstLine, "Street": Street, "City": City, "Postcode": Postcode})
+    def JournalCopyVipUpdate(self, ID_Login, ID, ID_Person, ID_Journal, ID_JournalAttachment, DateSent, ID_PersonCreate, ValidTo, Person=None, Journal=None, JournalAttachment=None, PersonCreate=None, FirstLine=None, Street=None, City=None, Postcode=None):
+        return self._client.service.JournalCopyVipUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Journal": ID_Journal, "ID_JournalAttachment": ID_JournalAttachment, "DateSent": DateSent, "ID_PersonCreate": ID_PersonCreate, "ValidTo": ValidTo, "Person": Person, "Journal": Journal, "JournalAttachment": JournalAttachment, "PersonCreate": PersonCreate, "FirstLine": FirstLine, "Street": Street, "City": City, "Postcode": Postcode})
 
     # Upravit VIP časopis
     def JournalCopyVipUpdateDateSent(self, ID_Login, DateSentOld, DateSentNew):
@@ -201,8 +205,8 @@ class Journal(object):
         return self._client.service.JournalCopyInsert({"ID_Login": ID_Login, "ID_Journal": ID_Journal, "DateSent": DateSent, "Price": Price, "ID_VatRate": ID_VatRate, "DisplayName": DisplayName})
 
     # Generovat seznam adres k rozesílce
-    def JournalCopyUpdateGenerate(self, ID_Login, DateSent, CreateOrder):
-        return self._client.service.JournalCopyUpdateGenerate({"ID_Login": ID_Login, "DateSent": DateSent, "CreateOrder": CreateOrder})
+    def JournalCopyUpdateGenerate(self, ID_Login, DateSent, CreateOrder, OrderVIP):
+        return self._client.service.JournalCopyUpdateGenerate({"ID_Login": ID_Login, "DateSent": DateSent, "CreateOrder": CreateOrder, "OrderVIP": OrderVIP})
 
     # Nastavit připravenou zásilku jako odeslanou
     def JournalCopyUpdateSent(self, ID_Login):

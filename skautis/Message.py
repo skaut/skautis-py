@@ -97,8 +97,8 @@ class Message(object):
         return self._client.service.MessageToAll({"ID_Login": ID_Login, "ID_Message": ID_Message})
 
     # Načíst seznam typů zpráv
-    def MessageTypeAll(self, ID_Login, ID_MessageGroup, DisplayName=None):
-        return self._client.service.MessageTypeAll({"ID_Login": ID_Login, "ID_MessageGroup": ID_MessageGroup, "DisplayName": DisplayName})
+    def MessageTypeAll(self, ID_Login, ID_MessageGroup, DisplayName=None, Key=None):
+        return self._client.service.MessageTypeAll({"ID_Login": ID_Login, "ID_MessageGroup": ID_MessageGroup, "DisplayName": DisplayName, "Key": Key})
 
     # Upravit zprávu
     def MessageUpdate(self, ID_Login, ID, ID_MessageState=None):

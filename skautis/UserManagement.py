@@ -37,12 +37,16 @@ class UserManagement(object):
         return self._client.service.PluginUpdate({"ID_Login": ID_Login, "IsEnabled": IsEnabled, "ID": ID, "DisplayName": DisplayName, "Description": Description})
 
     # Upravit pořadí tabulky
-    def TableSetOrder(self, ID_Login, ID, OrderInc, ID_Table=None, ID_ParentTable=None, Constraint=None):
-        return self._client.service.TableSetOrder({"ID_Login": ID_Login, "ID": ID, "OrderInc": OrderInc, "ID_Table": ID_Table, "ID_ParentTable": ID_ParentTable, "Constraint": Constraint})
+    def TableSetOrder(self, ID_Login, TableSetOrderType, ID, OrderInc, ID_Table=None, ID_ParentTable=None, FilterValues=None):
+        return self._client.service.TableSetOrder({"ID_Login": ID_Login, "TableSetOrderType": TableSetOrderType, "ID": ID, "OrderInc": OrderInc, "ID_Table": ID_Table, "ID_ParentTable": ID_ParentTable, "FilterValues": FilterValues})
 
     # Načíst seznam skupin nastavení
     def SettingsGroupAll(self, ID_Login, ID, DisplayName=None):
         return self._client.service.SettingsGroupAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+
+    # Informace o dočasném souboru
+    def TempFileDetail(self, ID_Login, ID):
+        return self._client.service.TempFileDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Vložení dočasného souboru
     def TempFileInsertDocument(self, Size, ImageWidth, ImageHeigth, ID_Login, ContentType=None, Extension=None, HashMD5=None, Content=None, DisplayName=None, Filename=None):
@@ -65,8 +69,8 @@ class UserManagement(object):
         return self._client.service.TempFileDownload({"ID_Login": ID_Login, "ID": ID})
 
     # Vložení dočasného souboru
-    def TempFileInsert(self, Size, ID_Login, Extension=None, Content=None, Hash=None, Filename=None):
-        return self._client.service.TempFileInsert({"Size": Size, "ID_Login": ID_Login, "Extension": Extension, "Content": Content, "Hash": Hash, "Filename": Filename})
+    def TempFileInsert(self, Size, ID_Login, ID_Application, Extension=None, Content=None, Hash=None, Filename=None):
+        return self._client.service.TempFileInsert({"Size": Size, "ID_Login": ID_Login, "ID_Application": ID_Application, "Extension": Extension, "Content": Content, "Hash": Hash, "Filename": Filename})
 
     # Načíst seznam vhodných rolí podle funkcí
     def RoleAllFunction(self, ID_Login, ID_User):
@@ -97,8 +101,8 @@ class UserManagement(object):
         return self._client.service.SettingsAll({"ID_Login": ID_Login, "ID_SettingsGroup": ID_SettingsGroup, "DisplayName": DisplayName})
 
     # Načíst detail Nastavení
-    def SettingsDetail(self, ID_Login, ID=None):
-        return self._client.service.SettingsDetail({"ID_Login": ID_Login, "ID": ID})
+    def SettingsDetail(self, ID_Login, ID_Application, ID=None):
+        return self._client.service.SettingsDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
 
     # Upravit 
     def SettingsUpdate(self, ID_Login, ID=None, DisplayName=None, Value=None, Note=None):
@@ -152,9 +156,21 @@ class UserManagement(object):
     def UserAuthenticationUpdateForm(self, ID_Login, ID, ID_User, DateCreate, ID_UserAuthenticated, DateAuthenticated, ID_UserAuthenticationType=None, UserAuthenticationType=None, ID_UserAuthenticationState=None, UserAuthenticationState=None, Code=None, Number=None, Content=None, FormExtension=None, FormContent=None):
         return self._client.service.UserAuthenticationUpdateForm({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "DateCreate": DateCreate, "ID_UserAuthenticated": ID_UserAuthenticated, "DateAuthenticated": DateAuthenticated, "ID_UserAuthenticationType": ID_UserAuthenticationType, "UserAuthenticationType": UserAuthenticationType, "ID_UserAuthenticationState": ID_UserAuthenticationState, "UserAuthenticationState": UserAuthenticationState, "Code": Code, "Number": Number, "Content": Content, "FormExtension": FormExtension, "FormContent": FormContent})
 
+    # Reset barevného nastavení uživatele
+    def UserRoleUpdateColorReset(self, ID_Login, ID, ID_User, ID_Role, ID_Group, Color=None):
+        return self._client.service.UserRoleUpdateColorReset({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group, "Color": Color})
+
+    # Upravit barvu role uživatele
+    def UserRoleUpdateColor(self, ID_Login, ID, ID_User, ID_Role, ID_Group, Color=None):
+        return self._client.service.UserRoleUpdateColor({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group, "Color": Color})
+
+    # Upravit výchozí řazení rolí uživatele
+    def UserRoleUpdateRestoreOrder(self, ID_Login, ID_User):
+        return self._client.service.UserRoleUpdateRestoreOrder({"ID_Login": ID_Login, "ID_User": ID_User})
+
     # Změnit viditelnost role
-    def UserRoleUpdateIsActive(self, ID_Login, ID, ID_User, ID_Role, ID_Group):
-        return self._client.service.UserRoleUpdateIsActive({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group})
+    def UserRoleUpdateIsActive(self, ID_Login, ID, ID_User, ID_Role, ID_Group, Color=None):
+        return self._client.service.UserRoleUpdateIsActive({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group, "Color": Color})
 
     # Úprava počtu zobrazovaných oblíbených položek
     def UserUpdateFavoriteLimit(self, ID_Login, FavoriteLimit):
@@ -261,8 +277,8 @@ class UserManagement(object):
         return self._client.service.RoleDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit roli
-    def RoleInsert(self, ID_Login, ID, IsHidden, DisplayName=None, ID_UnitType=None, UnitType=None, ID_GroupType=None, GroupType=None):
-        return self._client.service.RoleInsert({"ID_Login": ID_Login, "ID": ID, "IsHidden": IsHidden, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "ID_GroupType": ID_GroupType, "GroupType": GroupType})
+    def RoleInsert(self, ID_Login, ID, IsHidden, DisplayName=None, ID_UnitType=None, UnitType=None, Color=None, ID_GroupType=None, GroupType=None):
+        return self._client.service.RoleInsert({"ID_Login": ID_Login, "ID": ID, "IsHidden": IsHidden, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "Color": Color, "ID_GroupType": ID_GroupType, "GroupType": GroupType})
 
     # Načíst seznam práv přiřazených do role
     def RolePermissionAll(self, ID_Login, ID_Role, ID_Permission=None):
@@ -281,8 +297,8 @@ class UserManagement(object):
         return self._client.service.RolePermissionUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Role": ID_Role, "IsHierarchic": IsHierarchic, "ID_Permission": ID_Permission})
 
     # Upravit roli
-    def RoleUpdate(self, ID_Login, ID, IsHidden, DisplayName=None, ID_UnitType=None, UnitType=None, ID_GroupType=None, GroupType=None):
-        return self._client.service.RoleUpdate({"ID_Login": ID_Login, "ID": ID, "IsHidden": IsHidden, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "ID_GroupType": ID_GroupType, "GroupType": GroupType})
+    def RoleUpdate(self, ID_Login, ID, IsHidden, DisplayName=None, ID_UnitType=None, UnitType=None, Color=None, ID_GroupType=None, GroupType=None):
+        return self._client.service.RoleUpdate({"ID_Login": ID_Login, "ID": ID, "IsHidden": IsHidden, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "Color": Color, "ID_GroupType": ID_GroupType, "GroupType": GroupType})
 
     # Načíst seznam uživatelů
     def UserAll(self, ID_Login, ID, ID_Person, ID_Unit, UserName=None, DisplayName=None):
@@ -301,12 +317,12 @@ class UserManagement(object):
         return self._client.service.UserRoleDelete({"ID_Login": ID_Login, "ID": ID})
 
     # Přidat uživateli roli
-    def UserRoleInsert(self, ID_Login, ID, ID_User, ID_Role, ID_Group):
-        return self._client.service.UserRoleInsert({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group})
+    def UserRoleInsert(self, ID_Login, ID, ID_User, ID_Role, ID_Group, Color=None):
+        return self._client.service.UserRoleInsert({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group, "Color": Color})
 
     # Upravit roli uživatele
-    def UserRoleUpdate(self, ID_Login, ID, ID_User, ID_Role, ID_Group):
-        return self._client.service.UserRoleUpdate({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group})
+    def UserRoleUpdate(self, ID_Login, ID, ID_User, ID_Role, ID_Group, Color=None):
+        return self._client.service.UserRoleUpdate({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group, "Color": Color})
 
     # Upravit uživatele
     def UserUpdate(self, ID_Login, ID, IsEnabled, Password=None, PasswordActual=None):
