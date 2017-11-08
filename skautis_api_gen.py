@@ -1,29 +1,22 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import os
-import sys
 import requests
 import pystache
-import urllib2
 
 import xml.etree.ElementTree as ElementTree
 
-from urlparse import urljoin
-from BeautifulSoup import BeautifulSoup as Soup
+from urllib.parse import urljoin
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
 
 INDEX = 'https://test-is.skaut.cz/JunakWebservice/'
 LIB_PATH = 'skautis'
-
-reload(sys)
-sys.setdefaultencoding('UTF8')
-
 
 
 def get_soup(url):
     resp = requests.get(url)
     resp.raise_for_status()
-    return Soup(resp.content)
+    return BeautifulSoup(resp.content, "html.parser")
+
 
 def main():
     sections = get_sections()
@@ -36,7 +29,8 @@ def main():
     with open(os.path.join(LIB_PATH, '__init__.py'), 'wb') as fd:
         renderer = pystache.Renderer()
         skautis_api = SkautisApi([module_name(section) for section in sections])
-        fd.write(renderer.render(skautis_api))
+        fd.write(renderer.render(skautis_api).encode())
+
 
 def get_sections():
     sections = []
@@ -47,13 +41,13 @@ def get_sections():
         sections.append(urljoin(INDEX, li.a['href']) + '?wsdl')
     return sections
 
+
 def parse_wsdl(section_url):
     # wsdl namespaces
-    ns = {'wsdl': 'http://schemas.xmlsoap.org/wsdl/',
-          's': 'http://www.w3.org/2001/XMLSchema'}
+    ns = {'wsdl': 'http://schemas.xmlsoap.org/wsdl/', 's': 'http://www.w3.org/2001/XMLSchema'}
 
     # load wsdl from the web
-    tree = ElementTree.ElementTree(file=urllib2.urlopen(section_url))
+    tree = ElementTree.ElementTree(file=urlopen(section_url))
 
     # extract service documentation
     doc_tree = tree.find('wsdl:documentation', ns)
@@ -101,7 +95,7 @@ def parse_wsdl(section_url):
                     attr_required = True if attr.attrib['minOccurs'] == "1" else False
                     attributes.append((attr_name, attr_required, attr_type))
 
-            else: # one attribute is on this level
+            else:  # one attribute is on this level
                 attr_name = inner.attrib['name']
                 attr_type = inner.attrib['type'].split(':')[1] if 'type' in inner.attrib else ""
                 attr_required = True if inner.attrib['minOccurs'] == "1" else False
@@ -112,28 +106,35 @@ def parse_wsdl(section_url):
 
     return operations, main_doc
 
+
 def module_name(section_url):
     module = section_url.split('/')[-1]
     module = module.split('.')[0]
     return module
 
+
 def write_section(section_url):
-    print section_url
+    print(section_url)
 
     module = module_name(section_url)
     with open(os.path.join(LIB_PATH, '{}.py'.format(module)), 'wb') as fd:
         renderer = pystache.Renderer(string_encoding='utf-8', escape=lambda u: u)
-        fd.write(renderer.render(ApiClass(section_url)))
+        fd.write(renderer.render(ApiClass(section_url)).encode())
+
 
 def function_args(req_args, opt_args):
     return ', '.join(['self'] + req_args + [arg + '=None' for arg in opt_args])
 
+
 def request_args(req_args, opt_args):
     args = req_args + opt_args
-    data = '{{{}}}'.format(', '.join(['"{}": {}'.format(arg, arg) for arg in args])) if args else None
+    data = '{{{}}}'.format(', '.join(['"{}": {}'.format(arg, arg)
+                                      for arg in args])) if args else None
     return data
 
+
 class ApiClass(object):
+
     def __init__(self, section_url):
         super(ApiClass, self).__init__()
         self._module = module_name(section_url)
@@ -168,10 +169,13 @@ class ApiClass(object):
 
         return methods
 
+
 class SkautisApi(object):
+
     def __init__(self, sections):
         super(SkautisApi, self).__init__()
         self.sections = [{'module': section, 'class': section} for section in sections]
+
 
 if __name__ == '__main__':
     main()
