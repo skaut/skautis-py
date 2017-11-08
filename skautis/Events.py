@@ -12,6 +12,10 @@ class Events(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Events.asmx?wsdl')
 
+    # Načíst seznam typů tábora
+    def CampTypeAll(self, ID_Login, DisplayName=None):
+        return self._client.service.CampTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
+
     # Upravit počet dospělých účastníků
     def EventCampUpdateAdult(self, ID_Login, ID, ID_Group, ID_UserCreate, DateCreate, ID_Unit, StartDate, EndDate, GpsLatitude, GpsLongitude, ID_Event, RegistrationDeadline, ID_Region, IsFloodArea, IsAutoComputed, ID_PersonApproved, DateApproved, ID_PersonApprovedParent, DateApprovedParent, DateApprovedExecutive, TotalDays, IsRecovering, EstimateChild, EstimateAdult, EstimateCount, EstimateChildDays, EstimatePersonDays, IsAutoComputedDays, RealTotalCost, IsRealTotalCostAutoComputed, IsRealAutoComputed, IsRealAutoComputedDays, ID_PersonReal, DateReal, RealAdult, RealChild, RealCount, RealChildDays, RealPersonDays, HasEstimateStatement, ID_PersonLeader, Profit, ProfitComputed, ProfitComputedEstimation, ID_CampPlace, ID_EventType=None, DisplayName=None, Unit=None, RegistrationNumber=None, GpsLatitudeText=None, GpsLongitudeText=None, Location=None, Note=None, CancelDecision=None, ID_EventCampState=None, EventCampState=None, MobileContact=None, MobileContactDisplay=None, Region=None, Postcode=None, PersonApproved=None, PersonApprovedParent=None, CampType=None, ID_CampTypeArray=None, ID_UnitArray=None, Units=None, PersonReal=None, PersonLeader=None, PersonLeaderFirstName=None, PersonLeaderLastName=None, PersonLeaderCivilName=None, LeaderPhone=None, LeaderPhoneDisplay=None, LeaderEmail=None, LeaderEmailDisplay=None, LeaderCity=None, UnitLocation=None, PersonStatutory=None, CampPlace=None):
         return self._client.service.EventCampUpdateAdult({"ID_Login": ID_Login, "ID": ID, "ID_Group": ID_Group, "ID_UserCreate": ID_UserCreate, "DateCreate": DateCreate, "ID_Unit": ID_Unit, "StartDate": StartDate, "EndDate": EndDate, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "ID_Event": ID_Event, "RegistrationDeadline": RegistrationDeadline, "ID_Region": ID_Region, "IsFloodArea": IsFloodArea, "IsAutoComputed": IsAutoComputed, "ID_PersonApproved": ID_PersonApproved, "DateApproved": DateApproved, "ID_PersonApprovedParent": ID_PersonApprovedParent, "DateApprovedParent": DateApprovedParent, "DateApprovedExecutive": DateApprovedExecutive, "TotalDays": TotalDays, "IsRecovering": IsRecovering, "EstimateChild": EstimateChild, "EstimateAdult": EstimateAdult, "EstimateCount": EstimateCount, "EstimateChildDays": EstimateChildDays, "EstimatePersonDays": EstimatePersonDays, "IsAutoComputedDays": IsAutoComputedDays, "RealTotalCost": RealTotalCost, "IsRealTotalCostAutoComputed": IsRealTotalCostAutoComputed, "IsRealAutoComputed": IsRealAutoComputed, "IsRealAutoComputedDays": IsRealAutoComputedDays, "ID_PersonReal": ID_PersonReal, "DateReal": DateReal, "RealAdult": RealAdult, "RealChild": RealChild, "RealCount": RealCount, "RealChildDays": RealChildDays, "RealPersonDays": RealPersonDays, "HasEstimateStatement": HasEstimateStatement, "ID_PersonLeader": ID_PersonLeader, "Profit": Profit, "ProfitComputed": ProfitComputed, "ProfitComputedEstimation": ProfitComputedEstimation, "ID_CampPlace": ID_CampPlace, "ID_EventType": ID_EventType, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "GpsLatitudeText": GpsLatitudeText, "GpsLongitudeText": GpsLongitudeText, "Location": Location, "Note": Note, "CancelDecision": CancelDecision, "ID_EventCampState": ID_EventCampState, "EventCampState": EventCampState, "MobileContact": MobileContact, "MobileContactDisplay": MobileContactDisplay, "Region": Region, "Postcode": Postcode, "PersonApproved": PersonApproved, "PersonApprovedParent": PersonApprovedParent, "CampType": CampType, "ID_CampTypeArray": ID_CampTypeArray, "ID_UnitArray": ID_UnitArray, "Units": Units, "PersonReal": PersonReal, "PersonLeader": PersonLeader, "PersonLeaderFirstName": PersonLeaderFirstName, "PersonLeaderLastName": PersonLeaderLastName, "PersonLeaderCivilName": PersonLeaderCivilName, "LeaderPhone": LeaderPhone, "LeaderPhoneDisplay": LeaderPhoneDisplay, "LeaderEmail": LeaderEmail, "LeaderEmailDisplay": LeaderEmailDisplay, "LeaderCity": LeaderCity, "UnitLocation": UnitLocation, "PersonStatutory": PersonStatutory, "CampPlace": CampPlace})
@@ -415,6 +419,10 @@ class Events(object):
     # Upravit sněm
     def EventCongressUpdate(self, ID_Login, ID, ID_Event, ID_UnitRegistration, PromulgationDeadline, CommissionDeadline, CandidateDeadline, ID_Unit, StartDate, EndDate, GpsLatitude, GpsLongitude, AlternateStartDate, AlternateEndDate, AlternateGpsLatitude, AlternateGpsLongitude, CandidateAfterDeadline, ArriveDeadline, DepartureDeadline, TransportDeadline, AccommodationDeadline, FoodDeadline, ParticipantFee, ID_TempFileSimplifiedEntryExtension, Event=None, UnitRegistration=None, ID_EventCongressType=None, EventCongressType=None, ID_EventCongressState=None, EventCongressState=None, Unit=None, RegistrationNumber=None, ID_UnitType=None, Location=None, AlternateLocation=None, Note=None, ProtocolExtension=None, ProtocolContent=None, FunctionAgreementExtension=None, SimplifiedEntryExtension=None, SimplifiedEntryTemplateExtension=None):
         return self._client.service.EventCongressUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Event": ID_Event, "ID_UnitRegistration": ID_UnitRegistration, "PromulgationDeadline": PromulgationDeadline, "CommissionDeadline": CommissionDeadline, "CandidateDeadline": CandidateDeadline, "ID_Unit": ID_Unit, "StartDate": StartDate, "EndDate": EndDate, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "AlternateStartDate": AlternateStartDate, "AlternateEndDate": AlternateEndDate, "AlternateGpsLatitude": AlternateGpsLatitude, "AlternateGpsLongitude": AlternateGpsLongitude, "CandidateAfterDeadline": CandidateAfterDeadline, "ArriveDeadline": ArriveDeadline, "DepartureDeadline": DepartureDeadline, "TransportDeadline": TransportDeadline, "AccommodationDeadline": AccommodationDeadline, "FoodDeadline": FoodDeadline, "ParticipantFee": ParticipantFee, "ID_TempFileSimplifiedEntryExtension": ID_TempFileSimplifiedEntryExtension, "Event": Event, "UnitRegistration": UnitRegistration, "ID_EventCongressType": ID_EventCongressType, "EventCongressType": EventCongressType, "ID_EventCongressState": ID_EventCongressState, "EventCongressState": EventCongressState, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_UnitType": ID_UnitType, "Location": Location, "AlternateLocation": AlternateLocation, "Note": Note, "ProtocolExtension": ProtocolExtension, "ProtocolContent": ProtocolContent, "FunctionAgreementExtension": FunctionAgreementExtension, "SimplifiedEntryExtension": SimplifiedEntryExtension, "SimplifiedEntryTemplateExtension": SimplifiedEntryTemplateExtension})
+
+    # Načíst seznam umístění vzdělávací akce
+    def EventEducationLocationAll(self, ID_Login, ID_EventEducation, ID, DisplayName=None):
+        return self._client.service.EventEducationLocationAll({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID": ID, "DisplayName": DisplayName})
 
     # Smazat umístění vzdělávací akce
     def EventEducationLocationDelete(self, ID_Login, ID):
@@ -908,10 +916,6 @@ class Events(object):
     def AccommodationUpdate(self, ID_Login, ID, ID_EventCongress, Fee, DisplayName=None):
         return self._client.service.AccommodationUpdate({"ID_Login": ID_Login, "ID": ID, "ID_EventCongress": ID_EventCongress, "Fee": Fee, "DisplayName": DisplayName})
 
-    # Načíst seznam typů tábora
-    def CampTypeAll(self, ID_Login, DisplayName=None):
-        return self._client.service.CampTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
-
     # Načíst seznam akcí osoby
     def EventAllPersonParticipation(self, ID_Login, ID_Person, Year, ID_EventType=None, DisplayName=None):
         return self._client.service.EventAllPersonParticipation({"ID_Login": ID_Login, "ID_Person": ID_Person, "Year": Year, "ID_EventType": ID_EventType, "DisplayName": DisplayName})
@@ -1107,6 +1111,10 @@ class Events(object):
     # No documentation
     def EventEducationCommissionStateAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.EventEducationCommissionStateAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+
+    # Načíst seznam kurzů dotace VzA pro export
+    def EventEducationCourseAllGrantExport(self, ID_Login, ID_Grant):
+        return self._client.service.EventEducationCourseAllGrantExport({"ID_Login": ID_Login, "ID_Grant": ID_Grant})
 
     # Přehled žádostí o dotaci u kurzů
     def EventEducationCourseAllGrantSummary(self, ID_Login, Year):
@@ -1403,8 +1411,4 @@ class Events(object):
     # Upravit žádost o dekret
     def EventEducationLetterRequestUpdate(self, ID_Login, ID, ID_ParticipantEducationExam, ID_ParticipantEducation, Date, DateSent, ID_EventEducationLetterRequestState=None, EventEducationLetterRequestState=None, LetterNumber=None):
         return self._client.service.EventEducationLetterRequestUpdate({"ID_Login": ID_Login, "ID": ID, "ID_ParticipantEducationExam": ID_ParticipantEducationExam, "ID_ParticipantEducation": ID_ParticipantEducation, "Date": Date, "DateSent": DateSent, "ID_EventEducationLetterRequestState": ID_EventEducationLetterRequestState, "EventEducationLetterRequestState": EventEducationLetterRequestState, "LetterNumber": LetterNumber})
-
-    # Načíst seznam umístění vzdělávací akce
-    def EventEducationLocationAll(self, ID_Login, ID_EventEducation, ID, DisplayName=None):
-        return self._client.service.EventEducationLocationAll({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID": ID, "DisplayName": DisplayName})
 

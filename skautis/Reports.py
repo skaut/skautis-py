@@ -16,6 +16,10 @@ class Reports(object):
     def EnrollInvoiceBadPayers(self, ID_Login, DateFrom, DateTo):
         return self._client.service.EnrollInvoiceBadPayers({"ID_Login": ID_Login, "DateFrom": DateFrom, "DateTo": DateTo})
 
+    # Tisková sestava: Přehled plateb záloh žádostí o dotace
+    def GrantAdvancePaymentList(self, ID_Login, Year, DaysAhead, ID_GrantType=None, ID_State=None):
+        return self._client.service.GrantAdvancePaymentList({"ID_Login": ID_Login, "Year": Year, "DaysAhead": DaysAhead, "ID_GrantType": ID_GrantType, "ID_State": ID_State})
+
     # Tisková sestava: Hospodářský výkaz
     def StatementDetail(self, ID_Login, ID, ShowOverview, FileFormat=None):
         return self._client.service.StatementDetail({"ID_Login": ID_Login, "ID": ID, "ShowOverview": ShowOverview, "FileFormat": FileFormat})
