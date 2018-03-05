@@ -20,6 +20,14 @@ class Reports(object):
     def GrantAdvancePaymentList(self, ID_Login, Year, DaysAhead, ID_GrantType=None, ID_State=None):
         return self._client.service.GrantAdvancePaymentList({"ID_Login": ID_Login, "Year": Year, "DaysAhead": DaysAhead, "ID_GrantType": ID_GrantType, "ID_State": ID_State})
 
+    # Tisková sestava: Přehled žádostí o dotaci pro OJ
+    def GrantHeadquartersUnorganizedYouth(self, ID_Login, Year, Format, ID_GrantState=None):
+        return self._client.service.GrantHeadquartersUnorganizedYouth({"ID_Login": ID_Login, "Year": Year, "Format": Format, "ID_GrantState": ID_GrantState})
+
+    # Tisková sestava: Přehled žádostí o dotaci pro OJ
+    def GrantHeadquartersBuilding(self, ID_Login, Year, Format, ID_GrantState=None):
+        return self._client.service.GrantHeadquartersBuilding({"ID_Login": ID_Login, "Year": Year, "Format": Format, "ID_GrantState": ID_GrantState})
+
     # Tisková sestava: Hospodářský výkaz
     def StatementDetail(self, ID_Login, ID, ShowOverview, FileFormat=None):
         return self._client.service.StatementDetail({"ID_Login": ID_Login, "ID": ID, "ShowOverview": ShowOverview, "FileFormat": FileFormat})
