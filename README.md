@@ -1,7 +1,9 @@
 # SkautIS
 Python knihovna pro připojení do [Skautisu](https://is.skaut.cz/)
 
-**Knihovna je stále ve vývoji a může obsahovat chyby.**
+**Knihovna je automaticky generovaná a může obsahovat chyby.**
+
+Pokud na nějakou narazíte případně máte nápad na vylepšení generování, určitě dejte vědět.
 
 ## Instalace a použití
 Knihovna se instaluje pomocí setup scriptu:
