@@ -16,6 +16,14 @@ class Reports(object):
     def EnrollInvoiceBadPayers(self, ID_Login, DateFrom, DateTo):
         return self._client.service.EnrollInvoiceBadPayers({"ID_Login": ID_Login, "DateFrom": DateFrom, "DateTo": DateTo})
 
+    # Tisková sestava: Ručně generované dekrety
+    def EventEducationLetterIssueAllZIP(self, ID_Login, ID_Items=None):
+        return self._client.service.EventEducationLetterIssueAllZIP({"ID_Login": ID_Login, "ID_Items": ID_Items})
+
+    # Tisková sestava: Ručně generované dekrety a absolventské listy
+    def EventEducationLetterIssueAll(self, ID_Login, ID_Items=None):
+        return self._client.service.EventEducationLetterIssueAll({"ID_Login": ID_Login, "ID_Items": ID_Items})
+
     # Tisková sestava: Přehled plateb záloh žádostí o dotace
     def GrantAdvancePaymentList(self, ID_Login, Year, DaysAhead, ID_GrantType=None, ID_State=None):
         return self._client.service.GrantAdvancePaymentList({"ID_Login": ID_Login, "Year": Year, "DaysAhead": DaysAhead, "ID_GrantType": ID_GrantType, "ID_State": ID_State})

@@ -12,34 +12,6 @@ class GoogleApps(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/GoogleApps.asmx?wsdl')
 
-    # Načíst seznam GA účtů ke smazání
-    def GoogleAccountAllInactive(self, ID_Login):
-        return self._client.service.GoogleAccountAllInactive({"ID_Login": ID_Login})
-
-    # Načíst seznam GA skupin ke smazání
-    def GoogleGroupAllInactive(self, ID_Login):
-        return self._client.service.GoogleGroupAllInactive({"ID_Login": ID_Login})
-
-    # Načíst seznam správců domény
-    def DomainAdminAll(self, ID_Login, ID_Domain, ID, ID_Person):
-        return self._client.service.DomainAdminAll({"ID_Login": ID_Login, "ID_Domain": ID_Domain, "ID": ID, "ID_Person": ID_Person})
-
-    # Načíst seznam správců domény
-    def DomainAdminAllPerson(self, ID_Login, ID_Domain, ID, ID_Person):
-        return self._client.service.DomainAdminAllPerson({"ID_Login": ID_Login, "ID_Domain": ID_Domain, "ID": ID, "ID_Person": ID_Person})
-
-    # Smazat správce domény
-    def DomainAdminDelete(self, ID_Login, ID):
-        return self._client.service.DomainAdminDelete({"ID_Login": ID_Login, "ID": ID})
-
-    # Založit správce domény
-    def DomainAdminInsert(self, ID_Login, ID, ID_Domain, ID_Person, Domain=None, Person=None):
-        return self._client.service.DomainAdminInsert({"ID_Login": ID_Login, "ID": ID, "ID_Domain": ID_Domain, "ID_Person": ID_Person, "Domain": Domain, "Person": Person})
-
-    # Načíst seznam domén
-    def DomainAll(self, ID_Login, ID, ID_Unit, DisplayName=None, ID_DomainState=None):
-        return self._client.service.DomainAll({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DisplayName": DisplayName, "ID_DomainState": ID_DomainState})
-
     # Načíst seznam domén dostupné pro osobu
     def DomainAllPerson(self, ID_Login, ID_Person, CanGoogleAccount):
         return self._client.service.DomainAllPerson({"ID_Login": ID_Login, "ID_Person": ID_Person, "CanGoogleAccount": CanGoogleAccount})
@@ -187,4 +159,32 @@ class GoogleApps(object):
     # Upravit roli uzivatele
     def GoogleGroupUpdateMemberRole(self, ID_Login, ID, IsOwner, Email=None):
         return self._client.service.GoogleGroupUpdateMemberRole({"ID_Login": ID_Login, "ID": ID, "IsOwner": IsOwner, "Email": Email})
+
+    # Načíst seznam GA účtů ke smazání
+    def GoogleAccountAllInactive(self, ID_Login):
+        return self._client.service.GoogleAccountAllInactive({"ID_Login": ID_Login})
+
+    # Načíst seznam GA skupin ke smazání
+    def GoogleGroupAllInactive(self, ID_Login):
+        return self._client.service.GoogleGroupAllInactive({"ID_Login": ID_Login})
+
+    # Načíst seznam správců domény
+    def DomainAdminAll(self, ID_Login, ID_Domain, ID, ID_Person):
+        return self._client.service.DomainAdminAll({"ID_Login": ID_Login, "ID_Domain": ID_Domain, "ID": ID, "ID_Person": ID_Person})
+
+    # Načíst seznam správců domény
+    def DomainAdminAllPerson(self, ID_Login, ID_Domain, ID, ID_Person):
+        return self._client.service.DomainAdminAllPerson({"ID_Login": ID_Login, "ID_Domain": ID_Domain, "ID": ID, "ID_Person": ID_Person})
+
+    # Smazat správce domény
+    def DomainAdminDelete(self, ID_Login, ID):
+        return self._client.service.DomainAdminDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit správce domény
+    def DomainAdminInsert(self, ID_Login, ID, ID_Domain, ID_Person, Domain=None, Person=None):
+        return self._client.service.DomainAdminInsert({"ID_Login": ID_Login, "ID": ID, "ID_Domain": ID_Domain, "ID_Person": ID_Person, "Domain": Domain, "Person": Person})
+
+    # Načíst seznam domén
+    def DomainAll(self, ID_Login, ID, ID_Unit, DisplayName=None, ID_DomainState=None):
+        return self._client.service.DomainAll({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DisplayName": DisplayName, "ID_DomainState": ID_DomainState})
 

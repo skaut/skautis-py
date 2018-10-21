@@ -65,6 +65,10 @@ class Evaluation(object):
         return self._client.service.EvaluationCriteriaAllEvaluation({"ID_Login": ID_Login, "ID_Evaluation": ID_Evaluation, "ID_EvaluationSection": ID_EvaluationSection})
 
     # Načíst srovnání s ostatními
+    def EvaluationAllCompare(self, ID_Login, Year, DrawGraph, Culture=None):
+        return self._client.service.EvaluationAllCompare({"ID_Login": ID_Login, "Year": Year, "DrawGraph": DrawGraph, "Culture": Culture})
+
+    # Načíst srovnání s ostatními
     def EvaluationDetailCompare(self, ID_Login, ID, DrawGraph, Culture=None):
         return self._client.service.EvaluationDetailCompare({"ID_Login": ID_Login, "ID": ID, "DrawGraph": DrawGraph, "Culture": Culture})
 
@@ -148,9 +152,9 @@ class Evaluation(object):
     def EvaluationAnswerAllResult(self, ID_Login, ID_Evaluation):
         return self._client.service.EvaluationAnswerAllResult({"ID_Login": ID_Login, "ID_Evaluation": ID_Evaluation})
 
-    # Založit hodnocení kvality tábora
-    def EvaluationInsertCamp(self, ID_Login, ID, ID_EvaluationSubtype, EvaluationCount, ID_EvaluationVersion, ID_Unit, ID_Event, ID_EventParent, Year, DateLastUpdate, ID_PersonClose, DateClose, Score, ID_EvaluationRating, HideDetail, EvaluationSubtype=None, Description=None, EvaluationVersion=None, Unit=None, RegistrationNumber=None, Event=None, ID_EvaluationState=None, EvaluationState=None, Note=None, NoteParent=None, PersonClose=None, EvaluationRating=None, Color=None, ID_UnitType=None, UnitType=None):
-        return self._client.service.EvaluationInsertCamp({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationSubtype": ID_EvaluationSubtype, "EvaluationCount": EvaluationCount, "ID_EvaluationVersion": ID_EvaluationVersion, "ID_Unit": ID_Unit, "ID_Event": ID_Event, "ID_EventParent": ID_EventParent, "Year": Year, "DateLastUpdate": DateLastUpdate, "ID_PersonClose": ID_PersonClose, "DateClose": DateClose, "Score": Score, "ID_EvaluationRating": ID_EvaluationRating, "HideDetail": HideDetail, "EvaluationSubtype": EvaluationSubtype, "Description": Description, "EvaluationVersion": EvaluationVersion, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Event": Event, "ID_EvaluationState": ID_EvaluationState, "EvaluationState": EvaluationState, "Note": Note, "NoteParent": NoteParent, "PersonClose": PersonClose, "EvaluationRating": EvaluationRating, "Color": Color, "ID_UnitType": ID_UnitType, "UnitType": UnitType})
+    # Založit hodnocení kvality akce
+    def EvaluationInsertEvent(self, ID_Login, ID, ID_EvaluationSubtype, EvaluationCount, ID_EvaluationVersion, ID_Unit, ID_Event, ID_EventParent, Year, DateLastUpdate, ID_PersonClose, DateClose, Score, ID_EvaluationRating, HideDetail, EvaluationSubtype=None, Description=None, EvaluationVersion=None, Unit=None, RegistrationNumber=None, Event=None, ID_EvaluationState=None, EvaluationState=None, Note=None, NoteParent=None, PersonClose=None, EvaluationRating=None, Color=None, ID_UnitType=None, UnitType=None):
+        return self._client.service.EvaluationInsertEvent({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationSubtype": ID_EvaluationSubtype, "EvaluationCount": EvaluationCount, "ID_EvaluationVersion": ID_EvaluationVersion, "ID_Unit": ID_Unit, "ID_Event": ID_Event, "ID_EventParent": ID_EventParent, "Year": Year, "DateLastUpdate": DateLastUpdate, "ID_PersonClose": ID_PersonClose, "DateClose": DateClose, "Score": Score, "ID_EvaluationRating": ID_EvaluationRating, "HideDetail": HideDetail, "EvaluationSubtype": EvaluationSubtype, "Description": Description, "EvaluationVersion": EvaluationVersion, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Event": Event, "ID_EvaluationState": ID_EvaluationState, "EvaluationState": EvaluationState, "Note": Note, "NoteParent": NoteParent, "PersonClose": PersonClose, "EvaluationRating": EvaluationRating, "Color": Color, "ID_UnitType": ID_UnitType, "UnitType": UnitType})
 
     # Načíst seznam hodnocení kvality akcí
     def EvaluationAllEvent(self, ID_Login, Year, NotExists, ID_EvaluationState=None, Unit=None, ID_EventType=None):

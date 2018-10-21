@@ -16,6 +16,10 @@ class Journal(object):
     def JournalCopyOrderUpdateDocument(self, ID_Login, ID, DateSent, ID_Journal, ID_Document, DisplayName=None, Journal=None, Message=None):
         return self._client.service.JournalCopyOrderUpdateDocument({"ID_Login": ID_Login, "ID": ID, "DateSent": DateSent, "ID_Journal": ID_Journal, "ID_Document": ID_Document, "DisplayName": DisplayName, "Journal": Journal, "Message": Message})
 
+    # Načíst seznam výtisků časopisu v balíku
+    def JournalCopyPackAll(self, ID_Login, JournalCopyRoot=None):
+        return self._client.service.JournalCopyPackAll({"ID_Login": ID_Login, "JournalCopyRoot": JournalCopyRoot})
+
     # Načíst seznam fakturovaných časopisů
     def JournalCopySentAllIInvoiceSummaryVat(self, ID_Login, ID_Invoice):
         return self._client.service.JournalCopySentAllIInvoiceSummaryVat({"ID_Login": ID_Login, "ID_Invoice": ID_Invoice})
@@ -141,8 +145,8 @@ class Journal(object):
         return self._client.service.JournalReturnedAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID_JournalCopySent": ID_JournalCopySent, "ID_JournalReturnedReason": ID_JournalReturnedReason})
 
     # Založit vrácený časopis
-    def JournalReturnedInsert(self, ID_Login, ID_JournalCopySent, DateCreate, OnlyValidate, ID_JournalReturnedReason=None, Note=None):
-        return self._client.service.JournalReturnedInsert({"ID_Login": ID_Login, "ID_JournalCopySent": ID_JournalCopySent, "DateCreate": DateCreate, "OnlyValidate": OnlyValidate, "ID_JournalReturnedReason": ID_JournalReturnedReason, "Note": Note})
+    def JournalReturnedInsert(self, ID_Login, ID_JournalCopySent, DateCreate, OnlyValidate, JournalCopySent=None, ID_JournalReturnedReason=None, Note=None):
+        return self._client.service.JournalReturnedInsert({"ID_Login": ID_Login, "ID_JournalCopySent": ID_JournalCopySent, "DateCreate": DateCreate, "OnlyValidate": OnlyValidate, "JournalCopySent": JournalCopySent, "ID_JournalReturnedReason": ID_JournalReturnedReason, "Note": Note})
 
     # Načíst seznam důvodů nedoručitelnosti
     def JournalReturnedReasonAll(self, ID_Login, DisplayName=None):

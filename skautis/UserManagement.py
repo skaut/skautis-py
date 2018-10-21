@@ -113,16 +113,16 @@ class UserManagement(object):
         return self._client.service.TableArchive({"ID_Login": ID_Login})
 
     # Založit aktivaci účtu
-    def UserActivationInsert(self, ID_Login, ID, Birthday, ValidTo, Activated, ID_Application, Code=None, UserName=None, Password=None, NickName=None, FirstName=None, LastName=None, ID_Sex=None, Email=None, IP=None):
-        return self._client.service.UserActivationInsert({"ID_Login": ID_Login, "ID": ID, "Birthday": Birthday, "ValidTo": ValidTo, "Activated": Activated, "ID_Application": ID_Application, "Code": Code, "UserName": UserName, "Password": Password, "NickName": NickName, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "Email": Email, "IP": IP})
+    def UserActivationInsert(self, ID_Login, ID, Birthday, ValidTo, Activated, ID_Application, Code=None, UserName=None, Password=None, NickName=None, FirstName=None, LastName=None, ID_Sex=None, Email=None, IP=None, FirstNameParent=None, LastNameParent=None, EmailParent=None):
+        return self._client.service.UserActivationInsert({"ID_Login": ID_Login, "ID": ID, "Birthday": Birthday, "ValidTo": ValidTo, "Activated": Activated, "ID_Application": ID_Application, "Code": Code, "UserName": UserName, "Password": Password, "NickName": NickName, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "Email": Email, "IP": IP, "FirstNameParent": FirstNameParent, "LastNameParent": LastNameParent, "EmailParent": EmailParent})
 
     # Znovu odeslat aktivační email
-    def UserActivationUpdateResend(self, ID_Login, ID, Birthday, ValidTo, Activated, ID_Application, Code=None, UserName=None, Password=None, NickName=None, FirstName=None, LastName=None, ID_Sex=None, Email=None, IP=None):
-        return self._client.service.UserActivationUpdateResend({"ID_Login": ID_Login, "ID": ID, "Birthday": Birthday, "ValidTo": ValidTo, "Activated": Activated, "ID_Application": ID_Application, "Code": Code, "UserName": UserName, "Password": Password, "NickName": NickName, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "Email": Email, "IP": IP})
+    def UserActivationUpdateResend(self, ID_Login, ID, Birthday, ValidTo, Activated, ID_Application, Code=None, UserName=None, Password=None, NickName=None, FirstName=None, LastName=None, ID_Sex=None, Email=None, IP=None, FirstNameParent=None, LastNameParent=None, EmailParent=None):
+        return self._client.service.UserActivationUpdateResend({"ID_Login": ID_Login, "ID": ID, "Birthday": Birthday, "ValidTo": ValidTo, "Activated": Activated, "ID_Application": ID_Application, "Code": Code, "UserName": UserName, "Password": Password, "NickName": NickName, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "Email": Email, "IP": IP, "FirstNameParent": FirstNameParent, "LastNameParent": LastNameParent, "EmailParent": EmailParent})
 
     # Upravit aktivaci účtu
-    def UserActivationUpdate(self, ID_Login, ID, Birthday, ValidTo, Activated, ID_Application, Code=None, UserName=None, Password=None, NickName=None, FirstName=None, LastName=None, ID_Sex=None, Email=None, IP=None):
-        return self._client.service.UserActivationUpdate({"ID_Login": ID_Login, "ID": ID, "Birthday": Birthday, "ValidTo": ValidTo, "Activated": Activated, "ID_Application": ID_Application, "Code": Code, "UserName": UserName, "Password": Password, "NickName": NickName, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "Email": Email, "IP": IP})
+    def UserActivationUpdate(self, ID_Login, ID, Birthday, ValidTo, Activated, ID_Application, Code=None, UserName=None, Password=None, NickName=None, FirstName=None, LastName=None, ID_Sex=None, Email=None, IP=None, FirstNameParent=None, LastNameParent=None, EmailParent=None):
+        return self._client.service.UserActivationUpdate({"ID_Login": ID_Login, "ID": ID, "Birthday": Birthday, "ValidTo": ValidTo, "Activated": Activated, "ID_Application": ID_Application, "Code": Code, "UserName": UserName, "Password": Password, "NickName": NickName, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "Email": Email, "IP": IP, "FirstNameParent": FirstNameParent, "LastNameParent": LastNameParent, "EmailParent": EmailParent})
 
     # Načíst ověření uživatele
     def UserAuthenticationAll(self, ID_Login, ID_User):
