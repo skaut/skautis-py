@@ -201,8 +201,8 @@ class UserManagement(object):
         return self._client.service.ActionAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "ID_Table": ID_Table, "ID_TableRelated": ID_TableRelated, "ID_Operation": ID_Operation})
 
     # Načíst seznam chyb
-    def ErrorAll(self, ID_Login, ID_User, DateFrom, DateTo, IsProcessed, DisplayName=None, ID_ErrorType=None):
-        return self._client.service.ErrorAll({"ID_Login": ID_Login, "ID_User": ID_User, "DateFrom": DateFrom, "DateTo": DateTo, "IsProcessed": IsProcessed, "DisplayName": DisplayName, "ID_ErrorType": ID_ErrorType})
+    def ErrorAll(self, ID_Login, ID_User, DateFrom, DateTo, IsProcessed, DisplayName=None, ID_ErrorType=None, IgnoredErrorType=None):
+        return self._client.service.ErrorAll({"ID_Login": ID_Login, "ID_User": ID_User, "DateFrom": DateFrom, "DateTo": DateTo, "IsProcessed": IsProcessed, "DisplayName": DisplayName, "ID_ErrorType": ID_ErrorType, "IgnoredErrorType": IgnoredErrorType})
 
     # Načíst detail chyby
     def ErrorDetail(self, ID_Login, ID):
