@@ -3,16 +3,16 @@ from setuptools import setup
 
 setup(
     name='skautis-py',
-    version='1.11.9',
+    version='1.0.0',
     description='Python library for interaction with the Skautis API',
     author='Jakub Kulik',
     author_email='kulikjak@gmail.com',
-    url='https://github.com/kulikjak/skautis-py',
+    url='https://github.com/skaut/skautis-py',
     license='BSD',
     packages=["skautis"],
     long_description=open("README.md").read(),
     classifiers=[
-        'Development Status :: 4 - Beta',
+	'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Programming Language :: Python',
