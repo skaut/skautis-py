@@ -997,8 +997,8 @@ class OrganizationUnit(object):
         return self._client.service.UnitJournalDeliveryAll({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit})
 
     # Načíst detail adresy
-    def UnitJournalDeliveryDetail(self, ID_Login, ID, ID_Unit, ID_Person):
-        return self._client.service.UnitJournalDeliveryDetail({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person})
+    def UnitJournalDeliveryDetail(self, ID_Login, ID, ID_Unit, ID_Person, Unit=None, RegistrationNumber=None, Street=None, Ciry=None, PostCode=None, FirstLine=None, State=None, ID_JournalDeliveryType=None):
+        return self._client.service.UnitJournalDeliveryDetail({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Street": Street, "Ciry": Ciry, "PostCode": PostCode, "FirstLine": FirstLine, "State": State, "ID_JournalDeliveryType": ID_JournalDeliveryType})
 
     # Založit adresu
     def UnitJournalDeliveryInsert(self, ID_Login, ID, ID_Unit, ID_Person, Unit=None, RegistrationNumber=None, Street=None, Ciry=None, PostCode=None, FirstLine=None, State=None, ID_JournalDeliveryType=None):

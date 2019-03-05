@@ -24,6 +24,10 @@ class Journal(object):
     def JournalCopySentAllIInvoiceSummaryVat(self, ID_Login, ID_Invoice):
         return self._client.service.JournalCopySentAllIInvoiceSummaryVat({"ID_Login": ID_Login, "ID_Invoice": ID_Invoice})
 
+    # Načíst detail výtisku časopisu pro vrácený časopis
+    def JournalCopySentDetailReturned(self, ID_Login, ID, IsPackage):
+        return self._client.service.JournalCopySentDetailReturned({"ID_Login": ID_Login, "ID": ID, "IsPackage": IsPackage})
+
     # Načíst seznam typů doručení
     def JournalDeliveryTypeAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.JournalDeliveryTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
@@ -149,8 +153,8 @@ class Journal(object):
         return self._client.service.JournalReturnedInsert({"ID_Login": ID_Login, "ID_JournalCopySent": ID_JournalCopySent, "DateCreate": DateCreate, "OnlyValidate": OnlyValidate, "JournalCopySent": JournalCopySent, "ID_JournalReturnedReason": ID_JournalReturnedReason, "Note": Note})
 
     # Načíst seznam důvodů nedoručitelnosti
-    def JournalReturnedReasonAll(self, ID_Login, DisplayName=None):
-        return self._client.service.JournalReturnedReasonAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
+    def JournalReturnedReasonAll(self, ID_Login, IsPackage, DisplayName=None):
+        return self._client.service.JournalReturnedReasonAll({"ID_Login": ID_Login, "IsPackage": IsPackage, "DisplayName": DisplayName})
 
     # Načte počet zbývajících příloh zdarma
     def PersonJournalFreeAttachments(self, ID_Login, ID_Unit):

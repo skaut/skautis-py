@@ -16,9 +16,17 @@ class UserManagement(object):
     def HolidayDetailNotHoliday(self, ID_Login, Date):
         return self._client.service.HolidayDetailNotHoliday({"ID_Login": ID_Login, "Date": Date})
 
+    # Načíst informace o přihlášení pro 2F
+    def LoginDetailTwoFactor(self, ID_Login):
+        return self._client.service.LoginDetailTwoFactor({"ID_Login": ID_Login})
+
     # Načíst informace o přihlášení
     def LoginDetail(self, ID_Login):
         return self._client.service.LoginDetail({"ID_Login": ID_Login})
+
+    # Ověření uživatele přes dvoufázové přihlášení
+    def LoginUpdateTwoFactor(self, ID, ID_Application, SaveDevice, Code=None, Type=None):
+        return self._client.service.LoginUpdateTwoFactor({"ID": ID, "ID_Application": ID_Application, "SaveDevice": SaveDevice, "Code": Code, "Type": Type})
 
     # Automaticky nastavit vhodnou roli
     def LoginUpdateRoleAuto(self, ID_Login, ID, ID_Group, ID_Table=None, ID_Action=None, RequiredPermissions=None):
@@ -112,6 +120,10 @@ class UserManagement(object):
     def TableArchive(self, ID_Login):
         return self._client.service.TableArchive({"ID_Login": ID_Login})
 
+    # Načíst seznam typů dvoufaktorového ověření
+    def TwoFactorTypeAll(self, ID_Login, ID=None, DisplayName=None):
+        return self._client.service.TwoFactorTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+
     # Založit aktivaci účtu
     def UserActivationInsert(self, ID_Login, ID, Birthday, ValidTo, Activated, ID_Application, Code=None, UserName=None, Password=None, NickName=None, FirstName=None, LastName=None, ID_Sex=None, Email=None, IP=None, FirstNameParent=None, LastNameParent=None, EmailParent=None):
         return self._client.service.UserActivationInsert({"ID_Login": ID_Login, "ID": ID, "Birthday": Birthday, "ValidTo": ValidTo, "Activated": Activated, "ID_Application": ID_Application, "Code": Code, "UserName": UserName, "Password": Password, "NickName": NickName, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "Email": Email, "IP": IP, "FirstNameParent": FirstNameParent, "LastNameParent": LastNameParent, "EmailParent": EmailParent})
@@ -156,6 +168,30 @@ class UserManagement(object):
     def UserAuthenticationUpdateForm(self, ID_Login, ID, ID_User, DateCreate, ID_UserAuthenticated, DateAuthenticated, ID_UserAuthenticationType=None, UserAuthenticationType=None, ID_UserAuthenticationState=None, UserAuthenticationState=None, Code=None, Number=None, Content=None, FormExtension=None, FormContent=None):
         return self._client.service.UserAuthenticationUpdateForm({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "DateCreate": DateCreate, "ID_UserAuthenticated": ID_UserAuthenticated, "DateAuthenticated": DateAuthenticated, "ID_UserAuthenticationType": ID_UserAuthenticationType, "UserAuthenticationType": UserAuthenticationType, "ID_UserAuthenticationState": ID_UserAuthenticationState, "UserAuthenticationState": UserAuthenticationState, "Code": Code, "Number": Number, "Content": Content, "FormExtension": FormExtension, "FormContent": FormContent})
 
+    # Načtení informací o uživateli pro dvoufaktorové přihlášení
+    def UserDetailTwoFactor(self, ID_Login, ID):
+        return self._client.service.UserDetailTwoFactor({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst seznam záložních kódů uživatele
+    def UserLoginCodeAll(self, ID_Login, ID_User, ID):
+        return self._client.service.UserLoginCodeAll({"ID_Login": ID_Login, "ID_User": ID_User, "ID": ID})
+
+    # Vygenerovat záložní kódy pro uživatele
+    def UserLoginCodeOtherGenerate(self, ID_Login, ID, ID_User, Created, Used, IsValid, IsActive, Code=None):
+        return self._client.service.UserLoginCodeOtherGenerate({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "Created": Created, "Used": Used, "IsValid": IsValid, "IsActive": IsActive, "Code": Code})
+
+    # Načíst seznam zařízení použitých přihlášení
+    def UserLoginDeviceAll(self, ID_Login, ID, ID_User):
+        return self._client.service.UserLoginDeviceAll({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User})
+
+    # Smazat všechna zařízení použité k přihlášení
+    def UserLoginDeviceDeleteAll(self, ID_Login, ID_User):
+        return self._client.service.UserLoginDeviceDeleteAll({"ID_Login": ID_Login, "ID_User": ID_User})
+
+    # Smazat zařízení použité k přihlášení
+    def UserLoginDeviceDelete(self, ID_Login, ID):
+        return self._client.service.UserLoginDeviceDelete({"ID_Login": ID_Login, "ID": ID})
+
     # Reset barevného nastavení uživatele
     def UserRoleUpdateColorReset(self, ID_Login, ID, ID_User, ID_Role, ID_Group, Color=None):
         return self._client.service.UserRoleUpdateColorReset({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group, "Color": Color})
@@ -171,6 +207,14 @@ class UserManagement(object):
     # Změnit viditelnost role
     def UserRoleUpdateIsActive(self, ID_Login, ID, ID_User, ID_Role, ID_Group, Color=None):
         return self._client.service.UserRoleUpdateIsActive({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Role": ID_Role, "ID_Group": ID_Group, "Color": Color})
+
+    # Upravit nastavení 2F uživatele
+    def UserUpdateTwoFactorDate(self, ID_Login, ID):
+        return self._client.service.UserUpdateTwoFactorDate({"ID_Login": ID_Login, "ID": ID})
+
+    # Upravit nastavení 2F uživatele
+    def UserUpdateTwoFactor(self, ID_Login, ID, IsEnabledTwoFactor):
+        return self._client.service.UserUpdateTwoFactor({"ID_Login": ID_Login, "ID": ID, "IsEnabledTwoFactor": IsEnabledTwoFactor})
 
     # Úprava počtu zobrazovaných oblíbených položek
     def UserUpdateFavoriteLimit(self, ID_Login, FavoriteLimit):
@@ -333,8 +377,8 @@ class UserManagement(object):
         return self._client.service.WeekDayAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
     # Přihlášení uživatele
-    def LoginInsert(self, ID_UserRole, ID_Application, IsPersistent, ID_PersistentLogin, UserName=None, Password=None, IP=None):
-        return self._client.service.LoginInsert({"ID_UserRole": ID_UserRole, "ID_Application": ID_Application, "IsPersistent": IsPersistent, "ID_PersistentLogin": ID_PersistentLogin, "UserName": UserName, "Password": Password, "IP": IP})
+    def LoginInsert(self, ID_UserRole, ID_Application, IsPersistent, ID_PersistentLogin, IsMobile, UserName=None, Password=None, IP=None, Token=None, UserAgent=None, Place=None):
+        return self._client.service.LoginInsert({"ID_UserRole": ID_UserRole, "ID_Application": ID_Application, "IsPersistent": IsPersistent, "ID_PersistentLogin": ID_PersistentLogin, "IsMobile": IsMobile, "UserName": UserName, "Password": Password, "IP": IP, "Token": Token, "UserAgent": UserAgent, "Place": Place})
 
     # Načtení informací o uživateli
     def UserDetail(self, ID_Login, ID):
