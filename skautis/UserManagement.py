@@ -25,8 +25,8 @@ class UserManagement(object):
         return self._client.service.LoginDetail({"ID_Login": ID_Login})
 
     # Ověření uživatele přes dvoufázové přihlášení
-    def LoginUpdateTwoFactor(self, ID, ID_Application, SaveDevice, Code=None, Type=None):
-        return self._client.service.LoginUpdateTwoFactor({"ID": ID, "ID_Application": ID_Application, "SaveDevice": SaveDevice, "Code": Code, "Type": Type})
+    def LoginUpdateTwoFactor(self, ID, ID_Application, SaveDevice, Code=None, ID_TwoFactorType=None):
+        return self._client.service.LoginUpdateTwoFactor({"ID": ID, "ID_Application": ID_Application, "SaveDevice": SaveDevice, "Code": Code, "ID_TwoFactorType": ID_TwoFactorType})
 
     # Automaticky nastavit vhodnou roli
     def LoginUpdateRoleAuto(self, ID_Login, ID, ID_Group, ID_Table=None, ID_Action=None, RequiredPermissions=None):
@@ -176,6 +176,14 @@ class UserManagement(object):
     def UserLoginCodeAll(self, ID_Login, ID_User, ID):
         return self._client.service.UserLoginCodeAll({"ID_Login": ID_Login, "ID_User": ID_User, "ID": ID})
 
+    # Zkontrolovat platnost tokenu
+    def UserLoginCodeOtherVerify(self, ID_Login, ID_User, Token=None, Type=None):
+        return self._client.service.UserLoginCodeOtherVerify({"ID_Login": ID_Login, "ID_User": ID_User, "Token": Token, "Type": Type})
+
+    # Vygenerovat kód pro přihlášení přes 2F
+    def UserLoginCodeOtherGenerateEmailCode(self, ID_Login, ID, ID_User, Created, Used, IsValid, IsActive, Code=None):
+        return self._client.service.UserLoginCodeOtherGenerateEmailCode({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "Created": Created, "Used": Used, "IsValid": IsValid, "IsActive": IsActive, "Code": Code})
+
     # Vygenerovat záložní kódy pro uživatele
     def UserLoginCodeOtherGenerate(self, ID_Login, ID, ID_User, Created, Used, IsValid, IsActive, Code=None):
         return self._client.service.UserLoginCodeOtherGenerate({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "Created": Created, "Used": Used, "IsValid": IsValid, "IsActive": IsActive, "Code": Code})
@@ -213,8 +221,8 @@ class UserManagement(object):
         return self._client.service.UserUpdateTwoFactorDate({"ID_Login": ID_Login, "ID": ID})
 
     # Upravit nastavení 2F uživatele
-    def UserUpdateTwoFactor(self, ID_Login, ID, IsEnabledTwoFactor):
-        return self._client.service.UserUpdateTwoFactor({"ID_Login": ID_Login, "ID": ID, "IsEnabledTwoFactor": IsEnabledTwoFactor})
+    def UserUpdateTwoFactor(self, ID_Login, ID, IsEnabledTwoFactor, ID_TwoFactorType=None):
+        return self._client.service.UserUpdateTwoFactor({"ID_Login": ID_Login, "ID": ID, "IsEnabledTwoFactor": IsEnabledTwoFactor, "ID_TwoFactorType": ID_TwoFactorType})
 
     # Úprava počtu zobrazovaných oblíbených položek
     def UserUpdateFavoriteLimit(self, ID_Login, FavoriteLimit):
@@ -321,8 +329,8 @@ class UserManagement(object):
         return self._client.service.RoleDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit roli
-    def RoleInsert(self, ID_Login, ID, IsHidden, DisplayName=None, ID_UnitType=None, UnitType=None, Color=None, ID_GroupType=None, GroupType=None):
-        return self._client.service.RoleInsert({"ID_Login": ID_Login, "ID": ID, "IsHidden": IsHidden, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "Color": Color, "ID_GroupType": ID_GroupType, "GroupType": GroupType})
+    def RoleInsert(self, ID_Login, ID, IsHidden, IsTwoFactorRequired, DisplayName=None, ID_GroupType=None, GroupType=None, ID_UnitType=None, UnitType=None, Color=None):
+        return self._client.service.RoleInsert({"ID_Login": ID_Login, "ID": ID, "IsHidden": IsHidden, "IsTwoFactorRequired": IsTwoFactorRequired, "DisplayName": DisplayName, "ID_GroupType": ID_GroupType, "GroupType": GroupType, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "Color": Color})
 
     # Načíst seznam práv přiřazených do role
     def RolePermissionAll(self, ID_Login, ID_Role, ID_Permission=None):
@@ -341,8 +349,8 @@ class UserManagement(object):
         return self._client.service.RolePermissionUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Role": ID_Role, "IsHierarchic": IsHierarchic, "ID_Permission": ID_Permission})
 
     # Upravit roli
-    def RoleUpdate(self, ID_Login, ID, IsHidden, DisplayName=None, ID_UnitType=None, UnitType=None, Color=None, ID_GroupType=None, GroupType=None):
-        return self._client.service.RoleUpdate({"ID_Login": ID_Login, "ID": ID, "IsHidden": IsHidden, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "Color": Color, "ID_GroupType": ID_GroupType, "GroupType": GroupType})
+    def RoleUpdate(self, ID_Login, ID, IsHidden, IsTwoFactorRequired, DisplayName=None, ID_GroupType=None, GroupType=None, ID_UnitType=None, UnitType=None, Color=None):
+        return self._client.service.RoleUpdate({"ID_Login": ID_Login, "ID": ID, "IsHidden": IsHidden, "IsTwoFactorRequired": IsTwoFactorRequired, "DisplayName": DisplayName, "ID_GroupType": ID_GroupType, "GroupType": GroupType, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "Color": Color})
 
     # Načíst seznam uživatelů
     def UserAll(self, ID_Login, ID, ID_Person, ID_Unit, UserName=None, DisplayName=None):

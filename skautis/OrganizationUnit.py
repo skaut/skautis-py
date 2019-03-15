@@ -12,6 +12,10 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Založit členství osoby v jednotce
+    def MembershipInsert(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, CreateNew, OnlyValidate, IsFunction, IsSts, IsUnique, IsUnitFunction, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
+        return self._client.service.MembershipInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsSts": IsSts, "IsUnique": IsUnique, "IsUnitFunction": IsUnitFunction, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
+
     # Načíst seznam důvodů změny/ukončení členství
     def MembershipReasonAll(self, ID_Login, IsMulti, ID=None, DisplayName=None):
         return self._client.service.MembershipReasonAll({"ID_Login": ID_Login, "IsMulti": IsMulti, "ID": ID, "DisplayName": DisplayName})
@@ -229,8 +233,8 @@ class OrganizationUnit(object):
         return self._client.service.UnitRegistrationCheck({"ID_Login": ID_Login, "ID": ID})
 
     # Načíst detail registrace jednotky
-    def UnitRegistrationDetail(self, ID_Login, ID, ID_Unit, Year):
-        return self._client.service.UnitRegistrationDetail({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year})
+    def UnitRegistrationDetail(self, ID_Login, ID, ID_Unit, Year, Instructions=None):
+        return self._client.service.UnitRegistrationDetail({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "Instructions": Instructions})
 
     # Založit registraci jednotky
     def UnitRegistrationInsert(self, ID_Login, ID, ID_Unit, Year, DateChecked, DateConfirmed, IsDelivered, IsAccepted, ID_UnitRegistrationParent, ParentIsDelivered, ParentIsAccepted, ParentHasCreated, Unit=None, RegistrationNumber=None, DisplayName=None, ID_UnitType=None, Instructions=None, UnitRegistrationParent=None, InstructionsParent=None):
@@ -275,6 +279,10 @@ class OrganizationUnit(object):
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Načíst seznam typů služeb registrace
+    def RegistrationServiceTypeAll(self, ID_Login, DisplayName=None):
+        return self._client.service.RegistrationServiceTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
     # Načíst seznam registrací nadřízené jednotky
     def UnitRegistrationAllParent(self, ID_Login, ID_Unit):
@@ -673,8 +681,8 @@ class OrganizationUnit(object):
         return self._client.service.PersonRegistrationAll({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "IncludeChild": IncludeChild})
 
     # Smazat registraci osoby
-    def PersonRegistrationDelete(self, ID_Login, ID):
-        return self._client.service.PersonRegistrationDelete({"ID_Login": ID_Login, "ID": ID})
+    def PersonRegistrationDelete(self, ID_Login, ID, ID_Items=None):
+        return self._client.service.PersonRegistrationDelete({"ID_Login": ID_Login, "ID": ID, "ID_Items": ID_Items})
 
     # Založit registraci osoby
     def PersonRegistrationInsert(self, ID_Login, ID_Membership, ID_RegistrationCategory, ID_RegistrationServiceArray=None):
@@ -775,10 +783,6 @@ class OrganizationUnit(object):
     # Načíst detail členství osoby v jednotce
     def MembershipDetail(self, ID_Login, ID):
         return self._client.service.MembershipDetail({"ID_Login": ID_Login, "ID": ID})
-
-    # Založit členství osoby v jednotce
-    def MembershipInsert(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, CreateNew, OnlyValidate, IsFunction, IsSts, IsUnique, IsUnitFunction, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
-        return self._client.service.MembershipInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsSts": IsSts, "IsUnique": IsUnique, "IsUnitFunction": IsUnitFunction, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
 
     # Načíst seznam stavů žádosti o kvalifikace
     def QualificationRequestStateAll(self, ID_Login, ID=None, DisplayName=None):
@@ -943,6 +947,10 @@ class OrganizationUnit(object):
     # Načíst statistiku registrací jednotky
     def UnitRegistrationAllStats(self, ID_Login, ID_Unit):
         return self._client.service.UnitRegistrationAllStats({"ID_Login": ID_Login, "ID_Unit": ID_Unit})
+
+    # Upravit pokyny k registraci
+    def UnitRegistrationUpdateInstructions(self, ID_Login, ID, ID_Unit, Year, DateChecked, DateConfirmed, IsDelivered, IsAccepted, ID_UnitRegistrationParent, ParentIsDelivered, ParentIsAccepted, ParentHasCreated, Unit=None, RegistrationNumber=None, DisplayName=None, ID_UnitType=None, Instructions=None, UnitRegistrationParent=None, InstructionsParent=None):
+        return self._client.service.UnitRegistrationUpdateInstructions({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "DateChecked": DateChecked, "DateConfirmed": DateConfirmed, "IsDelivered": IsDelivered, "IsAccepted": IsAccepted, "ID_UnitRegistrationParent": ID_UnitRegistrationParent, "ParentIsDelivered": ParentIsDelivered, "ParentIsAccepted": ParentIsAccepted, "ParentHasCreated": ParentHasCreated, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "Instructions": Instructions, "UnitRegistrationParent": UnitRegistrationParent, "InstructionsParent": InstructionsParent})
 
     # Přepočítání statistiky členů a jednotek v registraci
     def UnitRegistrationRebuildMembers(self, ID_Login, ID, Year):
@@ -1271,10 +1279,6 @@ class OrganizationUnit(object):
     # Založit službu registrace
     def RegistrationServiceInsert(self, ID_Login, ID_UnitRegistration, Ammount, ID_VatRate, ID_RegistrationServiceType=None):
         return self._client.service.RegistrationServiceInsert({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "Ammount": Ammount, "ID_VatRate": ID_VatRate, "ID_RegistrationServiceType": ID_RegistrationServiceType})
-
-    # Načíst seznam typů služeb registrace
-    def RegistrationServiceTypeAll(self, ID_Login, DisplayName=None):
-        return self._client.service.RegistrationServiceTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
     # Načíst seznam náborových kategorií
     def AdvertisingCategoryAllOccupation(self, ID_Login, ID_Application, ID_Occupation, ID_MeetingDate, ID_Sex=None):

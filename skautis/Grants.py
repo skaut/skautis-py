@@ -12,6 +12,22 @@ class Grants(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Grants.asmx?wsdl')
 
+    # Odeslat zprávu dotace
+    def MessageUpdateSend(self, ID_Login, ID, Created, Sent, ID_Person, GrantCount, Text=None, Person=None, Grants=None):
+        return self._client.service.MessageUpdateSend({"ID_Login": ID_Login, "ID": ID, "Created": Created, "Sent": Sent, "ID_Person": ID_Person, "GrantCount": GrantCount, "Text": Text, "Person": Person, "Grants": Grants})
+
+    # Upravit zprávu dotace
+    def MessageUpdate(self, ID_Login, ID, Created, Sent, ID_Person, GrantCount, Text=None, Person=None, Grants=None):
+        return self._client.service.MessageUpdate({"ID_Login": ID_Login, "ID": ID, "Created": Created, "Sent": Sent, "ID_Person": ID_Person, "GrantCount": GrantCount, "Text": Text, "Person": Person, "Grants": Grants})
+
+    # Načíst seznam účastí na kurzu vzdělávací akce
+    def ParticipantCourseTermAll(self, ID_Login, ID_Grant, ID_EventEducationTermArray=None):
+        return self._client.service.ParticipantCourseTermAll({"ID_Login": ID_Login, "ID_Grant": ID_Grant, "ID_EventEducationTermArray": ID_EventEducationTermArray})
+
+    # Upravit ucast na kurzu
+    def ParticipantCourseTermUpdate(self, ID_Login, ID_ParticipantEducation, ParticipantTermDays=None):
+        return self._client.service.ParticipantCourseTermUpdate({"ID_Login": ID_Login, "ID_ParticipantEducation": ID_ParticipantEducation, "ParticipantTermDays": ParticipantTermDays})
+
     # Načíst seznam položek rozpočtu
     def StatementAll(self, ID_Login, ID_EventEducation, ID_Grant, ID, IsRevenue, IsBudget, Year):
         return self._client.service.StatementAll({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID_Grant": ID_Grant, "ID": ID, "IsRevenue": IsRevenue, "IsBudget": IsBudget, "Year": Year})
@@ -163,6 +179,10 @@ class Grants(object):
     # Načíst seznam záloh na dotaci
     def GrantAdvanceUsingAllYear(self, ID_Login):
         return self._client.service.GrantAdvanceUsingAllYear({"ID_Login": ID_Login})
+
+    # Načíst seznam žádostí o dotaci pro zprávu dotace
+    def GrantAllMessage(self, ID_Login, ID_Message):
+        return self._client.service.GrantAllMessage({"ID_Login": ID_Login, "ID_Message": ID_Message})
 
     # Ústřední přehled vyúčtování žádostí o dotaci
     def GrantAllAccount(self, ID_Login, Year, ID_GrantType=None, ID_GrantState=None):
@@ -584,11 +604,11 @@ class Grants(object):
     def GrantUpdateApprove(self, ID_Login, ID):
         return self._client.service.GrantUpdateApprove({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst seznam účastí na kurzu vzdělávací akce
-    def ParticipantCourseTermAll(self, ID_Login, ID_Grant, ID_EventEducationTermArray=None):
-        return self._client.service.ParticipantCourseTermAll({"ID_Login": ID_Login, "ID_Grant": ID_Grant, "ID_EventEducationTermArray": ID_EventEducationTermArray})
+    # Načíst detail zprávy dotace
+    def MessageDetail(self, ID_Login, ID):
+        return self._client.service.MessageDetail({"ID_Login": ID_Login, "ID": ID})
 
-    # Upravit ucast na kurzu
-    def ParticipantCourseTermUpdate(self, ID_Login, ID_ParticipantEducation, ParticipantTermDays=None):
-        return self._client.service.ParticipantCourseTermUpdate({"ID_Login": ID_Login, "ID_ParticipantEducation": ID_ParticipantEducation, "ParticipantTermDays": ParticipantTermDays})
+    # Založit zprávu dotace
+    def MessageInsert(self, ID_Login, ID, Created, Sent, ID_Person, GrantCount, Text=None, Person=None, Grants=None):
+        return self._client.service.MessageInsert({"ID_Login": ID_Login, "ID": ID, "Created": Created, "Sent": Sent, "ID_Person": ID_Person, "GrantCount": GrantCount, "Text": Text, "Person": Person, "Grants": Grants})
 
