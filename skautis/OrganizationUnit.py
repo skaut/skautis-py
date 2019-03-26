@@ -681,8 +681,8 @@ class OrganizationUnit(object):
         return self._client.service.PersonRegistrationAll({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "IncludeChild": IncludeChild})
 
     # Smazat registraci osoby
-    def PersonRegistrationDelete(self, ID_Login, ID, ID_Items=None):
-        return self._client.service.PersonRegistrationDelete({"ID_Login": ID_Login, "ID": ID, "ID_Items": ID_Items})
+    def PersonRegistrationDelete(self, ID_Login, ID, ID_UnitRegistration, ID_Items=None):
+        return self._client.service.PersonRegistrationDelete({"ID_Login": ID_Login, "ID": ID, "ID_UnitRegistration": ID_UnitRegistration, "ID_Items": ID_Items})
 
     # Založit registraci osoby
     def PersonRegistrationInsert(self, ID_Login, ID_Membership, ID_RegistrationCategory, ID_RegistrationServiceArray=None):
