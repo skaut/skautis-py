@@ -25,5 +25,4 @@ echo "$COMMIT_MESSAGE"
 git commit -am "$COMMIT_MESSAGE"
 
 # push changes
-# git push
-
+git push
