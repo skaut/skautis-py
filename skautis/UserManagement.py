@@ -33,8 +33,8 @@ class UserManagement(object):
         return self._client.service.LoginUpdateRoleAuto({"ID_Login": ID_Login, "ID": ID, "ID_Group": ID_Group, "ID_Table": ID_Table, "ID_Action": ID_Action, "RequiredPermissions": RequiredPermissions})
 
     # Načíst seznam pluginů
-    def PluginAll(self, ID_Login, ID=None, DisplayName=None):
-        return self._client.service.PluginAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+    def PluginAll(self, ID_Login, ID=None, DisplayName=None, InstanceKey=None):
+        return self._client.service.PluginAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName, "InstanceKey": InstanceKey})
 
     # Načíst detail pluginu
     def PluginDetail(self, ID_Login, ID=None):

@@ -61,8 +61,8 @@ class Message(object):
         return self._client.service.MessageAllWeb({"ID_Login": ID_Login, "ID_MessageGroup": ID_MessageGroup, "IsRead": IsRead, "HasAttachments": HasAttachments, "IsActive": IsActive, "DateCreateFrom": DateCreateFrom, "DateCreateTo": DateCreateTo, "Top": Top, "ID_MessageType": ID_MessageType, "DisplayName": DisplayName})
 
     # Načíst seznam e-mailů k odeslání
-    def MessageAll(self, ID_Login):
-        return self._client.service.MessageAll({"ID_Login": ID_Login})
+    def MessageAll(self, ID_Login, InstanceKey=None):
+        return self._client.service.MessageAll({"ID_Login": ID_Login, "InstanceKey": InstanceKey})
 
     # Načíst seznam příloh zprávy
     def MessageAttachmentAll(self, ID_Login, ID, ID_Message, IsHtmlImage):
