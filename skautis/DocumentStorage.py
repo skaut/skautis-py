@@ -88,9 +88,13 @@ class DocumentStorage(object):
     def DocumentInsert(self, ID_Login, ID, ID_DocumentVersion, Date, ID_Document, ID_User, ID_Person, Size, Version, ImageWidth, ImageHeight, UseCurrentVersion, ID_Cloud, CloudValidTo, DocumentVersion=None, ID_DocumentClass=None, DocumentClass=None, DisplayName=None, Person=None, FileName=None, ContentType=None, Extension=None, Hash=None, Storage=None, FileNameExtension=None, ID_CloudState=None, CloudGuid=None):
         return self._client.service.DocumentInsert({"ID_Login": ID_Login, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "Date": Date, "ID_Document": ID_Document, "ID_User": ID_User, "ID_Person": ID_Person, "Size": Size, "Version": Version, "ImageWidth": ImageWidth, "ImageHeight": ImageHeight, "UseCurrentVersion": UseCurrentVersion, "ID_Cloud": ID_Cloud, "CloudValidTo": CloudValidTo, "DocumentVersion": DocumentVersion, "ID_DocumentClass": ID_DocumentClass, "DocumentClass": DocumentClass, "DisplayName": DisplayName, "Person": Person, "FileName": FileName, "ContentType": ContentType, "Extension": Extension, "Hash": Hash, "Storage": Storage, "FileNameExtension": FileNameExtension, "ID_CloudState": ID_CloudState, "CloudGuid": CloudGuid})
 
+    # Smazat dokument v tabulce
+    def DocumentDeleteDocumentInTable(self, ID_Login, ID, ID_DocumentClass=None, Table=None, TableAction=None, Column=None):
+        return self._client.service.DocumentDeleteDocumentInTable({"ID_Login": ID_Login, "ID": ID, "ID_DocumentClass": ID_DocumentClass, "Table": Table, "TableAction": TableAction, "Column": Column})
+
     # Upravit dokument v tabulce
-    def DocumentUpdateDocumentInTable(self, ID_Login, ID, ID_TempFile, MoveDocument, ID_DocumentClass=None, Table=None, Column=None):
-        return self._client.service.DocumentUpdateDocumentInTable({"ID_Login": ID_Login, "ID": ID, "ID_TempFile": ID_TempFile, "MoveDocument": MoveDocument, "ID_DocumentClass": ID_DocumentClass, "Table": Table, "Column": Column})
+    def DocumentUpdateDocumentInTable(self, ID_Login, ID, ID_TempFile, MoveDocument, ID_DocumentClass=None, Table=None, TableAction=None, Column=None):
+        return self._client.service.DocumentUpdateDocumentInTable({"ID_Login": ID_Login, "ID": ID, "ID_TempFile": ID_TempFile, "MoveDocument": MoveDocument, "ID_DocumentClass": ID_DocumentClass, "Table": Table, "TableAction": TableAction, "Column": Column})
 
     # Upravit dokument
     def DocumentUpdate(self, ID_Login, ID, ID_DocumentVersion, Date, ID_Document, ID_User, ID_Person, Size, Version, ImageWidth, ImageHeight, UseCurrentVersion, ID_Cloud, CloudValidTo, DocumentVersion=None, ID_DocumentClass=None, DocumentClass=None, DisplayName=None, Person=None, FileName=None, ContentType=None, Extension=None, Hash=None, Storage=None, FileNameExtension=None, ID_CloudState=None, CloudGuid=None):

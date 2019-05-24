@@ -16,6 +16,10 @@ class Reports(object):
     def EnrollInvoiceBadPayers(self, ID_Login, DateFrom, DateTo):
         return self._client.service.EnrollInvoiceBadPayers({"ID_Login": ID_Login, "DateFrom": DateFrom, "DateTo": DateTo})
 
+    # Tisková sestava: Registrované osoby
+    def UnitRegistrationPersons(self, ID_Login, ID, FileFormat, IncludeChild):
+        return self._client.service.UnitRegistrationPersons({"ID_Login": ID_Login, "ID": ID, "FileFormat": FileFormat, "IncludeChild": IncludeChild})
+
     # Tisková sestava: Ručně generované dekrety
     def EventEducationLetterIssueAllZIP(self, ID_Login, ID_Items=None):
         return self._client.service.EventEducationLetterIssueAllZIP({"ID_Login": ID_Login, "ID_Items": ID_Items})

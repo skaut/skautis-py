@@ -321,8 +321,8 @@ class Telephony(object):
         return self._client.service.TariffServiceAll({"ID_Login": ID_Login, "ID": ID, "IsTransfer": IsTransfer, "ID_EnrollNumber": ID_EnrollNumber, "All": All, "IsHidden": IsHidden, "IsForeignData": IsForeignData, "Key": Key, "DisplayName": DisplayName, "ID_TariffType": ID_TariffType})
 
     # Načíst seznam typů tarifu
-    def TariffTypeAll(self, ID_Login, IsStandalone, ID=None, DisplayName=None):
-        return self._client.service.TariffTypeAll({"ID_Login": ID_Login, "IsStandalone": IsStandalone, "ID": ID, "DisplayName": DisplayName})
+    def TariffTypeAll(self, ID_Login, IsStandalone, IsInsert, ID=None, DisplayName=None):
+        return self._client.service.TariffTypeAll({"ID_Login": ID_Login, "IsStandalone": IsStandalone, "IsInsert": IsInsert, "ID": ID, "DisplayName": DisplayName})
 
     # Zamítnout přihlášku jednotky do STS
     def TelephonyUnitUpdateDisapprove(self, ID_Login, ID, ID_Unit, ID_UserCreate, DateCreate, ID_PersonAgent, DateDecision, ID_PersonDecision, Agrees, RegistrationService, ID_InvoiceGroup, Unit=None, RegistrationNumber=None, ID_TelephonyUnitState=None, TelephonyUnitState=None, UserCreate=None, PersonAgent=None, UserNameAgent=None, StateDecision=None, PersonDecision=None, EnrollMessage=None, InvoiceGroup=None):

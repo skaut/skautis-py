@@ -25,8 +25,8 @@ class UserManagement(object):
         return self._client.service.LoginDetail({"ID_Login": ID_Login})
 
     # Ověření uživatele přes dvoufázové přihlášení
-    def LoginUpdateTwoFactor(self, ID, ID_Application, SaveDevice, Code=None, ID_TwoFactorType=None):
-        return self._client.service.LoginUpdateTwoFactor({"ID": ID, "ID_Application": ID_Application, "SaveDevice": SaveDevice, "Code": Code, "ID_TwoFactorType": ID_TwoFactorType})
+    def LoginUpdateTwoFactor(self, ID, ID_Application, SaveDevice, Code=None, ID_TwoFactorType=None, DisplayName=None):
+        return self._client.service.LoginUpdateTwoFactor({"ID": ID, "ID_Application": ID_Application, "SaveDevice": SaveDevice, "Code": Code, "ID_TwoFactorType": ID_TwoFactorType, "DisplayName": DisplayName})
 
     # Automaticky nastavit vhodnou roli
     def LoginUpdateRoleAuto(self, ID_Login, ID, ID_Group, ID_Table=None, ID_Action=None, RequiredPermissions=None):
@@ -199,6 +199,10 @@ class UserManagement(object):
     # Smazat zařízení použité k přihlášení
     def UserLoginDeviceDelete(self, ID_Login, ID):
         return self._client.service.UserLoginDeviceDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Upravit zařízení použité k přihlášení
+    def UserLoginDeviceUpdate(self, ID_Login, ID, Created, ValidTo, ID_User, IsValid, IsMobile, Token=None, Browser=None, System=None, UserAgent=None, DisplayName=None):
+        return self._client.service.UserLoginDeviceUpdate({"ID_Login": ID_Login, "ID": ID, "Created": Created, "ValidTo": ValidTo, "ID_User": ID_User, "IsValid": IsValid, "IsMobile": IsMobile, "Token": Token, "Browser": Browser, "System": System, "UserAgent": UserAgent, "DisplayName": DisplayName})
 
     # Reset barevného nastavení uživatele
     def UserRoleUpdateColorReset(self, ID_Login, ID, ID_User, ID_Role, ID_Group, Color=None):
