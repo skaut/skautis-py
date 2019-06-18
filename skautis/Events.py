@@ -505,8 +505,8 @@ class Events(object):
         return self._client.service.DelegateDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Odhlášení delegáta
-    def DelegateUpdate(self, ID_Login, ID, ID_Participant, ID_Candidate, ID_Person, ID_EventCongress, ID_DelegateState=None, DelegateState=None, CancelDescription=None, Person=None, EventCongress=None):
-        return self._client.service.DelegateUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Participant": ID_Participant, "ID_Candidate": ID_Candidate, "ID_Person": ID_Person, "ID_EventCongress": ID_EventCongress, "ID_DelegateState": ID_DelegateState, "DelegateState": DelegateState, "CancelDescription": CancelDescription, "Person": Person, "EventCongress": EventCongress})
+    def DelegateUpdate(self, ID_Login, ID, ID_Participant, ID_Candidate, ID_Person, ID_EventCongress, ID_ParticipantEducation, ID_DelegateState=None, DelegateState=None, CancelDescription=None, Person=None, EventCongress=None):
+        return self._client.service.DelegateUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Participant": ID_Participant, "ID_Candidate": ID_Candidate, "ID_Person": ID_Person, "ID_EventCongress": ID_EventCongress, "ID_ParticipantEducation": ID_ParticipantEducation, "ID_DelegateState": ID_DelegateState, "DelegateState": DelegateState, "CancelDescription": CancelDescription, "Person": Person, "EventCongress": EventCongress})
 
     # Načíst seznam sněmů
     def EventCongressAllChild(self, ID_Login, ID):
@@ -1349,8 +1349,8 @@ class Events(object):
         return self._client.service.ParticipantEducationAllSendMessages({"ID_Login": ID_Login})
 
     # No documentation
-    def ParticipantEducationUpdateRenew(self, ID_Login, ID):
-        return self._client.service.ParticipantEducationUpdateRenew({"ID_Login": ID_Login, "ID": ID})
+    def ParticipantEducationUpdateRenew(self, ID_Login, ID, ID_Delegate):
+        return self._client.service.ParticipantEducationUpdateRenew({"ID_Login": ID_Login, "ID": ID, "ID_Delegate": ID_Delegate})
 
     # Upravit účastníka vzdělávací akce z přihlášky
     def ParticipantEducationUpdateEnroll(self, ID_Login, ID_EventEducationCourse, ID_Person, Acknownledgement, Affirmation, Phone=None, EventQuestion=None, PersonVerdictHealth=None):
