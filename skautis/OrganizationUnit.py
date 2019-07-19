@@ -345,8 +345,8 @@ class OrganizationUnit(object):
         return self._client.service.PersonUpdateBasic({"ID_Login": ID_Login, "ID": ID, "Birthday": Birthday, "YearFrom": YearFrom, "ID_Sex": ID_Sex, "FirstName": FirstName, "LastName": LastName, "NickName": NickName, "MaidenName": MaidenName, "Street": Street, "City": City, "Postcode": Postcode, "State": State})
 
     # Hledání osob pro účastníky tábora
-    def PersonAllEventCamp(self, ID_Login, ID_EventCamp, ID, DisplayName=None, IdentificationCode=None):
-        return self._client.service.PersonAllEventCamp({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "ID": ID, "DisplayName": DisplayName, "IdentificationCode": IdentificationCode})
+    def PersonAllEventCamp(self, ID_Login, ID_EventCamp, ID, DisplayName=None, IdentificationCode=None, IdentificationCodeStartsWith=None):
+        return self._client.service.PersonAllEventCamp({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "ID": ID, "DisplayName": DisplayName, "IdentificationCode": IdentificationCode, "IdentificationCodeStartsWith": IdentificationCodeStartsWith})
 
     # Hledání osob pro hromadné přidání účastníků tábora
     def PersonAllEventCampMulti(self, ID_Login, ID_EventCamp):
