@@ -53,12 +53,12 @@ class UserManagement(object):
         return self._client.service.SettingsGroupAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
     # Informace o dočasném souboru
-    def TempFileDetail(self, ID_Login, ID):
-        return self._client.service.TempFileDetail({"ID_Login": ID_Login, "ID": ID})
+    def TempFileDetail(self, ID_Login, ID, ID_Application):
+        return self._client.service.TempFileDetail({"ID_Login": ID_Login, "ID": ID, "ID_Application": ID_Application})
 
     # Vložení dočasného souboru
-    def TempFileInsertDocument(self, Size, ImageWidth, ImageHeigth, ID_Login, ContentType=None, Extension=None, HashMD5=None, Content=None, DisplayName=None, Filename=None):
-        return self._client.service.TempFileInsertDocument({"Size": Size, "ImageWidth": ImageWidth, "ImageHeigth": ImageHeigth, "ID_Login": ID_Login, "ContentType": ContentType, "Extension": Extension, "HashMD5": HashMD5, "Content": Content, "DisplayName": DisplayName, "Filename": Filename})
+    def TempFileInsertDocument(self, Size, ImageWidth, ImageHeigth, ID_Login, ID_Application, ContentType=None, Extension=None, HashMD5=None, Content=None, DisplayName=None, Filename=None):
+        return self._client.service.TempFileInsertDocument({"Size": Size, "ImageWidth": ImageWidth, "ImageHeigth": ImageHeigth, "ID_Login": ID_Login, "ID_Application": ID_Application, "ContentType": ContentType, "Extension": Extension, "HashMD5": HashMD5, "Content": Content, "DisplayName": DisplayName, "Filename": Filename})
 
     # No documentation
     def TempFileMaintrance(self, ID_Login):
@@ -73,8 +73,8 @@ class UserManagement(object):
         return self._client.service.TableRebuild({"ID_Login": ID_Login, "OnlyFast": OnlyFast})
 
     # Stáhnout dočasný soubor
-    def TempFileDownload(self, ID_Login, ID):
-        return self._client.service.TempFileDownload({"ID_Login": ID_Login, "ID": ID})
+    def TempFileDownload(self, ID_Login, ID, ID_Application):
+        return self._client.service.TempFileDownload({"ID_Login": ID_Login, "ID": ID, "ID_Application": ID_Application})
 
     # Vložení dočasného souboru
     def TempFileInsert(self, Size, ID_Login, ID_Application, Extension=None, Content=None, Hash=None, Filename=None):

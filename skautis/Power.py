@@ -20,6 +20,10 @@ class Power(object):
     def EnrollEnergyAllExport(self, ID_Login):
         return self._client.service.EnrollEnergyAllExport({"ID_Login": ID_Login})
 
+    # Procedura pro aktualizaci dokumentů
+    def EnrollEnergyUpdateDocument(self, ID_Login, ID_Application, ID, ID_TempFile, ID_DocumentClass=None):
+        return self._client.service.EnrollEnergyUpdateDocument({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_TempFile": ID_TempFile, "ID_DocumentClass": ID_DocumentClass})
+
     # Založit žádost energie z pozvánky
     def EnrollEnergyInsertAccessKey(self, ID_Login, ID_Application, AccessKey, ID, ID_Person, Birthday, ID_Unit, ID_TempfileAgreement, ID_TempFileAccount, ID_TempFileOther, OnlyValidate, AdvanceAmount, Note=None, ID_EnrollEnergyType=None, FirstName=None, LastName=None, IdentificationCode=None, UnitName=None, Company=None, IC=None, DIC=None, Agent=None, Function=None, Street=None, City=None, Postcode=None, EnergySupplier1=None, EnergySupplier2=None, Phone=None, Email=None, ID_AdvanceType=None, AdvanceTypeContent=None):
         return self._client.service.EnrollEnergyInsertAccessKey({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "ID_Unit": ID_Unit, "ID_TempfileAgreement": ID_TempfileAgreement, "ID_TempFileAccount": ID_TempFileAccount, "ID_TempFileOther": ID_TempFileOther, "OnlyValidate": OnlyValidate, "AdvanceAmount": AdvanceAmount, "Note": Note, "ID_EnrollEnergyType": ID_EnrollEnergyType, "FirstName": FirstName, "LastName": LastName, "IdentificationCode": IdentificationCode, "UnitName": UnitName, "Company": Company, "IC": IC, "DIC": DIC, "Agent": Agent, "Function": Function, "Street": Street, "City": City, "Postcode": Postcode, "EnergySupplier1": EnergySupplier1, "EnergySupplier2": EnergySupplier2, "Phone": Phone, "Email": Email, "ID_AdvanceType": ID_AdvanceType, "AdvanceTypeContent": AdvanceTypeContent})
