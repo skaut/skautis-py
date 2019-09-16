@@ -101,8 +101,8 @@ class Reports(object):
         return self._client.service.EnrollInvoiceDetailBarcode({"ID_Login": ID_Login, "ID": ID, "SpaydString": SpaydString})
 
     # Tisková sestava: Detail 2F pro uživatele
-    def UserDetailTwoFactor(self, ID_Login):
-        return self._client.service.UserDetailTwoFactor({"ID_Login": ID_Login})
+    def UserDetailTwoFactor(self, ID_Login, ID):
+        return self._client.service.UserDetailTwoFactor({"ID_Login": ID_Login, "ID": ID})
 
     # Tisková sestava: Likvidační protokol
     def WarehouseItemStockTakingDiscarded(self, ID_Login, ID):
