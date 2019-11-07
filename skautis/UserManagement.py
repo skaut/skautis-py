@@ -361,8 +361,8 @@ class UserManagement(object):
         return self._client.service.UserAll({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "UserName": UserName, "DisplayName": DisplayName})
 
     # Načíst seznam rolí přiřazených uživateli
-    def UserRoleAll(self, ID_Login, ID_User, ID_Role, IsActive, CanEdit, ID_GroupType=None):
-        return self._client.service.UserRoleAll({"ID_Login": ID_Login, "ID_User": ID_User, "ID_Role": ID_Role, "IsActive": IsActive, "CanEdit": CanEdit, "ID_GroupType": ID_GroupType})
+    def UserRoleAll(self, ID_Login, ID_User, ID_Role, IsActive, CanEdit, ID, ID_GroupType=None):
+        return self._client.service.UserRoleAll({"ID_Login": ID_Login, "ID_User": ID_User, "ID_Role": ID_Role, "IsActive": IsActive, "CanEdit": CanEdit, "ID": ID, "ID_GroupType": ID_GroupType})
 
     # Načíst seznam obsazení rolí v jednotce
     def UserRoleALLUnit(self, ID_Login, ID_Unit, ID_Role):

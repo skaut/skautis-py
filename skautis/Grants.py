@@ -125,8 +125,8 @@ class Grants(object):
         return self._client.service.AttachmentTypeAll({"ID_Application": ID_Application, "ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName, "ID_GrantType": ID_GrantType})
 
     # Načíst seznam částek financování žádosti o dotaci
-    def FinanceAll(self, ID_Login, ID_Grant, ID, IsRevenue, ID_FinanceType=None):
-        return self._client.service.FinanceAll({"ID_Login": ID_Login, "ID_Grant": ID_Grant, "ID": ID, "IsRevenue": IsRevenue, "ID_FinanceType": ID_FinanceType})
+    def FinanceAll(self, ID_Login, ID_Grant, ID, IsRevenue, IsReal, ID_FinanceType=None):
+        return self._client.service.FinanceAll({"ID_Login": ID_Login, "ID_Grant": ID_Grant, "ID": ID, "IsRevenue": IsRevenue, "IsReal": IsReal, "ID_FinanceType": ID_FinanceType})
 
     # Smazat částku financování žádosti o dotaci
     def FinanceDelete(self, ID_Login, ID, ID_Grant, Amount, AmountReal, IsRevenue, IsRealAmount, ID_FinanceType=None, FinanceType=None, FinanceTypeCustom=None, FinanceTypeDisplay=None):
