@@ -829,8 +829,8 @@ class Events(object):
         return self._client.service.ParticipantEducationInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_EventEducation": ID_EventEducation, "ID_EventEducationCourse": ID_EventEducationCourse, "Person": Person})
 
     # Upravit účastníka vzdělávací akce
-    def ParticipantEducationUpdate(self, ID_Login, ID, ID_Participant, ID_Person, ID_EventEducation, ID_EventEducationCourse, IsActive, FillCondition, IsSubstitute, IsAccepted, Graduated, DateLetterRequest, Person=None, ID_EventEducationType=None, EventEducationType=None, Note=None):
-        return self._client.service.ParticipantEducationUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Participant": ID_Participant, "ID_Person": ID_Person, "ID_EventEducation": ID_EventEducation, "ID_EventEducationCourse": ID_EventEducationCourse, "IsActive": IsActive, "FillCondition": FillCondition, "IsSubstitute": IsSubstitute, "IsAccepted": IsAccepted, "Graduated": Graduated, "DateLetterRequest": DateLetterRequest, "Person": Person, "ID_EventEducationType": ID_EventEducationType, "EventEducationType": EventEducationType, "Note": Note})
+    def ParticipantEducationUpdate(self, ID_Login, ID, ID_Participant, ID_Person, ID_EventEducation, ID_EventEducationCourse, IsActive, FillCondition, IsSubstitute, IsAccepted, Graduated, DateLetterRequest, SignOut, Person=None, ID_EventEducationType=None, EventEducationType=None, Note=None):
+        return self._client.service.ParticipantEducationUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Participant": ID_Participant, "ID_Person": ID_Person, "ID_EventEducation": ID_EventEducation, "ID_EventEducationCourse": ID_EventEducationCourse, "IsActive": IsActive, "FillCondition": FillCondition, "IsSubstitute": IsSubstitute, "IsAccepted": IsAccepted, "Graduated": Graduated, "DateLetterRequest": DateLetterRequest, "SignOut": SignOut, "Person": Person, "ID_EventEducationType": ID_EventEducationType, "EventEducationType": EventEducationType, "Note": Note})
 
     # Provedení kontroly všech příznaků VzA
     def EventConditionAllCheck(self, ID_Login):
