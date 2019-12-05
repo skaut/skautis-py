@@ -193,8 +193,8 @@ class OrganizationUnit(object):
         return self._client.service.SexAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "DisplayName": DisplayName})
 
     # Načíst seznam hospodářských výkazů
-    def StatementAll(self, ID_Login, ID_Unit, ID_StatementType=None):
-        return self._client.service.StatementAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID_StatementType": ID_StatementType})
+    def StatementAll(self, ID_Login, ID_Unit, Year, ID_StatementType=None):
+        return self._client.service.StatementAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "Year": Year, "ID_StatementType": ID_StatementType})
 
     # Smazat hospodářský výkaz
     def StatementDelete(self, ID_Login, ID):

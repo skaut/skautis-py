@@ -117,8 +117,8 @@ class Reports(object):
         return self._client.service.WarehouseItemBarcode({"ID_Login": ID_Login, "ID": ID, "BarcodeType": BarcodeType})
 
     # Tisková sestava: Hodnocení kvality
-    def WarehouseItem(self, ID_Login, ID_Unit, IncludeChild, EventRent, UnitRent, CommercialRent, IsDelete, InWarehouse, Count, RowMin, Reverse, DisplayName=None, InventoryNumber=None, ID_WarehouseArray=None, ID_WarehouseTagArray=None, Sort=None, ID_WarehouseItemCategory=None, Columns=None):
-        return self._client.service.WarehouseItem({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IncludeChild": IncludeChild, "EventRent": EventRent, "UnitRent": UnitRent, "CommercialRent": CommercialRent, "IsDelete": IsDelete, "InWarehouse": InWarehouse, "Count": Count, "RowMin": RowMin, "Reverse": Reverse, "DisplayName": DisplayName, "InventoryNumber": InventoryNumber, "ID_WarehouseArray": ID_WarehouseArray, "ID_WarehouseTagArray": ID_WarehouseTagArray, "Sort": Sort, "ID_WarehouseItemCategory": ID_WarehouseItemCategory, "Columns": Columns})
+    def WarehouseItem(self, ID_Login, ID_Unit, IncludeChild, EventRent, UnitRent, CommercialRent, IsDelete, InWarehouse, Count, RowMin, Reverse, DisplayName=None, InventoryNumber=None, ID_Items=None, ID_WarehouseArray=None, ID_WarehouseTagArray=None, Sort=None, ID_WarehouseItemCategory=None, Columns=None):
+        return self._client.service.WarehouseItem({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IncludeChild": IncludeChild, "EventRent": EventRent, "UnitRent": UnitRent, "CommercialRent": CommercialRent, "IsDelete": IsDelete, "InWarehouse": InWarehouse, "Count": Count, "RowMin": RowMin, "Reverse": Reverse, "DisplayName": DisplayName, "InventoryNumber": InventoryNumber, "ID_Items": ID_Items, "ID_WarehouseArray": ID_WarehouseArray, "ID_WarehouseTagArray": ID_WarehouseTagArray, "Sort": Sort, "ID_WarehouseItemCategory": ID_WarehouseItemCategory, "Columns": Columns})
 
     # Tisková sestava: Srovnání výsledků kvality s ostatním
     def EvaluationCompare(self, ID_Login, ID, Culture=None):
