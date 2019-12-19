@@ -261,8 +261,8 @@ class Material(object):
         return self._client.service.WarehouseUpdateEnabled({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Event": ID_Event, "ID_WarehouseMain": ID_WarehouseMain, "IsDefault": IsDefault, "ID_District": ID_District, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "CanUpdate": CanUpdate, "ID_UnitCentral": ID_UnitCentral, "IsEnabled": IsEnabled, "DisplayName": DisplayName, "ID_WarehouseType": ID_WarehouseType, "WarehouseType": WarehouseType, "Unit": Unit, "UnitFullName": UnitFullName, "RegistrationNumber": RegistrationNumber, "Event": Event, "WarehouseMain": WarehouseMain, "Street": Street, "City": City, "District": District, "Postcode": Postcode, "Note": Note, "UnitCentral": UnitCentral, "UnitCentralFullName": UnitCentralFullName, "UnitCentralRegistrationNumber": UnitCentralRegistrationNumber})
 
     # Načíst seznam skladů
-    def WarehouseAll(self, ID_Login, ID_Unit, ID, ID_Event, ID_WarehouseMain, ID_District, IsChildIncluded, DisplayName=None, ID_WarehouseType=None):
-        return self._client.service.WarehouseAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_Event": ID_Event, "ID_WarehouseMain": ID_WarehouseMain, "ID_District": ID_District, "IsChildIncluded": IsChildIncluded, "DisplayName": DisplayName, "ID_WarehouseType": ID_WarehouseType})
+    def WarehouseAll(self, ID_Login, ID_Unit, ID, ID_Event, ID_WarehouseMain, ID_District, IsChildIncluded, IsEnabled, DisplayName=None, ID_WarehouseType=None):
+        return self._client.service.WarehouseAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_Event": ID_Event, "ID_WarehouseMain": ID_WarehouseMain, "ID_District": ID_District, "IsChildIncluded": IsChildIncluded, "IsEnabled": IsEnabled, "DisplayName": DisplayName, "ID_WarehouseType": ID_WarehouseType})
 
     # Načíst detail skladu
     def WarehouseDetail(self, ID_Login, ID):
