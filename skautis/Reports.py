@@ -104,17 +104,21 @@ class Reports(object):
     def UserDetailTwoFactor(self, ID_Login, ID):
         return self._client.service.UserDetailTwoFactor({"ID_Login": ID_Login, "ID": ID})
 
+    # Tisková sestava: Kód
+    def Code(self, ID_Login, ID, BarcodeHeight, ID_Table=None, ID_Column=None, BarcodeType=None, FileName=None, Text=None):
+        return self._client.service.Code({"ID_Login": ID_Login, "ID": ID, "BarcodeHeight": BarcodeHeight, "ID_Table": ID_Table, "ID_Column": ID_Column, "BarcodeType": BarcodeType, "FileName": FileName, "Text": Text})
+
     # Tisková sestava: Likvidační protokol
-    def WarehouseItemStockTakingDiscarded(self, ID_Login, ID):
-        return self._client.service.WarehouseItemStockTakingDiscarded({"ID_Login": ID_Login, "ID": ID})
+    def WarehouseItemStockTakingDiscarded(self, ID_Login, ID, ID_Warehouse):
+        return self._client.service.WarehouseItemStockTakingDiscarded({"ID_Login": ID_Login, "ID": ID, "ID_Warehouse": ID_Warehouse})
 
     # Tisková sestava: Inventurní soupis
-    def WarehouseItemStockTaking(self, ID_Login, ID):
-        return self._client.service.WarehouseItemStockTaking({"ID_Login": ID_Login, "ID": ID})
+    def WarehouseItemStockTaking(self, ID_Login, ID, ID_Warehouse):
+        return self._client.service.WarehouseItemStockTaking({"ID_Login": ID_Login, "ID": ID, "ID_Warehouse": ID_Warehouse})
 
     # Tisková sestava: Čárový kód položky skladu
-    def WarehouseItemBarcode(self, ID_Login, ID, BarcodeType=None):
-        return self._client.service.WarehouseItemBarcode({"ID_Login": ID_Login, "ID": ID, "BarcodeType": BarcodeType})
+    def WarehouseItemBarcode(self, ID_Login, ID, ID_Items=None, BarcodeType=None):
+        return self._client.service.WarehouseItemBarcode({"ID_Login": ID_Login, "ID": ID, "ID_Items": ID_Items, "BarcodeType": BarcodeType})
 
     # Tisková sestava: Hodnocení kvality
     def WarehouseItem(self, ID_Login, ID_Unit, IncludeChild, EventRent, UnitRent, CommercialRent, IsDelete, InWarehouse, Count, RowMin, Reverse, DisplayName=None, InventoryNumber=None, ID_Items=None, ID_WarehouseArray=None, ID_WarehouseTagArray=None, Sort=None, ID_WarehouseItemCategory=None, Columns=None):

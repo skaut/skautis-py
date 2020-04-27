@@ -77,8 +77,8 @@ class Material(object):
         return self._client.service.WarehouseAllStockTakingUnit({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsChildIncluded": IsChildIncluded})
 
     # Načíst seznam skladů k inventuře jednotky
-    def WarehouseAllStockTaking(self, ID_Login, ID_StockTaking):
-        return self._client.service.WarehouseAllStockTaking({"ID_Login": ID_Login, "ID_StockTaking": ID_StockTaking})
+    def WarehouseAllStockTaking(self, ID_Login, ID_StockTaking, ID_Warehouse):
+        return self._client.service.WarehouseAllStockTaking({"ID_Login": ID_Login, "ID_StockTaking": ID_StockTaking, "ID_Warehouse": ID_Warehouse})
 
     # Načíst seznam skladů
     def WarehouseAllEvent(self, ID_Login, ID_EventEducation, ID_EventGeneral, ID, ID_WarehouseMain, ID_District, IsChildIncluded, DisplayName=None, ID_WarehouseType=None):
@@ -91,6 +91,10 @@ class Material(object):
     # Smazat sklad
     def WarehouseDelete(self, ID_Login, ID):
         return self._client.service.WarehouseDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst seznam štítků položek
+    def WarehouseItemAllBarcode(self, ID_Login, ID_Items=None):
+        return self._client.service.WarehouseItemAllBarcode({"ID_Login": ID_Login, "ID_Items": ID_Items})
 
     # Načíst seznam položek k likvidaci inventurizace jednotky
     def WarehouseItemAllStockTakingDiscarded(self, ID_Login, ID_StockTaking, ID_Warehouse):
@@ -273,20 +277,20 @@ class Material(object):
         return self._client.service.WarehouseInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Event": ID_Event, "ID_WarehouseMain": ID_WarehouseMain, "IsDefault": IsDefault, "ID_District": ID_District, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "CanUpdate": CanUpdate, "ID_UnitCentral": ID_UnitCentral, "IsEnabled": IsEnabled, "DisplayName": DisplayName, "ID_WarehouseType": ID_WarehouseType, "WarehouseType": WarehouseType, "Unit": Unit, "UnitFullName": UnitFullName, "RegistrationNumber": RegistrationNumber, "Event": Event, "WarehouseMain": WarehouseMain, "Street": Street, "City": City, "District": District, "Postcode": Postcode, "Note": Note, "UnitCentral": UnitCentral, "UnitCentralFullName": UnitCentralFullName, "UnitCentralRegistrationNumber": UnitCentralRegistrationNumber})
 
     # Načíst seznam tagů
-    def WarehouseTagAll(self, ID_Login, ID_Unit, ID, IncludeChild, DisplayName=None):
-        return self._client.service.WarehouseTagAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "IncludeChild": IncludeChild, "DisplayName": DisplayName})
+    def WarehouseTagAll(self, ID_Login, ID_Unit, ID, IncludeChild, UniqueOnly, DisplayName=None):
+        return self._client.service.WarehouseTagAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "IncludeChild": IncludeChild, "UniqueOnly": UniqueOnly, "DisplayName": DisplayName})
 
     # Smazat tag
-    def WarehouseTagDelete(self, ID_Login, ID):
-        return self._client.service.WarehouseTagDelete({"ID_Login": ID_Login, "ID": ID})
+    def WarehouseTagDelete(self, ID_Login, ID, ID_Warehouse):
+        return self._client.service.WarehouseTagDelete({"ID_Login": ID_Login, "ID": ID, "ID_Warehouse": ID_Warehouse})
 
     # Načíst detail tagu
     def WarehouseTagDetail(self, ID_Login, ID):
         return self._client.service.WarehouseTagDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit tag
-    def WarehouseTagInsert(self, ID_Login, ID, ID_Unit, ID_EventEducation, ID_EventGeneral, ID_Event, ID_Warehouse, CanUpdate, DisplayName=None, Unit=None, Event=None, RegistrationNumber=None, Color=None, Warehouse=None):
-        return self._client.service.WarehouseTagInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_EventEducation": ID_EventEducation, "ID_EventGeneral": ID_EventGeneral, "ID_Event": ID_Event, "ID_Warehouse": ID_Warehouse, "CanUpdate": CanUpdate, "DisplayName": DisplayName, "Unit": Unit, "Event": Event, "RegistrationNumber": RegistrationNumber, "Color": Color, "Warehouse": Warehouse})
+    def WarehouseTagInsert(self, ID_Login, ID_Unit, DisplayName=None, Color=None, ID_Warehouse=None):
+        return self._client.service.WarehouseTagInsert({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "DisplayName": DisplayName, "Color": Color, "ID_Warehouse": ID_Warehouse})
 
     # Upravit tag
     def WarehouseTagUpdate(self, ID_Login, ID, ID_Unit, ID_EventEducation, ID_EventGeneral, ID_Event, ID_Warehouse, CanUpdate, DisplayName=None, Unit=None, Event=None, RegistrationNumber=None, Color=None, Warehouse=None):

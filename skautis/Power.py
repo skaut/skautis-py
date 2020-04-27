@@ -20,6 +20,10 @@ class Power(object):
     def EnrollEnergyAllExport(self, ID_Login):
         return self._client.service.EnrollEnergyAllExport({"ID_Login": ID_Login})
 
+    # Založit kandidáta o vstup do energie
+    def EnrollEnergyCandidateInsert(self, ID_Login, ID_Application, Email=None, PersonalText=None):
+        return self._client.service.EnrollEnergyCandidateInsert({"ID_Login": ID_Login, "ID_Application": ID_Application, "Email": Email, "PersonalText": PersonalText})
+
     # Procedura pro aktualizaci dokumentů
     def EnrollEnergyUpdateDocument(self, ID_Login, ID_Application, ID, ID_TempFile, ID_DocumentClass=None):
         return self._client.service.EnrollEnergyUpdateDocument({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_TempFile": ID_TempFile, "ID_DocumentClass": ID_DocumentClass})
