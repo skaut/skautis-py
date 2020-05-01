@@ -12,6 +12,94 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Načíst seznam registrací osoby
+    def PersonRegistrationAllPerson(self, ID_Login, ID_Person, Year, IsLastRegistration, Unit=None):
+        return self._client.service.PersonRegistrationAllPerson({"ID_Login": ID_Login, "ID_Person": ID_Person, "Year": Year, "IsLastRegistration": IsLastRegistration, "Unit": Unit})
+
+    # Načíst seznam funkcí osoby
+    def FunctionAllPerson(self, ID_Login, ID_Person, ID_Unit, ID_FunctionType, ShowHistory, IsOficial, IsValid, ID_FunctionReason=None):
+        return self._client.service.FunctionAllPerson({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_FunctionType": ID_FunctionType, "ShowHistory": ShowHistory, "IsOficial": IsOficial, "IsValid": IsValid, "ID_FunctionReason": ID_FunctionReason})
+
+    # Načíst seznam členství osob v jednotce
+    def MembershipAllPerson(self, ID_Login, ID_Person, ID_Unit, ShowHistory, IsValid, ID_MembershipType=None, ID_MembershipCategory=None):
+        return self._client.service.MembershipAllPerson({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ShowHistory": ShowHistory, "IsValid": IsValid, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory})
+
+    # Vrátí seznam uživatelů, kteří nejsou zaregistrovaní v registraci jednotky odpovídající zadané kategorii
+    def PersonAllRegistrationCategory(self, ID_Login, ID_RegistrationCategory, ID, IncludeChild):
+        return self._client.service.PersonAllRegistrationCategory({"ID_Login": ID_Login, "ID_RegistrationCategory": ID_RegistrationCategory, "ID": ID, "IncludeChild": IncludeChild})
+
+    # Smazat registrační vadu osoby
+    def PersonMistakeReportDelete(self, ID_Login, ID):
+        return self._client.service.PersonMistakeReportDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit registrační vadu osoby
+    def PersonMistakeReportInsert(self, ID_Login, ID, ID_Person, ID_Unit, ID_UnitRegistration, ID_Mistake, Person=None, UnitRegistrationNumber=None, Unit=None, Mistake=None, DisplayName=None, ParentComment=None):
+        return self._client.service.PersonMistakeReportInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_UnitRegistration": ID_UnitRegistration, "ID_Mistake": ID_Mistake, "Person": Person, "UnitRegistrationNumber": UnitRegistrationNumber, "Unit": Unit, "Mistake": Mistake, "DisplayName": DisplayName, "ParentComment": ParentComment})
+
+    # Načíst seznam registrací osob v jednotce
+    def PersonRegistrationAll(self, ID_Login, ID_UnitRegistration, IncludeChild):
+        return self._client.service.PersonRegistrationAll({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "IncludeChild": IncludeChild})
+
+    # Smazat registraci osoby
+    def PersonRegistrationDelete(self, ID_Login, ID, ID_UnitRegistration, ID_Items=None):
+        return self._client.service.PersonRegistrationDelete({"ID_Login": ID_Login, "ID": ID, "ID_UnitRegistration": ID_UnitRegistration, "ID_Items": ID_Items})
+
+    # Založit registraci osoby
+    def PersonRegistrationInsert(self, ID_Login, ID_Membership, ID_RegistrationCategory, ID_RegistrationServiceArray=None):
+        return self._client.service.PersonRegistrationInsert({"ID_Login": ID_Login, "ID_Membership": ID_Membership, "ID_RegistrationCategory": ID_RegistrationCategory, "ID_RegistrationServiceArray": ID_RegistrationServiceArray})
+
+    # Založit registraci jednotky
+    def RegistrationCategoryCopyFromParentUnit(self, ID_Login, ID_UnitRegistrationCopy):
+        return self._client.service.RegistrationCategoryCopyFromParentUnit({"ID_Login": ID_Login, "ID_UnitRegistrationCopy": ID_UnitRegistrationCopy})
+
+    # Načíst seznam titulů osoby
+    def DegreeAll(self, ID_Login, ID_Person, ID_DegreeType):
+        return self._client.service.DegreeAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_DegreeType": ID_DegreeType})
+
+    # Smazat titul osoby
+    def DegreeDelete(self, ID_Login, ID):
+        return self._client.service.DegreeDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit titul osoby
+    def DegreeInsert(self, ID_Login, ID_Person, ID, ID_DegreeType):
+        return self._client.service.DegreeInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_DegreeType": ID_DegreeType})
+
+    # Načíst seznam titulů
+    def DegreeTypeAll(self, ID_Login, ID_Application, ID, DisplayName=None):
+        return self._client.service.DegreeTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
+
+    # Upravit titul osoby
+    def DegreeUpdate(self, ID_Login, ID_Person, ID, ID_DegreeType):
+        return self._client.service.DegreeUpdate({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_DegreeType": ID_DegreeType})
+
+    # Načíst seznam vzdělání osoby
+    def EducationAll(self, ID_Login, ID_Person, ID_EducationType):
+        return self._client.service.EducationAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_EducationType": ID_EducationType})
+
+    # Smazat vzdělání osoby
+    def EducationDelete(self, ID_Login, ID):
+        return self._client.service.EducationDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit vzdělání osoby
+    def EducationInsert(self, ID_Login, ID_Person, ID, ID_EducationType, Note=None):
+        return self._client.service.EducationInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_EducationType": ID_EducationType, "Note": Note})
+
+    # Načíst seznam typů vzdělání
+    def EducationTypeAll(self, ID_Login, DisplayName=None):
+        return self._client.service.EducationTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
+
+    # Upravit vzdělání osoby
+    def EducationUpdate(self, ID_Login, ID_Person, ID, ID_EducationType, Note=None):
+        return self._client.service.EducationUpdate({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_EducationType": ID_EducationType, "Note": Note})
+
+    # Načíst seznam funkcí v jednotce
+    def FunctionAll(self, ID_Login, ID_Person, ID_Unit, ID_FunctionType, IsValid, ShowHistory, IsAgency, ID_Agency, IsStatutory, ID_FunctionReason=None, Person=None):
+        return self._client.service.FunctionAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_FunctionType": ID_FunctionType, "IsValid": IsValid, "ShowHistory": ShowHistory, "IsAgency": IsAgency, "ID_Agency": ID_Agency, "IsStatutory": IsStatutory, "ID_FunctionReason": ID_FunctionReason, "Person": Person})
+
+    # Načíst detail funkce
+    def FunctionDetail(self, ID_Login, ID):
+        return self._client.service.FunctionDetail({"ID_Login": ID_Login, "ID": ID})
+
     # Založit funkci
     def FunctionInsert(self, ID_Login, ID, ValidFrom, ValidTo, ID_Person, ID_Unit, ID_FunctionType, ID_Role, IsDeleteRole, AgreementConfirmed, ID_TempFile, AgreementNeeded, AgreementCanUpload, AgreementCanConfirm, AgreementCanView, ID_FunctionReason=None, Specification=None, AgreementExtension=None, Code=None, Number=None):
         return self._client.service.FunctionInsert({"ID_Login": ID_Login, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_FunctionType": ID_FunctionType, "ID_Role": ID_Role, "IsDeleteRole": IsDeleteRole, "AgreementConfirmed": AgreementConfirmed, "ID_TempFile": ID_TempFile, "AgreementNeeded": AgreementNeeded, "AgreementCanUpload": AgreementCanUpload, "AgreementCanConfirm": AgreementCanConfirm, "AgreementCanView": AgreementCanView, "ID_FunctionReason": ID_FunctionReason, "Specification": Specification, "AgreementExtension": AgreementExtension, "Code": Code, "Number": Number})
@@ -44,9 +132,9 @@ class OrganizationUnit(object):
     def FunctionUpdate(self, ID_Login, ID, ValidFrom, ValidTo, ID_Person, ID_Unit, ID_FunctionType, ID_Role, IsDeleteRole, AgreementConfirmed, ID_TempFile, AgreementNeeded, AgreementCanUpload, AgreementCanConfirm, AgreementCanView, ID_FunctionReason=None, Specification=None, AgreementExtension=None, Code=None, Number=None):
         return self._client.service.FunctionUpdate({"ID_Login": ID_Login, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_FunctionType": ID_FunctionType, "ID_Role": ID_Role, "IsDeleteRole": IsDeleteRole, "AgreementConfirmed": AgreementConfirmed, "ID_TempFile": ID_TempFile, "AgreementNeeded": AgreementNeeded, "AgreementCanUpload": AgreementCanUpload, "AgreementCanConfirm": AgreementCanConfirm, "AgreementCanView": AgreementCanView, "ID_FunctionReason": ID_FunctionReason, "Specification": Specification, "AgreementExtension": AgreementExtension, "Code": Code, "Number": Number})
 
-    # Načíst seznam členství osob v jednotce
-    def MembershipAll(self, ID_Login, ID_Unit, ID_Person, OnlyDirectMember, IsSts, ShowHistory, IsValid, ID_MembershipType=None, ID_MembershipCategory=None, LastName=None, IdentificationCode=None, ShowLowerUnits=None):
-        return self._client.service.MembershipAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "OnlyDirectMember": OnlyDirectMember, "IsSts": IsSts, "ShowHistory": ShowHistory, "IsValid": IsValid, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "LastName": LastName, "IdentificationCode": IdentificationCode, "ShowLowerUnits": ShowLowerUnits})
+    # Načíst seznam členství osob v jednotce k aktualizaci
+    def MembershipAllUnitUpdate(self, ID_Login, ID_Unit, OnlyDirectMember):
+        return self._client.service.MembershipAllUnitUpdate({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "OnlyDirectMember": OnlyDirectMember})
 
     # Načíst seznam výchovných kategorií
     def MembershipCategoryAll(self, ID_Login, Age, ID_Unit, ID=None, DisplayName=None, ID_Sex=None):
@@ -323,6 +411,94 @@ class OrganizationUnit(object):
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Načíst seznam požadavků pro odeslání zpráv
+    def RegistryAllMessage(self, ID_Login):
+        return self._client.service.RegistryAllMessage({"ID_Login": ID_Login})
+
+    # Načíst seznam požadavků na změnu pro MV ČR
+    def RegistryAllMinistry(self, ID_Login):
+        return self._client.service.RegistryAllMinistry({"ID_Login": ID_Login})
+
+    # Načíst detail požadavku na změnu v registru OJ
+    def RegistryDetail(self, ID_Login, ID):
+        return self._client.service.RegistryDetail({"ID_Login": ID_Login, "ID": ID})
+
+    # Odeslat zprávu o změně statutára střediska nadřízené jednotce
+    def RegistrySendFunctionParentMessage(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
+        return self._client.service.RegistrySendFunctionParentMessage({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
+
+    # Načíst seznam stavů požadavku registru OJ
+    def RegistryStateAll(self, ID_Login, DisplayName=None):
+        return self._client.service.RegistryStateAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
+
+    # Načíst seznam typů požadavku registru OJ
+    def RegistryTypeAll(self, ID_Login, DisplayName=None, ID_RegistryObject=None):
+        return self._client.service.RegistryTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "ID_RegistryObject": ID_RegistryObject})
+
+    # Zrušit požadavek na změnu v registru OJ
+    def RegistryUpdateCancel(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
+        return self._client.service.RegistryUpdateCancel({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
+
+    # Uzavřít požadavek na změnu v registru OJ
+    def RegistryUpdateClose(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
+        return self._client.service.RegistryUpdateClose({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
+
+    # Odeslat požadavek na změnu v registru OJ na MV ČR
+    def RegistryUpdateSend(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
+        return self._client.service.RegistryUpdateSend({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
+
+    # Odeslat zprávy požadavků na změnu registru OJ
+    def RegistryUpdateSendMessage(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
+        return self._client.service.RegistryUpdateSendMessage({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
+
+    # Zrušit odevzdání hospodářského výkazu jednotky
+    def StatementUpdateOpen(self, ID_Login, ID, ID_Unit, Year, IsError, IsDelivered, DateDelivered, DateCreated, IsThousands, IsConsultant, ID_Document, ID_DocumentTempFile, DateSent, ID_PersonSent, DateConfirmed, ID_PersonConfirmed, ID_Registry, ShowOverview, Unit=None, RegistrationNumber=None, ID_StatementType=None, StatementType=None, ID_StatementState=None, StatementState=None, PersonSent=None, PersonConfirmed=None):
+        return self._client.service.StatementUpdateOpen({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "IsError": IsError, "IsDelivered": IsDelivered, "DateDelivered": DateDelivered, "DateCreated": DateCreated, "IsThousands": IsThousands, "IsConsultant": IsConsultant, "ID_Document": ID_Document, "ID_DocumentTempFile": ID_DocumentTempFile, "DateSent": DateSent, "ID_PersonSent": ID_PersonSent, "DateConfirmed": DateConfirmed, "ID_PersonConfirmed": ID_PersonConfirmed, "ID_Registry": ID_Registry, "ShowOverview": ShowOverview, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StatementType": ID_StatementType, "StatementType": StatementType, "ID_StatementState": ID_StatementState, "StatementState": StatementState, "PersonSent": PersonSent, "PersonConfirmed": PersonConfirmed})
+
+    # Stáhnout soubor se scanem návrhu
+    def PersonHonourDownloadScan(self, ID_Login, ID):
+        return self._client.service.PersonHonourDownloadScan({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst seznam vyznamenání, které osoba může udělit
+    def HonourAllGrant(self, ID_Login, ID, DisplayName=None):
+        return self._client.service.HonourAllGrant({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+
+    # Načíst seznam vyznamenání
+    def HonourAll(self, ID_Login, ID, IsActive, DisplayName=None):
+        return self._client.service.HonourAll({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "DisplayName": DisplayName})
+
+    # Načíst detail vyznamenání
+    def HonourDetail(self, ID_Login, ID):
+        return self._client.service.HonourDetail({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst obrázek vyznamenání
+    def HonourImage(self, ID_Login, ID):
+        return self._client.service.HonourImage({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit vyznamenání
+    def HonourInsert(self, ID_Login, ID, IsActive, MaxCount, DisplayName=None, Description=None, FileName=None, ImageContent=None, StateUrl=None, DescriptionUrl=None):
+        return self._client.service.HonourInsert({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "MaxCount": MaxCount, "DisplayName": DisplayName, "Description": Description, "FileName": FileName, "ImageContent": ImageContent, "StateUrl": StateUrl, "DescriptionUrl": DescriptionUrl})
+
+    # Načíst seznam jednotek vyznamenání
+    def HonourUnitAll(self, ID_Login, ID_Honour, ID_Unit):
+        return self._client.service.HonourUnitAll({"ID_Login": ID_Login, "ID_Honour": ID_Honour, "ID_Unit": ID_Unit})
+
+    # Smazat jednotku,  ve které se vyznamenání uděluje
+    def HonourUnitDelete(self, ID_Login, ID):
+        return self._client.service.HonourUnitDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit jednotku,  ve které se vyznamenání uděluje
+    def HonourUnitInsert(self, ID_Login, ID_Honour, ID_Unit):
+        return self._client.service.HonourUnitInsert({"ID_Login": ID_Login, "ID_Honour": ID_Honour, "ID_Unit": ID_Unit})
+
+    # Upravit vyznamenání
+    def HonourUpdate(self, ID_Login, ID, IsActive, MaxCount, DisplayName=None, Description=None, FileName=None, ImageContent=None, StateUrl=None, DescriptionUrl=None):
+        return self._client.service.HonourUpdate({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "MaxCount": MaxCount, "DisplayName": DisplayName, "Description": Description, "FileName": FileName, "ImageContent": ImageContent, "StateUrl": StateUrl, "DescriptionUrl": DescriptionUrl})
+
+    # Hledání dospělých osob
+    def PersonAllJobs(self, ID_Login, ID, FirstName=None, LastName=None, NickName=None):
+        return self._client.service.PersonAllJobs({"ID_Login": ID_Login, "ID": ID, "FirstName": FirstName, "LastName": LastName, "NickName": NickName})
 
     # Načíst seznam  jubilantů
     def PersonAllJubilant(self, ID_Login, Settings=None):
@@ -740,93 +916,81 @@ class OrganizationUnit(object):
     def PersonParseIdentificationCode(self, ID_Login, IdentificationCode=None):
         return self._client.service.PersonParseIdentificationCode({"ID_Login": ID_Login, "IdentificationCode": IdentificationCode})
 
-    # Načíst seznam registrací osoby
-    def PersonRegistrationAllPerson(self, ID_Login, ID_Person, Year, IsLastRegistration, Unit=None):
-        return self._client.service.PersonRegistrationAllPerson({"ID_Login": ID_Login, "ID_Person": ID_Person, "Year": Year, "IsLastRegistration": IsLastRegistration, "Unit": Unit})
+    # Načíst osoby podle mailů členů google skupiny
+    def PersonAllGoogleGroup(self, ID_Login, ID_GoogleGroup):
+        return self._client.service.PersonAllGoogleGroup({"ID_Login": ID_Login, "ID_GoogleGroup": ID_GoogleGroup})
 
-    # Načíst seznam funkcí osoby
-    def FunctionAllPerson(self, ID_Login, ID_Person, ID_Unit, ID_FunctionType, ShowHistory, IsOficial, IsValid, ID_FunctionReason=None):
-        return self._client.service.FunctionAllPerson({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_FunctionType": ID_FunctionType, "ShowHistory": ShowHistory, "IsOficial": IsOficial, "IsValid": IsValid, "ID_FunctionReason": ID_FunctionReason})
+    # Vrátí 
+    def PersonAllJournalRover(self, ID_Login, Unit_ID):
+        return self._client.service.PersonAllJournalRover({"ID_Login": ID_Login, "Unit_ID": Unit_ID})
 
-    # Načíst seznam členství osob v jednotce
-    def MembershipAllPerson(self, ID_Login, ID_Person, ID_Unit, ShowHistory, IsValid, ID_MembershipType=None, ID_MembershipCategory=None):
-        return self._client.service.MembershipAllPerson({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ShowHistory": ShowHistory, "IsValid": IsValid, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory})
+    # Načíst počet vydaných karet za jednotlivé roky
+    def MemberCardAllSummary(self, ID_Login):
+        return self._client.service.MemberCardAllSummary({"ID_Login": ID_Login})
 
-    # Vrátí seznam uživatelů, kteří nejsou zaregistrovaní v registraci jednotky odpovídající zadané kategorii
-    def PersonAllRegistrationCategory(self, ID_Login, ID_RegistrationCategory, ID, IncludeChild):
-        return self._client.service.PersonAllRegistrationCategory({"ID_Login": ID_Login, "ID_RegistrationCategory": ID_RegistrationCategory, "ID": ID, "IncludeChild": IncludeChild})
+    # Zneplatnit email osoby nebo jednotky
+    def ContactUpdateInvalid(self, ID_Login, Mail=None):
+        return self._client.service.ContactUpdateInvalid({"ID_Login": ID_Login, "Mail": Mail})
 
-    # Smazat registrační vadu osoby
-    def PersonMistakeReportDelete(self, ID_Login, ID):
-        return self._client.service.PersonMistakeReportDelete({"ID_Login": ID_Login, "ID": ID})
+    # Načíst seznam podkladů pro tisk karet
+    def MemberCardPrintAll(self, ID_Login, ID, ID_MemberCardPrintState=None):
+        return self._client.service.MemberCardPrintAll({"ID_Login": ID_Login, "ID": ID, "ID_MemberCardPrintState": ID_MemberCardPrintState})
 
-    # Založit registrační vadu osoby
-    def PersonMistakeReportInsert(self, ID_Login, ID, ID_Person, ID_Unit, ID_UnitRegistration, ID_Mistake, Person=None, UnitRegistrationNumber=None, Unit=None, Mistake=None, DisplayName=None, ParentComment=None):
-        return self._client.service.PersonMistakeReportInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_UnitRegistration": ID_UnitRegistration, "ID_Mistake": ID_Mistake, "Person": Person, "UnitRegistrationNumber": UnitRegistrationNumber, "Unit": Unit, "Mistake": Mistake, "DisplayName": DisplayName, "ParentComment": ParentComment})
+    # Stáhnout soubor s podklady pro tisk karet
+    def MemberCardPrintDetailDownload(self, ID_Login, ID):
+        return self._client.service.MemberCardPrintDetailDownload({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst seznam registrací osob v jednotce
-    def PersonRegistrationAll(self, ID_Login, ID_UnitRegistration, IncludeChild):
-        return self._client.service.PersonRegistrationAll({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "IncludeChild": IncludeChild})
+    # Založit podklad pro tisk karet
+    def MemberCardPrintInsert(self, ID_Login, ID, DateCreate, DateGenerated, Count, ID_MemberCardPrintState=None, MemberCardPrintState=None, Error=None):
+        return self._client.service.MemberCardPrintInsert({"ID_Login": ID_Login, "ID": ID, "DateCreate": DateCreate, "DateGenerated": DateGenerated, "Count": Count, "ID_MemberCardPrintState": ID_MemberCardPrintState, "MemberCardPrintState": MemberCardPrintState, "Error": Error})
 
-    # Smazat registraci osoby
-    def PersonRegistrationDelete(self, ID_Login, ID, ID_UnitRegistration, ID_Items=None):
-        return self._client.service.PersonRegistrationDelete({"ID_Login": ID_Login, "ID": ID, "ID_UnitRegistration": ID_UnitRegistration, "ID_Items": ID_Items})
+    # Pozadavek na opetovne vygenerovani souboru s podklady pro tisk
+    def MemberCardPrintUpdateGenerate(self, ID_Login, ID, ValidFrom, ValidTo):
+        return self._client.service.MemberCardPrintUpdateGenerate({"ID_Login": ID_Login, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo})
 
-    # Založit registraci osoby
-    def PersonRegistrationInsert(self, ID_Login, ID_Membership, ID_RegistrationCategory, ID_RegistrationServiceArray=None):
-        return self._client.service.PersonRegistrationInsert({"ID_Login": ID_Login, "ID_Membership": ID_Membership, "ID_RegistrationCategory": ID_RegistrationCategory, "ID_RegistrationServiceArray": ID_RegistrationServiceArray})
+    # Definitivni smazani docasne oznacenych osob
+    def PersonDeleteInactive(self, ID_Login):
+        return self._client.service.PersonDeleteInactive({"ID_Login": ID_Login})
 
-    # Založit registraci jednotky
-    def RegistrationCategoryCopyFromParentUnit(self, ID_Login, ID_UnitRegistrationCopy):
-        return self._client.service.RegistrationCategoryCopyFromParentUnit({"ID_Login": ID_Login, "ID_UnitRegistrationCopy": ID_UnitRegistrationCopy})
+    # Načtení informací o osobě
+    def PersonDetailHomepage(self, ID_Login, ID):
+        return self._client.service.PersonDetailHomepage({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst seznam titulů osoby
-    def DegreeAll(self, ID_Login, ID_Person, ID_DegreeType):
-        return self._client.service.DegreeAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_DegreeType": ID_DegreeType})
+    # Načíst detail přihlášku osoby
+    def PersonOtherDetailUnitEnroll(self, ID_Login, ID, LoadUnitEnroll):
+        return self._client.service.PersonOtherDetailUnitEnroll({"ID_Login": ID_Login, "ID": ID, "LoadUnitEnroll": LoadUnitEnroll})
 
-    # Smazat titul osoby
-    def DegreeDelete(self, ID_Login, ID):
-        return self._client.service.DegreeDelete({"ID_Login": ID_Login, "ID": ID})
+    # Smazat citlivé údaje
+    def PersonOtherUpdateClear(self, ID_Login):
+        return self._client.service.PersonOtherUpdateClear({"ID_Login": ID_Login})
 
-    # Založit titul osoby
-    def DegreeInsert(self, ID_Login, ID_Person, ID, ID_DegreeType):
-        return self._client.service.DegreeInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_DegreeType": ID_DegreeType})
+    # Upravit odvolání souhlasů z přihlášky osoby
+    def PersonOtherUpdateReject(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None):
+        return self._client.service.PersonOtherUpdateReject({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note})
 
-    # Načíst seznam titulů
-    def DegreeTypeAll(self, ID_Login, ID_Application, ID, DisplayName=None):
-        return self._client.service.DegreeTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
+    # Upravit přihlášku osoby
+    def PersonOtherUpdateUnitEnroll(self, ID_Login, ID, ID_UnitEnrollTempFile, UnitEnrollExtension=None):
+        return self._client.service.PersonOtherUpdateUnitEnroll({"ID_Login": ID_Login, "ID": ID, "ID_UnitEnrollTempFile": ID_UnitEnrollTempFile, "UnitEnrollExtension": UnitEnrollExtension})
 
-    # Upravit titul osoby
-    def DegreeUpdate(self, ID_Login, ID_Person, ID, ID_DegreeType):
-        return self._client.service.DegreeUpdate({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_DegreeType": ID_DegreeType})
+    # Potvrdit přihlášku osoby
+    def PersonOtherUpdateUnitEnrollCondition(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None):
+        return self._client.service.PersonOtherUpdateUnitEnrollCondition({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note})
 
-    # Načíst seznam vzdělání osoby
-    def EducationAll(self, ID_Login, ID_Person, ID_EducationType):
-        return self._client.service.EducationAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_EducationType": ID_EducationType})
+    # Stáhnout dekret kvalifikace
+    def PersonQualificationLetterDownload(self, ID_Login, ID_Qualification):
+        return self._client.service.PersonQualificationLetterDownload({"ID_Login": ID_Login, "ID_Qualification": ID_Qualification})
 
-    # Smazat vzdělání osoby
-    def EducationDelete(self, ID_Login, ID):
-        return self._client.service.EducationDelete({"ID_Login": ID_Login, "ID": ID})
+    # Editace výřezu fotografie osoby
+    def PersonUpdatePhotoSize(self, ID_Login, ID, PhotoX, PhotoY, PhotoSize):
+        return self._client.service.PersonUpdatePhotoSize({"ID_Login": ID_Login, "ID": ID, "PhotoX": PhotoX, "PhotoY": PhotoY, "PhotoSize": PhotoSize})
 
-    # Založit vzdělání osoby
-    def EducationInsert(self, ID_Login, ID_Person, ID, ID_EducationType, Note=None):
-        return self._client.service.EducationInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_EducationType": ID_EducationType, "Note": Note})
+    # Načíst seznam členských karet
+    def MemberCardAllRequestCount(self, ID_Login):
+        return self._client.service.MemberCardAllRequestCount({"ID_Login": ID_Login})
 
-    # Načíst seznam typů vzdělání
-    def EducationTypeAll(self, ID_Login, DisplayName=None):
-        return self._client.service.EducationTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
-
-    # Upravit vzdělání osoby
-    def EducationUpdate(self, ID_Login, ID_Person, ID, ID_EducationType, Note=None):
-        return self._client.service.EducationUpdate({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_EducationType": ID_EducationType, "Note": Note})
-
-    # Načíst seznam funkcí v jednotce
-    def FunctionAll(self, ID_Login, ID_Person, ID_Unit, ID_FunctionType, IsValid, ShowHistory, IsAgency, ID_Agency, IsStatutory, ID_FunctionReason=None, Person=None):
-        return self._client.service.FunctionAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_FunctionType": ID_FunctionType, "IsValid": IsValid, "ShowHistory": ShowHistory, "IsAgency": IsAgency, "ID_Agency": ID_Agency, "IsStatutory": IsStatutory, "ID_FunctionReason": ID_FunctionReason, "Person": Person})
-
-    # Načíst detail funkce
-    def FunctionDetail(self, ID_Login, ID):
-        return self._client.service.FunctionDetail({"ID_Login": ID_Login, "ID": ID})
+    # Načíst seznam členských karet připravených k vydání
+    def MemberCardAllRequest(self, ID_Login, ID_MemberCardPrint):
+        return self._client.service.MemberCardAllRequest({"ID_Login": ID_Login, "ID_MemberCardPrint": ID_MemberCardPrint})
 
     # Načíst platnost členské karty dle jejího čísla
     def MemberCardDetailValid(self, ID_Login, ID_Application, BitOutput, DisplayName=None):
@@ -1228,94 +1392,6 @@ class OrganizationUnit(object):
     def RegistryAll(self, ID_Login, ID_Unit, DateCreateFrom, DateCreateTo, DateCreateMonth, DateCreateYear, DisplayName=None, ID_RegistryObject=None, ID_RegistryType=None, ID_RegistryState=None):
         return self._client.service.RegistryAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "DateCreateFrom": DateCreateFrom, "DateCreateTo": DateCreateTo, "DateCreateMonth": DateCreateMonth, "DateCreateYear": DateCreateYear, "DisplayName": DisplayName, "ID_RegistryObject": ID_RegistryObject, "ID_RegistryType": ID_RegistryType, "ID_RegistryState": ID_RegistryState})
 
-    # Načíst seznam požadavků pro odeslání zpráv
-    def RegistryAllMessage(self, ID_Login):
-        return self._client.service.RegistryAllMessage({"ID_Login": ID_Login})
-
-    # Načíst seznam požadavků na změnu pro MV ČR
-    def RegistryAllMinistry(self, ID_Login):
-        return self._client.service.RegistryAllMinistry({"ID_Login": ID_Login})
-
-    # Načíst detail požadavku na změnu v registru OJ
-    def RegistryDetail(self, ID_Login, ID):
-        return self._client.service.RegistryDetail({"ID_Login": ID_Login, "ID": ID})
-
-    # Odeslat zprávu o změně statutára střediska nadřízené jednotce
-    def RegistrySendFunctionParentMessage(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
-        return self._client.service.RegistrySendFunctionParentMessage({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
-
-    # Načíst seznam stavů požadavku registru OJ
-    def RegistryStateAll(self, ID_Login, DisplayName=None):
-        return self._client.service.RegistryStateAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
-
-    # Načíst seznam typů požadavku registru OJ
-    def RegistryTypeAll(self, ID_Login, DisplayName=None, ID_RegistryObject=None):
-        return self._client.service.RegistryTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "ID_RegistryObject": ID_RegistryObject})
-
-    # Zrušit požadavek na změnu v registru OJ
-    def RegistryUpdateCancel(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
-        return self._client.service.RegistryUpdateCancel({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
-
-    # Uzavřít požadavek na změnu v registru OJ
-    def RegistryUpdateClose(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
-        return self._client.service.RegistryUpdateClose({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
-
-    # Odeslat požadavek na změnu v registru OJ na MV ČR
-    def RegistryUpdateSend(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
-        return self._client.service.RegistryUpdateSend({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
-
-    # Odeslat zprávy požadavků na změnu registru OJ
-    def RegistryUpdateSendMessage(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
-        return self._client.service.RegistryUpdateSendMessage({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
-
-    # Zrušit odevzdání hospodářského výkazu jednotky
-    def StatementUpdateOpen(self, ID_Login, ID, ID_Unit, Year, IsError, IsDelivered, DateDelivered, DateCreated, IsThousands, IsConsultant, ID_Document, ID_DocumentTempFile, DateSent, ID_PersonSent, DateConfirmed, ID_PersonConfirmed, ID_Registry, ShowOverview, Unit=None, RegistrationNumber=None, ID_StatementType=None, StatementType=None, ID_StatementState=None, StatementState=None, PersonSent=None, PersonConfirmed=None):
-        return self._client.service.StatementUpdateOpen({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "IsError": IsError, "IsDelivered": IsDelivered, "DateDelivered": DateDelivered, "DateCreated": DateCreated, "IsThousands": IsThousands, "IsConsultant": IsConsultant, "ID_Document": ID_Document, "ID_DocumentTempFile": ID_DocumentTempFile, "DateSent": DateSent, "ID_PersonSent": ID_PersonSent, "DateConfirmed": DateConfirmed, "ID_PersonConfirmed": ID_PersonConfirmed, "ID_Registry": ID_Registry, "ShowOverview": ShowOverview, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StatementType": ID_StatementType, "StatementType": StatementType, "ID_StatementState": ID_StatementState, "StatementState": StatementState, "PersonSent": PersonSent, "PersonConfirmed": PersonConfirmed})
-
-    # Stáhnout soubor se scanem návrhu
-    def PersonHonourDownloadScan(self, ID_Login, ID):
-        return self._client.service.PersonHonourDownloadScan({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst seznam vyznamenání, které osoba může udělit
-    def HonourAllGrant(self, ID_Login, ID, DisplayName=None):
-        return self._client.service.HonourAllGrant({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
-
-    # Načíst seznam vyznamenání
-    def HonourAll(self, ID_Login, ID, IsActive, DisplayName=None):
-        return self._client.service.HonourAll({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "DisplayName": DisplayName})
-
-    # Načíst detail vyznamenání
-    def HonourDetail(self, ID_Login, ID):
-        return self._client.service.HonourDetail({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst obrázek vyznamenání
-    def HonourImage(self, ID_Login, ID):
-        return self._client.service.HonourImage({"ID_Login": ID_Login, "ID": ID})
-
-    # Založit vyznamenání
-    def HonourInsert(self, ID_Login, ID, IsActive, MaxCount, DisplayName=None, Description=None, FileName=None, ImageContent=None, StateUrl=None, DescriptionUrl=None):
-        return self._client.service.HonourInsert({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "MaxCount": MaxCount, "DisplayName": DisplayName, "Description": Description, "FileName": FileName, "ImageContent": ImageContent, "StateUrl": StateUrl, "DescriptionUrl": DescriptionUrl})
-
-    # Načíst seznam jednotek vyznamenání
-    def HonourUnitAll(self, ID_Login, ID_Honour, ID_Unit):
-        return self._client.service.HonourUnitAll({"ID_Login": ID_Login, "ID_Honour": ID_Honour, "ID_Unit": ID_Unit})
-
-    # Smazat jednotku,  ve které se vyznamenání uděluje
-    def HonourUnitDelete(self, ID_Login, ID):
-        return self._client.service.HonourUnitDelete({"ID_Login": ID_Login, "ID": ID})
-
-    # Založit jednotku,  ve které se vyznamenání uděluje
-    def HonourUnitInsert(self, ID_Login, ID_Honour, ID_Unit):
-        return self._client.service.HonourUnitInsert({"ID_Login": ID_Login, "ID_Honour": ID_Honour, "ID_Unit": ID_Unit})
-
-    # Upravit vyznamenání
-    def HonourUpdate(self, ID_Login, ID, IsActive, MaxCount, DisplayName=None, Description=None, FileName=None, ImageContent=None, StateUrl=None, DescriptionUrl=None):
-        return self._client.service.HonourUpdate({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "MaxCount": MaxCount, "DisplayName": DisplayName, "Description": Description, "FileName": FileName, "ImageContent": ImageContent, "StateUrl": StateUrl, "DescriptionUrl": DescriptionUrl})
-
-    # Hledání dospělých osob
-    def PersonAllJobs(self, ID_Login, ID, FirstName=None, LastName=None, NickName=None):
-        return self._client.service.PersonAllJobs({"ID_Login": ID_Login, "ID": ID, "FirstName": FirstName, "LastName": LastName, "NickName": NickName})
-
     # Načíst seznam náborových kategorií
     def AdvertisingCategoryAllOccupation(self, ID_Login, ID_Application, ID_Occupation, ID_MeetingDate, ID_Sex=None):
         return self._client.service.AdvertisingCategoryAllOccupation({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Occupation": ID_Occupation, "ID_MeetingDate": ID_MeetingDate, "ID_Sex": ID_Sex})
@@ -1375,6 +1451,10 @@ class OrganizationUnit(object):
     # Načíst seznam typů členské karty
     def MemberCardTypeAll(self, ID_Login, ID_Person, FilterByAge, ID=None, DisplayName=None):
         return self._client.service.MemberCardTypeAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "FilterByAge": FilterByAge, "ID": ID, "DisplayName": DisplayName})
+
+    # Načíst seznam členství osob v jednotce
+    def MembershipAll(self, ID_Login, ID_Unit, ID_Person, OnlyDirectMember, IsSts, ShowHistory, IsValid, ID_MembershipType=None, ID_MembershipCategory=None, LastName=None, IdentificationCode=None, ShowLowerUnits=None):
+        return self._client.service.MembershipAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "OnlyDirectMember": OnlyDirectMember, "IsSts": IsSts, "ShowHistory": ShowHistory, "IsValid": IsValid, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "LastName": LastName, "IdentificationCode": IdentificationCode, "ShowLowerUnits": ShowLowerUnits})
 
     # Načíst seznam přihlášek
     def MembershipApplicationAll(self, ID_Login, ID, ID_Unit, ID_Person, ID_MembershipApplicationState=None, MembershipApplicationStates=None):
@@ -1556,6 +1636,14 @@ class OrganizationUnit(object):
     def OccupationTagAll(self, ID_Login, ID, DisplayName=None):
         return self._client.service.OccupationTagAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
+    # Načíst seznam typůtypu zákonného zástupce
+    def ParentTypeAll(self, ID_Login, ID_Application, ID=None, DisplayName=None):
+        return self._client.service.ParentTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
+
+    # Načíst seznam osob
+    def PersonAllGlobalSearch(self, ID_Login, ID_Application, IdentificationCode=None, FirstName=None, LastName=None, Name=None):
+        return self._client.service.PersonAllGlobalSearch({"ID_Login": ID_Login, "ID_Application": ID_Application, "IdentificationCode": IdentificationCode, "FirstName": FirstName, "LastName": LastName, "Name": Name})
+
     # Načíst seznam osob podle jména
     def PersonAllExternal(self, ID_Login, ID_Application, ID, Top, DisplayName=None):
         return self._client.service.PersonAllExternal({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "Top": Top, "DisplayName": DisplayName})
@@ -1563,6 +1651,50 @@ class OrganizationUnit(object):
     # Načíst seznam osob
     def PersonAllMemberCardPrint(self, ID_Login, ID_MemberCardPrint):
         return self._client.service.PersonAllMemberCardPrint({"ID_Login": ID_Login, "ID_MemberCardPrint": ID_MemberCardPrint})
+
+    # Načíst osoby ke změně
+    def PersonChangeAllPersonChangeRequest(self, ID_Login, ID_PersonChangeRequest):
+        return self._client.service.PersonChangeAllPersonChangeRequest({"ID_Login": ID_Login, "ID_PersonChangeRequest": ID_PersonChangeRequest})
+
+    # Načíst detail nových dat u změny u osoby
+    def PersonChangeDetailChanges(self, ID_Login, ID_Application, AccessKey, ID):
+        return self._client.service.PersonChangeDetailChanges({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "ID": ID})
+
+    # Načíst detail změny u osoby
+    def PersonChangeDetail(self, ID_Login, ID_Application, AccessKey, ID):
+        return self._client.service.PersonChangeDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "ID": ID})
+
+    # Založit změnu u osoby podle žádosti o změnu
+    def PersonChangeInsertPersonChangeRequestPerson(self, ID_Login, ID_PersonChangeRequestPerson, SendMessage):
+        return self._client.service.PersonChangeInsertPersonChangeRequestPerson({"ID_Login": ID_Login, "ID_PersonChangeRequestPerson": ID_PersonChangeRequestPerson, "SendMessage": SendMessage})
+
+    # Ověření kódu pro změnu údajů osoby
+    def PersonChangeOtherVerify(self, ID_Login, ID_Application, AccessKey, BirthDate, IsForeign, LastName=None, IdentificationCodeEnd=None, BirthCity=None):
+        return self._client.service.PersonChangeOtherVerify({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "BirthDate": BirthDate, "IsForeign": IsForeign, "LastName": LastName, "IdentificationCodeEnd": IdentificationCodeEnd, "BirthCity": BirthCity})
+
+    # Načíst detail žádosti změn u osoby
+    def PersonChangeRequestDetail(self, ID_Login, ID):
+        return self._client.service.PersonChangeRequestDetail({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit žádost změn u osoby
+    def PersonChangeRequestInsert(self, ID_Login, ID, ID_Unit, Created, Sent, Text=None, Persons=None):
+        return self._client.service.PersonChangeRequestInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Created": Created, "Sent": Sent, "Text": Text, "Persons": Persons})
+
+    # Odeslat žádosti změn u osoby
+    def PersonChangeRequestUpdate(self, ID_Login, ID, ID_Unit, Created, Sent, Text=None, Persons=None):
+        return self._client.service.PersonChangeRequestUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Created": Created, "Sent": Sent, "Text": Text, "Persons": Persons})
+
+    # Dokončit změny u osoby
+    def PersonChangeUpdateFinish(self, ID_Login, ID):
+        return self._client.service.PersonChangeUpdateFinish({"ID_Login": ID_Login, "ID": ID})
+
+    # Změnit stav u změny u osoby
+    def PersonChangeUpdateState(self, ID_Login, ID, ID_PersonChangeState=None):
+        return self._client.service.PersonChangeUpdateState({"ID_Login": ID_Login, "ID": ID, "ID_PersonChangeState": ID_PersonChangeState})
+
+    # Upravit změnu u osoby
+    def PersonChangeUpdate(self, ID_Login, ID_Application, AccessKey, OnlyValidate, Birthday, IsForeign, ID_DistrictBirth, ID_PersonParentPerson, ID_PersonParent, DeleteParent, ID_PersonParentPerson2, ID_PersonParent2, DeleteParent2, ID_Assurance, CheckCorrect, IsPostalSame, FirstName=None, LastName=None, ID_Sex=None, IdentificationCode=None, Address=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalAddress=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Phone=None, Email=None, Note=None, MaidenName=None, ID_Citizenship=None, CitizenshipCustom=None, BirthCity=None, ID_ParentType=None, ParentTypeCustom=None, FirstNameParent=None, LastNameParent=None, EmailParent=None, PhoneParent=None, NoteParent=None, ID_ParentType2=None, ParentTypeCustom2=None, FirstNameParent2=None, LastNameParent2=None, EmailParent2=None, PhoneParent2=None, NoteParent2=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None):
+        return self._client.service.PersonChangeUpdate({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "OnlyValidate": OnlyValidate, "Birthday": Birthday, "IsForeign": IsForeign, "ID_DistrictBirth": ID_DistrictBirth, "ID_PersonParentPerson": ID_PersonParentPerson, "ID_PersonParent": ID_PersonParent, "DeleteParent": DeleteParent, "ID_PersonParentPerson2": ID_PersonParentPerson2, "ID_PersonParent2": ID_PersonParent2, "DeleteParent2": DeleteParent2, "ID_Assurance": ID_Assurance, "CheckCorrect": CheckCorrect, "IsPostalSame": IsPostalSame, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "IdentificationCode": IdentificationCode, "Address": Address, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalAddress": PostalAddress, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Phone": Phone, "Email": Email, "Note": Note, "MaidenName": MaidenName, "ID_Citizenship": ID_Citizenship, "CitizenshipCustom": CitizenshipCustom, "BirthCity": BirthCity, "ID_ParentType": ID_ParentType, "ParentTypeCustom": ParentTypeCustom, "FirstNameParent": FirstNameParent, "LastNameParent": LastNameParent, "EmailParent": EmailParent, "PhoneParent": PhoneParent, "NoteParent": NoteParent, "ID_ParentType2": ID_ParentType2, "ParentTypeCustom2": ParentTypeCustom2, "FirstNameParent2": FirstNameParent2, "LastNameParent2": LastNameParent2, "EmailParent2": EmailParent2, "PhoneParent2": PhoneParent2, "NoteParent2": NoteParent2, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School})
 
     # Detail změny kontaktu
     def PersonContactRequestDetail(self, ID_Login, ID):
@@ -1575,6 +1707,10 @@ class OrganizationUnit(object):
     # Upravit změnu kontaktu
     def PersonContactRequestUpdate(self, ID_Login, ID, ID_PersonContact, ValidTo, Created, ID_User, Completed, Code, ID_Person, IsSts, IsCatalog, IsGa, ID_ContactRequestType=None, ContactRequestType=None, Person=None, ID_ContactType=None, ContactType=None, Value=None, Note=None):
         return self._client.service.PersonContactRequestUpdate({"ID_Login": ID_Login, "ID": ID, "ID_PersonContact": ID_PersonContact, "ValidTo": ValidTo, "Created": Created, "ID_User": ID_User, "Completed": Completed, "Code": Code, "ID_Person": ID_Person, "IsSts": IsSts, "IsCatalog": IsCatalog, "IsGa": IsGa, "ID_ContactRequestType": ID_ContactRequestType, "ContactRequestType": ContactRequestType, "Person": Person, "ID_ContactType": ID_ContactType, "ContactType": ContactType, "Value": Value, "Note": Note})
+
+    # Načtení informací o datech pro změnu
+    def PersonDetailPersonChange(self, ID_Login, ID_Application, Code):
+        return self._client.service.PersonDetailPersonChange({"ID_Login": ID_Login, "ID_Application": ID_Application, "Code": Code})
 
     # Ověření, zda má osoba nárok na časopis zdarma
     def PersonDetailCanHaveFreeJournal(self, ID_Login, ID):
@@ -1592,6 +1728,26 @@ class OrganizationUnit(object):
     def PersonDetailMembership(self, ID_Login, ID_Application, IdentificationCode=None):
         return self._client.service.PersonDetailMembership({"ID_Login": ID_Login, "ID_Application": ID_Application, "IdentificationCode": IdentificationCode})
 
+    # Načíst seznam zákonných zástupce osoby
+    def PersonParentAll(self, ID_Login, ID_Application, ID_Person, ID, ID_PersonParent, ID_ParentType=None):
+        return self._client.service.PersonParentAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Person": ID_Person, "ID": ID, "ID_PersonParent": ID_PersonParent, "ID_ParentType": ID_ParentType})
+
+    # Smazat zákonného zástupce osoby
+    def PersonParentDelete(self, ID_Login, ID):
+        return self._client.service.PersonParentDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst detail zákonného zástupce osoby
+    def PersonParentDetail(self, ID_Login, ID):
+        return self._client.service.PersonParentDetail({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit zákonného zástupce osoby
+    def PersonParentInsert(self, ID_Login, ID, ID_Person, ID_PersonParent, ParentHasAccount, Person=None, Parent=None, ID_ParentType=None, ParentType=None, FirstName=None, LastName=None, Phone=None, Email=None, Note=None):
+        return self._client.service.PersonParentInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_PersonParent": ID_PersonParent, "ParentHasAccount": ParentHasAccount, "Person": Person, "Parent": Parent, "ID_ParentType": ID_ParentType, "ParentType": ParentType, "FirstName": FirstName, "LastName": LastName, "Phone": Phone, "Email": Email, "Note": Note})
+
+    # Upravit zákonného zástupce osoby
+    def PersonParentUpdate(self, ID_Login, ID, ID_Person, ID_PersonParent, ParentHasAccount, Person=None, Parent=None, ID_ParentType=None, ParentType=None, FirstName=None, LastName=None, Phone=None, Email=None, Note=None):
+        return self._client.service.PersonParentUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_PersonParent": ID_PersonParent, "ParentHasAccount": ParentHasAccount, "Person": Person, "Parent": Parent, "ID_ParentType": ID_ParentType, "ParentType": ParentType, "FirstName": FirstName, "LastName": LastName, "Phone": Phone, "Email": Email, "Note": Note})
+
     # Načíst detail potvrzení o studiu pro osobu
     def PersonSchoolDetailPerson(self, ID_Login, ID_Person):
         return self._client.service.PersonSchoolDetailPerson({"ID_Login": ID_Login, "ID_Person": ID_Person})
@@ -1603,6 +1759,10 @@ class OrganizationUnit(object):
     # Editace osoby
     def PersonDeletePhoto(self, ID_Login, ID):
         return self._client.service.PersonDeletePhoto({"ID_Login": ID_Login, "ID": ID})
+
+    # Změna údajů osoby
+    def PersonUpdatePersonChange(self, ID_Login, ID_Application, Code, Birthday, BirthdayYear, IsForeign, YearFrom, ID_User, OnlyValidate, IsPostalAuthenticated, IsAddressAuthenticated, RejectDataStorage, IdentificationCodeForce, GenerateSecurityCode, ID_TempFile, ID_PersonPhotoBig, ID_PersonPhotoMedium, ID_PersonPhotoNormal, ID_PersonPhotoSmall, IdentificationCode=None, FirstName=None, LastName=None, NickName=None, Address=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalAddress=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Note=None, ID_Sex=None, RegistrationNumber=None, PhotoExtension=None, PhotoContent=None, MaidenName=None, AddressDistrict=None, PostalDistrict=None, UnitEnrollExtension=None, UnitEnroll=None):
+        return self._client.service.PersonUpdatePersonChange({"ID_Login": ID_Login, "ID_Application": ID_Application, "Code": Code, "Birthday": Birthday, "BirthdayYear": BirthdayYear, "IsForeign": IsForeign, "YearFrom": YearFrom, "ID_User": ID_User, "OnlyValidate": OnlyValidate, "IsPostalAuthenticated": IsPostalAuthenticated, "IsAddressAuthenticated": IsAddressAuthenticated, "RejectDataStorage": RejectDataStorage, "IdentificationCodeForce": IdentificationCodeForce, "GenerateSecurityCode": GenerateSecurityCode, "ID_TempFile": ID_TempFile, "ID_PersonPhotoBig": ID_PersonPhotoBig, "ID_PersonPhotoMedium": ID_PersonPhotoMedium, "ID_PersonPhotoNormal": ID_PersonPhotoNormal, "ID_PersonPhotoSmall": ID_PersonPhotoSmall, "IdentificationCode": IdentificationCode, "FirstName": FirstName, "LastName": LastName, "NickName": NickName, "Address": Address, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalAddress": PostalAddress, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Note": Note, "ID_Sex": ID_Sex, "RegistrationNumber": RegistrationNumber, "PhotoExtension": PhotoExtension, "PhotoContent": PhotoContent, "MaidenName": MaidenName, "AddressDistrict": AddressDistrict, "PostalDistrict": PostalDistrict, "UnitEnrollExtension": UnitEnrollExtension, "UnitEnroll": UnitEnroll})
 
     # Načíst seznam nových kvalifikací v daném období
     def QualificationAllNew(self, ID_Login, From, To, ID_QualificationTypeList=None):
@@ -1723,80 +1883,4 @@ class OrganizationUnit(object):
     # Načíst seznam majetkových vztahů
     def OwnerTypeAll(self, ID_Login, ID_Application, ID=None, DisplayName=None):
         return self._client.service.OwnerTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
-
-    # Načíst osoby podle mailů členů google skupiny
-    def PersonAllGoogleGroup(self, ID_Login, ID_GoogleGroup):
-        return self._client.service.PersonAllGoogleGroup({"ID_Login": ID_Login, "ID_GoogleGroup": ID_GoogleGroup})
-
-    # Vrátí 
-    def PersonAllJournalRover(self, ID_Login, Unit_ID):
-        return self._client.service.PersonAllJournalRover({"ID_Login": ID_Login, "Unit_ID": Unit_ID})
-
-    # Načíst počet vydaných karet za jednotlivé roky
-    def MemberCardAllSummary(self, ID_Login):
-        return self._client.service.MemberCardAllSummary({"ID_Login": ID_Login})
-
-    # Zneplatnit email osoby nebo jednotky
-    def ContactUpdateInvalid(self, ID_Login, Mail=None):
-        return self._client.service.ContactUpdateInvalid({"ID_Login": ID_Login, "Mail": Mail})
-
-    # Načíst seznam podkladů pro tisk karet
-    def MemberCardPrintAll(self, ID_Login, ID, ID_MemberCardPrintState=None):
-        return self._client.service.MemberCardPrintAll({"ID_Login": ID_Login, "ID": ID, "ID_MemberCardPrintState": ID_MemberCardPrintState})
-
-    # Stáhnout soubor s podklady pro tisk karet
-    def MemberCardPrintDetailDownload(self, ID_Login, ID):
-        return self._client.service.MemberCardPrintDetailDownload({"ID_Login": ID_Login, "ID": ID})
-
-    # Založit podklad pro tisk karet
-    def MemberCardPrintInsert(self, ID_Login, ID, DateCreate, DateGenerated, Count, ID_MemberCardPrintState=None, MemberCardPrintState=None, Error=None):
-        return self._client.service.MemberCardPrintInsert({"ID_Login": ID_Login, "ID": ID, "DateCreate": DateCreate, "DateGenerated": DateGenerated, "Count": Count, "ID_MemberCardPrintState": ID_MemberCardPrintState, "MemberCardPrintState": MemberCardPrintState, "Error": Error})
-
-    # Pozadavek na opetovne vygenerovani souboru s podklady pro tisk
-    def MemberCardPrintUpdateGenerate(self, ID_Login, ID, ValidFrom, ValidTo):
-        return self._client.service.MemberCardPrintUpdateGenerate({"ID_Login": ID_Login, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo})
-
-    # Definitivni smazani docasne oznacenych osob
-    def PersonDeleteInactive(self, ID_Login):
-        return self._client.service.PersonDeleteInactive({"ID_Login": ID_Login})
-
-    # Načtení informací o osobě
-    def PersonDetailHomepage(self, ID_Login, ID):
-        return self._client.service.PersonDetailHomepage({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst detail přihlášku osoby
-    def PersonOtherDetailUnitEnroll(self, ID_Login, ID, LoadUnitEnroll):
-        return self._client.service.PersonOtherDetailUnitEnroll({"ID_Login": ID_Login, "ID": ID, "LoadUnitEnroll": LoadUnitEnroll})
-
-    # Smazat citlivé údaje
-    def PersonOtherUpdateClear(self, ID_Login):
-        return self._client.service.PersonOtherUpdateClear({"ID_Login": ID_Login})
-
-    # Upravit odvolání souhlasů z přihlášky osoby
-    def PersonOtherUpdateReject(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None):
-        return self._client.service.PersonOtherUpdateReject({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note})
-
-    # Upravit přihlášku osoby
-    def PersonOtherUpdateUnitEnroll(self, ID_Login, ID, ID_UnitEnrollTempFile, UnitEnrollExtension=None):
-        return self._client.service.PersonOtherUpdateUnitEnroll({"ID_Login": ID_Login, "ID": ID, "ID_UnitEnrollTempFile": ID_UnitEnrollTempFile, "UnitEnrollExtension": UnitEnrollExtension})
-
-    # Potvrdit přihlášku osoby
-    def PersonOtherUpdateUnitEnrollCondition(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None):
-        return self._client.service.PersonOtherUpdateUnitEnrollCondition({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note})
-
-    # Stáhnout dekret kvalifikace
-    def PersonQualificationLetterDownload(self, ID_Login, ID_Qualification):
-        return self._client.service.PersonQualificationLetterDownload({"ID_Login": ID_Login, "ID_Qualification": ID_Qualification})
-
-    # Editace výřezu fotografie osoby
-    def PersonUpdatePhotoSize(self, ID_Login, ID, PhotoX, PhotoY, PhotoSize):
-        return self._client.service.PersonUpdatePhotoSize({"ID_Login": ID_Login, "ID": ID, "PhotoX": PhotoX, "PhotoY": PhotoY, "PhotoSize": PhotoSize})
-
-    # Načíst seznam členských karet
-    def MemberCardAllRequestCount(self, ID_Login):
-        return self._client.service.MemberCardAllRequestCount({"ID_Login": ID_Login})
-
-    # Načíst seznam členských karet připravených k vydání
-    def MemberCardAllRequest(self, ID_Login, ID_MemberCardPrint):
-        return self._client.service.MemberCardAllRequest({"ID_Login": ID_Login, "ID_MemberCardPrint": ID_MemberCardPrint})
 

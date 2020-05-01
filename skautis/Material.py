@@ -72,6 +72,10 @@ class Material(object):
     def WarehouseAdminInsert(self, ID_Login, ID, ID_Event, ID_EventEducation, ID_EventGeneral, ID_Person, Event=None, Person=None, Note=None):
         return self._client.service.WarehouseAdminInsert({"ID_Login": ID_Login, "ID": ID, "ID_Event": ID_Event, "ID_EventEducation": ID_EventEducation, "ID_EventGeneral": ID_EventGeneral, "ID_Person": ID_Person, "Event": Event, "Person": Person, "Note": Note})
 
+    # Načíst seznam skladů
+    def WarehouseAllProperty(self, ID_Login, ID_Unit, IsChildIncluded):
+        return self._client.service.WarehouseAllProperty({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsChildIncluded": IsChildIncluded})
+
     # Načíst seznam skladů inventury jednotky
     def WarehouseAllStockTakingUnit(self, ID_Login, ID_Unit, IsChildIncluded):
         return self._client.service.WarehouseAllStockTakingUnit({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsChildIncluded": IsChildIncluded})
