@@ -12,6 +12,10 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Ověření platnosti rodného čísla
+    def PersonParseIdentificationCode(self, ID_Login, IdentificationCode=None):
+        return self._client.service.PersonParseIdentificationCode({"ID_Login": ID_Login, "IdentificationCode": IdentificationCode})
+
     # Načíst seznam registrací osoby
     def PersonRegistrationAllPerson(self, ID_Login, ID_Person, Year, IsLastRegistration, Unit=None):
         return self._client.service.PersonRegistrationAllPerson({"ID_Login": ID_Login, "ID_Person": ID_Person, "Year": Year, "IsLastRegistration": IsLastRegistration, "Unit": Unit})
@@ -133,8 +137,8 @@ class OrganizationUnit(object):
         return self._client.service.FunctionUpdate({"ID_Login": ID_Login, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_FunctionType": ID_FunctionType, "ID_Role": ID_Role, "IsDeleteRole": IsDeleteRole, "AgreementConfirmed": AgreementConfirmed, "ID_TempFile": ID_TempFile, "AgreementNeeded": AgreementNeeded, "AgreementCanUpload": AgreementCanUpload, "AgreementCanConfirm": AgreementCanConfirm, "AgreementCanView": AgreementCanView, "ID_FunctionReason": ID_FunctionReason, "Specification": Specification, "AgreementExtension": AgreementExtension, "Code": Code, "Number": Number})
 
     # Načíst seznam členství osob v jednotce k aktualizaci
-    def MembershipAllUnitUpdate(self, ID_Login, ID_Unit, OnlyDirectMember):
-        return self._client.service.MembershipAllUnitUpdate({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "OnlyDirectMember": OnlyDirectMember})
+    def MembershipAllUnitUpdate(self, ID_Login, ID_Unit, OnlyDirectMember, LastValidOnly):
+        return self._client.service.MembershipAllUnitUpdate({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "OnlyDirectMember": OnlyDirectMember, "LastValidOnly": LastValidOnly})
 
     # Načíst seznam výchovných kategorií
     def MembershipCategoryAll(self, ID_Login, Age, ID_Unit, ID=None, DisplayName=None, ID_Sex=None):
@@ -411,6 +415,10 @@ class OrganizationUnit(object):
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Načíst seznam požadavků na změnu v registru OJ
+    def RegistryAll(self, ID_Login, ID_Unit, DateCreateFrom, DateCreateTo, DateCreateMonth, DateCreateYear, DisplayName=None, ID_RegistryObject=None, ID_RegistryType=None, ID_RegistryState=None):
+        return self._client.service.RegistryAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "DateCreateFrom": DateCreateFrom, "DateCreateTo": DateCreateTo, "DateCreateMonth": DateCreateMonth, "DateCreateYear": DateCreateYear, "DisplayName": DisplayName, "ID_RegistryObject": ID_RegistryObject, "ID_RegistryType": ID_RegistryType, "ID_RegistryState": ID_RegistryState})
 
     # Načíst seznam požadavků pro odeslání zpráv
     def RegistryAllMessage(self, ID_Login):
@@ -912,9 +920,9 @@ class OrganizationUnit(object):
     def PersonDetailSecurityCode(self, ID_Login, UserName=None, SecurityCode=None):
         return self._client.service.PersonDetailSecurityCode({"ID_Login": ID_Login, "UserName": UserName, "SecurityCode": SecurityCode})
 
-    # Ověření platnosti rodného čísla
-    def PersonParseIdentificationCode(self, ID_Login, IdentificationCode=None):
-        return self._client.service.PersonParseIdentificationCode({"ID_Login": ID_Login, "IdentificationCode": IdentificationCode})
+    # Načíst seznam majetkových vztahů
+    def OwnerTypeAll(self, ID_Login, ID_Application, ID=None, DisplayName=None):
+        return self._client.service.OwnerTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
 
     # Načíst osoby podle mailů členů google skupiny
     def PersonAllGoogleGroup(self, ID_Login, ID_GoogleGroup):
@@ -1388,10 +1396,6 @@ class OrganizationUnit(object):
     def UnitUpdateChangeFreeJournal(self, ID_Login, ID, ChangeFreeJournal, IncludeChild=None):
         return self._client.service.UnitUpdateChangeFreeJournal({"ID_Login": ID_Login, "ID": ID, "ChangeFreeJournal": ChangeFreeJournal, "IncludeChild": IncludeChild})
 
-    # Načíst seznam požadavků na změnu v registru OJ
-    def RegistryAll(self, ID_Login, ID_Unit, DateCreateFrom, DateCreateTo, DateCreateMonth, DateCreateYear, DisplayName=None, ID_RegistryObject=None, ID_RegistryType=None, ID_RegistryState=None):
-        return self._client.service.RegistryAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "DateCreateFrom": DateCreateFrom, "DateCreateTo": DateCreateTo, "DateCreateMonth": DateCreateMonth, "DateCreateYear": DateCreateYear, "DisplayName": DisplayName, "ID_RegistryObject": ID_RegistryObject, "ID_RegistryType": ID_RegistryType, "ID_RegistryState": ID_RegistryState})
-
     # Načíst seznam náborových kategorií
     def AdvertisingCategoryAllOccupation(self, ID_Login, ID_Application, ID_Occupation, ID_MeetingDate, ID_Sex=None):
         return self._client.service.AdvertisingCategoryAllOccupation({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Occupation": ID_Occupation, "ID_MeetingDate": ID_MeetingDate, "ID_Sex": ID_Sex})
@@ -1477,8 +1481,8 @@ class OrganizationUnit(object):
         return self._client.service.MembershipApplicationStateAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
     # Upravit přihlášku
-    def MembershipApplicationUpdateAccessKey(self, ID_Login, ID_Application, AccessKey, OnlyValidate, Birthday, IsForeign, ID_DegreeType1, ID_DegreeType2, ID_DegreeType3, ID_DistrictBirth, ID_Assurance, CheckInfo, CheckAllowDataStorage, CheckAllowAudiovisual, CheckAllowSocialNetwork, CheckAllowMarketing, CheckCorrect, IsPostalSame, FirstName=None, LastName=None, ID_Sex=None, IdentificationCode=None, Address=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalAddress=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Phone=None, Email=None, Note=None, MaidenName=None, ID_Citizenship=None, CitizenshipCustom=None, BirthCity=None, FirstNameParent=None, LastNameParent=None, EmailParent=None, PhoneParent=None, NoteParent=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None):
-        return self._client.service.MembershipApplicationUpdateAccessKey({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "OnlyValidate": OnlyValidate, "Birthday": Birthday, "IsForeign": IsForeign, "ID_DegreeType1": ID_DegreeType1, "ID_DegreeType2": ID_DegreeType2, "ID_DegreeType3": ID_DegreeType3, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "CheckInfo": CheckInfo, "CheckAllowDataStorage": CheckAllowDataStorage, "CheckAllowAudiovisual": CheckAllowAudiovisual, "CheckAllowSocialNetwork": CheckAllowSocialNetwork, "CheckAllowMarketing": CheckAllowMarketing, "CheckCorrect": CheckCorrect, "IsPostalSame": IsPostalSame, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "IdentificationCode": IdentificationCode, "Address": Address, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalAddress": PostalAddress, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Phone": Phone, "Email": Email, "Note": Note, "MaidenName": MaidenName, "ID_Citizenship": ID_Citizenship, "CitizenshipCustom": CitizenshipCustom, "BirthCity": BirthCity, "FirstNameParent": FirstNameParent, "LastNameParent": LastNameParent, "EmailParent": EmailParent, "PhoneParent": PhoneParent, "NoteParent": NoteParent, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School})
+    def MembershipApplicationUpdateAccessKey(self, ID_Login, ID_Application, AccessKey, OnlyValidate, Birthday, IsForeign, ID_DegreeType1, ID_DegreeType2, ID_DegreeType3, ID_DistrictBirth, ID_PersonPersonParent, ID_PersonPersonParent2, ID_Assurance, CheckInfo, CheckAllowDataStorage, CheckAllowAudiovisual, CheckAllowSocialNetwork, CheckAllowMarketing, CheckCorrect, IsPostalSame, FirstName=None, LastName=None, ID_Sex=None, IdentificationCode=None, Address=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalAddress=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Phone=None, Email=None, Note=None, MaidenName=None, ID_Citizenship=None, CitizenshipCustom=None, BirthCity=None, ID_ParentType=None, ParentTypeCustom=None, FirstNameParent=None, LastNameParent=None, EmailParent=None, PhoneParent=None, NoteParent=None, ID_ParentType2=None, ParentTypeCustom2=None, FirstNameParent2=None, LastNameParent2=None, EmailParent2=None, PhoneParent2=None, NoteParent2=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None):
+        return self._client.service.MembershipApplicationUpdateAccessKey({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "OnlyValidate": OnlyValidate, "Birthday": Birthday, "IsForeign": IsForeign, "ID_DegreeType1": ID_DegreeType1, "ID_DegreeType2": ID_DegreeType2, "ID_DegreeType3": ID_DegreeType3, "ID_DistrictBirth": ID_DistrictBirth, "ID_PersonPersonParent": ID_PersonPersonParent, "ID_PersonPersonParent2": ID_PersonPersonParent2, "ID_Assurance": ID_Assurance, "CheckInfo": CheckInfo, "CheckAllowDataStorage": CheckAllowDataStorage, "CheckAllowAudiovisual": CheckAllowAudiovisual, "CheckAllowSocialNetwork": CheckAllowSocialNetwork, "CheckAllowMarketing": CheckAllowMarketing, "CheckCorrect": CheckCorrect, "IsPostalSame": IsPostalSame, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "IdentificationCode": IdentificationCode, "Address": Address, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalAddress": PostalAddress, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Phone": Phone, "Email": Email, "Note": Note, "MaidenName": MaidenName, "ID_Citizenship": ID_Citizenship, "CitizenshipCustom": CitizenshipCustom, "BirthCity": BirthCity, "ID_ParentType": ID_ParentType, "ParentTypeCustom": ParentTypeCustom, "FirstNameParent": FirstNameParent, "LastNameParent": LastNameParent, "EmailParent": EmailParent, "PhoneParent": PhoneParent, "NoteParent": NoteParent, "ID_ParentType2": ID_ParentType2, "ParentTypeCustom2": ParentTypeCustom2, "FirstNameParent2": FirstNameParent2, "LastNameParent2": LastNameParent2, "EmailParent2": EmailParent2, "PhoneParent2": PhoneParent2, "NoteParent2": NoteParent2, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School})
 
     # Dokončit přihlášku
     def MembershipApplicationUpdateFinish(self, ID_Login, ID, ID_Unit, ID_Person, ValidTo, AccessKey, IsValid, DateCreate, LastOpened, IsAdult, DateFilled, DateFinished, Birthday, DateState, IsForeign, ID_DistrictBirth, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, ID_Assurance, Unit=None, UnitTitle=None, LogoExtension=None, RegistrationNumber=None, ID_MembershipApplicationState=None, MembershipApplicationState=None, FirstName=None, LastName=None, FirstNameParent=None, LastNameParent=None, NoteParent=None, Person=None, IdentificationCode=None, PhoneMainHelp=None, PhoneMainPlaceholder=None, EmailMainHelp=None, EmailMainPlaceholder=None, Reason=None, ID_Sex=None, Sex=None, MaidenName=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, BirthCity=None, DistrictBirth=None, Degrees=None, ID_DegreeType1=None, ID_DegreeType2=None, ID_DegreeType3=None, Street=None, City=None, PostalFirstLine=None, State=None, Postcode=None, PostalStreet=None, PostalState=None, PostalPostcode=None, PostalCity=None, PhoneParent=None, EmailParent=None, Phone=None, Email=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Assurance=None):
@@ -1696,6 +1700,10 @@ class OrganizationUnit(object):
     def PersonChangeUpdate(self, ID_Login, ID_Application, AccessKey, OnlyValidate, Birthday, IsForeign, ID_DistrictBirth, ID_PersonParentPerson, ID_PersonParent, DeleteParent, ID_PersonParentPerson2, ID_PersonParent2, DeleteParent2, ID_Assurance, CheckCorrect, IsPostalSame, FirstName=None, LastName=None, ID_Sex=None, IdentificationCode=None, Address=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalAddress=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Phone=None, Email=None, Note=None, MaidenName=None, ID_Citizenship=None, CitizenshipCustom=None, BirthCity=None, ID_ParentType=None, ParentTypeCustom=None, FirstNameParent=None, LastNameParent=None, EmailParent=None, PhoneParent=None, NoteParent=None, ID_ParentType2=None, ParentTypeCustom2=None, FirstNameParent2=None, LastNameParent2=None, EmailParent2=None, PhoneParent2=None, NoteParent2=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None):
         return self._client.service.PersonChangeUpdate({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "OnlyValidate": OnlyValidate, "Birthday": Birthday, "IsForeign": IsForeign, "ID_DistrictBirth": ID_DistrictBirth, "ID_PersonParentPerson": ID_PersonParentPerson, "ID_PersonParent": ID_PersonParent, "DeleteParent": DeleteParent, "ID_PersonParentPerson2": ID_PersonParentPerson2, "ID_PersonParent2": ID_PersonParent2, "DeleteParent2": DeleteParent2, "ID_Assurance": ID_Assurance, "CheckCorrect": CheckCorrect, "IsPostalSame": IsPostalSame, "FirstName": FirstName, "LastName": LastName, "ID_Sex": ID_Sex, "IdentificationCode": IdentificationCode, "Address": Address, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalAddress": PostalAddress, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Phone": Phone, "Email": Email, "Note": Note, "MaidenName": MaidenName, "ID_Citizenship": ID_Citizenship, "CitizenshipCustom": CitizenshipCustom, "BirthCity": BirthCity, "ID_ParentType": ID_ParentType, "ParentTypeCustom": ParentTypeCustom, "FirstNameParent": FirstNameParent, "LastNameParent": LastNameParent, "EmailParent": EmailParent, "PhoneParent": PhoneParent, "NoteParent": NoteParent, "ID_ParentType2": ID_ParentType2, "ParentTypeCustom2": ParentTypeCustom2, "FirstNameParent2": FirstNameParent2, "LastNameParent2": LastNameParent2, "EmailParent2": EmailParent2, "PhoneParent2": PhoneParent2, "NoteParent2": NoteParent2, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School})
 
+    # Načíst seznam kontaktů rodičů osoby
+    def PersonContactAllParent(self, ID_Login, ID_Person):
+        return self._client.service.PersonContactAllParent({"ID_Login": ID_Login, "ID_Person": ID_Person})
+
     # Detail změny kontaktu
     def PersonContactRequestDetail(self, ID_Login, ID):
         return self._client.service.PersonContactRequestDetail({"ID_Login": ID_Login, "ID": ID})
@@ -1879,8 +1887,4 @@ class OrganizationUnit(object):
     # Načíst seznam užívání nemovitosti
     def OccupationAllRealtyCollection(self, ID_Login, ID_RealtyCollection, IsActive, IsBorrowable, ID_Application):
         return self._client.service.OccupationAllRealtyCollection({"ID_Login": ID_Login, "ID_RealtyCollection": ID_RealtyCollection, "IsActive": IsActive, "IsBorrowable": IsBorrowable, "ID_Application": ID_Application})
-
-    # Načíst seznam majetkových vztahů
-    def OwnerTypeAll(self, ID_Login, ID_Application, ID=None, DisplayName=None):
-        return self._client.service.OwnerTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
 
