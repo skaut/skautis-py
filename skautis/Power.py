@@ -17,8 +17,8 @@ class Power(object):
         return self._client.service.AdvanceTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
 
     # Načíst seznam typu ukončení smlouvy u předchozího dodavatele
-    def ContractTerminationTypeAll(self, ID_Login, ID=None, DisplayName=None):
-        return self._client.service.ContractTerminationTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+    def ContractTerminationTypeAll(self, ID_Login, ID_Application, ID=None, DisplayName=None):
+        return self._client.service.ContractTerminationTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
 
     # Založit žádost energie
     def EnrollEnergyAllExport(self, ID_Login):
