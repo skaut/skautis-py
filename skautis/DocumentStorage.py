@@ -80,6 +80,10 @@ class DocumentStorage(object):
     def DocumentDelete(self, ID_Login, ID):
         return self._client.service.DocumentDelete({"ID_Login": ID_Login, "ID": ID})
 
+    # Načíst data dokumentu
+    def DocumentDetailData(self, ID_Application, ID_Login, ID):
+        return self._client.service.DocumentDetailData({"ID_Application": ID_Application, "ID_Login": ID_Login, "ID": ID})
+
     # Načíst detail dokumentu
     def DocumentDetail(self, ID_Application, ID_Login, ID, CheckPermission):
         return self._client.service.DocumentDetail({"ID_Application": ID_Application, "ID_Login": ID_Login, "ID": ID, "CheckPermission": CheckPermission})
@@ -93,8 +97,8 @@ class DocumentStorage(object):
         return self._client.service.DocumentDeleteDocumentInTable({"ID_Login": ID_Login, "ID": ID, "ID_DocumentClass": ID_DocumentClass, "Table": Table, "TableAction": TableAction, "Column": Column})
 
     # Upravit dokument v tabulce
-    def DocumentUpdateDocumentInTable(self, ID_Login, ID, ID_TempFile, MoveDocument, ID_DocumentClass=None, Table=None, TableAction=None, Column=None):
-        return self._client.service.DocumentUpdateDocumentInTable({"ID_Login": ID_Login, "ID": ID, "ID_TempFile": ID_TempFile, "MoveDocument": MoveDocument, "ID_DocumentClass": ID_DocumentClass, "Table": Table, "TableAction": TableAction, "Column": Column})
+    def DocumentUpdateDocumentInTable(self, ID_Login, ID, ID_TempFile, MoveDocument, ID_RelatedTable, ID_DocumentClass=None, Table=None, TableAction=None, Column=None):
+        return self._client.service.DocumentUpdateDocumentInTable({"ID_Login": ID_Login, "ID": ID, "ID_TempFile": ID_TempFile, "MoveDocument": MoveDocument, "ID_RelatedTable": ID_RelatedTable, "ID_DocumentClass": ID_DocumentClass, "Table": Table, "TableAction": TableAction, "Column": Column})
 
     # Upravit dokument
     def DocumentUpdate(self, ID_Login, ID, ID_DocumentVersion, Date, ID_Document, ID_User, ID_Person, Size, Version, ImageWidth, ImageHeight, UseCurrentVersion, ID_Cloud, CloudValidTo, DocumentVersion=None, ID_DocumentClass=None, DocumentClass=None, DisplayName=None, Person=None, FileName=None, ContentType=None, Extension=None, Hash=None, Storage=None, FileNameExtension=None, ID_CloudState=None, CloudGuid=None):

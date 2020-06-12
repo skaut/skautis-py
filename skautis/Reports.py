@@ -16,6 +16,10 @@ class Reports(object):
     def EnrollInvoiceBadPayers(self, ID_Login, DateFrom, DateTo):
         return self._client.service.EnrollInvoiceBadPayers({"ID_Login": ID_Login, "DateFrom": DateFrom, "DateTo": DateTo})
 
+    # Tisková sestava: Přehled žádostí o dotaci pro OJ
+    def GrantHeadquartersUniversal(self, ID_Login, Year, Format, ID_GrantState=None):
+        return self._client.service.GrantHeadquartersUniversal({"ID_Login": ID_Login, "Year": Year, "Format": Format, "ID_GrantState": ID_GrantState})
+
     # Tisková sestava: Registrované osoby
     def UnitRegistrationPersons(self, ID_Login, ID, FileFormat, IncludeChild):
         return self._client.service.UnitRegistrationPersons({"ID_Login": ID_Login, "ID": ID, "FileFormat": FileFormat, "IncludeChild": IncludeChild})
@@ -133,8 +137,8 @@ class Reports(object):
         return self._client.service.EvaluationShiftTable({"ID_Login": ID_Login, "ID": ID, "MostImportant": MostImportant, "Format": Format})
 
     # Tisková sestava: Přehled hlášenek pro MHMP
-    def EventCampCapitalSummary(self, ID_Login, ID_Unit, IsFuture, Started, Year, IsRelation, IsChildDirect, IsChildUnit, ForEvaluation, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
-        return self._client.service.EventCampCapitalSummary({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsFuture": IsFuture, "Started": Started, "Year": Year, "IsRelation": IsRelation, "IsChildDirect": IsChildDirect, "IsChildUnit": IsChildUnit, "ForEvaluation": ForEvaluation, "DisplayName": DisplayName, "ID_EventCampState": ID_EventCampState, "RegistrationNumber": RegistrationNumber, "Location": Location})
+    def EventCampCapitalSummary(self, ID_Login, ID_Unit, IsFuture, Started, Year, IsRelation, IsChildDirect, IsChildUnit, ForEvaluation, IsKraj, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
+        return self._client.service.EventCampCapitalSummary({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsFuture": IsFuture, "Started": Started, "Year": Year, "IsRelation": IsRelation, "IsChildDirect": IsChildDirect, "IsChildUnit": IsChildUnit, "ForEvaluation": ForEvaluation, "IsKraj": IsKraj, "DisplayName": DisplayName, "ID_EventCampState": ID_EventCampState, "RegistrationNumber": RegistrationNumber, "Location": Location})
 
     # Tisková sestava: Grafický pohled na hodnocení podřízených jednotek
     def EvaluationGraphSummary(self, ID_Login, Year, ID_EvaluationSubtype):
@@ -181,8 +185,8 @@ class Reports(object):
         return self._client.service.EnrollInviceSummary({"ID_Login": ID_Login, "DateFrom": DateFrom, "DateTo": DateTo})
 
     # Tisková sestava: Přehled hlášenek
-    def EventCampSummary(self, ID_Login, ID_Unit, IsFuture, Started, Year, IsRelation, IsChildDirect, IsChildUnit, ForEvaluation, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
-        return self._client.service.EventCampSummary({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsFuture": IsFuture, "Started": Started, "Year": Year, "IsRelation": IsRelation, "IsChildDirect": IsChildDirect, "IsChildUnit": IsChildUnit, "ForEvaluation": ForEvaluation, "DisplayName": DisplayName, "ID_EventCampState": ID_EventCampState, "RegistrationNumber": RegistrationNumber, "Location": Location})
+    def EventCampSummary(self, ID_Login, ID_Unit, IsFuture, Started, Year, IsRelation, IsChildDirect, IsChildUnit, ForEvaluation, IsKraj, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
+        return self._client.service.EventCampSummary({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsFuture": IsFuture, "Started": Started, "Year": Year, "IsRelation": IsRelation, "IsChildDirect": IsChildDirect, "IsChildUnit": IsChildUnit, "ForEvaluation": ForEvaluation, "IsKraj": IsKraj, "DisplayName": DisplayName, "ID_EventCampState": ID_EventCampState, "RegistrationNumber": RegistrationNumber, "Location": Location})
 
     # Vygenerování tiskové sestavy
     def Report(self, ID_Login, ID, ReportName=None, FileFormat=None, FileName=None):

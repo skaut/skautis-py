@@ -12,6 +12,10 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Načtení informací o osobě podle bezpečnostního kódu a uživatelského jména
+    def PersonDetailSecurityCode(self, ID_Login, UserName=None, SecurityCode=None):
+        return self._client.service.PersonDetailSecurityCode({"ID_Login": ID_Login, "UserName": UserName, "SecurityCode": SecurityCode})
+
     # Ověření platnosti rodného čísla
     def PersonParseIdentificationCode(self, ID_Login, IdentificationCode=None):
         return self._client.service.PersonParseIdentificationCode({"ID_Login": ID_Login, "IdentificationCode": IdentificationCode})
@@ -415,6 +419,10 @@ class OrganizationUnit(object):
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Nastavit zda se provede automatická změna časopisů zdarma
+    def UnitUpdateChangeFreeJournal(self, ID_Login, ID, ChangeFreeJournal, IncludeChild=None):
+        return self._client.service.UnitUpdateChangeFreeJournal({"ID_Login": ID_Login, "ID": ID, "ChangeFreeJournal": ChangeFreeJournal, "IncludeChild": IncludeChild})
 
     # Načíst seznam požadavků na změnu v registru OJ
     def RegistryAll(self, ID_Login, ID_Unit, DateCreateFrom, DateCreateTo, DateCreateMonth, DateCreateYear, DisplayName=None, ID_RegistryObject=None, ID_RegistryType=None, ID_RegistryState=None):
@@ -916,9 +924,9 @@ class OrganizationUnit(object):
     def PersonAllLogin(self, ID_Login, Birthday, FirstName=None, LastName=None, NickName=None, IdentificationCode=None, ID_MembershipType=None, ID_MembershipCategory=None, Phone=None, Email=None, City=None, IdentificationCodeStartsWith=None, RegistrationNumber=None):
         return self._client.service.PersonAllLogin({"ID_Login": ID_Login, "Birthday": Birthday, "FirstName": FirstName, "LastName": LastName, "NickName": NickName, "IdentificationCode": IdentificationCode, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "Phone": Phone, "Email": Email, "City": City, "IdentificationCodeStartsWith": IdentificationCodeStartsWith, "RegistrationNumber": RegistrationNumber})
 
-    # Načtení informací o osobě podle bezpečnostního kódu a uživatelského jména
-    def PersonDetailSecurityCode(self, ID_Login, UserName=None, SecurityCode=None):
-        return self._client.service.PersonDetailSecurityCode({"ID_Login": ID_Login, "UserName": UserName, "SecurityCode": SecurityCode})
+    # Načíst seznam užívání nemovitosti
+    def OccupationAllRealtyCollection(self, ID_Login, ID_RealtyCollection, IsActive, IsBorrowable, ID_Application):
+        return self._client.service.OccupationAllRealtyCollection({"ID_Login": ID_Login, "ID_RealtyCollection": ID_RealtyCollection, "IsActive": IsActive, "IsBorrowable": IsBorrowable, "ID_Application": ID_Application})
 
     # Načíst seznam majetkových vztahů
     def OwnerTypeAll(self, ID_Login, ID_Application, ID=None, DisplayName=None):
@@ -1392,10 +1400,6 @@ class OrganizationUnit(object):
     def UnitHandicapUpdate(self, ID_Login, ID_Unit, ID_HandicapType, Value):
         return self._client.service.UnitHandicapUpdate({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID_HandicapType": ID_HandicapType, "Value": Value})
 
-    # Nastavit zda se provede automatická změna časopisů zdarma
-    def UnitUpdateChangeFreeJournal(self, ID_Login, ID, ChangeFreeJournal, IncludeChild=None):
-        return self._client.service.UnitUpdateChangeFreeJournal({"ID_Login": ID_Login, "ID": ID, "ChangeFreeJournal": ChangeFreeJournal, "IncludeChild": IncludeChild})
-
     # Načíst seznam náborových kategorií
     def AdvertisingCategoryAllOccupation(self, ID_Login, ID_Application, ID_Occupation, ID_MeetingDate, ID_Sex=None):
         return self._client.service.AdvertisingCategoryAllOccupation({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Occupation": ID_Occupation, "ID_MeetingDate": ID_MeetingDate, "ID_Sex": ID_Sex})
@@ -1644,6 +1648,10 @@ class OrganizationUnit(object):
     def ParentTypeAll(self, ID_Login, ID_Application, ID=None, DisplayName=None):
         return self._client.service.ParentTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
 
+    # Načíst seznam osob vzdělávací akce
+    def PersonAllEventEducationApi(self, ID_Login, ID_Application, ID_EventEducation):
+        return self._client.service.PersonAllEventEducationApi({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_EventEducation": ID_EventEducation})
+
     # Načíst seznam osob
     def PersonAllGlobalSearch(self, ID_Login, ID_Application, IdentificationCode=None, FirstName=None, LastName=None, Name=None):
         return self._client.service.PersonAllGlobalSearch({"ID_Login": ID_Login, "ID_Application": ID_Application, "IdentificationCode": IdentificationCode, "FirstName": FirstName, "LastName": LastName, "Name": Name})
@@ -1883,8 +1891,4 @@ class OrganizationUnit(object):
     # Načíst seznam členství osob v jednotce pro zařazení do google skupiny
     def MembershipAllGoogleGroup(self, ID_Login, ID_GoogleGroup, OnlyDirectMember, Person=None):
         return self._client.service.MembershipAllGoogleGroup({"ID_Login": ID_Login, "ID_GoogleGroup": ID_GoogleGroup, "OnlyDirectMember": OnlyDirectMember, "Person": Person})
-
-    # Načíst seznam užívání nemovitosti
-    def OccupationAllRealtyCollection(self, ID_Login, ID_RealtyCollection, IsActive, IsBorrowable, ID_Application):
-        return self._client.service.OccupationAllRealtyCollection({"ID_Login": ID_Login, "ID_RealtyCollection": ID_RealtyCollection, "IsActive": IsActive, "IsBorrowable": IsBorrowable, "ID_Application": ID_Application})
 
