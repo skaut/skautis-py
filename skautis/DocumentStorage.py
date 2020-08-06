@@ -65,6 +65,10 @@ class DocumentStorage(object):
         return self._client.service.CloudUpdate({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ValidTo": ValidTo, "DocumentVersion": DocumentVersion, "ID_CloudState": ID_CloudState, "CloudState": CloudState, "CloudGuid": CloudGuid})
 
     # Načíst seznam dokumentů
+    def DocumentAllUnused(self, ID_Login):
+        return self._client.service.DocumentAllUnused({"ID_Login": ID_Login})
+
+    # Načíst seznam dokumentů
     def DocumentAll(self, ID_Application, ID_Login, ID, ID_DocumentVersion, ID_DocumentClass=None):
         return self._client.service.DocumentAll({"ID_Application": ID_Application, "ID_Login": ID_Login, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ID_DocumentClass": ID_DocumentClass})
 
@@ -77,8 +81,8 @@ class DocumentStorage(object):
         return self._client.service.DocumentClassDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Smazat dokument
-    def DocumentDelete(self, ID_Login, ID):
-        return self._client.service.DocumentDelete({"ID_Login": ID_Login, "ID": ID})
+    def DocumentDelete(self, ID_Login, ID, CheckPermissions):
+        return self._client.service.DocumentDelete({"ID_Login": ID_Login, "ID": ID, "CheckPermissions": CheckPermissions})
 
     # Načíst data dokumentu
     def DocumentDetailData(self, ID_Application, ID_Login, ID):

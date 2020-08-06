@@ -333,8 +333,8 @@ class OrganizationUnit(object):
         return self._client.service.TroopArtAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
     # Načíst seznam jednotek
-    def UnitAll(self, ID_Login, ID_Application, ID, ID_Group, ID_UnitParent, ID_UnitChild, ID_UnitTree, RegistrationNumberStartWith, ID_UnitType=None, RegistrationNumber=None, DisplayName=None, Location=None, AccountNumber=None, IC=None):
-        return self._client.service.UnitAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_Group": ID_Group, "ID_UnitParent": ID_UnitParent, "ID_UnitChild": ID_UnitChild, "ID_UnitTree": ID_UnitTree, "RegistrationNumberStartWith": RegistrationNumberStartWith, "ID_UnitType": ID_UnitType, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "Location": Location, "AccountNumber": AccountNumber, "IC": IC})
+    def UnitAll(self, ID_Login, ID_Application, ID, ID_Group, ID_UnitParent, ID_UnitChild, ID_UnitTree, RegistrationNumberStartWith, ID_AlignmentType, ID_UnitType=None, RegistrationNumber=None, DisplayName=None, Location=None, AccountNumber=None, IC=None):
+        return self._client.service.UnitAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_Group": ID_Group, "ID_UnitParent": ID_UnitParent, "ID_UnitChild": ID_UnitChild, "ID_UnitTree": ID_UnitTree, "RegistrationNumberStartWith": RegistrationNumberStartWith, "ID_AlignmentType": ID_AlignmentType, "ID_UnitType": ID_UnitType, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "Location": Location, "AccountNumber": AccountNumber, "IC": IC})
 
     # Načíst seznam kontaktů jednotky
     def UnitContactAll(self, ID_Login, ID_Application, ID_Unit, Publish, ID_ContactType=None):
