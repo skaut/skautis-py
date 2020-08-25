@@ -1193,12 +1193,12 @@ class Events(object):
         return self._client.service.EducationPersonDaysUpdate({"ID_Login": ID_Login, "ID": ID, "ID_EventEducation": ID_EventEducation, "ID_EventEducationType": ID_EventEducationType, "PersonDays": PersonDays, "Year": Year, "EventEducationType": EventEducationType})
 
     # Načíst seznam veřejných akcí pro API
-    def EventEducationAllPublicApi(self, ID_Login, ID_Application, ID_EventEducationType, ID_EventEducationGroup, CanSignUp, IsForester, IsChildFriendly, IsAgeRestricted):
-        return self._client.service.EventEducationAllPublicApi({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_EventEducationType": ID_EventEducationType, "ID_EventEducationGroup": ID_EventEducationGroup, "CanSignUp": CanSignUp, "IsForester": IsForester, "IsChildFriendly": IsChildFriendly, "IsAgeRestricted": IsAgeRestricted})
+    def EventEducationAllPublicApi(self, ID_Login, ID_Application, ID_EventEducationType, CanSignUp, IsForester, IsChildFriendly, IsAgeRestricted, ID_EventEducationGroup=None):
+        return self._client.service.EventEducationAllPublicApi({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_EventEducationType": ID_EventEducationType, "CanSignUp": CanSignUp, "IsForester": IsForester, "IsChildFriendly": IsChildFriendly, "IsAgeRestricted": IsAgeRestricted, "ID_EventEducationGroup": ID_EventEducationGroup})
 
     # Načíst seznam veřejných historických akcí pro API
-    def EventEducationAllPublicHistoryApi(self, ID_Login, ID_Application):
-        return self._client.service.EventEducationAllPublicHistoryApi({"ID_Login": ID_Login, "ID_Application": ID_Application})
+    def EventEducationAllPublicHistoryApi(self, ID_Login, ID_Application, ID_EventEducationType, IsForester, IsChildFriendly, IsAgeRestricted, ID_EventEducationGroup=None):
+        return self._client.service.EventEducationAllPublicHistoryApi({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_EventEducationType": ID_EventEducationType, "IsForester": IsForester, "IsChildFriendly": IsChildFriendly, "IsAgeRestricted": IsAgeRestricted, "ID_EventEducationGroup": ID_EventEducationGroup})
 
     # Načíst seznam vzdělávacích akcí
     def EventEducationCheckRealParticipation(self, ID_Login):
