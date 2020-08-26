@@ -1348,6 +1348,10 @@ class Events(object):
     def EventEducationCourseDetailPublic(self, ID, ID_Login, ID_Application, DisplayName=None):
         return self._client.service.EventEducationCourseDetailPublic({"ID": ID, "ID_Login": ID_Login, "ID_Application": ID_Application, "DisplayName": DisplayName})
 
+    # Načíst detail veřejného kurzu VzA pro API
+    def EventEducationCourseDetailPublicApi(self, ID_Login, ID_Application, ID):
+        return self._client.service.EventEducationCourseDetailPublicApi({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
+
     # No documentation
     def EventEducationCourseEnrollReminderSendNotification(self, ID_Login):
         return self._client.service.EventEducationCourseEnrollReminderSendNotification({"ID_Login": ID_Login})
@@ -1383,10 +1387,6 @@ class Events(object):
     # Načíst roky vzdělávací akce
     def EventEducationDetailEventYears(self, ID_Login, ID, ID_Event):
         return self._client.service.EventEducationDetailEventYears({"ID_Login": ID_Login, "ID": ID, "ID_Event": ID_Event})
-
-    # Načíst detail veřejného kurzu VzA pro API
-    def EventEducationCourseDetailPublicApi(self, ID_Login, ID_Application, ID):
-        return self._client.service.EventEducationCourseDetailPublicApi({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
 
     # Načíst seznam zkoušek pro veřejné API
     def EventEducationExamAllPublicApi(self, ID_Login, ID_Application, ID_EventEducation):
