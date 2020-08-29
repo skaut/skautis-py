@@ -1657,8 +1657,8 @@ class OrganizationUnit(object):
         return self._client.service.PersonAllGlobalSearch({"ID_Login": ID_Login, "ID_Application": ID_Application, "IdentificationCode": IdentificationCode, "FirstName": FirstName, "LastName": LastName, "Name": Name})
 
     # Načíst seznam osob podle jména
-    def PersonAllExternal(self, ID_Login, ID_Application, ID, Top, DisplayName=None):
-        return self._client.service.PersonAllExternal({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "Top": Top, "DisplayName": DisplayName})
+    def PersonAllExternal(self, ID_Login, ID_Application, ID, ID_User, Top, DisplayName=None):
+        return self._client.service.PersonAllExternal({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_User": ID_User, "Top": Top, "DisplayName": DisplayName})
 
     # Načíst seznam osob
     def PersonAllMemberCardPrint(self, ID_Login, ID_MemberCardPrint):
