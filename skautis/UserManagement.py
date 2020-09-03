@@ -168,6 +168,10 @@ class UserManagement(object):
     def UserAuthenticationUpdateForm(self, ID_Login, ID, ID_User, DateCreate, ID_UserAuthenticated, DateAuthenticated, ID_UserAuthenticationType=None, UserAuthenticationType=None, ID_UserAuthenticationState=None, UserAuthenticationState=None, Code=None, Number=None, Content=None, FormExtension=None, FormContent=None):
         return self._client.service.UserAuthenticationUpdateForm({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "DateCreate": DateCreate, "ID_UserAuthenticated": ID_UserAuthenticated, "DateAuthenticated": DateAuthenticated, "ID_UserAuthenticationType": ID_UserAuthenticationType, "UserAuthenticationType": UserAuthenticationType, "ID_UserAuthenticationState": ID_UserAuthenticationState, "UserAuthenticationState": UserAuthenticationState, "Code": Code, "Number": Number, "Content": Content, "FormExtension": FormExtension, "FormContent": FormContent})
 
+    # Načtení externích informací o uživateli
+    def UserDetailExternal(self, ID_Login, ID, ID_Person):
+        return self._client.service.UserDetailExternal({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person})
+
     # Načtení informací o uživateli pro dvoufaktorové přihlášení
     def UserDetailTwoFactor(self, ID_Login, ID):
         return self._client.service.UserDetailTwoFactor({"ID_Login": ID_Login, "ID": ID})
