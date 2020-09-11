@@ -12,6 +12,110 @@ class GoogleApps(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/GoogleApps.asmx?wsdl')
 
+    # Načíst seznam google skupin pro synchronizaci
+    def GoogleGroupAllSync(self, ID_Login):
+        return self._client.service.GoogleGroupAllSync({"ID_Login": ID_Login})
+
+    # Načíst seznam požadavků na synchronizaci
+    def GoogleGroupSyncRequestAll(self, ID_Login, ID_GoogleGroup, ID):
+        return self._client.service.GoogleGroupSyncRequestAll({"ID_Login": ID_Login, "ID_GoogleGroup": ID_GoogleGroup, "ID": ID})
+
+    # Načíst seznam nastavení synchronizace Google skupiny
+    def GoogleGroupSyncSettingsAll(self, ID_Login, ID_GoogleGroup, ID, ID_SyncLevelType=None, ID_SyncType=None):
+        return self._client.service.GoogleGroupSyncSettingsAll({"ID_Login": ID_Login, "ID_GoogleGroup": ID_GoogleGroup, "ID": ID, "ID_SyncLevelType": ID_SyncLevelType, "ID_SyncType": ID_SyncType})
+
+    # Smazat nastavení synchronizace Google skupiny
+    def GoogleGroupSyncSettingsDelete(self, ID_Login, ID, ID_GoogleGroup, IsFunction, ID_Unit, GoogleGroup=None, ID_SyncLevelType=None, SyncLevelType=None, ID_SyncType=None, SyncType=None, Units=None, SyncContactTypes=None, MembershipCategories=None, FunctionsDirect=None, Functions=None, ID_UnitType=None):
+        return self._client.service.GoogleGroupSyncSettingsDelete({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroup": ID_GoogleGroup, "IsFunction": IsFunction, "ID_Unit": ID_Unit, "GoogleGroup": GoogleGroup, "ID_SyncLevelType": ID_SyncLevelType, "SyncLevelType": SyncLevelType, "ID_SyncType": ID_SyncType, "SyncType": SyncType, "Units": Units, "SyncContactTypes": SyncContactTypes, "MembershipCategories": MembershipCategories, "FunctionsDirect": FunctionsDirect, "Functions": Functions, "ID_UnitType": ID_UnitType})
+
+    # Založit nastavení synchronizace Google skupiny
+    def GoogleGroupSyncSettingsInsert(self, ID_Login, ID, ID_GoogleGroup, IsFunction, ID_Unit, GoogleGroup=None, ID_SyncLevelType=None, SyncLevelType=None, ID_SyncType=None, SyncType=None, Units=None, SyncContactTypes=None, MembershipCategories=None, FunctionsDirect=None, Functions=None, ID_UnitType=None):
+        return self._client.service.GoogleGroupSyncSettingsInsert({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroup": ID_GoogleGroup, "IsFunction": IsFunction, "ID_Unit": ID_Unit, "GoogleGroup": GoogleGroup, "ID_SyncLevelType": ID_SyncLevelType, "SyncLevelType": SyncLevelType, "ID_SyncType": ID_SyncType, "SyncType": SyncType, "Units": Units, "SyncContactTypes": SyncContactTypes, "MembershipCategories": MembershipCategories, "FunctionsDirect": FunctionsDirect, "Functions": Functions, "ID_UnitType": ID_UnitType})
+
+    # Synchronizovat google skupinu
+    def GoogleGroupUpdateSync(self, ID_Login, ID, ID_Unit, DateCreate, ID_GoogleGroupMain, ID_Domain, MemberCount, Valid, LastSync, DisplayName=None, Email=None, Unit=None, RegistrationNumber=None, GoogleGroupMainEmail=None, Description=None, EmailName=None, OwnerEmail=None):
+        return self._client.service.GoogleGroupUpdateSync({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreate": DateCreate, "ID_GoogleGroupMain": ID_GoogleGroupMain, "ID_Domain": ID_Domain, "MemberCount": MemberCount, "Valid": Valid, "LastSync": LastSync, "DisplayName": DisplayName, "Email": Email, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "GoogleGroupMainEmail": GoogleGroupMainEmail, "Description": Description, "EmailName": EmailName, "OwnerEmail": OwnerEmail})
+
+    # Založit požadavek na synchronizaci
+    def GoogleGroupSyncRequestInsert(self, ID_Login, ID, ID_GoogleGroup, Created, Synced, IsSyncing, GoogleGroup=None, Exception=None):
+        return self._client.service.GoogleGroupSyncRequestInsert({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroup": ID_GoogleGroup, "Created": Created, "Synced": Synced, "IsSyncing": IsSyncing, "GoogleGroup": GoogleGroup, "Exception": Exception})
+
+    # Dokončit požadavek na synchronizaci
+    def GoogleGroupSyncRequestUpdateError(self, ID_Login, ID, ID_GoogleGroup, Created, Synced, IsSyncing, GoogleGroup=None, Exception=None):
+        return self._client.service.GoogleGroupSyncRequestUpdateError({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroup": ID_GoogleGroup, "Created": Created, "Synced": Synced, "IsSyncing": IsSyncing, "GoogleGroup": GoogleGroup, "Exception": Exception})
+
+    # Dokončit požadavek na synchronizaci
+    def GoogleGroupSyncRequestUpdateFinish(self, ID_Login, ID, ID_GoogleGroup, Created, Synced, IsSyncing, GoogleGroup=None, Exception=None):
+        return self._client.service.GoogleGroupSyncRequestUpdateFinish({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroup": ID_GoogleGroup, "Created": Created, "Synced": Synced, "IsSyncing": IsSyncing, "GoogleGroup": GoogleGroup, "Exception": Exception})
+
+    # Načíst detail nastavení synchronizace Google skupiny
+    def GoogleGroupSyncSettingsDetail(self, ID_Login, ID, ID_GoogleGroup):
+        return self._client.service.GoogleGroupSyncSettingsDetail({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroup": ID_GoogleGroup})
+
+    # Upravit nastavení synchronizace Google skupiny
+    def GoogleGroupSyncSettingsUpdate(self, ID_Login, ID, ID_GoogleGroup, IsFunction, ID_Unit, GoogleGroup=None, ID_SyncLevelType=None, SyncLevelType=None, ID_SyncType=None, SyncType=None, Units=None, SyncContactTypes=None, MembershipCategories=None, FunctionsDirect=None, Functions=None, ID_UnitType=None):
+        return self._client.service.GoogleGroupSyncSettingsUpdate({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroup": ID_GoogleGroup, "IsFunction": IsFunction, "ID_Unit": ID_Unit, "GoogleGroup": GoogleGroup, "ID_SyncLevelType": ID_SyncLevelType, "SyncLevelType": SyncLevelType, "ID_SyncType": ID_SyncType, "SyncType": SyncType, "Units": Units, "SyncContactTypes": SyncContactTypes, "MembershipCategories": MembershipCategories, "FunctionsDirect": FunctionsDirect, "Functions": Functions, "ID_UnitType": ID_UnitType})
+
+    # Typ kontaktu pro synchronizaci
+    def SyncContactTypeAll(self, ID_Login, ID=None, DisplayName=None):
+        return self._client.service.SyncContactTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+
+    # No documentation
+    def SyncLevelTypeAll(self, ID_Login, ID=None, DisplayName=None):
+        return self._client.service.SyncLevelTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+
+    # Načíst seznam typů funkce v nastavení Google skupiny
+    def SyncSettingsFunctionTypeAll(self, ID_Login, ID_GoogleGroupSyncSettings, ID, ID_FunctionType):
+        return self._client.service.SyncSettingsFunctionTypeAll({"ID_Login": ID_Login, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID": ID, "ID_FunctionType": ID_FunctionType})
+
+    # Smazat typ funkce v nastavení Google skupiny
+    def SyncSettingsFunctionTypeDelete(self, ID_Login, ID, ID_GoogleGroupSyncSettings, ID_FunctionType, IsDirect, FunctionType=None):
+        return self._client.service.SyncSettingsFunctionTypeDelete({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID_FunctionType": ID_FunctionType, "IsDirect": IsDirect, "FunctionType": FunctionType})
+
+    # Založit typ funkce v nastavení Google skupiny
+    def SyncSettingsFunctionTypeInsert(self, ID_Login, ID, ID_GoogleGroupSyncSettings, ID_FunctionType, IsDirect, FunctionType=None):
+        return self._client.service.SyncSettingsFunctionTypeInsert({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID_FunctionType": ID_FunctionType, "IsDirect": IsDirect, "FunctionType": FunctionType})
+
+    # Načíst seznam kategorií členství v nastavení synchronizace Google skupiny
+    def SyncSettingsMembershipCategoryAll(self, ID_Login, ID_GoogleGroupSyncSettings, ID, ID_MembershipCategory=None):
+        return self._client.service.SyncSettingsMembershipCategoryAll({"ID_Login": ID_Login, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID": ID, "ID_MembershipCategory": ID_MembershipCategory})
+
+    # Smazat kategorii členství v nastavení synchronizace Google skupiny
+    def SyncSettingsMembershipCategoryDelete(self, ID_Login, ID, ID_GoogleGroupSyncSettings, MembershipCategories=None, ID_MembershipCategory=None, MembershipCategory=None, DisplayName=None):
+        return self._client.service.SyncSettingsMembershipCategoryDelete({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "MembershipCategories": MembershipCategories, "ID_MembershipCategory": ID_MembershipCategory, "MembershipCategory": MembershipCategory, "DisplayName": DisplayName})
+
+    # Založit kategorii členství v nastavení synchronizace Google skupiny
+    def SyncSettingsMembershipCategoryInsert(self, ID_Login, ID, ID_GoogleGroupSyncSettings, MembershipCategories=None, ID_MembershipCategory=None, MembershipCategory=None, DisplayName=None):
+        return self._client.service.SyncSettingsMembershipCategoryInsert({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "MembershipCategories": MembershipCategories, "ID_MembershipCategory": ID_MembershipCategory, "MembershipCategory": MembershipCategory, "DisplayName": DisplayName})
+
+    # Načíst seznam typů kontaktu v nastavení synchronizace Google skupiny
+    def SyncSettingsSyncContactTypeAll(self, ID_Login, ID_GoogleGroupSyncSettings, ID, ID_SyncContactType=None):
+        return self._client.service.SyncSettingsSyncContactTypeAll({"ID_Login": ID_Login, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID": ID, "ID_SyncContactType": ID_SyncContactType})
+
+    # Založit typ kontaktu nastavení synchronizace Google skupiny
+    def SyncSettingsSyncContactTypeInsert(self, ID_Login, ID, ID_GoogleGroupSyncSettings, ID_SyncContactType=None, SyncContactType=None):
+        return self._client.service.SyncSettingsSyncContactTypeInsert({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID_SyncContactType": ID_SyncContactType, "SyncContactType": SyncContactType})
+
+    # Smazat typ kontaktu nastavení synchronizace Google skupiny
+    def SyncSettingsSyncContactTypeDelete(self, ID_Login, ID, ID_GoogleGroupSyncSettings, ID_SyncContactType=None, SyncContactType=None):
+        return self._client.service.SyncSettingsSyncContactTypeDelete({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID_SyncContactType": ID_SyncContactType, "SyncContactType": SyncContactType})
+
+    # Načíst seznam jednotek v nastavení Google skupiny
+    def SyncSettingsUnitAll(self, ID_Login, ID_GoogleGroupSyncSettings, ID, ID_Unit):
+        return self._client.service.SyncSettingsUnitAll({"ID_Login": ID_Login, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID": ID, "ID_Unit": ID_Unit})
+
+    # Smazat jednotku v nastavení Google skupiny
+    def SyncSettingsUnitDelete(self, ID_Login, ID, ID_GoogleGroupSyncSettings, ID_Unit, Units=None, Unit=None, RegistrationNumber=None, DisplayName=None):
+        return self._client.service.SyncSettingsUnitDelete({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID_Unit": ID_Unit, "Units": Units, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName})
+
+    # Založit jednotku v nastavení Google skupiny
+    def SyncSettingsUnitInsert(self, ID_Login, ID, ID_GoogleGroupSyncSettings, ID_Unit, Units=None, Unit=None, RegistrationNumber=None, DisplayName=None):
+        return self._client.service.SyncSettingsUnitInsert({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID_Unit": ID_Unit, "Units": Units, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName})
+
+    # No documentation
+    def SyncTypeAll(self, ID_Login, ID=None, DisplayName=None):
+        return self._client.service.SyncTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+
     # Načíst seznam GA účtů ke smazání
     def GoogleAccountAllInactive(self, ID_Login):
         return self._client.service.GoogleAccountAllInactive({"ID_Login": ID_Login})
@@ -169,12 +273,12 @@ class GoogleApps(object):
         return self._client.service.GoogleGroupDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit google skupinu
-    def GoogleGroupInsert(self, ID_Login, ID, ID_Unit, DateCreate, ID_GoogleGroupMain, ID_Domain, MemberCount, Valid, DisplayName=None, Email=None, Unit=None, RegistrationNumber=None, GoogleGroupMainEmail=None, Description=None, EmailName=None, OwnerEmail=None):
-        return self._client.service.GoogleGroupInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreate": DateCreate, "ID_GoogleGroupMain": ID_GoogleGroupMain, "ID_Domain": ID_Domain, "MemberCount": MemberCount, "Valid": Valid, "DisplayName": DisplayName, "Email": Email, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "GoogleGroupMainEmail": GoogleGroupMainEmail, "Description": Description, "EmailName": EmailName, "OwnerEmail": OwnerEmail})
+    def GoogleGroupInsert(self, ID_Login, ID, ID_Unit, DateCreate, ID_GoogleGroupMain, ID_Domain, MemberCount, Valid, LastSync, DisplayName=None, Email=None, Unit=None, RegistrationNumber=None, GoogleGroupMainEmail=None, Description=None, EmailName=None, OwnerEmail=None):
+        return self._client.service.GoogleGroupInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreate": DateCreate, "ID_GoogleGroupMain": ID_GoogleGroupMain, "ID_Domain": ID_Domain, "MemberCount": MemberCount, "Valid": Valid, "LastSync": LastSync, "DisplayName": DisplayName, "Email": Email, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "GoogleGroupMainEmail": GoogleGroupMainEmail, "Description": Description, "EmailName": EmailName, "OwnerEmail": OwnerEmail})
 
     # Upravit google skupinu
-    def GoogleGroupUpdate(self, ID_Login, ID, ID_Unit, DateCreate, ID_GoogleGroupMain, ID_Domain, MemberCount, Valid, DisplayName=None, Email=None, Unit=None, RegistrationNumber=None, GoogleGroupMainEmail=None, Description=None, EmailName=None, OwnerEmail=None):
-        return self._client.service.GoogleGroupUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreate": DateCreate, "ID_GoogleGroupMain": ID_GoogleGroupMain, "ID_Domain": ID_Domain, "MemberCount": MemberCount, "Valid": Valid, "DisplayName": DisplayName, "Email": Email, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "GoogleGroupMainEmail": GoogleGroupMainEmail, "Description": Description, "EmailName": EmailName, "OwnerEmail": OwnerEmail})
+    def GoogleGroupUpdate(self, ID_Login, ID, ID_Unit, DateCreate, ID_GoogleGroupMain, ID_Domain, MemberCount, Valid, LastSync, DisplayName=None, Email=None, Unit=None, RegistrationNumber=None, GoogleGroupMainEmail=None, Description=None, EmailName=None, OwnerEmail=None):
+        return self._client.service.GoogleGroupUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreate": DateCreate, "ID_GoogleGroupMain": ID_GoogleGroupMain, "ID_Domain": ID_Domain, "MemberCount": MemberCount, "Valid": Valid, "LastSync": LastSync, "DisplayName": DisplayName, "Email": Email, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "GoogleGroupMainEmail": GoogleGroupMainEmail, "Description": Description, "EmailName": EmailName, "OwnerEmail": OwnerEmail})
 
     # Uložit členy skupiny dle emailu
     def GoogleGroupUpdateMemberEmail(self, ID_Login, ID, EmailArray=None):

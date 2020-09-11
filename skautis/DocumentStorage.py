@@ -24,6 +24,14 @@ class DocumentStorage(object):
     def CloudDetail(self, ID_Login, ID):
         return self._client.service.CloudDetail({"ID_Login": ID_Login, "ID": ID})
 
+    # Načíst seznam cache cloudového záznamu
+    def CloudFolderCacheAll(self, ID_Login, ID_DocumentVersion=None):
+        return self._client.service.CloudFolderCacheAll({"ID_Login": ID_Login, "ID_DocumentVersion": ID_DocumentVersion})
+
+    # Založit cache cloudového záznamu
+    def CloudFolderCacheInsert(self, ID_Login, ID, Date, Path=None, CloudGuid=None):
+        return self._client.service.CloudFolderCacheInsert({"ID_Login": ID_Login, "ID": ID, "Date": Date, "Path": Path, "CloudGuid": CloudGuid})
+
     # Založit cloudový záznam
     def CloudInsert(self, ID_Login, ID_Application, ID, ID_DocumentVersion, ValidTo, DocumentVersion=None, ID_CloudState=None, CloudState=None, CloudGuid=None):
         return self._client.service.CloudInsert({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ValidTo": ValidTo, "DocumentVersion": DocumentVersion, "ID_CloudState": ID_CloudState, "CloudState": CloudState, "CloudGuid": CloudGuid})
