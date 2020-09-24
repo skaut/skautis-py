@@ -1493,8 +1493,8 @@ class OrganizationUnit(object):
         return self._client.service.FunctionDetailAgreementTemplate({"ID_Login": ID_Login, "ID": ID, "ID_FunctionType": ID_FunctionType, "CityText": CityText})
 
     # Načíst seznam typů funkcí pro Google synchronizaci
-    def FunctionTypeAllGoogleGroupSync(self, ID_Login, ID_GoogleGroup):
-        return self._client.service.FunctionTypeAllGoogleGroupSync({"ID_Login": ID_Login, "ID_GoogleGroup": ID_GoogleGroup})
+    def FunctionTypeAllGoogleGroupSync(self, ID_Login, ID_GoogleGroup, IsDirect):
+        return self._client.service.FunctionTypeAllGoogleGroupSync({"ID_Login": ID_Login, "ID_GoogleGroup": ID_GoogleGroup, "IsDirect": IsDirect})
 
     # Potvrzení souhlasu se zápisem do spolkového rejstříku
     def FunctionUpdateAgreementConfirm(self, ID_Login, ID, ValidFrom, ValidTo, ID_Person, ID_Unit, ID_FunctionType, ID_Role, IsDeleteRole, AgreementConfirmed, ID_TempFile, AgreementNeeded, AgreementCanUpload, AgreementCanConfirm, AgreementCanView, ID_FunctionReason=None, Specification=None, AgreementExtension=None, Code=None, Number=None):
