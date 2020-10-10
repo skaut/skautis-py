@@ -12,6 +12,18 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Načtení informací o jednotce
+    def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
+        return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Hledání osob (helpdesk)
+    def PersonAllHelpdesk(self, ID_Login, IsValid, FirstName=None, LastName=None, NickName=None, IdentificationCode=None, City=None, UserName=None, Email=None, Phone=None):
+        return self._client.service.PersonAllHelpdesk({"ID_Login": ID_Login, "IsValid": IsValid, "FirstName": FirstName, "LastName": LastName, "NickName": NickName, "IdentificationCode": IdentificationCode, "City": City, "UserName": UserName, "Email": Email, "Phone": Phone})
+
+    # Načíst seznam žádostí o převod
+    def RequestAll(self, ID_Login, ID_Person, ID_UserCreate, ID_Unit, ID_UserDecision, ID_MembershipType=None, ID_MembershipCategory=None, ID_RequestState=None):
+        return self._client.service.RequestAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_UserCreate": ID_UserCreate, "ID_Unit": ID_Unit, "ID_UserDecision": ID_UserDecision, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_RequestState": ID_RequestState})
+
     # Načíst detail žádosti o převod
     def RequestDetail(self, ID_Login, ID):
         return self._client.service.RequestDetail({"ID_Login": ID_Login, "ID": ID})
@@ -476,9 +488,13 @@ class OrganizationUnit(object):
     def PersonDetail(self, ID_Login, ID):
         return self._client.service.PersonDetail({"ID_Login": ID_Login, "ID": ID})
 
-    # Načtení informací o jednotce
-    def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
-        return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+    # Upravit členskou kartu
+    def MemberCardUpdate(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
+        return self._client.service.MemberCardUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
+
+    # Objednat ztracenou kartu
+    def MemberCardUpdateRerequest(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
+        return self._client.service.MemberCardUpdateRerequest({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
 
     # Načíst kartu, na kterou má osoba právo
     def PersonDetailMemberCard(self, ID_Login, ID):
@@ -972,13 +988,13 @@ class OrganizationUnit(object):
     def MembershipRenew(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, CreateNew, OnlyValidate, IsFunction, IsSts, IsUnique, IsUnitFunction, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
         return self._client.service.MembershipRenew({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsSts": IsSts, "IsUnique": IsUnique, "IsUnitFunction": IsUnitFunction, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
 
-    # Hledání osob (helpdesk)
-    def PersonAllHelpdesk(self, ID_Login, IsValid, FirstName=None, LastName=None, NickName=None, IdentificationCode=None, City=None, UserName=None, Email=None, Phone=None):
-        return self._client.service.PersonAllHelpdesk({"ID_Login": ID_Login, "IsValid": IsValid, "FirstName": FirstName, "LastName": LastName, "NickName": NickName, "IdentificationCode": IdentificationCode, "City": City, "UserName": UserName, "Email": Email, "Phone": Phone})
+    # Upravit generování faktur za členské karty
+    def MemberCardInvoiceGenerateUpdate(self, ID_Login, ID, DateGenerating, ID_Person, ID_Error, Person=None, ID_MemberCardInvoiceGenerateState=None, MemberCardInvoiceGenerateState=None, Error=None):
+        return self._client.service.MemberCardInvoiceGenerateUpdate({"ID_Login": ID_Login, "ID": ID, "DateGenerating": DateGenerating, "ID_Person": ID_Person, "ID_Error": ID_Error, "Person": Person, "ID_MemberCardInvoiceGenerateState": ID_MemberCardInvoiceGenerateState, "MemberCardInvoiceGenerateState": MemberCardInvoiceGenerateState, "Error": Error})
 
-    # Načíst seznam žádostí o převod
-    def RequestAll(self, ID_Login, ID_Person, ID_UserCreate, ID_Unit, ID_UserDecision, ID_MembershipType=None, ID_MembershipCategory=None, ID_RequestState=None):
-        return self._client.service.RequestAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_UserCreate": ID_UserCreate, "ID_Unit": ID_Unit, "ID_UserDecision": ID_UserDecision, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_RequestState": ID_RequestState})
+    # Vygenerovat faktury
+    def MemberCardInvoiceGenerateUpdateGenerate(self, ID_Login, ID, DateGenerating, ID_Person, ID_Error, Person=None, ID_MemberCardInvoiceGenerateState=None, MemberCardInvoiceGenerateState=None, Error=None):
+        return self._client.service.MemberCardInvoiceGenerateUpdateGenerate({"ID_Login": ID_Login, "ID": ID, "DateGenerating": DateGenerating, "ID_Person": ID_Person, "ID_Error": ID_Error, "Person": Person, "ID_MemberCardInvoiceGenerateState": ID_MemberCardInvoiceGenerateState, "MemberCardInvoiceGenerateState": MemberCardInvoiceGenerateState, "Error": Error})
 
     # Načíst seznam stavů faktury za členské karty
     def MemberCardInvoiceStateAll(self, ID_Login, ID=None, DisplayName=None):
@@ -1444,14 +1460,6 @@ class OrganizationUnit(object):
     def MemberCardInsert(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
         return self._client.service.MemberCardInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
 
-    # Upravit členskou kartu
-    def MemberCardUpdate(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
-        return self._client.service.MemberCardUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
-
-    # Objednat ztracenou kartu
-    def MemberCardUpdateRerequest(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
-        return self._client.service.MemberCardUpdateRerequest({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
-
     # Načíst seznam náborových kategorií
     def AdvertisingCategoryAllOccupation(self, ID_Login, ID_Application, ID_Occupation, ID_MeetingDate, ID_Sex=None):
         return self._client.service.AdvertisingCategoryAllOccupation({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Occupation": ID_Occupation, "ID_MeetingDate": ID_MeetingDate, "ID_Sex": ID_Sex})
@@ -1535,6 +1543,14 @@ class OrganizationUnit(object):
     # Načíst seznam členství osob v jednotce
     def MembershipAll(self, ID_Login, ID_Unit, ID_Person, OnlyDirectMember, IsSts, ShowHistory, IsValid, ID_MembershipType=None, ID_MembershipCategory=None, LastName=None, IdentificationCode=None, ShowLowerUnits=None):
         return self._client.service.MembershipAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "OnlyDirectMember": OnlyDirectMember, "IsSts": IsSts, "ShowHistory": ShowHistory, "IsValid": IsValid, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "LastName": LastName, "IdentificationCode": IdentificationCode, "ShowLowerUnits": ShowLowerUnits})
+
+    # Načíst seznam členství osob v jednotce
+    def MembershipDetailPersonData(self, ID_Login, ID_Person):
+        return self._client.service.MembershipDetailPersonData({"ID_Login": ID_Login, "ID_Person": ID_Person})
+
+    # Načíst zjednodušený seznam členství osoby
+    def MembershipAllPersonList(self, ID_Login, ID_Person):
+        return self._client.service.MembershipAllPersonList({"ID_Login": ID_Login, "ID_Person": ID_Person})
 
     # Načíst seznam přihlášek bez souboru přihlášky
     def MembershipApplicationAllEmptyEnroll(self, ID_Login):
@@ -1943,12 +1959,4 @@ class OrganizationUnit(object):
     # Založit generování faktur za členské karty
     def MemberCardInvoiceGenerateInsert(self, ID_Login, ID, DateGenerating, ID_Person, ID_Error, Person=None, ID_MemberCardInvoiceGenerateState=None, MemberCardInvoiceGenerateState=None, Error=None):
         return self._client.service.MemberCardInvoiceGenerateInsert({"ID_Login": ID_Login, "ID": ID, "DateGenerating": DateGenerating, "ID_Person": ID_Person, "ID_Error": ID_Error, "Person": Person, "ID_MemberCardInvoiceGenerateState": ID_MemberCardInvoiceGenerateState, "MemberCardInvoiceGenerateState": MemberCardInvoiceGenerateState, "Error": Error})
-
-    # Upravit generování faktur za členské karty
-    def MemberCardInvoiceGenerateUpdate(self, ID_Login, ID, DateGenerating, ID_Person, ID_Error, Person=None, ID_MemberCardInvoiceGenerateState=None, MemberCardInvoiceGenerateState=None, Error=None):
-        return self._client.service.MemberCardInvoiceGenerateUpdate({"ID_Login": ID_Login, "ID": ID, "DateGenerating": DateGenerating, "ID_Person": ID_Person, "ID_Error": ID_Error, "Person": Person, "ID_MemberCardInvoiceGenerateState": ID_MemberCardInvoiceGenerateState, "MemberCardInvoiceGenerateState": MemberCardInvoiceGenerateState, "Error": Error})
-
-    # Vygenerovat faktury
-    def MemberCardInvoiceGenerateUpdateGenerate(self, ID_Login, ID, DateGenerating, ID_Person, ID_Error, Person=None, ID_MemberCardInvoiceGenerateState=None, MemberCardInvoiceGenerateState=None, Error=None):
-        return self._client.service.MemberCardInvoiceGenerateUpdateGenerate({"ID_Login": ID_Login, "ID": ID, "DateGenerating": DateGenerating, "ID_Person": ID_Person, "ID_Error": ID_Error, "Person": Person, "ID_MemberCardInvoiceGenerateState": ID_MemberCardInvoiceGenerateState, "MemberCardInvoiceGenerateState": MemberCardInvoiceGenerateState, "Error": Error})
 
