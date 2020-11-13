@@ -329,8 +329,8 @@ class UserManagement(object):
         return self._client.service.RoleAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "ID_GroupType": ID_GroupType})
 
     # Smazat roli
-    def RoleDelete(self, ID_Login, ID):
-        return self._client.service.RoleDelete({"ID_Login": ID_Login, "ID": ID})
+    def RoleDelete(self, ID_Login, ID, IsHidden, IsTwoFactorRequired, DisplayName=None, ID_GroupType=None, GroupType=None, ID_UnitType=None, UnitType=None, Color=None):
+        return self._client.service.RoleDelete({"ID_Login": ID_Login, "ID": ID, "IsHidden": IsHidden, "IsTwoFactorRequired": IsTwoFactorRequired, "DisplayName": DisplayName, "ID_GroupType": ID_GroupType, "GroupType": GroupType, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "Color": Color})
 
     # Načíst detail role
     def RoleDetail(self, ID_Login, ID):
@@ -345,8 +345,8 @@ class UserManagement(object):
         return self._client.service.RolePermissionAll({"ID_Login": ID_Login, "ID_Role": ID_Role, "ID_Permission": ID_Permission})
 
     # Odebrat právo z role
-    def RolePermissionDelete(self, ID_Login, ID):
-        return self._client.service.RolePermissionDelete({"ID_Login": ID_Login, "ID": ID})
+    def RolePermissionDelete(self, ID_Login, ID, ID_Role, IsHierarchic, ID_Permission=None):
+        return self._client.service.RolePermissionDelete({"ID_Login": ID_Login, "ID": ID, "ID_Role": ID_Role, "IsHierarchic": IsHierarchic, "ID_Permission": ID_Permission})
 
     # Přidat právo do role
     def RolePermissionInsert(self, ID_Login, ID, ID_Role, IsHierarchic, ID_Permission=None):

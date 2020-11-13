@@ -20,6 +20,10 @@ class Reports(object):
     def GrantHeadquartersUniversal(self, ID_Login, Year, Format, ID_GrantState=None):
         return self._client.service.GrantHeadquartersUniversal({"ID_Login": ID_Login, "Year": Year, "Format": Format, "ID_GrantState": ID_GrantState})
 
+    # Tisková sestava: Přehled účastníků vzdělávací akce
+    def ParticipantEducationFeeExcel(self, ID_Login, ID_EventEducation, ID_EventEducationCourse, IsActive):
+        return self._client.service.ParticipantEducationFeeExcel({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID_EventEducationCourse": ID_EventEducationCourse, "IsActive": IsActive})
+
     # Tisková sestava: Registrované osoby
     def UnitRegistrationPersons(self, ID_Login, ID, FileFormat, IncludeChild):
         return self._client.service.UnitRegistrationPersons({"ID_Login": ID_Login, "ID": ID, "FileFormat": FileFormat, "IncludeChild": IncludeChild})
