@@ -12,6 +12,14 @@ class Telephony(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Telephony.asmx?wsdl')
 
+    # Načíst vygenerované pdf hromadné žádosti
+    def RequestBatchDownloadPdf(self, ID_Login, ID):
+        return self._client.service.RequestBatchDownloadPdf({"ID_Login": ID_Login, "ID": ID})
+
+    # Odeslat hromadnou žádost na T-Mobile
+    def RequestBatchUpdateSend(self, ID_Login, ID):
+        return self._client.service.RequestBatchUpdateSend({"ID_Login": ID_Login, "ID": ID})
+
     # Zamítnout žádost o prodloužení smlouvy (Administrátor STS)
     def RequestRenewalUpdateDisapproveAdmin(self, ID_Login, ID, ID_EnrollNumber, ID_Tariff, ID_PersonCreate, DateCreate, ID_PersonDecision, DateDecision, ID_PersonFinished, DateFinished, ID_Person, EnrollNumber=None, ID_RequestRenewalState=None, RequestRenewalState=None, Tariff=None, PersonCreate=None, PersonDecision=None, PersonFinished=None, StateDecision=None, Person=None):
         return self._client.service.RequestRenewalUpdateDisapproveAdmin({"ID_Login": ID_Login, "ID": ID, "ID_EnrollNumber": ID_EnrollNumber, "ID_Tariff": ID_Tariff, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonDecision": ID_PersonDecision, "DateDecision": DateDecision, "ID_PersonFinished": ID_PersonFinished, "DateFinished": DateFinished, "ID_Person": ID_Person, "EnrollNumber": EnrollNumber, "ID_RequestRenewalState": ID_RequestRenewalState, "RequestRenewalState": RequestRenewalState, "Tariff": Tariff, "PersonCreate": PersonCreate, "PersonDecision": PersonDecision, "PersonFinished": PersonFinished, "StateDecision": StateDecision, "Person": Person})
@@ -355,6 +363,14 @@ class Telephony(object):
     # Upravit typ platby jednotky v STS
     def TelephonyUnitUpdatePaymentType(self, ID_Login, ID, ID_Unit, ID_Bank, PaymentFrom, PaymentLimit, Unit=None, ID_PaymentType=None, PaymentType=None, BankAccount=None, AccountPrefix=None, AccountNumber=None, Bank=None):
         return self._client.service.TelephonyUnitUpdatePaymentType({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Bank": ID_Bank, "PaymentFrom": PaymentFrom, "PaymentLimit": PaymentLimit, "Unit": Unit, "ID_PaymentType": ID_PaymentType, "PaymentType": PaymentType, "BankAccount": BankAccount, "AccountPrefix": AccountPrefix, "AccountNumber": AccountNumber, "Bank": Bank})
+
+    # Naèíst detail přihlášky do STS
+    def EnrollDetailPersonAgreement(self, ID_Login, ID_Person):
+        return self._client.service.EnrollDetailPersonAgreement({"ID_Login": ID_Login, "ID_Person": ID_Person})
+
+    # Upravit přihlášku do STS
+    def EnrollUpdateAgreement(self, ID_Login, ID_Person, IdCardValidTo, Agreement, IdCardNumber=None):
+        return self._client.service.EnrollUpdateAgreement({"ID_Login": ID_Login, "ID_Person": ID_Person, "IdCardValidTo": IdCardValidTo, "Agreement": Agreement, "IdCardNumber": IdCardNumber})
 
     # Načíst seznam typů hovorů/služeb
     def CallServiceType(self, ID_Login, DisplayName=None):
@@ -791,12 +807,4 @@ class Telephony(object):
     # Načíst detail hromadné žádosti na prodloužení smlouvy
     def RequestBatchDetail(self, ID_Login, ID):
         return self._client.service.RequestBatchDetail({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst vygenerované pdf hromadné žádosti
-    def RequestBatchDownloadPdf(self, ID_Login, ID):
-        return self._client.service.RequestBatchDownloadPdf({"ID_Login": ID_Login, "ID": ID})
-
-    # Odeslat hromadnou žádost na T-Mobile
-    def RequestBatchUpdateSend(self, ID_Login, ID):
-        return self._client.service.RequestBatchUpdateSend({"ID_Login": ID_Login, "ID": ID})
 
