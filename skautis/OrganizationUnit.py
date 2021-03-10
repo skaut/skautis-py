@@ -12,6 +12,50 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Načíst seznam registrací jednotky
+    def UnitRegistrationAll(self, ID_Login, ID_Unit, Year):
+        return self._client.service.UnitRegistrationAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "Year": Year})
+
+    # Provede kontrolu zadané registrace jednotky a vrátí nalezené vady
+    def UnitRegistrationCheck(self, ID_Login, ID):
+        return self._client.service.UnitRegistrationCheck({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst detail registrace jednotky
+    def UnitRegistrationDetail(self, ID_Login, ID, ID_Unit, Year, Instructions=None):
+        return self._client.service.UnitRegistrationDetail({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "Instructions": Instructions})
+
+    # Založit registraci jednotky
+    def UnitRegistrationInsert(self, ID_Login, ID, ID_Unit, Year, DateChecked, DateConfirmed, IsDelivered, IsAccepted, ID_UnitRegistrationParent, ParentIsDelivered, ParentIsAccepted, ParentHasCreated, Unit=None, RegistrationNumber=None, DisplayName=None, ID_UnitType=None, Instructions=None, UnitRegistrationParent=None, InstructionsParent=None):
+        return self._client.service.UnitRegistrationInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "DateChecked": DateChecked, "DateConfirmed": DateConfirmed, "IsDelivered": IsDelivered, "IsAccepted": IsAccepted, "ID_UnitRegistrationParent": ID_UnitRegistrationParent, "ParentIsDelivered": ParentIsDelivered, "ParentIsAccepted": ParentIsAccepted, "ParentHasCreated": ParentHasCreated, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "Instructions": Instructions, "UnitRegistrationParent": UnitRegistrationParent, "InstructionsParent": InstructionsParent})
+
+    # Upravit registraci jednotky
+    def UnitRegistrationUpdate(self, ID_Login, ID, ID_Unit, Year, DateChecked, DateConfirmed, IsDelivered, IsAccepted, ID_UnitRegistrationParent, ParentIsDelivered, ParentIsAccepted, ParentHasCreated, Unit=None, RegistrationNumber=None, DisplayName=None, ID_UnitType=None, Instructions=None, UnitRegistrationParent=None, InstructionsParent=None):
+        return self._client.service.UnitRegistrationUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "DateChecked": DateChecked, "DateConfirmed": DateConfirmed, "IsDelivered": IsDelivered, "IsAccepted": IsAccepted, "ID_UnitRegistrationParent": ID_UnitRegistrationParent, "ParentIsDelivered": ParentIsDelivered, "ParentIsAccepted": ParentIsAccepted, "ParentHasCreated": ParentHasCreated, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "Instructions": Instructions, "UnitRegistrationParent": UnitRegistrationParent, "InstructionsParent": InstructionsParent})
+
+    # Načíst seznam podřízených jednotek
+    def UnitTreeAll(self, ID_Login, ID_Application, ID_UnitParent, ShowHistory, IsValid):
+        return self._client.service.UnitTreeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_UnitParent": ID_UnitParent, "ShowHistory": ShowHistory, "IsValid": IsValid})
+
+    # Načíst detail existence jednotky
+    def UnitTreeDetail(self, ID_Login, ID):
+        return self._client.service.UnitTreeDetail({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst seznam důvodů ukončení existence
+    def UnitTreeReasonAll(self, ID_Login, DisplayName=None):
+        return self._client.service.UnitTreeReasonAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
+
+    # Ukončit existenci jednotky
+    def UnitTreeUpdate(self, ID_Login, ID, ValidFrom, ValidTo, ID_Unit, ID_UnitParent, ID_UnitMerge, ID_UnitTreeReason=None, Unit=None, UnitParent=None, RegistrationNumber=None, ID_UnitType=None, UnitMerge=None, ID_UnitFoundReason=None, UnitFoundReason=None, UnitFoundDescription=None):
+        return self._client.service.UnitTreeUpdate({"ID_Login": ID_Login, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_Unit": ID_Unit, "ID_UnitParent": ID_UnitParent, "ID_UnitMerge": ID_UnitMerge, "ID_UnitTreeReason": ID_UnitTreeReason, "Unit": Unit, "UnitParent": UnitParent, "RegistrationNumber": RegistrationNumber, "ID_UnitType": ID_UnitType, "UnitMerge": UnitMerge, "ID_UnitFoundReason": ID_UnitFoundReason, "UnitFoundReason": UnitFoundReason, "UnitFoundDescription": UnitFoundDescription})
+
+    # Načíst seznam typů jednotek
+    def UnitTypeAll(self, ID_Login, DisplayName=None, ID_UnitTypeCreate=None, ID_UnitTypeParent=None):
+        return self._client.service.UnitTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "ID_UnitTypeCreate": ID_UnitTypeCreate, "ID_UnitTypeParent": ID_UnitTypeParent})
+
+    # Upravit jednotku
+    def UnitUpdate(self, ID_Login, ID, ID_Group, ID_Unit, ContainsMembers, CommissionDeadline, IsVatPayer, ID_TroopArt, CanUpdateRegistrationNumber, IsUnitCancel, JournalParent, ChangeFreeJournal, ID_UnitParent, OnlyValidate, IsPostalAuthenticated, IsAddressAuthenticated, ID_PersonChangeName, DateChangeName, IsPropertyOwner, ID_TempFilePropertyAgreement, ID_DocumentDecision, ID_DocumentPropertyAgreement, ID_TempFileSeatChange, ID_UnitType=None, UnitType=None, DisplayName=None, SortName=None, RegistrationNumber=None, ShortRegistrationNumber=None, Location=None, IC=None, DIC=None, FileReference=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Note=None, TroopArt=None, LogoContent=None, LogoExtension=None, AddressDistrict=None, PostalDistrict=None, NewDisplayName=None, CompleteDisplayName=None, PersonChangeName=None, PropertyAgreementExtension=None, PropertyAgreementContent=None, TroopArtKey=None, ID_JournalNovice=None, ID_JournalDeliveryType=None, FullDisplayName=None, DecisionSeatChangeExtension=None, ShopDiscountBarcode=None, ID_UnitFoundReason=None, UnitFoundReason=None, UnitFoundDescription=None):
+        return self._client.service.UnitUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Group": ID_Group, "ID_Unit": ID_Unit, "ContainsMembers": ContainsMembers, "CommissionDeadline": CommissionDeadline, "IsVatPayer": IsVatPayer, "ID_TroopArt": ID_TroopArt, "CanUpdateRegistrationNumber": CanUpdateRegistrationNumber, "IsUnitCancel": IsUnitCancel, "JournalParent": JournalParent, "ChangeFreeJournal": ChangeFreeJournal, "ID_UnitParent": ID_UnitParent, "OnlyValidate": OnlyValidate, "IsPostalAuthenticated": IsPostalAuthenticated, "IsAddressAuthenticated": IsAddressAuthenticated, "ID_PersonChangeName": ID_PersonChangeName, "DateChangeName": DateChangeName, "IsPropertyOwner": IsPropertyOwner, "ID_TempFilePropertyAgreement": ID_TempFilePropertyAgreement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "ID_TempFileSeatChange": ID_TempFileSeatChange, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "DisplayName": DisplayName, "SortName": SortName, "RegistrationNumber": RegistrationNumber, "ShortRegistrationNumber": ShortRegistrationNumber, "Location": Location, "IC": IC, "DIC": DIC, "FileReference": FileReference, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Note": Note, "TroopArt": TroopArt, "LogoContent": LogoContent, "LogoExtension": LogoExtension, "AddressDistrict": AddressDistrict, "PostalDistrict": PostalDistrict, "NewDisplayName": NewDisplayName, "CompleteDisplayName": CompleteDisplayName, "PersonChangeName": PersonChangeName, "PropertyAgreementExtension": PropertyAgreementExtension, "PropertyAgreementContent": PropertyAgreementContent, "TroopArtKey": TroopArtKey, "ID_JournalNovice": ID_JournalNovice, "ID_JournalDeliveryType": ID_JournalDeliveryType, "FullDisplayName": FullDisplayName, "DecisionSeatChangeExtension": DecisionSeatChangeExtension, "ShopDiscountBarcode": ShopDiscountBarcode, "ID_UnitFoundReason": ID_UnitFoundReason, "UnitFoundReason": UnitFoundReason, "UnitFoundDescription": UnitFoundDescription})
+
     # Přiřadit osobě uživatelský účet
     def PersonUpdateUser(self, ID_Login, ID, Overwrite, UserName=None, SecurityCode=None):
         return self._client.service.PersonUpdateUser({"ID_Login": ID_Login, "ID": ID, "Overwrite": Overwrite, "UserName": UserName, "SecurityCode": SecurityCode})
@@ -23,6 +67,54 @@ class OrganizationUnit(object):
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Založit zrušení jednotky
+    def UnitCancelInsert(self, ID_Login, ID, ID_Unit, DateDecision, ID_Person, ValidTo, Unit=None, ID_UnitCancelType=None, UnitCancelType=None, Description=None, Person=None):
+        return self._client.service.UnitCancelInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateDecision": DateDecision, "ID_Person": ID_Person, "ValidTo": ValidTo, "Unit": Unit, "ID_UnitCancelType": ID_UnitCancelType, "UnitCancelType": UnitCancelType, "Description": Description, "Person": Person})
+
+    # Načíst seznam typů rozhodnutí
+    def UnitCancelTypeAll(self, ID_Login, ID_Unit, DisplayName=None):
+        return self._client.service.UnitCancelTypeAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "DisplayName": DisplayName})
+
+    # Přehled počtu členů podle poslední uzavřené registrace
+    def UnitDetailMembersRegistry(self, ID_Login, ID_Application, ID):
+        return self._client.service.UnitDetailMembersRegistry({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
+
+    # Zobrazit detail jednotky v registru OJ
+    def UnitDetailRegistry(self, ID_Login, ID_Application, ID):
+        return self._client.service.UnitDetailRegistry({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
+
+    # Načte logo jednotky
+    def UnitLogo(self, ID_Login, ID_Application, ID):
+        return self._client.service.UnitLogo({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
+
+    # Statistika členů a jednotek v registraci
+    def UnitRegistrationMembers(self, ID_Login, ID):
+        return self._client.service.UnitRegistrationMembers({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst seznam hospodářských výkazů
+    def StatementErrors(self, ID_Login, ID):
+        return self._client.service.StatementErrors({"ID_Login": ID_Login, "ID": ID})
+
+    # Spočítat, zda hospodářský výkaz obsahuje chyby
+    def StatementComputeIsError(self, ID_Login, ID, ID_Unit, Year, IsError, IsDelivered, DateDelivered, DateCreated, IsThousands, IsConsultant, ID_Document, ID_DocumentTempFile, DateSent, ID_PersonSent, DateConfirmed, ID_PersonConfirmed, ID_Registry, ShowOverview, Unit=None, RegistrationNumber=None, ID_StatementType=None, StatementType=None, ID_StatementState=None, StatementState=None, PersonSent=None, PersonConfirmed=None):
+        return self._client.service.StatementComputeIsError({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "IsError": IsError, "IsDelivered": IsDelivered, "DateDelivered": DateDelivered, "DateCreated": DateCreated, "IsThousands": IsThousands, "IsConsultant": IsConsultant, "ID_Document": ID_Document, "ID_DocumentTempFile": ID_DocumentTempFile, "DateSent": DateSent, "ID_PersonSent": ID_PersonSent, "DateConfirmed": DateConfirmed, "ID_PersonConfirmed": ID_PersonConfirmed, "ID_Registry": ID_Registry, "ShowOverview": ShowOverview, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StatementType": ID_StatementType, "StatementType": StatementType, "ID_StatementState": ID_StatementState, "StatementState": StatementState, "PersonSent": PersonSent, "PersonConfirmed": PersonConfirmed})
+
+    # Načíst seznam hospodářských výkazů podřízených jednotek
+    def StatementAllChild(self, ID_Login, ID):
+        return self._client.service.StatementAllChild({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst seznam položek hospodářského výkazu včetně součtů oblastí
+    def StatementEntryAllTotals(self, ID_Login, ID_Statement, ID_StatementEntryType, IsMoney):
+        return self._client.service.StatementEntryAllTotals({"ID_Login": ID_Login, "ID_Statement": ID_Statement, "ID_StatementEntryType": ID_StatementEntryType, "IsMoney": IsMoney})
+
+    # Obnovit existenci jednotky
+    def UnitTreeRenew(self, ID_Login, ID, ValidFrom, ValidTo, ID_Unit, ID_UnitParent, ID_UnitMerge, ID_UnitTreeReason=None, Unit=None, UnitParent=None, RegistrationNumber=None, ID_UnitType=None, UnitMerge=None, ID_UnitFoundReason=None, UnitFoundReason=None, UnitFoundDescription=None):
+        return self._client.service.UnitTreeRenew({"ID_Login": ID_Login, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_Unit": ID_Unit, "ID_UnitParent": ID_UnitParent, "ID_UnitMerge": ID_UnitMerge, "ID_UnitTreeReason": ID_UnitTreeReason, "Unit": Unit, "UnitParent": UnitParent, "RegistrationNumber": RegistrationNumber, "ID_UnitType": ID_UnitType, "UnitMerge": UnitMerge, "ID_UnitFoundReason": ID_UnitFoundReason, "UnitFoundReason": UnitFoundReason, "UnitFoundDescription": UnitFoundDescription})
+
+    # Načíst detail vady registrace
+    def MistakeDetail(self, ID_Login, ID):
+        return self._client.service.MistakeDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Ověření, zda lze osobu převést do zadané jednotky
     def PersonDetailIdentificationCode(self, ID_Login, ID_Unit, IdentificationCode=None):
@@ -456,49 +548,53 @@ class OrganizationUnit(object):
     def UnitMistakeReportInsert(self, ID_Login, ID, ID_Unit, ID_Mistake, Unit=None, RegistrationNumber=None, Mistake=None, DisplayName=None, ParentComment=None):
         return self._client.service.UnitMistakeReportInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Mistake": ID_Mistake, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Mistake": Mistake, "DisplayName": DisplayName, "ParentComment": ParentComment})
 
-    # Načíst seznam registrací jednotky
-    def UnitRegistrationAll(self, ID_Login, ID_Unit, Year):
-        return self._client.service.UnitRegistrationAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "Year": Year})
+    # Načíst seznam razítek jednotky
+    def UnitStampAll(self, ID_Login, ID_Unit, ID, ID_StampType=None):
+        return self._client.service.UnitStampAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_StampType": ID_StampType})
 
-    # Provede kontrolu zadané registrace jednotky a vrátí nalezené vady
-    def UnitRegistrationCheck(self, ID_Login, ID):
-        return self._client.service.UnitRegistrationCheck({"ID_Login": ID_Login, "ID": ID})
+    # Smazat razítko jednotky
+    def UnitStampDelete(self, ID_Login, ID):
+        return self._client.service.UnitStampDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst detail registrace jednotky
-    def UnitRegistrationDetail(self, ID_Login, ID, ID_Unit, Year, Instructions=None):
-        return self._client.service.UnitRegistrationDetail({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "Instructions": Instructions})
+    # Načíst detail razítka jednotky
+    def UnitStampDetail(self, ID_Login, ID):
+        return self._client.service.UnitStampDetail({"ID_Login": ID_Login, "ID": ID})
 
-    # Založit registraci jednotky
-    def UnitRegistrationInsert(self, ID_Login, ID, ID_Unit, Year, DateChecked, DateConfirmed, IsDelivered, IsAccepted, ID_UnitRegistrationParent, ParentIsDelivered, ParentIsAccepted, ParentHasCreated, Unit=None, RegistrationNumber=None, DisplayName=None, ID_UnitType=None, Instructions=None, UnitRegistrationParent=None, InstructionsParent=None):
-        return self._client.service.UnitRegistrationInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "DateChecked": DateChecked, "DateConfirmed": DateConfirmed, "IsDelivered": IsDelivered, "IsAccepted": IsAccepted, "ID_UnitRegistrationParent": ID_UnitRegistrationParent, "ParentIsDelivered": ParentIsDelivered, "ParentIsAccepted": ParentIsAccepted, "ParentHasCreated": ParentHasCreated, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "Instructions": Instructions, "UnitRegistrationParent": UnitRegistrationParent, "InstructionsParent": InstructionsParent})
+    # Založit razítko jednotky
+    def UnitStampInsert(self, ID_Login, ID, ID_Unit, Count, Unit=None, RegistrationNumber=None, ID_StampType=None, StampType=None, Email=None, Web=None):
+        return self._client.service.UnitStampInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Count": Count, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StampType": ID_StampType, "StampType": StampType, "Email": Email, "Web": Web})
 
-    # Upravit registraci jednotky
-    def UnitRegistrationUpdate(self, ID_Login, ID, ID_Unit, Year, DateChecked, DateConfirmed, IsDelivered, IsAccepted, ID_UnitRegistrationParent, ParentIsDelivered, ParentIsAccepted, ParentHasCreated, Unit=None, RegistrationNumber=None, DisplayName=None, ID_UnitType=None, Instructions=None, UnitRegistrationParent=None, InstructionsParent=None):
-        return self._client.service.UnitRegistrationUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "DateChecked": DateChecked, "DateConfirmed": DateConfirmed, "IsDelivered": IsDelivered, "IsAccepted": IsAccepted, "ID_UnitRegistrationParent": ID_UnitRegistrationParent, "ParentIsDelivered": ParentIsDelivered, "ParentIsAccepted": ParentIsAccepted, "ParentHasCreated": ParentHasCreated, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "Instructions": Instructions, "UnitRegistrationParent": UnitRegistrationParent, "InstructionsParent": InstructionsParent})
+    # Upravit razítko jednotky
+    def UnitStampUpdate(self, ID_Login, ID, ID_Unit, Count, Unit=None, RegistrationNumber=None, ID_StampType=None, StampType=None, Email=None, Web=None):
+        return self._client.service.UnitStampUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Count": Count, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StampType": ID_StampType, "StampType": StampType, "Email": Email, "Web": Web})
 
-    # Načíst seznam podřízených jednotek
-    def UnitTreeAll(self, ID_Login, ID_Application, ID_UnitParent, ShowHistory, IsValid):
-        return self._client.service.UnitTreeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_UnitParent": ID_UnitParent, "ShowHistory": ShowHistory, "IsValid": IsValid})
+    # Nastavit typ rozesílky balíčků pro nováčky
+    def UnitUpdateJournalDeliveryType(self, ID_Login, ID, ID_JournalDeliveryType=None):
+        return self._client.service.UnitUpdateJournalDeliveryType({"ID_Login": ID_Login, "ID": ID, "ID_JournalDeliveryType": ID_JournalDeliveryType})
 
-    # Načíst detail existence jednotky
-    def UnitTreeDetail(self, ID_Login, ID):
-        return self._client.service.UnitTreeDetail({"ID_Login": ID_Login, "ID": ID})
+    # Nastavit způsob odběru balíčků pro nováčky
+    def UnitUpdateChangeJournalNovice(self, ID_Login, ID, ID_JournalNovice=None):
+        return self._client.service.UnitUpdateChangeJournalNovice({"ID_Login": ID_Login, "ID": ID, "ID_JournalNovice": ID_JournalNovice})
 
-    # Načíst seznam důvodů ukončení existence
-    def UnitTreeReasonAll(self, ID_Login, DisplayName=None):
-        return self._client.service.UnitTreeReasonAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
+    # Upravit jméno jednotky
+    def UnitUpdateName(self, ID_Login, ID, ID_Group, ID_Unit, ContainsMembers, CommissionDeadline, IsVatPayer, ID_TroopArt, CanUpdateRegistrationNumber, IsUnitCancel, JournalParent, ChangeFreeJournal, ID_UnitParent, OnlyValidate, IsPostalAuthenticated, IsAddressAuthenticated, ID_PersonChangeName, DateChangeName, IsPropertyOwner, ID_TempFilePropertyAgreement, ID_DocumentDecision, ID_DocumentPropertyAgreement, ID_TempFileSeatChange, ID_UnitType=None, UnitType=None, DisplayName=None, SortName=None, RegistrationNumber=None, ShortRegistrationNumber=None, Location=None, IC=None, DIC=None, FileReference=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Note=None, TroopArt=None, LogoContent=None, LogoExtension=None, AddressDistrict=None, PostalDistrict=None, NewDisplayName=None, CompleteDisplayName=None, PersonChangeName=None, PropertyAgreementExtension=None, PropertyAgreementContent=None, TroopArtKey=None, ID_JournalNovice=None, ID_JournalDeliveryType=None, FullDisplayName=None, DecisionSeatChangeExtension=None, ShopDiscountBarcode=None, ID_UnitFoundReason=None, UnitFoundReason=None, UnitFoundDescription=None):
+        return self._client.service.UnitUpdateName({"ID_Login": ID_Login, "ID": ID, "ID_Group": ID_Group, "ID_Unit": ID_Unit, "ContainsMembers": ContainsMembers, "CommissionDeadline": CommissionDeadline, "IsVatPayer": IsVatPayer, "ID_TroopArt": ID_TroopArt, "CanUpdateRegistrationNumber": CanUpdateRegistrationNumber, "IsUnitCancel": IsUnitCancel, "JournalParent": JournalParent, "ChangeFreeJournal": ChangeFreeJournal, "ID_UnitParent": ID_UnitParent, "OnlyValidate": OnlyValidate, "IsPostalAuthenticated": IsPostalAuthenticated, "IsAddressAuthenticated": IsAddressAuthenticated, "ID_PersonChangeName": ID_PersonChangeName, "DateChangeName": DateChangeName, "IsPropertyOwner": IsPropertyOwner, "ID_TempFilePropertyAgreement": ID_TempFilePropertyAgreement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "ID_TempFileSeatChange": ID_TempFileSeatChange, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "DisplayName": DisplayName, "SortName": SortName, "RegistrationNumber": RegistrationNumber, "ShortRegistrationNumber": ShortRegistrationNumber, "Location": Location, "IC": IC, "DIC": DIC, "FileReference": FileReference, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Note": Note, "TroopArt": TroopArt, "LogoContent": LogoContent, "LogoExtension": LogoExtension, "AddressDistrict": AddressDistrict, "PostalDistrict": PostalDistrict, "NewDisplayName": NewDisplayName, "CompleteDisplayName": CompleteDisplayName, "PersonChangeName": PersonChangeName, "PropertyAgreementExtension": PropertyAgreementExtension, "PropertyAgreementContent": PropertyAgreementContent, "TroopArtKey": TroopArtKey, "ID_JournalNovice": ID_JournalNovice, "ID_JournalDeliveryType": ID_JournalDeliveryType, "FullDisplayName": FullDisplayName, "DecisionSeatChangeExtension": DecisionSeatChangeExtension, "ShopDiscountBarcode": ShopDiscountBarcode, "ID_UnitFoundReason": ID_UnitFoundReason, "UnitFoundReason": UnitFoundReason, "UnitFoundDescription": UnitFoundDescription})
 
-    # Ukončit existenci jednotky
-    def UnitTreeUpdate(self, ID_Login, ID, ValidFrom, ValidTo, ID_Unit, ID_UnitParent, ID_UnitMerge, ID_UnitTreeReason=None, Unit=None, UnitParent=None, RegistrationNumber=None, ID_UnitType=None, UnitMerge=None, ID_UnitFoundReason=None, UnitFoundReason=None, UnitFoundDescription=None):
-        return self._client.service.UnitTreeUpdate({"ID_Login": ID_Login, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_Unit": ID_Unit, "ID_UnitParent": ID_UnitParent, "ID_UnitMerge": ID_UnitMerge, "ID_UnitTreeReason": ID_UnitTreeReason, "Unit": Unit, "UnitParent": UnitParent, "RegistrationNumber": RegistrationNumber, "ID_UnitType": ID_UnitType, "UnitMerge": UnitMerge, "ID_UnitFoundReason": ID_UnitFoundReason, "UnitFoundReason": UnitFoundReason, "UnitFoundDescription": UnitFoundDescription})
+    # Ukončit platnost účtu
+    def AccountUpdateCancel(self, ID_Login, ID, ID_Unit, ValidTo, ID_Bank, IsMain, DisplayName=None, Unit=None, Bank=None, AccountPrefix=None, AccountNumber=None, Street=None, City=None, Postcode=None, Note=None):
+        return self._client.service.AccountUpdateCancel({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ValidTo": ValidTo, "ID_Bank": ID_Bank, "IsMain": IsMain, "DisplayName": DisplayName, "Unit": Unit, "Bank": Bank, "AccountPrefix": AccountPrefix, "AccountNumber": AccountNumber, "Street": Street, "City": City, "Postcode": Postcode, "Note": Note})
 
-    # Načíst seznam typů jednotek
-    def UnitTypeAll(self, ID_Login, DisplayName=None, ID_UnitTypeCreate=None, ID_UnitTypeParent=None):
-        return self._client.service.UnitTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "ID_UnitTypeCreate": ID_UnitTypeCreate, "ID_UnitTypeParent": ID_UnitTypeParent})
+    # Načíst seznam věkových kategorií
+    def AgeCategoryAll(self, ID_Login, IsMore):
+        return self._client.service.AgeCategoryAll({"ID_Login": ID_Login, "IsMore": IsMore})
 
-    # Upravit jednotku
-    def UnitUpdate(self, ID_Login, ID, ID_Group, ID_Unit, ContainsMembers, CommissionDeadline, IsVatPayer, ID_TroopArt, CanUpdateRegistrationNumber, IsUnitCancel, JournalParent, ChangeFreeJournal, ID_UnitParent, OnlyValidate, IsPostalAuthenticated, IsAddressAuthenticated, ID_PersonChangeName, DateChangeName, IsPropertyOwner, ID_TempFilePropertyAgreement, ID_DocumentDecision, ID_DocumentPropertyAgreement, ID_TempFileSeatChange, ID_UnitType=None, UnitType=None, DisplayName=None, SortName=None, RegistrationNumber=None, ShortRegistrationNumber=None, Location=None, IC=None, DIC=None, FileReference=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Note=None, TroopArt=None, LogoContent=None, LogoExtension=None, AddressDistrict=None, PostalDistrict=None, NewDisplayName=None, CompleteDisplayName=None, PersonChangeName=None, PropertyAgreementExtension=None, PropertyAgreementContent=None, TroopArtKey=None, ID_JournalNovice=None, ID_JournalDeliveryType=None, FullDisplayName=None, DecisionSeatChangeExtension=None, ShopDiscountBarcode=None, ID_UnitFoundReason=None, UnitFoundReason=None, UnitFoundDescription=None):
-        return self._client.service.UnitUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Group": ID_Group, "ID_Unit": ID_Unit, "ContainsMembers": ContainsMembers, "CommissionDeadline": CommissionDeadline, "IsVatPayer": IsVatPayer, "ID_TroopArt": ID_TroopArt, "CanUpdateRegistrationNumber": CanUpdateRegistrationNumber, "IsUnitCancel": IsUnitCancel, "JournalParent": JournalParent, "ChangeFreeJournal": ChangeFreeJournal, "ID_UnitParent": ID_UnitParent, "OnlyValidate": OnlyValidate, "IsPostalAuthenticated": IsPostalAuthenticated, "IsAddressAuthenticated": IsAddressAuthenticated, "ID_PersonChangeName": ID_PersonChangeName, "DateChangeName": DateChangeName, "IsPropertyOwner": IsPropertyOwner, "ID_TempFilePropertyAgreement": ID_TempFilePropertyAgreement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "ID_TempFileSeatChange": ID_TempFileSeatChange, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "DisplayName": DisplayName, "SortName": SortName, "RegistrationNumber": RegistrationNumber, "ShortRegistrationNumber": ShortRegistrationNumber, "Location": Location, "IC": IC, "DIC": DIC, "FileReference": FileReference, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Note": Note, "TroopArt": TroopArt, "LogoContent": LogoContent, "LogoExtension": LogoExtension, "AddressDistrict": AddressDistrict, "PostalDistrict": PostalDistrict, "NewDisplayName": NewDisplayName, "CompleteDisplayName": CompleteDisplayName, "PersonChangeName": PersonChangeName, "PropertyAgreementExtension": PropertyAgreementExtension, "PropertyAgreementContent": PropertyAgreementContent, "TroopArtKey": TroopArtKey, "ID_JournalNovice": ID_JournalNovice, "ID_JournalDeliveryType": ID_JournalDeliveryType, "FullDisplayName": FullDisplayName, "DecisionSeatChangeExtension": DecisionSeatChangeExtension, "ShopDiscountBarcode": ShopDiscountBarcode, "ID_UnitFoundReason": ID_UnitFoundReason, "UnitFoundReason": UnitFoundReason, "UnitFoundDescription": UnitFoundDescription})
+    # Načíst seznam ústředních orgánů
+    def AgencyAll(self, ID_Login, ID, DisplayName=None):
+        return self._client.service.AgencyAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+
+    # Načíst seznam členských karet
+    def MemberCardAll(self, ID_Login, ID_Person, ID, ID_PersonSchool, ID_MemberCardState=None, DisplayName=None, ID_MemberCardType=None):
+        return self._client.service.MemberCardAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_PersonSchool": ID_PersonSchool, "ID_MemberCardState": ID_MemberCardState, "DisplayName": DisplayName, "ID_MemberCardType": ID_MemberCardType})
 
     # Smazat členskou kartu
     def MemberCardDelete(self, ID_Login, ID):
@@ -952,53 +1048,53 @@ class OrganizationUnit(object):
     def UnitCancelAll(self, ID_Login, ID_Application, ID_Unit, ID_Person, IsValid, ID_UnitCancelType=None):
         return self._client.service.UnitCancelAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "IsValid": IsValid, "ID_UnitCancelType": ID_UnitCancelType})
 
-    # Založit zrušení jednotky
-    def UnitCancelInsert(self, ID_Login, ID, ID_Unit, DateDecision, ID_Person, ValidTo, Unit=None, ID_UnitCancelType=None, UnitCancelType=None, Description=None, Person=None):
-        return self._client.service.UnitCancelInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateDecision": DateDecision, "ID_Person": ID_Person, "ValidTo": ValidTo, "Unit": Unit, "ID_UnitCancelType": ID_UnitCancelType, "UnitCancelType": UnitCancelType, "Description": Description, "Person": Person})
+    # Načíst detail půjčitelné nemovitosti/souboru nemovitostí
+    def RealtyCollectionDetailBorrowable(self, ID_Application, ID, ID_Login):
+        return self._client.service.RealtyCollectionDetailBorrowable({"ID_Application": ID_Application, "ID": ID, "ID_Login": ID_Login})
 
-    # Načíst seznam typů rozhodnutí
-    def UnitCancelTypeAll(self, ID_Login, ID_Unit, DisplayName=None):
-        return self._client.service.UnitCancelTypeAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "DisplayName": DisplayName})
+    # Načíst detail souboru nemovitostí
+    def RealtyCollectionDetailPhoto(self, ID_TempFilePhoto, ID_Login, ID, ID_Unit, ID_User, IsActive, GpsLatitude, GpsLongitude, HasAddress, ID_Region, ID_Document, PhotoExtension=None, PhotoFileContent=None, FotogalleryUrl=None, Unit=None, UnitRegistrationNumber=None, Owner=None, DisplayName=None, Description=None, Web=None, Street=None, City=None, Postcode=None, District=None, TransportationMethods=None, TransportationMethodsText=None, TransportDescription=None, Locations=None, LocationsText=None, PointsOfInterest=None, Note=None, Region=None, Storage=None):
+        return self._client.service.RealtyCollectionDetailPhoto({"ID_TempFilePhoto": ID_TempFilePhoto, "ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_User": ID_User, "IsActive": IsActive, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "HasAddress": HasAddress, "ID_Region": ID_Region, "ID_Document": ID_Document, "PhotoExtension": PhotoExtension, "PhotoFileContent": PhotoFileContent, "FotogalleryUrl": FotogalleryUrl, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber, "Owner": Owner, "DisplayName": DisplayName, "Description": Description, "Web": Web, "Street": Street, "City": City, "Postcode": Postcode, "District": District, "TransportationMethods": TransportationMethods, "TransportationMethodsText": TransportationMethodsText, "TransportDescription": TransportDescription, "Locations": Locations, "LocationsText": LocationsText, "PointsOfInterest": PointsOfInterest, "Note": Note, "Region": Region, "Storage": Storage})
 
-    # Přehled počtu členů podle poslední uzavřené registrace
-    def UnitDetailMembersRegistry(self, ID_Login, ID_Application, ID):
-        return self._client.service.UnitDetailMembersRegistry({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
+    # Založit soubor nemovitostí
+    def RealtyCollectionInsert(self, ID_TempFilePhoto, RealtyIsPower, ID_RealtyTempFilePhoto, ID_Login, ID_Unit, ID_User, HasAddress, GpsLatitude, GpsLongitude, LVNumber, Acreage, FotogalleryUrl=None, RealtyDisplayName=None, RealtyDescription=None, RealtyFotogalleryUrl=None, ID_RealtyOwnerType=None, RealtyOwnerTypeNote=None, RealtyNote=None, ID_RealtyRegisterType=None, DisplayName=None, Description=None, Web=None, Street=None, City=None, Postcode=None, District=None, TransportationMethods=None, TransportDescription=None, PointsOfInterest=None, Locations=None, Note=None, ParcelNumber=None, RegisterCity=None, CadastralArea=None, ParcelType=None, LandType=None):
+        return self._client.service.RealtyCollectionInsert({"ID_TempFilePhoto": ID_TempFilePhoto, "RealtyIsPower": RealtyIsPower, "ID_RealtyTempFilePhoto": ID_RealtyTempFilePhoto, "ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID_User": ID_User, "HasAddress": HasAddress, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "LVNumber": LVNumber, "Acreage": Acreage, "FotogalleryUrl": FotogalleryUrl, "RealtyDisplayName": RealtyDisplayName, "RealtyDescription": RealtyDescription, "RealtyFotogalleryUrl": RealtyFotogalleryUrl, "ID_RealtyOwnerType": ID_RealtyOwnerType, "RealtyOwnerTypeNote": RealtyOwnerTypeNote, "RealtyNote": RealtyNote, "ID_RealtyRegisterType": ID_RealtyRegisterType, "DisplayName": DisplayName, "Description": Description, "Web": Web, "Street": Street, "City": City, "Postcode": Postcode, "District": District, "TransportationMethods": TransportationMethods, "TransportDescription": TransportDescription, "PointsOfInterest": PointsOfInterest, "Locations": Locations, "Note": Note, "ParcelNumber": ParcelNumber, "RegisterCity": RegisterCity, "CadastralArea": CadastralArea, "ParcelType": ParcelType, "LandType": LandType})
 
-    # Zobrazit detail jednotky v registru OJ
-    def UnitDetailRegistry(self, ID_Login, ID_Application, ID):
-        return self._client.service.UnitDetailRegistry({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
+    # Načíst detail nemovitosti
+    def RealtyDetailPhoto(self, ID_Login, ID, ID_RealtyType, GpsLatitude, GpsLongitude, ID_RealtyCollection, IsPower, ValidTo, IsActive, ID_TempFilePhoto, IsAddressAuthenticated, ID_Document, LVNumber, Acreage, RealtyGpsLatitude, RealtyGpsLongitude, CoordinateX, CoordinateY, DisplayName=None, RealtyType=None, Street=None, City=None, Postcode=None, Description=None, Note=None, RealtyCollection=None, ID_OwnerType=None, OwnerType=None, OwnerTypeNote=None, PhotoExtension=None, PhotoFileContent=None, FotogalleryUrl=None, District=None, Storage=None, ParcelNumber=None, RegisterCity=None, CadastralArea=None, ParcelType=None, LandType=None, Unit=None, UnitRegistrationNumber=None):
+        return self._client.service.RealtyDetailPhoto({"ID_Login": ID_Login, "ID": ID, "ID_RealtyType": ID_RealtyType, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "ID_RealtyCollection": ID_RealtyCollection, "IsPower": IsPower, "ValidTo": ValidTo, "IsActive": IsActive, "ID_TempFilePhoto": ID_TempFilePhoto, "IsAddressAuthenticated": IsAddressAuthenticated, "ID_Document": ID_Document, "LVNumber": LVNumber, "Acreage": Acreage, "RealtyGpsLatitude": RealtyGpsLatitude, "RealtyGpsLongitude": RealtyGpsLongitude, "CoordinateX": CoordinateX, "CoordinateY": CoordinateY, "DisplayName": DisplayName, "RealtyType": RealtyType, "Street": Street, "City": City, "Postcode": Postcode, "Description": Description, "Note": Note, "RealtyCollection": RealtyCollection, "ID_OwnerType": ID_OwnerType, "OwnerType": OwnerType, "OwnerTypeNote": OwnerTypeNote, "PhotoExtension": PhotoExtension, "PhotoFileContent": PhotoFileContent, "FotogalleryUrl": FotogalleryUrl, "District": District, "Storage": Storage, "ParcelNumber": ParcelNumber, "RegisterCity": RegisterCity, "CadastralArea": CadastralArea, "ParcelType": ParcelType, "LandType": LandType, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber})
 
-    # Načte logo jednotky
-    def UnitLogo(self, ID_Login, ID_Application, ID):
-        return self._client.service.UnitLogo({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
+    # Smazat dokument
+    def RealtyDocumentDelete(self, ID_Login, ID):
+        return self._client.service.RealtyDocumentDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Statistika členů a jednotek v registraci
-    def UnitRegistrationMembers(self, ID_Login, ID):
-        return self._client.service.UnitRegistrationMembers({"ID_Login": ID_Login, "ID": ID})
+    # No documentation
+    def RealtyDocumentDetail(self, ID_Login, ID):
+        return self._client.service.RealtyDocumentDetail({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst seznam hospodářských výkazů
-    def StatementErrors(self, ID_Login, ID):
-        return self._client.service.StatementErrors({"ID_Login": ID_Login, "ID": ID})
+    # Stáhnout dokument
+    def RealtyDocumentDownload(self, ID_Login, ID):
+        return self._client.service.RealtyDocumentDownload({"ID_Login": ID_Login, "ID": ID})
 
-    # Spočítat, zda hospodářský výkaz obsahuje chyby
-    def StatementComputeIsError(self, ID_Login, ID, ID_Unit, Year, IsError, IsDelivered, DateDelivered, DateCreated, IsThousands, IsConsultant, ID_Document, ID_DocumentTempFile, DateSent, ID_PersonSent, DateConfirmed, ID_PersonConfirmed, ID_Registry, ShowOverview, Unit=None, RegistrationNumber=None, ID_StatementType=None, StatementType=None, ID_StatementState=None, StatementState=None, PersonSent=None, PersonConfirmed=None):
-        return self._client.service.StatementComputeIsError({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "IsError": IsError, "IsDelivered": IsDelivered, "DateDelivered": DateDelivered, "DateCreated": DateCreated, "IsThousands": IsThousands, "IsConsultant": IsConsultant, "ID_Document": ID_Document, "ID_DocumentTempFile": ID_DocumentTempFile, "DateSent": DateSent, "ID_PersonSent": ID_PersonSent, "DateConfirmed": DateConfirmed, "ID_PersonConfirmed": ID_PersonConfirmed, "ID_Registry": ID_Registry, "ShowOverview": ShowOverview, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StatementType": ID_StatementType, "StatementType": StatementType, "ID_StatementState": ID_StatementState, "StatementState": StatementState, "PersonSent": PersonSent, "PersonConfirmed": PersonConfirmed})
+    # Načíst seznam členských karet
+    def MemberCardAllMemberCardInvoice(self, ID_Login, ID_MemberCardInvoice):
+        return self._client.service.MemberCardAllMemberCardInvoice({"ID_Login": ID_Login, "ID_MemberCardInvoice": ID_MemberCardInvoice})
 
-    # Načíst seznam hospodářských výkazů podřízených jednotek
-    def StatementAllChild(self, ID_Login, ID):
-        return self._client.service.StatementAllChild({"ID_Login": ID_Login, "ID": ID})
+    # Načíst seznam členských karet pro jednotku
+    def MemberCardAllUnit(self, ID_Login, ID_Unit, ID, IncludeChild, DisplayName=None, ID_MemberCardType=None, OnlyValid=None, PersonWithoutMeberCard=None, ValidTo=None, OnlyInvalid=None):
+        return self._client.service.MemberCardAllUnit({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "IncludeChild": IncludeChild, "DisplayName": DisplayName, "ID_MemberCardType": ID_MemberCardType, "OnlyValid": OnlyValid, "PersonWithoutMeberCard": PersonWithoutMeberCard, "ValidTo": ValidTo, "OnlyInvalid": OnlyInvalid})
 
-    # Načíst seznam položek hospodářského výkazu včetně součtů oblastí
-    def StatementEntryAllTotals(self, ID_Login, ID_Statement, ID_StatementEntryType, IsMoney):
-        return self._client.service.StatementEntryAllTotals({"ID_Login": ID_Login, "ID_Statement": ID_Statement, "ID_StatementEntryType": ID_StatementEntryType, "IsMoney": IsMoney})
+    # Načíst všechny faktury za členské karty
+    def MemberCardInvoiceAll(self, ID_Login, ID_Unit, ID, ID_MemberCardInvoiceGenerate, DateGeneratingFrom, DateGeneratingTo, DisplayName=None, ID_MemberCardInvoiceState=None):
+        return self._client.service.MemberCardInvoiceAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_MemberCardInvoiceGenerate": ID_MemberCardInvoiceGenerate, "DateGeneratingFrom": DateGeneratingFrom, "DateGeneratingTo": DateGeneratingTo, "DisplayName": DisplayName, "ID_MemberCardInvoiceState": ID_MemberCardInvoiceState})
 
-    # Obnovit existenci jednotky
-    def UnitTreeRenew(self, ID_Login, ID, ValidFrom, ValidTo, ID_Unit, ID_UnitParent, ID_UnitMerge, ID_UnitTreeReason=None, Unit=None, UnitParent=None, RegistrationNumber=None, ID_UnitType=None, UnitMerge=None, ID_UnitFoundReason=None, UnitFoundReason=None, UnitFoundDescription=None):
-        return self._client.service.UnitTreeRenew({"ID_Login": ID_Login, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_Unit": ID_Unit, "ID_UnitParent": ID_UnitParent, "ID_UnitMerge": ID_UnitMerge, "ID_UnitTreeReason": ID_UnitTreeReason, "Unit": Unit, "UnitParent": UnitParent, "RegistrationNumber": RegistrationNumber, "ID_UnitType": ID_UnitType, "UnitMerge": UnitMerge, "ID_UnitFoundReason": ID_UnitFoundReason, "UnitFoundReason": UnitFoundReason, "UnitFoundDescription": UnitFoundDescription})
+    # Načíst detail faktury za členské karty
+    def MemberCardInvoiceDetail(self, ID_Login, ID):
+        return self._client.service.MemberCardInvoiceDetail({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst detail vady registrace
-    def MistakeDetail(self, ID_Login, ID):
-        return self._client.service.MistakeDetail({"ID_Login": ID_Login, "ID": ID})
+    # Načíst seznam generování faktur za členské karty
+    def MemberCardInvoiceGenerateAll(self, ID_Login, ID, ID_Person, ID_Error, ID_MemberCardInvoiceGenerateState=None):
+        return self._client.service.MemberCardInvoiceGenerateAll({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Error": ID_Error, "ID_MemberCardInvoiceGenerateState": ID_MemberCardInvoiceGenerateState})
 
     # Založit generování faktur za členské karty
     def MemberCardInvoiceGenerateInsert(self, ID_Login, ID, DateGenerating, ID_Person, ID_Error, Person=None, ID_MemberCardInvoiceGenerateState=None, MemberCardInvoiceGenerateState=None, Error=None):
@@ -1424,53 +1520,49 @@ class OrganizationUnit(object):
     def UnitJournalDeliveryUpdate(self, ID_Login, ID, ID_Unit, ID_Person, Unit=None, RegistrationNumber=None, Street=None, Ciry=None, PostCode=None, FirstLine=None, State=None, ID_JournalDeliveryType=None):
         return self._client.service.UnitJournalDeliveryUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Street": Street, "Ciry": Ciry, "PostCode": PostCode, "FirstLine": FirstLine, "State": State, "ID_JournalDeliveryType": ID_JournalDeliveryType})
 
-    # Načíst seznam razítek jednotky
-    def UnitStampAll(self, ID_Login, ID_Unit, ID, ID_StampType=None):
-        return self._client.service.UnitStampAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_StampType": ID_StampType})
+    # Načíst seznam dokumentů užití nemovitosti
+    def OccupationPhotoAll(self, ID_Login, ID_Occupation, ID, ID_Document):
+        return self._client.service.OccupationPhotoAll({"ID_Login": ID_Login, "ID_Occupation": ID_Occupation, "ID": ID, "ID_Document": ID_Document})
 
-    # Smazat razítko jednotky
-    def UnitStampDelete(self, ID_Login, ID):
-        return self._client.service.UnitStampDelete({"ID_Login": ID_Login, "ID": ID})
+    # Smazat dokument užití nemovitosti
+    def OccupationPhotoDelete(self, ID_Login, ID):
+        return self._client.service.OccupationPhotoDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst detail razítka jednotky
-    def UnitStampDetail(self, ID_Login, ID):
-        return self._client.service.UnitStampDetail({"ID_Login": ID_Login, "ID": ID})
+    # Založit dokument užití nemovitosti
+    def OccupationPhotoInsert(self, ID_Login, ID, ID_Occupation, ID_Document, ID_TempFile, Description=None):
+        return self._client.service.OccupationPhotoInsert({"ID_Login": ID_Login, "ID": ID, "ID_Occupation": ID_Occupation, "ID_Document": ID_Document, "ID_TempFile": ID_TempFile, "Description": Description})
 
-    # Založit razítko jednotky
-    def UnitStampInsert(self, ID_Login, ID, ID_Unit, Count, Unit=None, RegistrationNumber=None, ID_StampType=None, StampType=None, Email=None, Web=None):
-        return self._client.service.UnitStampInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Count": Count, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StampType": ID_StampType, "StampType": StampType, "Email": Email, "Web": Web})
+    # Načíst detail půjčitelné nemovitosti pro kalendář
+    def OccupationRentDetailCalendar(self, ID_Login, ID_Application, ID):
+        return self._client.service.OccupationRentDetailCalendar({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
 
-    # Upravit razítko jednotky
-    def UnitStampUpdate(self, ID_Login, ID, ID_Unit, Count, Unit=None, RegistrationNumber=None, ID_StampType=None, StampType=None, Email=None, Web=None):
-        return self._client.service.UnitStampUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Count": Count, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StampType": ID_StampType, "StampType": StampType, "Email": Email, "Web": Web})
+    # Načíst seznam půjčitelných nemovitostí pro kalendář
+    def OccupationRentAllCalendarAll(self, ID_Login, ID_Application, IsInstant):
+        return self._client.service.OccupationRentAllCalendarAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "IsInstant": IsInstant})
 
-    # Nastavit typ rozesílky balíčků pro nováčky
-    def UnitUpdateJournalDeliveryType(self, ID_Login, ID, ID_JournalDeliveryType=None):
-        return self._client.service.UnitUpdateJournalDeliveryType({"ID_Login": ID_Login, "ID": ID, "ID_JournalDeliveryType": ID_JournalDeliveryType})
+    # Načíst seznam půjčitelných jednotek pro API
+    def OccupationRentAllPublicApi(self, ID_Login, ID_Application):
+        return self._client.service.OccupationRentAllPublicApi({"ID_Login": ID_Login, "ID_Application": ID_Application})
 
-    # Nastavit způsob odběru balíčků pro nováčky
-    def UnitUpdateChangeJournalNovice(self, ID_Login, ID, ID_JournalNovice=None):
-        return self._client.service.UnitUpdateChangeJournalNovice({"ID_Login": ID_Login, "ID": ID, "ID_JournalNovice": ID_JournalNovice})
+    # Načíst seznam půjčitelných jednotek s detailnímí informacemi pro API
+    def OccupationRentAllPublicApiDetail(self, ID_Login, ID_Application, ID_RealtyType, Capacity, ID_Items=None, ID_OccupationEquipment=None, ID_RealtyLocations=None):
+        return self._client.service.OccupationRentAllPublicApiDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_RealtyType": ID_RealtyType, "Capacity": Capacity, "ID_Items": ID_Items, "ID_OccupationEquipment": ID_OccupationEquipment, "ID_RealtyLocations": ID_RealtyLocations})
 
-    # Upravit jméno jednotky
-    def UnitUpdateName(self, ID_Login, ID, ID_Group, ID_Unit, ContainsMembers, CommissionDeadline, IsVatPayer, ID_TroopArt, CanUpdateRegistrationNumber, IsUnitCancel, JournalParent, ChangeFreeJournal, ID_UnitParent, OnlyValidate, IsPostalAuthenticated, IsAddressAuthenticated, ID_PersonChangeName, DateChangeName, IsPropertyOwner, ID_TempFilePropertyAgreement, ID_DocumentDecision, ID_DocumentPropertyAgreement, ID_TempFileSeatChange, ID_UnitType=None, UnitType=None, DisplayName=None, SortName=None, RegistrationNumber=None, ShortRegistrationNumber=None, Location=None, IC=None, DIC=None, FileReference=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Note=None, TroopArt=None, LogoContent=None, LogoExtension=None, AddressDistrict=None, PostalDistrict=None, NewDisplayName=None, CompleteDisplayName=None, PersonChangeName=None, PropertyAgreementExtension=None, PropertyAgreementContent=None, TroopArtKey=None, ID_JournalNovice=None, ID_JournalDeliveryType=None, FullDisplayName=None, DecisionSeatChangeExtension=None, ShopDiscountBarcode=None, ID_UnitFoundReason=None, UnitFoundReason=None, UnitFoundDescription=None):
-        return self._client.service.UnitUpdateName({"ID_Login": ID_Login, "ID": ID, "ID_Group": ID_Group, "ID_Unit": ID_Unit, "ContainsMembers": ContainsMembers, "CommissionDeadline": CommissionDeadline, "IsVatPayer": IsVatPayer, "ID_TroopArt": ID_TroopArt, "CanUpdateRegistrationNumber": CanUpdateRegistrationNumber, "IsUnitCancel": IsUnitCancel, "JournalParent": JournalParent, "ChangeFreeJournal": ChangeFreeJournal, "ID_UnitParent": ID_UnitParent, "OnlyValidate": OnlyValidate, "IsPostalAuthenticated": IsPostalAuthenticated, "IsAddressAuthenticated": IsAddressAuthenticated, "ID_PersonChangeName": ID_PersonChangeName, "DateChangeName": DateChangeName, "IsPropertyOwner": IsPropertyOwner, "ID_TempFilePropertyAgreement": ID_TempFilePropertyAgreement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "ID_TempFileSeatChange": ID_TempFileSeatChange, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "DisplayName": DisplayName, "SortName": SortName, "RegistrationNumber": RegistrationNumber, "ShortRegistrationNumber": ShortRegistrationNumber, "Location": Location, "IC": IC, "DIC": DIC, "FileReference": FileReference, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Note": Note, "TroopArt": TroopArt, "LogoContent": LogoContent, "LogoExtension": LogoExtension, "AddressDistrict": AddressDistrict, "PostalDistrict": PostalDistrict, "NewDisplayName": NewDisplayName, "CompleteDisplayName": CompleteDisplayName, "PersonChangeName": PersonChangeName, "PropertyAgreementExtension": PropertyAgreementExtension, "PropertyAgreementContent": PropertyAgreementContent, "TroopArtKey": TroopArtKey, "ID_JournalNovice": ID_JournalNovice, "ID_JournalDeliveryType": ID_JournalDeliveryType, "FullDisplayName": FullDisplayName, "DecisionSeatChangeExtension": DecisionSeatChangeExtension, "ShopDiscountBarcode": ShopDiscountBarcode, "ID_UnitFoundReason": ID_UnitFoundReason, "UnitFoundReason": UnitFoundReason, "UnitFoundDescription": UnitFoundDescription})
+    # Načíst detail půjčitelné jednotky pro API
+    def OccupationRentDetailPublicApi(self, ID_Login, ID_Application, ID):
+        return self._client.service.OccupationRentDetailPublicApi({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
 
-    # Ukončit platnost účtu
-    def AccountUpdateCancel(self, ID_Login, ID, ID_Unit, ValidTo, ID_Bank, IsMain, DisplayName=None, Unit=None, Bank=None, AccountPrefix=None, AccountNumber=None, Street=None, City=None, Postcode=None, Note=None):
-        return self._client.service.AccountUpdateCancel({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ValidTo": ValidTo, "ID_Bank": ID_Bank, "IsMain": IsMain, "DisplayName": DisplayName, "Unit": Unit, "Bank": Bank, "AccountPrefix": AccountPrefix, "AccountNumber": AccountNumber, "Street": Street, "City": City, "Postcode": Postcode, "Note": Note})
+    # Načíst seznam cen za pronájem
+    def OccupationRentPriceAllOccupationRent(self, ID_Login, ID_Application, ID_OccupationRent):
+        return self._client.service.OccupationRentPriceAllOccupationRent({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_OccupationRent": ID_OccupationRent})
 
-    # Načíst seznam věkových kategorií
-    def AgeCategoryAll(self, ID_Login, IsMore):
-        return self._client.service.AgeCategoryAll({"ID_Login": ID_Login, "IsMore": IsMore})
+    # Změnit data kalendářů půjčitelné jednotky
+    def OccupationRentUpdateCalendarFile(self, ID_Login, ID_Application, ID, ID_TempFile, ID_TempFileAdmin):
+        return self._client.service.OccupationRentUpdateCalendarFile({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_TempFile": ID_TempFile, "ID_TempFileAdmin": ID_TempFileAdmin})
 
-    # Načíst seznam ústředních orgánů
-    def AgencyAll(self, ID_Login, ID, DisplayName=None):
-        return self._client.service.AgencyAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
-
-    # Načíst seznam členských karet
-    def MemberCardAll(self, ID_Login, ID_Person, ID, ID_PersonSchool, ID_MemberCardState=None, DisplayName=None, ID_MemberCardType=None):
-        return self._client.service.MemberCardAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ID_PersonSchool": ID_PersonSchool, "ID_MemberCardState": ID_MemberCardState, "DisplayName": DisplayName, "ID_MemberCardType": ID_MemberCardType})
+    # Nastavit datum generování kalendáře
+    def OccupationRentUpdateRegenerateCalendar(self, ID_Login, ID_Application, ID, Reset):
+        return self._client.service.OccupationRentUpdateRegenerateCalendar({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "Reset": Reset})
 
     # Načíst seznam náborových kategorií
     def AdvertisingCategoryAllOccupation(self, ID_Login, ID_Application, ID_Occupation, ID_MeetingDate, ID_Sex=None):
@@ -1689,8 +1781,8 @@ class OrganizationUnit(object):
         return self._client.service.OccupationRentReservationUpdateReject({"ID_Login": ID_Login, "ID": ID, "RejectionReason": RejectionReason})
 
     # Upravit užívání nemovitosti
-    def OccupationUpdateRealty(self, ID, ID_Login, Publish, IsBorrowable, Capacity, BorrowableForeign, IsBookable, ID_TempFilePhotoExtension, ID_TempFileRequirementExtension, Note=None, DisplayName=None, Person=None, Email=None, Phone=None, Web=None, Fotogallery=None, ContactNote=None, Requirements=None, CapacityNote=None, AccommodationNote=None, Tags=None, Equipment=None, Languages=None):
-        return self._client.service.OccupationUpdateRealty({"ID": ID, "ID_Login": ID_Login, "Publish": Publish, "IsBorrowable": IsBorrowable, "Capacity": Capacity, "BorrowableForeign": BorrowableForeign, "IsBookable": IsBookable, "ID_TempFilePhotoExtension": ID_TempFilePhotoExtension, "ID_TempFileRequirementExtension": ID_TempFileRequirementExtension, "Note": Note, "DisplayName": DisplayName, "Person": Person, "Email": Email, "Phone": Phone, "Web": Web, "Fotogallery": Fotogallery, "ContactNote": ContactNote, "Requirements": Requirements, "CapacityNote": CapacityNote, "AccommodationNote": AccommodationNote, "Tags": Tags, "Equipment": Equipment, "Languages": Languages})
+    def OccupationUpdateRealty(self, ID, ID_Login, Publish, IsBorrowable, Capacity, BorrowableForeign, IsBookable, ID_TempFilePhotoExtension, ID_TempFileRequirementExtension, Note=None, DisplayName=None, Person=None, Email=None, Phone=None, Web=None, Fotogallery=None, ContactNote=None, Requirements=None, CapacityNote=None, AccommodationNote=None, BookUrl=None, Tags=None, Equipment=None, Languages=None):
+        return self._client.service.OccupationUpdateRealty({"ID": ID, "ID_Login": ID_Login, "Publish": Publish, "IsBorrowable": IsBorrowable, "Capacity": Capacity, "BorrowableForeign": BorrowableForeign, "IsBookable": IsBookable, "ID_TempFilePhotoExtension": ID_TempFilePhotoExtension, "ID_TempFileRequirementExtension": ID_TempFileRequirementExtension, "Note": Note, "DisplayName": DisplayName, "Person": Person, "Email": Email, "Phone": Phone, "Web": Web, "Fotogallery": Fotogallery, "ContactNote": ContactNote, "Requirements": Requirements, "CapacityNote": CapacityNote, "AccommodationNote": AccommodationNote, "BookUrl": BookUrl, "Tags": Tags, "Equipment": Equipment, "Languages": Languages})
 
     # Založit užívání nemovitosti
     def OccupationInsertRealty(self, ID_Login, ID_Unit, ID_Realty, ID_RealtyType, Publish, IsBorrowable, Capacity, BorrowableForeign, IsBookable, ID_TempFilePhotoExtension, ID_TempFileRequirementExtension, BasePrice, ScoutPrice, ChildPrice, Note=None, DisplayName=None, Person=None, Email=None, Phone=None, Web=None, Fotogallery=None, ContactNote=None, Requirements=None, CapacityNote=None, AccommodationNote=None, Tags=None, Equipment=None, Languages=None, ID_OccupationRentPriceType=None, PriceNote=None):
@@ -1701,24 +1793,24 @@ class OrganizationUnit(object):
         return self._client.service.OccupationLanguageAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
 
     # Načíst seznam půjčitelných jednotek
-    def OccupationRentAll(self, ID_Login, ID_Occupation, ID, DisplayName=None):
-        return self._client.service.OccupationRentAll({"ID_Login": ID_Login, "ID_Occupation": ID_Occupation, "ID": ID, "DisplayName": DisplayName})
+    def OccupationRentAll(self, ID_Login, ID_Application, ID_Occupation, ID, DisplayName=None):
+        return self._client.service.OccupationRentAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Occupation": ID_Occupation, "ID": ID, "DisplayName": DisplayName})
 
     # Načíst detail půjčitelné jednotky
     def OccupationRentDetail(self, ID_Login, ID):
         return self._client.service.OccupationRentDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Načíst seznam vybavení
-    def OccupationRentEquipmentAll(self, ID_Login, ID_Occupation, ID, ID_OccupationEquipment):
-        return self._client.service.OccupationRentEquipmentAll({"ID_Login": ID_Login, "ID_Occupation": ID_Occupation, "ID": ID, "ID_OccupationEquipment": ID_OccupationEquipment})
+    def OccupationRentEquipmentAll(self, ID_Login, ID_Application, ID_Occupation, ID, ID_OccupationEquipment):
+        return self._client.service.OccupationRentEquipmentAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Occupation": ID_Occupation, "ID": ID, "ID_OccupationEquipment": ID_OccupationEquipment})
 
     # Založit půjčitelnou jednotku
     def OccupationRentInsert(self, ID_Login, ID, ID_Occupation, IsActive, ID_TempFilePhotoExtension, ID_TempFileRequirementExtension, Capacity, BorrowableForeign, IsBookable, LastUpdate, ID_DocumentRequirement, ID_DocumentPhoto, DisplayName=None, Email=None, Phone=None, Web=None, PhotoExtension=None, Fotogallery=None, ContactNote=None, RequirementExtension=None, Requirements=None, CapacityNote=None, AccommodationNote=None, Person=None, Equipment=None, Tags=None, Languages=None):
         return self._client.service.OccupationRentInsert({"ID_Login": ID_Login, "ID": ID, "ID_Occupation": ID_Occupation, "IsActive": IsActive, "ID_TempFilePhotoExtension": ID_TempFilePhotoExtension, "ID_TempFileRequirementExtension": ID_TempFileRequirementExtension, "Capacity": Capacity, "BorrowableForeign": BorrowableForeign, "IsBookable": IsBookable, "LastUpdate": LastUpdate, "ID_DocumentRequirement": ID_DocumentRequirement, "ID_DocumentPhoto": ID_DocumentPhoto, "DisplayName": DisplayName, "Email": Email, "Phone": Phone, "Web": Web, "PhotoExtension": PhotoExtension, "Fotogallery": Fotogallery, "ContactNote": ContactNote, "RequirementExtension": RequirementExtension, "Requirements": Requirements, "CapacityNote": CapacityNote, "AccommodationNote": AccommodationNote, "Person": Person, "Equipment": Equipment, "Tags": Tags, "Languages": Languages})
 
     # Načíst seznam jazyků
-    def OccupationRentLanguageAll(self, ID_Login, ID_Occupation, ID, ID_OccupationLanguage=None):
-        return self._client.service.OccupationRentLanguageAll({"ID_Login": ID_Login, "ID_Occupation": ID_Occupation, "ID": ID, "ID_OccupationLanguage": ID_OccupationLanguage})
+    def OccupationRentLanguageAll(self, ID_Login, ID_Application, ID_Occupation, ID, ID_OccupationLanguage=None):
+        return self._client.service.OccupationRentLanguageAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Occupation": ID_Occupation, "ID": ID, "ID_OccupationLanguage": ID_OccupationLanguage})
 
     # Načíst seznam cen za pronájem
     def OccupationRentPriceAll(self, ID_Login, ID_Occupation, ID, ID_OccupationRentPriceType=None):
@@ -1737,8 +1829,8 @@ class OrganizationUnit(object):
         return self._client.service.OccupationRentPriceInsert({"ID_Login": ID_Login, "ID": ID, "ID_Occupation": ID_Occupation, "ID_OccupationRent": ID_OccupationRent, "BasePrice": BasePrice, "ScoutPrice": ScoutPrice, "ChildPrice": ChildPrice, "OccupationRent": OccupationRent, "ID_OccupationRentPriceType": ID_OccupationRentPriceType, "OccupationRentPriceType": OccupationRentPriceType, "PriceNote": PriceNote})
 
     # Načíst seznam typů ceny
-    def OccupationRentPriceTypeAll(self, ID_Login, ID=None, DisplayName=None):
-        return self._client.service.OccupationRentPriceTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+    def OccupationRentPriceTypeAll(self, ID_Login, ID_Application, ID=None, DisplayName=None):
+        return self._client.service.OccupationRentPriceTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "DisplayName": DisplayName})
 
     # Upravit cenu za pronájem
     def OccupationRentPriceUpdate(self, ID_Login, ID, ID_Occupation, ID_OccupationRent, BasePrice, ScoutPrice, ChildPrice, OccupationRent=None, ID_OccupationRentPriceType=None, OccupationRentPriceType=None, PriceNote=None):
@@ -1923,52 +2015,4 @@ class OrganizationUnit(object):
     # Načíst seznam souborů nemovitostí
     def RealtyCollectionAll(self, ID_Login, ID_Unit, ID, ID_User, DisplayName=None):
         return self._client.service.RealtyCollectionAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_User": ID_User, "DisplayName": DisplayName})
-
-    # Načíst detail půjčitelné nemovitosti/souboru nemovitostí
-    def RealtyCollectionDetailBorrowable(self, ID_Application, ID, ID_Login):
-        return self._client.service.RealtyCollectionDetailBorrowable({"ID_Application": ID_Application, "ID": ID, "ID_Login": ID_Login})
-
-    # Načíst detail souboru nemovitostí
-    def RealtyCollectionDetailPhoto(self, ID_TempFilePhoto, ID_Login, ID, ID_Unit, ID_User, IsActive, GpsLatitude, GpsLongitude, HasAddress, ID_Region, ID_Document, PhotoExtension=None, PhotoFileContent=None, FotogalleryUrl=None, Unit=None, UnitRegistrationNumber=None, Owner=None, DisplayName=None, Description=None, Web=None, Street=None, City=None, Postcode=None, District=None, TransportationMethods=None, TransportationMethodsText=None, TransportDescription=None, Locations=None, LocationsText=None, PointsOfInterest=None, Note=None, Region=None, Storage=None):
-        return self._client.service.RealtyCollectionDetailPhoto({"ID_TempFilePhoto": ID_TempFilePhoto, "ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_User": ID_User, "IsActive": IsActive, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "HasAddress": HasAddress, "ID_Region": ID_Region, "ID_Document": ID_Document, "PhotoExtension": PhotoExtension, "PhotoFileContent": PhotoFileContent, "FotogalleryUrl": FotogalleryUrl, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber, "Owner": Owner, "DisplayName": DisplayName, "Description": Description, "Web": Web, "Street": Street, "City": City, "Postcode": Postcode, "District": District, "TransportationMethods": TransportationMethods, "TransportationMethodsText": TransportationMethodsText, "TransportDescription": TransportDescription, "Locations": Locations, "LocationsText": LocationsText, "PointsOfInterest": PointsOfInterest, "Note": Note, "Region": Region, "Storage": Storage})
-
-    # Založit soubor nemovitostí
-    def RealtyCollectionInsert(self, ID_TempFilePhoto, RealtyIsPower, ID_RealtyTempFilePhoto, ID_Login, ID_Unit, ID_User, HasAddress, GpsLatitude, GpsLongitude, LVNumber, Acreage, FotogalleryUrl=None, RealtyDisplayName=None, RealtyDescription=None, RealtyFotogalleryUrl=None, ID_RealtyOwnerType=None, RealtyOwnerTypeNote=None, RealtyNote=None, ID_RealtyRegisterType=None, DisplayName=None, Description=None, Web=None, Street=None, City=None, Postcode=None, District=None, TransportationMethods=None, TransportDescription=None, PointsOfInterest=None, Locations=None, Note=None, ParcelNumber=None, RegisterCity=None, CadastralArea=None, ParcelType=None, LandType=None):
-        return self._client.service.RealtyCollectionInsert({"ID_TempFilePhoto": ID_TempFilePhoto, "RealtyIsPower": RealtyIsPower, "ID_RealtyTempFilePhoto": ID_RealtyTempFilePhoto, "ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID_User": ID_User, "HasAddress": HasAddress, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "LVNumber": LVNumber, "Acreage": Acreage, "FotogalleryUrl": FotogalleryUrl, "RealtyDisplayName": RealtyDisplayName, "RealtyDescription": RealtyDescription, "RealtyFotogalleryUrl": RealtyFotogalleryUrl, "ID_RealtyOwnerType": ID_RealtyOwnerType, "RealtyOwnerTypeNote": RealtyOwnerTypeNote, "RealtyNote": RealtyNote, "ID_RealtyRegisterType": ID_RealtyRegisterType, "DisplayName": DisplayName, "Description": Description, "Web": Web, "Street": Street, "City": City, "Postcode": Postcode, "District": District, "TransportationMethods": TransportationMethods, "TransportDescription": TransportDescription, "PointsOfInterest": PointsOfInterest, "Locations": Locations, "Note": Note, "ParcelNumber": ParcelNumber, "RegisterCity": RegisterCity, "CadastralArea": CadastralArea, "ParcelType": ParcelType, "LandType": LandType})
-
-    # Načíst detail nemovitosti
-    def RealtyDetailPhoto(self, ID_Login, ID, ID_RealtyType, GpsLatitude, GpsLongitude, ID_RealtyCollection, IsPower, ValidTo, IsActive, ID_TempFilePhoto, IsAddressAuthenticated, ID_Document, LVNumber, Acreage, RealtyGpsLatitude, RealtyGpsLongitude, CoordinateX, CoordinateY, DisplayName=None, RealtyType=None, Street=None, City=None, Postcode=None, Description=None, Note=None, RealtyCollection=None, ID_OwnerType=None, OwnerType=None, OwnerTypeNote=None, PhotoExtension=None, PhotoFileContent=None, FotogalleryUrl=None, District=None, Storage=None, ParcelNumber=None, RegisterCity=None, CadastralArea=None, ParcelType=None, LandType=None, Unit=None, UnitRegistrationNumber=None):
-        return self._client.service.RealtyDetailPhoto({"ID_Login": ID_Login, "ID": ID, "ID_RealtyType": ID_RealtyType, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "ID_RealtyCollection": ID_RealtyCollection, "IsPower": IsPower, "ValidTo": ValidTo, "IsActive": IsActive, "ID_TempFilePhoto": ID_TempFilePhoto, "IsAddressAuthenticated": IsAddressAuthenticated, "ID_Document": ID_Document, "LVNumber": LVNumber, "Acreage": Acreage, "RealtyGpsLatitude": RealtyGpsLatitude, "RealtyGpsLongitude": RealtyGpsLongitude, "CoordinateX": CoordinateX, "CoordinateY": CoordinateY, "DisplayName": DisplayName, "RealtyType": RealtyType, "Street": Street, "City": City, "Postcode": Postcode, "Description": Description, "Note": Note, "RealtyCollection": RealtyCollection, "ID_OwnerType": ID_OwnerType, "OwnerType": OwnerType, "OwnerTypeNote": OwnerTypeNote, "PhotoExtension": PhotoExtension, "PhotoFileContent": PhotoFileContent, "FotogalleryUrl": FotogalleryUrl, "District": District, "Storage": Storage, "ParcelNumber": ParcelNumber, "RegisterCity": RegisterCity, "CadastralArea": CadastralArea, "ParcelType": ParcelType, "LandType": LandType, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber})
-
-    # Smazat dokument
-    def RealtyDocumentDelete(self, ID_Login, ID):
-        return self._client.service.RealtyDocumentDelete({"ID_Login": ID_Login, "ID": ID})
-
-    # No documentation
-    def RealtyDocumentDetail(self, ID_Login, ID):
-        return self._client.service.RealtyDocumentDetail({"ID_Login": ID_Login, "ID": ID})
-
-    # Stáhnout dokument
-    def RealtyDocumentDownload(self, ID_Login, ID):
-        return self._client.service.RealtyDocumentDownload({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst seznam členských karet
-    def MemberCardAllMemberCardInvoice(self, ID_Login, ID_MemberCardInvoice):
-        return self._client.service.MemberCardAllMemberCardInvoice({"ID_Login": ID_Login, "ID_MemberCardInvoice": ID_MemberCardInvoice})
-
-    # Načíst seznam členských karet pro jednotku
-    def MemberCardAllUnit(self, ID_Login, ID_Unit, ID, IncludeChild, DisplayName=None, ID_MemberCardType=None, OnlyValid=None, PersonWithoutMeberCard=None, ValidTo=None, OnlyInvalid=None):
-        return self._client.service.MemberCardAllUnit({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "IncludeChild": IncludeChild, "DisplayName": DisplayName, "ID_MemberCardType": ID_MemberCardType, "OnlyValid": OnlyValid, "PersonWithoutMeberCard": PersonWithoutMeberCard, "ValidTo": ValidTo, "OnlyInvalid": OnlyInvalid})
-
-    # Načíst všechny faktury za členské karty
-    def MemberCardInvoiceAll(self, ID_Login, ID_Unit, ID, ID_MemberCardInvoiceGenerate, DateGeneratingFrom, DateGeneratingTo, DisplayName=None, ID_MemberCardInvoiceState=None):
-        return self._client.service.MemberCardInvoiceAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_MemberCardInvoiceGenerate": ID_MemberCardInvoiceGenerate, "DateGeneratingFrom": DateGeneratingFrom, "DateGeneratingTo": DateGeneratingTo, "DisplayName": DisplayName, "ID_MemberCardInvoiceState": ID_MemberCardInvoiceState})
-
-    # Načíst detail faktury za členské karty
-    def MemberCardInvoiceDetail(self, ID_Login, ID):
-        return self._client.service.MemberCardInvoiceDetail({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst seznam generování faktur za členské karty
-    def MemberCardInvoiceGenerateAll(self, ID_Login, ID, ID_Person, ID_Error, ID_MemberCardInvoiceGenerateState=None):
-        return self._client.service.MemberCardInvoiceGenerateAll({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Error": ID_Error, "ID_MemberCardInvoiceGenerateState": ID_MemberCardInvoiceGenerateState})
 
