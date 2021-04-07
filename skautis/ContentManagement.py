@@ -64,18 +64,6 @@ class ContentManagement(object):
     def PageStateUpdate(self, ID_Login, ID, ID_User, ID_Known, ID_Page, IsDefault, Page=None, DisplayName=None, Data=None):
         return self._client.service.PageStateUpdate({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Known": ID_Known, "ID_Page": ID_Page, "IsDefault": IsDefault, "Page": Page, "DisplayName": DisplayName, "Data": Data})
 
-    # Načíst seznam doporučených stránek
-    def RecommendationAll(self, ID_Login, Top):
-        return self._client.service.RecommendationAll({"ID_Login": ID_Login, "Top": Top})
-
-    # Smazat doporučenou stránku
-    def RecommendationDelete(self, ID_Login, ID):
-        return self._client.service.RecommendationDelete({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst detail doporučené stránky
-    def RecommendationDetail(self, ID_Login, ID):
-        return self._client.service.RecommendationDetail({"ID_Login": ID_Login, "ID": ID})
-
     # Načíst seznam záložek
     def TabAll(self, ID_Login, ID, IsOrderSet, MasterPage=None):
         return self._client.service.TabAll({"ID_Login": ID_Login, "ID": ID, "IsOrderSet": IsOrderSet, "MasterPage": MasterPage})

@@ -125,8 +125,8 @@ class OrganizationUnit(object):
         return self._client.service.UnitAllUnit({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "SearchStredisko": SearchStredisko})
 
     # Obnovit členství osoby v jednotce
-    def MembershipRenew(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, CreateNew, OnlyValidate, IsFunction, IsSts, IsUnique, IsUnitFunction, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
-        return self._client.service.MembershipRenew({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsSts": IsSts, "IsUnique": IsUnique, "IsUnitFunction": IsUnitFunction, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
+    def MembershipRenew(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, IsUnique, CreateNew, OnlyValidate, IsFunction, IsUnitFunction, IsSts, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
+        return self._client.service.MembershipRenew({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "IsUnique": IsUnique, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsUnitFunction": IsUnitFunction, "IsSts": IsSts, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
 
     # Hledání osob (helpdesk)
     def PersonAllHelpdesk(self, ID_Login, IsValid, FirstName=None, LastName=None, NickName=None, IdentificationCode=None, City=None, UserName=None, Email=None, Phone=None):
@@ -337,8 +337,8 @@ class OrganizationUnit(object):
         return self._client.service.MembershipDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit členství osoby v jednotce
-    def MembershipInsert(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, CreateNew, OnlyValidate, IsFunction, IsSts, IsUnique, IsUnitFunction, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
-        return self._client.service.MembershipInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsSts": IsSts, "IsUnique": IsUnique, "IsUnitFunction": IsUnitFunction, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
+    def MembershipInsert(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, IsUnique, CreateNew, OnlyValidate, IsFunction, IsUnitFunction, IsSts, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
+        return self._client.service.MembershipInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "IsUnique": IsUnique, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsUnitFunction": IsUnitFunction, "IsSts": IsSts, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
 
     # Načíst seznam důvodů změny/ukončení členství
     def MembershipReasonAll(self, ID_Login, IsMulti, ID=None, DisplayName=None):
@@ -349,8 +349,8 @@ class OrganizationUnit(object):
         return self._client.service.MembershipTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
     # Upravit členství osoby v jednotce
-    def MembershipUpdate(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, CreateNew, OnlyValidate, IsFunction, IsSts, IsUnique, IsUnitFunction, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
-        return self._client.service.MembershipUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsSts": IsSts, "IsUnique": IsUnique, "IsUnitFunction": IsUnitFunction, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
+    def MembershipUpdate(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, IsUnique, CreateNew, OnlyValidate, IsFunction, IsUnitFunction, IsSts, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
+        return self._client.service.MembershipUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "IsUnique": IsUnique, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsUnitFunction": IsUnitFunction, "IsSts": IsSts, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
 
     # Načíst seznam užívání nemovitosti
     def OccupationAll(self, ID_Login, ID_Application, ID_Unit, IncludeChildUnits, ID_Realty, Publish, ID_RealtyType, Distance, GpsLatitude, GpsLongitude, GpsLatitudeStart, GpsLongitudeStart, GpsLatitudeEnd, GpsLongitudeEnd, AdvertisingCategories=None):

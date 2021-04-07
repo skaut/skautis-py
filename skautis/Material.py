@@ -12,6 +12,10 @@ class Material(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Material.asmx?wsdl')
 
+    # Převod položek do skladu
+    def WarehouseItemUpdateTransfer(self, ID_Login, ID_Warehouse, WarehouseItems=None):
+        return self._client.service.WarehouseItemUpdateTransfer({"ID_Login": ID_Login, "ID_Warehouse": ID_Warehouse, "WarehouseItems": WarehouseItems})
+
     # Načíst seznam typu pořízení
     def PurchaseTypeAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.PurchaseTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
