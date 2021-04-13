@@ -261,8 +261,8 @@ class Material(object):
         return self._client.service.WarehouseStockTakingInsert({"ID_Login": ID_Login, "ID": ID, "ID_Warehouse": ID_Warehouse, "ID_StockTaking": ID_StockTaking, "Warehouse": Warehouse, "Note": Note})
 
     # Načíst seznam tagů
-    def WarehouseTagAllEvent(self, ID_Login, ID_EventEducation, ID_EventGeneral, ID, DisplayName=None):
-        return self._client.service.WarehouseTagAllEvent({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID_EventGeneral": ID_EventGeneral, "ID": ID, "DisplayName": DisplayName})
+    def WarehouseTagAllUniversal(self, ID_Login, ID_EventEducation, ID_EventGeneral, ID_Unit, ID, DisplayName=None):
+        return self._client.service.WarehouseTagAllUniversal({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID_EventGeneral": ID_EventGeneral, "ID_Unit": ID_Unit, "ID": ID, "DisplayName": DisplayName})
 
     # Založit tag
     def WarehouseTagInsertEvent(self, ID_Login, ID, ID_Unit, ID_EventEducation, ID_EventGeneral, ID_Event, ID_Warehouse, CanUpdate, DisplayName=None, Unit=None, Event=None, RegistrationNumber=None, Color=None, Warehouse=None):
@@ -285,8 +285,8 @@ class Material(object):
         return self._client.service.WarehouseInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Event": ID_Event, "ID_WarehouseMain": ID_WarehouseMain, "IsDefault": IsDefault, "ID_District": ID_District, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "CanUpdate": CanUpdate, "ID_UnitCentral": ID_UnitCentral, "IsEnabled": IsEnabled, "DisplayName": DisplayName, "ID_WarehouseType": ID_WarehouseType, "WarehouseType": WarehouseType, "Unit": Unit, "UnitFullName": UnitFullName, "RegistrationNumber": RegistrationNumber, "Event": Event, "WarehouseMain": WarehouseMain, "Street": Street, "City": City, "District": District, "Postcode": Postcode, "Note": Note, "UnitCentral": UnitCentral, "UnitCentralFullName": UnitCentralFullName, "UnitCentralRegistrationNumber": UnitCentralRegistrationNumber})
 
     # Načíst seznam tagů
-    def WarehouseTagAll(self, ID_Login, ID_Unit, ID, IncludeChild, UniqueOnly, DisplayName=None):
-        return self._client.service.WarehouseTagAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "IncludeChild": IncludeChild, "UniqueOnly": UniqueOnly, "DisplayName": DisplayName})
+    def WarehouseTagAll(self, ID_Login, ID_Unit, ID, ID_Warehouse, IncludeChild, UniqueOnly, DisplayName=None):
+        return self._client.service.WarehouseTagAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_Warehouse": ID_Warehouse, "IncludeChild": IncludeChild, "UniqueOnly": UniqueOnly, "DisplayName": DisplayName})
 
     # Smazat tag
     def WarehouseTagDelete(self, ID_Login, ID, ID_Warehouse):
