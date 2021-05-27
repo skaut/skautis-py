@@ -12,6 +12,10 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Založit registrační vadu jednotky
+    def UnitMistakeReportInsert(self, ID_Login, ID, ID_Unit, ID_Mistake, Unit=None, RegistrationNumber=None, Mistake=None, DisplayName=None, ParentComment=None):
+        return self._client.service.UnitMistakeReportInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Mistake": ID_Mistake, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Mistake": Mistake, "DisplayName": DisplayName, "ParentComment": ParentComment})
+
     # Načíst seznam registrací jednotky
     def UnitRegistrationAll(self, ID_Login, ID_Unit, Year):
         return self._client.service.UnitRegistrationAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "Year": Year})
@@ -67,6 +71,10 @@ class OrganizationUnit(object):
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Načíst seznam zrušení jednotky
+    def UnitCancelAll(self, ID_Login, ID_Application, ID_Unit, ID_Person, IsValid, ID_UnitCancelType=None):
+        return self._client.service.UnitCancelAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "IsValid": IsValid, "ID_UnitCancelType": ID_UnitCancelType})
 
     # Založit zrušení jednotky
     def UnitCancelInsert(self, ID_Login, ID, ID_Unit, DateDecision, ID_Person, ValidTo, Unit=None, ID_UnitCancelType=None, UnitCancelType=None, Description=None, Person=None):
@@ -141,16 +149,16 @@ class OrganizationUnit(object):
         return self._client.service.RequestDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit žádost o převod
-    def RequestInsert(self, ID_Login, ID, ID_Person, ValidFrom, ID_UserCreate, ID_PersonCreate, DateCreate, ID_Unit, ID_UserDecision, ID_PersonDecision, DateDecision, NewMembership, IdentificationCode=None, Person=None, Reason=None, ID_MembershipType=None, MembershipType=None, ID_MembershipCategory=None, MembershipCategory=None, PersonCreate=None, Unit=None, RegistrationNumber=None, ID_RequestState=None, RequestState=None, PersonDecision=None, Decision=None):
-        return self._client.service.RequestInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ID_UserCreate": ID_UserCreate, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_Unit": ID_Unit, "ID_UserDecision": ID_UserDecision, "ID_PersonDecision": ID_PersonDecision, "DateDecision": DateDecision, "NewMembership": NewMembership, "IdentificationCode": IdentificationCode, "Person": Person, "Reason": Reason, "ID_MembershipType": ID_MembershipType, "MembershipType": MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "MembershipCategory": MembershipCategory, "PersonCreate": PersonCreate, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_RequestState": ID_RequestState, "RequestState": RequestState, "PersonDecision": PersonDecision, "Decision": Decision})
+    def RequestInsert(self, ID_Login, ID, ID_Person, Birthday, ValidFrom, ID_UserCreate, ID_PersonCreate, DateCreate, ID_Unit, ID_UserDecision, ID_PersonDecision, DateDecision, NewMembership, IdentificationCode=None, Person=None, ID_Sex=None, Sex=None, Reason=None, ID_MembershipType=None, MembershipType=None, ID_MembershipCategory=None, MembershipCategory=None, PersonCreate=None, Unit=None, RegistrationNumber=None, ID_RequestState=None, RequestState=None, PersonDecision=None, Decision=None):
+        return self._client.service.RequestInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "ValidFrom": ValidFrom, "ID_UserCreate": ID_UserCreate, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_Unit": ID_Unit, "ID_UserDecision": ID_UserDecision, "ID_PersonDecision": ID_PersonDecision, "DateDecision": DateDecision, "NewMembership": NewMembership, "IdentificationCode": IdentificationCode, "Person": Person, "ID_Sex": ID_Sex, "Sex": Sex, "Reason": Reason, "ID_MembershipType": ID_MembershipType, "MembershipType": MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "MembershipCategory": MembershipCategory, "PersonCreate": PersonCreate, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_RequestState": ID_RequestState, "RequestState": RequestState, "PersonDecision": PersonDecision, "Decision": Decision})
 
     # Načíst seznam stavů žadosti o převod
     def RequestStateAll(self, ID_Login, DisplayName=None):
         return self._client.service.RequestStateAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
     # Upravit žádost o převod
-    def RequestUpdate(self, ID_Login, ID, ID_Person, ValidFrom, ID_UserCreate, ID_PersonCreate, DateCreate, ID_Unit, ID_UserDecision, ID_PersonDecision, DateDecision, NewMembership, IdentificationCode=None, Person=None, Reason=None, ID_MembershipType=None, MembershipType=None, ID_MembershipCategory=None, MembershipCategory=None, PersonCreate=None, Unit=None, RegistrationNumber=None, ID_RequestState=None, RequestState=None, PersonDecision=None, Decision=None):
-        return self._client.service.RequestUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ID_UserCreate": ID_UserCreate, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_Unit": ID_Unit, "ID_UserDecision": ID_UserDecision, "ID_PersonDecision": ID_PersonDecision, "DateDecision": DateDecision, "NewMembership": NewMembership, "IdentificationCode": IdentificationCode, "Person": Person, "Reason": Reason, "ID_MembershipType": ID_MembershipType, "MembershipType": MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "MembershipCategory": MembershipCategory, "PersonCreate": PersonCreate, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_RequestState": ID_RequestState, "RequestState": RequestState, "PersonDecision": PersonDecision, "Decision": Decision})
+    def RequestUpdate(self, ID_Login, ID, ID_Person, Birthday, ValidFrom, ID_UserCreate, ID_PersonCreate, DateCreate, ID_Unit, ID_UserDecision, ID_PersonDecision, DateDecision, NewMembership, IdentificationCode=None, Person=None, ID_Sex=None, Sex=None, Reason=None, ID_MembershipType=None, MembershipType=None, ID_MembershipCategory=None, MembershipCategory=None, PersonCreate=None, Unit=None, RegistrationNumber=None, ID_RequestState=None, RequestState=None, PersonDecision=None, Decision=None):
+        return self._client.service.RequestUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "ValidFrom": ValidFrom, "ID_UserCreate": ID_UserCreate, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_Unit": ID_Unit, "ID_UserDecision": ID_UserDecision, "ID_PersonDecision": ID_PersonDecision, "DateDecision": DateDecision, "NewMembership": NewMembership, "IdentificationCode": IdentificationCode, "Person": Person, "ID_Sex": ID_Sex, "Sex": Sex, "Reason": Reason, "ID_MembershipType": ID_MembershipType, "MembershipType": MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "MembershipCategory": MembershipCategory, "PersonCreate": PersonCreate, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_RequestState": ID_RequestState, "RequestState": RequestState, "PersonDecision": PersonDecision, "Decision": Decision})
 
     # Přehled registračních komentářů
     def UnitRegistrationReport(self, ID_Login, ID):
@@ -544,9 +552,9 @@ class OrganizationUnit(object):
     def UnitMistakeReportDelete(self, ID_Login, ID):
         return self._client.service.UnitMistakeReportDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Založit registrační vadu jednotky
-    def UnitMistakeReportInsert(self, ID_Login, ID, ID_Unit, ID_Mistake, Unit=None, RegistrationNumber=None, Mistake=None, DisplayName=None, ParentComment=None):
-        return self._client.service.UnitMistakeReportInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Mistake": ID_Mistake, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Mistake": Mistake, "DisplayName": DisplayName, "ParentComment": ParentComment})
+    # Upravit adresu
+    def UnitJournalDeliveryUpdate(self, ID_Login, ID, ID_Unit, ID_Person, Unit=None, RegistrationNumber=None, Street=None, Ciry=None, PostCode=None, FirstLine=None, State=None, ID_JournalDeliveryType=None):
+        return self._client.service.UnitJournalDeliveryUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Street": Street, "Ciry": Ciry, "PostCode": PostCode, "FirstLine": FirstLine, "State": State, "ID_JournalDeliveryType": ID_JournalDeliveryType})
 
     # Načíst seznam razítek jednotky
     def UnitStampAll(self, ID_Login, ID_Unit, ID, ID_StampType=None):
@@ -1044,9 +1052,9 @@ class OrganizationUnit(object):
     def UnitAllRegistry(self, ID_Login, ID_Application, IsValid, DisplayName=None, IC=None, RegistrationNumber=None, Location=None, ParentDisplayName=None, ParentRegistrationNumber=None):
         return self._client.service.UnitAllRegistry({"ID_Login": ID_Login, "ID_Application": ID_Application, "IsValid": IsValid, "DisplayName": DisplayName, "IC": IC, "RegistrationNumber": RegistrationNumber, "Location": Location, "ParentDisplayName": ParentDisplayName, "ParentRegistrationNumber": ParentRegistrationNumber})
 
-    # Načíst seznam zrušení jednotky
-    def UnitCancelAll(self, ID_Login, ID_Application, ID_Unit, ID_Person, IsValid, ID_UnitCancelType=None):
-        return self._client.service.UnitCancelAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "IsValid": IsValid, "ID_UnitCancelType": ID_UnitCancelType})
+    # Načíst seznam souborů nemovitostí
+    def RealtyCollectionAll(self, ID_Login, ID_Unit, ID, ID_User, DisplayName=None):
+        return self._client.service.RealtyCollectionAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_User": ID_User, "DisplayName": DisplayName})
 
     # Načíst detail půjčitelné nemovitosti/souboru nemovitostí
     def RealtyCollectionDetailBorrowable(self, ID_Application, ID, ID_Login):
@@ -1516,10 +1524,6 @@ class OrganizationUnit(object):
     def UnitJournalDeliveryInsert(self, ID_Login, ID, ID_Unit, ID_Person, Unit=None, RegistrationNumber=None, Street=None, Ciry=None, PostCode=None, FirstLine=None, State=None, ID_JournalDeliveryType=None):
         return self._client.service.UnitJournalDeliveryInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Street": Street, "Ciry": Ciry, "PostCode": PostCode, "FirstLine": FirstLine, "State": State, "ID_JournalDeliveryType": ID_JournalDeliveryType})
 
-    # Upravit adresu
-    def UnitJournalDeliveryUpdate(self, ID_Login, ID, ID_Unit, ID_Person, Unit=None, RegistrationNumber=None, Street=None, Ciry=None, PostCode=None, FirstLine=None, State=None, ID_JournalDeliveryType=None):
-        return self._client.service.UnitJournalDeliveryUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Street": Street, "Ciry": Ciry, "PostCode": PostCode, "FirstLine": FirstLine, "State": State, "ID_JournalDeliveryType": ID_JournalDeliveryType})
-
     # Načíst seznam dokumentů užití nemovitosti
     def OccupationPhotoAll(self, ID_Login, ID_Occupation, ID, ID_Document):
         return self._client.service.OccupationPhotoAll({"ID_Login": ID_Login, "ID_Occupation": ID_Occupation, "ID": ID, "ID_Document": ID_Document})
@@ -1563,6 +1567,10 @@ class OrganizationUnit(object):
     # Nastavit datum generování kalendáře
     def OccupationRentUpdateRegenerateCalendar(self, ID_Login, ID_Application, ID, Reset):
         return self._client.service.OccupationRentUpdateRegenerateCalendar({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "Reset": Reset})
+
+    # Načíst seznam osob týmu vzdělávací akce
+    def PersonAllEventEducationTeam(self, ID_Login, ID_EventEducation, DisplayName=None):
+        return self._client.service.PersonAllEventEducationTeam({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "DisplayName": DisplayName})
 
     # Načíst seznam náborových kategorií
     def AdvertisingCategoryAllOccupation(self, ID_Login, ID_Application, ID_Occupation, ID_MeetingDate, ID_Sex=None):
@@ -2011,8 +2019,4 @@ class OrganizationUnit(object):
     # Načíst seznam půjčitelných nemovitostí/souboru nemovitostí
     def RealtyCollectionAllBorrowable(self, ID_Application, ID_Login, GpsLatitude, GpsLongitude, Distance, Price, Date, Capacity, BorrowableForeign, DisplayName=None, RegionList=None, DistrictList=None, City=None, Unit=None, OwnerTypeList=None, RealtyTypeList=None, OccupationEquipmentList=None, RealtyCollectionLocationList=None, PriceType=None, OccupationLanguageList=None, OccupationTagList=None):
         return self._client.service.RealtyCollectionAllBorrowable({"ID_Application": ID_Application, "ID_Login": ID_Login, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "Distance": Distance, "Price": Price, "Date": Date, "Capacity": Capacity, "BorrowableForeign": BorrowableForeign, "DisplayName": DisplayName, "RegionList": RegionList, "DistrictList": DistrictList, "City": City, "Unit": Unit, "OwnerTypeList": OwnerTypeList, "RealtyTypeList": RealtyTypeList, "OccupationEquipmentList": OccupationEquipmentList, "RealtyCollectionLocationList": RealtyCollectionLocationList, "PriceType": PriceType, "OccupationLanguageList": OccupationLanguageList, "OccupationTagList": OccupationTagList})
-
-    # Načíst seznam souborů nemovitostí
-    def RealtyCollectionAll(self, ID_Login, ID_Unit, ID, ID_User, DisplayName=None):
-        return self._client.service.RealtyCollectionAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "ID": ID, "ID_User": ID_User, "DisplayName": DisplayName})
 
