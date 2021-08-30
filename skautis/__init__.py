@@ -15,7 +15,6 @@ from .Power import Power
 from .Reports import Reports
 from .Summary import Summary
 from .Task import Task
-from .Telephony import Telephony
 from .TelephonyNetwork import TelephonyNetwork
 from .UserManagement import UserManagement
 from .Vivant import Vivant
@@ -43,7 +42,6 @@ class SkautisApi(object):
         self.Reports = Reports(test)
         self.Summary = Summary(test)
         self.Task = Task(test)
-        self.Telephony = Telephony(test)
         self.TelephonyNetwork = TelephonyNetwork(test)
         self.UserManagement = UserManagement(test)
         self.Vivant = Vivant(test)
