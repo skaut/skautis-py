@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='skautis-py',
-    version='1.0.122',
+    version='1.0.123',
     description='Python library for interaction with the Skautis API',
     author='Jakub Kulik',
     author_email='kulikjak@gmail.com',
