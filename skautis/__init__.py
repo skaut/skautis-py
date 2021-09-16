@@ -17,7 +17,6 @@ from .Summary import Summary
 from .Task import Task
 from .TelephonyNetwork import TelephonyNetwork
 from .UserManagement import UserManagement
-from .Vivant import Vivant
 from .Welcome import Welcome
 
 class SkautisApi(object):
@@ -44,7 +43,6 @@ class SkautisApi(object):
         self.Task = Task(test)
         self.TelephonyNetwork = TelephonyNetwork(test)
         self.UserManagement = UserManagement(test)
-        self.Vivant = Vivant(test)
         self.Welcome = Welcome(test)
 
     def get_login_url(self):
