@@ -22,7 +22,9 @@ DATE=`date "+%d %b %Y"`
 COMMIT_MESSAGE="Auto commit - $DATE"
 
 echo "$COMMIT_MESSAGE"
-git commit -am "$COMMIT_MESSAGE"
+# this is needed to include removed and newly introduced files
+git add --all
+git commit -m "$COMMIT_MESSAGE"
 
 # push changes
 git push

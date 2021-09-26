@@ -1,11 +1,15 @@
-import os
-import requests
-import pystache
+#!/usr/bin/env python3
 
-import xml.etree.ElementTree as ElementTree
+import os
+import shutil
 
 from urllib.parse import urljoin
 from urllib.request import urlopen
+from xml.etree import ElementTree
+
+import pystache
+import requests
+
 from bs4 import BeautifulSoup
 
 INDEX = 'https://test-is.skaut.cz/JunakWebservice/'
@@ -21,8 +25,11 @@ def get_soup(url):
 def main():
     sections = get_sections()
 
-    if not os.path.exists(LIB_PATH):
-        os.mkdir(LIB_PATH)
+    # clean the lib directory
+    if os.path.exists(LIB_PATH):
+        shutil.rmtree(LIB_PATH)
+    os.mkdir(LIB_PATH)
+
     for section in sections:
         write_section(section)
 
@@ -133,10 +140,10 @@ def request_args(req_args, opt_args):
     return data
 
 
-class ApiClass(object):
+class ApiClass:
 
     def __init__(self, section_url):
-        super(ApiClass, self).__init__()
+        super().__init__()
         self._module = module_name(section_url)
 
         parsed = parse_wsdl(section_url)
@@ -170,10 +177,10 @@ class ApiClass(object):
         return methods
 
 
-class SkautisApi(object):
+class SkautisApi:
 
     def __init__(self, sections):
-        super(SkautisApi, self).__init__()
+        super().__init__()
         self.sections = [{'module': section, 'class': section} for section in sections]
 
 
