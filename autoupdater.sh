@@ -17,6 +17,10 @@ fi
 # Increment library version
 perl -pe 's/(version=.\d+\.\d+\.)(\d+)/$1.($2+1)/e;' -i setup.py
 
+# Set up git identity
+git config --global user.name 'Automatic commit'
+git config --global user.email 'kulikjak@users.noreply.github.com'
+
 # Commit changes
 DATE=`date "+%d %b %Y"`
 COMMIT_MESSAGE="Auto commit - $DATE"

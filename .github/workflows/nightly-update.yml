@@ -1,0 +1,16 @@
+name: Nightly autoupdate
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
+      - name: Run autoupdater
+        run: |
+          ./autoupdater.sh
