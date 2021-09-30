@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='skautis-py',
-    version='1.0.38',
+    version='1.1.0',
     description='Python library for interaction with the Skautis API',
     author='Jakub Kulik',
     author_email='kulikjak@gmail.com',
@@ -11,11 +11,14 @@ setup(
     license='BSD',
     packages=["skautis"],
     long_description=open("README.md").read(),
+    long_description_content_type="text/markdown",
     classifiers=[
 	'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Software Development',
         'Topic :: Software Development :: Libraries',
