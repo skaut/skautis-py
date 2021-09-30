@@ -1,3 +1,8 @@
+### Note
+Tato branch obsahuje změny, které byly chybně automaticky commitované od 7. dubna 2021 (od verze 1.0.38) denně i v případech, kdy se v knihovně nic nezměnilo.
+
+V masteru byly odstraněny, zde jsou zachovány *for posterity*.
+
 # SkautIS
 Python knihovna pro připojení do [Skautisu](https://is.skaut.cz/)
 
