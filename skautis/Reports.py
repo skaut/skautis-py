@@ -12,10 +12,6 @@ class Reports(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Reports.asmx?wsdl')
 
-    # Tisková sestava: Přehled neplatičů za STS
-    def EnrollInvoiceBadPayers(self, ID_Login, DateFrom, DateTo):
-        return self._client.service.EnrollInvoiceBadPayers({"ID_Login": ID_Login, "DateFrom": DateFrom, "DateTo": DateTo})
-
     # Tisková sestava: Přehled žádostí o dotaci pro OJ
     def GrantHeadquartersUniversal(self, ID_Login, Year, Format, ID_GrantState=None):
         return self._client.service.GrantHeadquartersUniversal({"ID_Login": ID_Login, "Year": Year, "Format": Format, "ID_GrantState": ID_GrantState})
@@ -104,10 +100,6 @@ class Reports(object):
     def MemberCardDetail(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
         return self._client.service.MemberCardDetail({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
 
-    # Tisková sestava: Čárový kód položky faktury STS
-    def EnrollInvoiceDetailBarcode(self, ID_Login, ID, SpaydString=None):
-        return self._client.service.EnrollInvoiceDetailBarcode({"ID_Login": ID_Login, "ID": ID, "SpaydString": SpaydString})
-
     # Tisková sestava: Detail 2F pro uživatele
     def UserDetailTwoFactor(self, ID_Login, ID):
         return self._client.service.UserDetailTwoFactor({"ID_Login": ID_Login, "ID": ID})
@@ -176,17 +168,9 @@ class Reports(object):
     def ExportPerson(self, ID_Login, ID, FileFormat=None, Units=None):
         return self._client.service.ExportPerson({"ID_Login": ID_Login, "ID": ID, "FileFormat": FileFormat, "Units": Units})
 
-    # Tisková sestava: Přehled faktur za STS s přeplatky a nedoplatky
-    def EnrollInvoicePayment(self, ID_Login, DateFrom, DateTo):
-        return self._client.service.EnrollInvoicePayment({"ID_Login": ID_Login, "DateFrom": DateFrom, "DateTo": DateTo})
-
     # Tisková sestava: Přehled skutečnosti táborů
     def EventCampReal(self, ID_Login, Year):
         return self._client.service.EventCampReal({"ID_Login": ID_Login, "Year": Year})
-
-    # Tisková sestava: Přehled hlášenek
-    def EnrollInviceSummary(self, ID_Login, DateFrom, DateTo):
-        return self._client.service.EnrollInviceSummary({"ID_Login": ID_Login, "DateFrom": DateFrom, "DateTo": DateTo})
 
     # Tisková sestava: Přehled hlášenek
     def EventCampSummary(self, ID_Login, ID_Unit, IsFuture, Started, Year, IsRelation, IsChildDirect, IsChildUnit, ForEvaluation, IsKraj, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
