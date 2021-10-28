@@ -1,13 +1,7 @@
 #!/bin/bash
 
-# This script is used by cron to periodically generate
-# and auto-commit all changes to the skautIS API.
-
-# Run api generator
-python skautis_api_gen.py
-
 # Check if there are new changes to the API
-if ! [[ `git status --porcelain` ]]; then
+if ! [[ `git status --porcelain skautis` ]]; then
 	echo "No changes"
 	exit 0
 fi
@@ -26,7 +20,7 @@ COMMIT_MESSAGE="Auto commit version $VERSION - $DATE"
 
 echo "$COMMIT_MESSAGE"
 # this is needed to include removed and newly introduced files
-git add --all
+git add --all skautis
 git commit -m "$COMMIT_MESSAGE"
 
 git tag -a "v${NEW_VERSION}" -m "Automatically generated version ${NEW_VERSION}"
