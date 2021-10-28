@@ -21,12 +21,15 @@ git config --global user.email 'kulikjak@users.noreply.github.com'
 
 # Commit changes
 DATE=`date "+%d %b %Y"`
-COMMIT_MESSAGE="Auto commit - $DATE"
+VERSION=`awk -F"'" '/version=/ {print $2}' setup.py`
+COMMIT_MESSAGE="Auto commit version $VERSION - $DATE"
 
 echo "$COMMIT_MESSAGE"
 # this is needed to include removed and newly introduced files
 git add --all
 git commit -m "$COMMIT_MESSAGE"
 
+git tag -a "v${NEW_VERSION}" -m "Automatically generated version ${NEW_VERSION}"
+
 # push changes
-git push
+git push --follow-tags
