@@ -3,10 +3,8 @@
 # This script is used by cron to periodically generate
 # and auto-commit all changes to the skautIS API.
 
-cd "/home/pi/Projects/skautis-py"
-
 # Run api generator
-./__venv__/bin/python skautis_api_gen.py
+python skautis_api_gen.py
 
 # Check if there are new changes to the API
 if ! [[ `git status --porcelain` ]]; then
