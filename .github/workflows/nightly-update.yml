@@ -1,8 +1,9 @@
 name: Nightly autoupdate
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  push:
+    branches:
+      - test-actions2
 
 jobs:
   autoupdate:
