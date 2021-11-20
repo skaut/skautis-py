@@ -12,6 +12,10 @@ class TelephonyNetwork(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/TelephonyNetwork.asmx?wsdl')
 
+    # Načíst informace o telefonních číslech v STS
+    def PersonNumberInfoAll(self, ID_Login, ID, ID_Person, ID_Unit):
+        return self._client.service.PersonNumberInfoAll({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit})
+
     # Načíst seznam přihlášek do STS
     def EnrollAll(self, ID_Login, ID, ID_Person):
         return self._client.service.EnrollAll({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person})
