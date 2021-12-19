@@ -20,7 +20,7 @@ COMMIT_MESSAGE="Auto commit version $VERSION - $DATE"
 
 echo "$COMMIT_MESSAGE"
 # this is needed to include removed and newly introduced files
-git add --all skautis
+git add --all skautis setup.py
 git commit -m "$COMMIT_MESSAGE"
 
 git tag -a "v${NEW_VERSION}" -m "Automatically generated version ${NEW_VERSION}"
