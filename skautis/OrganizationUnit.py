@@ -12,6 +12,18 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Upravit hospodářský výkaz
+    def StatementUpdate(self, ID_Login, ID, ID_Unit, Year, IsError, IsDelivered, DateDelivered, DateCreated, IsThousands, IsConsultant, ID_Document, ID_DocumentTempFile, DateSent, ID_PersonSent, DateConfirmed, ID_PersonConfirmed, ID_Registry, ShowOverview, Unit=None, RegistrationNumber=None, ID_StatementType=None, StatementType=None, ID_StatementState=None, StatementState=None, PersonSent=None, PersonConfirmed=None):
+        return self._client.service.StatementUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "IsError": IsError, "IsDelivered": IsDelivered, "DateDelivered": DateDelivered, "DateCreated": DateCreated, "IsThousands": IsThousands, "IsConsultant": IsConsultant, "ID_Document": ID_Document, "ID_DocumentTempFile": ID_DocumentTempFile, "DateSent": DateSent, "ID_PersonSent": ID_PersonSent, "DateConfirmed": DateConfirmed, "ID_PersonConfirmed": ID_PersonConfirmed, "ID_Registry": ID_Registry, "ShowOverview": ShowOverview, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StatementType": ID_StatementType, "StatementType": StatementType, "ID_StatementState": ID_StatementState, "StatementState": StatementState, "PersonSent": PersonSent, "PersonConfirmed": PersonConfirmed})
+
+    # Načíst seznam  typů oddílu
+    def TroopArtAll(self, ID_Login, DisplayName=None):
+        return self._client.service.TroopArtAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
+
+    # Načíst seznam jednotek
+    def UnitAll(self, ID_Login, ID_Application, ID, ID_Group, ID_UnitParent, ID_UnitChild, ID_UnitTree, RegistrationNumberStartWith, ID_AlignmentType, ID_UnitType=None, RegistrationNumber=None, DisplayName=None, Location=None, AccountNumber=None, IC=None):
+        return self._client.service.UnitAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_Group": ID_Group, "ID_UnitParent": ID_UnitParent, "ID_UnitChild": ID_UnitChild, "ID_UnitTree": ID_UnitTree, "RegistrationNumberStartWith": RegistrationNumberStartWith, "ID_AlignmentType": ID_AlignmentType, "ID_UnitType": ID_UnitType, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "Location": Location, "AccountNumber": AccountNumber, "IC": IC})
+
     # Načíst seznam kontaktů jednotky
     def UnitContactAll(self, ID_Login, ID_Application, ID_Unit, Publish, ID_ContactType=None):
         return self._client.service.UnitContactAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Unit": ID_Unit, "Publish": Publish, "ID_ContactType": ID_ContactType})
@@ -95,6 +107,14 @@ class OrganizationUnit(object):
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Načte fotografii osoby
+    def PersonPhoto(self, ID_Login, ID, Size=None):
+        return self._client.service.PersonPhoto({"ID_Login": ID_Login, "ID": ID, "Size": Size})
+
+    # Načíst obsazení funkcí v jednotce pro zobrazení v registru OJ
+    def FunctionAllRegistry(self, ID_Login, ID_Application, ID_Unit, ReturnStatutory, ReturnAssistant, ReturnContact):
+        return self._client.service.FunctionAllRegistry({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Unit": ID_Unit, "ReturnStatutory": ReturnStatutory, "ReturnAssistant": ReturnAssistant, "ReturnContact": ReturnContact})
 
     # Načíst seznam termínů schůzek
     def MeetingDateAll(self, ID_Login, ID_Application, ID_Unit, ID_Occupation, ID_WeekDay=None):
@@ -181,8 +201,8 @@ class OrganizationUnit(object):
         return self._client.service.UnitAllUnit({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "SearchStredisko": SearchStredisko})
 
     # Obnovit členství osoby v jednotce
-    def MembershipRenew(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, IsUnique, CreateNew, OnlyValidate, IsFunction, IsUnitFunction, IsSts, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
-        return self._client.service.MembershipRenew({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "IsUnique": IsUnique, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsUnitFunction": IsUnitFunction, "IsSts": IsSts, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
+    def MembershipRenew(self, ID_Login, ID, ID_Unit, ID_Person, ID_User, ValidFrom, ValidTo, IsUnique, CreateNew, OnlyValidate, IsFunction, IsUnitFunction, IsSts, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
+        return self._client.service.MembershipRenew({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ID_User": ID_User, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "IsUnique": IsUnique, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsUnitFunction": IsUnitFunction, "IsSts": IsSts, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
 
     # Hledání osob (helpdesk)
     def PersonAllHelpdesk(self, ID_Login, IsValid, FirstName=None, LastName=None, NickName=None, IdentificationCode=None, City=None, UserName=None, Email=None, Phone=None):
@@ -249,8 +269,8 @@ class OrganizationUnit(object):
         return self._client.service.UnitRegistrationSummary({"ID_Login": ID_Login, "ID": ID})
 
     # Hledání osob
-    def PersonAllLogin(self, ID_Login, Birthday, FirstName=None, LastName=None, NickName=None, IdentificationCode=None, ID_MembershipType=None, ID_MembershipCategory=None, Phone=None, Email=None, City=None, IdentificationCodeStartsWith=None, RegistrationNumber=None):
-        return self._client.service.PersonAllLogin({"ID_Login": ID_Login, "Birthday": Birthday, "FirstName": FirstName, "LastName": LastName, "NickName": NickName, "IdentificationCode": IdentificationCode, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "Phone": Phone, "Email": Email, "City": City, "IdentificationCodeStartsWith": IdentificationCodeStartsWith, "RegistrationNumber": RegistrationNumber})
+    def PersonAllLogin(self, ID_Login, Birthday, FirstName=None, LastName=None, NickName=None, IdentificationCode=None, IdentificationCodeStartsWith=None, ID_MembershipType=None, ID_MembershipCategory=None, Phone=None, Email=None, City=None, RegistrationNumber=None):
+        return self._client.service.PersonAllLogin({"ID_Login": ID_Login, "Birthday": Birthday, "FirstName": FirstName, "LastName": LastName, "NickName": NickName, "IdentificationCode": IdentificationCode, "IdentificationCodeStartsWith": IdentificationCodeStartsWith, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "Phone": Phone, "Email": Email, "City": City, "RegistrationNumber": RegistrationNumber})
 
     # Načtení informací o osobě podle bezpečnostního kódu a uživatelského jména
     def PersonDetailSecurityCode(self, ID_Login, UserName=None, SecurityCode=None):
@@ -393,8 +413,8 @@ class OrganizationUnit(object):
         return self._client.service.MembershipDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit členství osoby v jednotce
-    def MembershipInsert(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, IsUnique, CreateNew, OnlyValidate, IsFunction, IsUnitFunction, IsSts, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
-        return self._client.service.MembershipInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "IsUnique": IsUnique, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsUnitFunction": IsUnitFunction, "IsSts": IsSts, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
+    def MembershipInsert(self, ID_Login, ID, ID_Unit, ID_Person, ID_User, ValidFrom, ValidTo, IsUnique, CreateNew, OnlyValidate, IsFunction, IsUnitFunction, IsSts, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
+        return self._client.service.MembershipInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ID_User": ID_User, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "IsUnique": IsUnique, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsUnitFunction": IsUnitFunction, "IsSts": IsSts, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
 
     # Načíst seznam důvodů změny/ukončení členství
     def MembershipReasonAll(self, ID_Login, IsMulti, ID=None, DisplayName=None):
@@ -405,8 +425,8 @@ class OrganizationUnit(object):
         return self._client.service.MembershipTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
     # Upravit členství osoby v jednotce
-    def MembershipUpdate(self, ID_Login, ID, ID_Unit, ID_Person, ValidFrom, ValidTo, IsUnique, CreateNew, OnlyValidate, IsFunction, IsUnitFunction, IsSts, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
-        return self._client.service.MembershipUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "IsUnique": IsUnique, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsUnitFunction": IsUnitFunction, "IsSts": IsSts, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
+    def MembershipUpdate(self, ID_Login, ID, ID_Unit, ID_Person, ID_User, ValidFrom, ValidTo, IsUnique, CreateNew, OnlyValidate, IsFunction, IsUnitFunction, IsSts, IsDelegate, PersonDateBirth, Person=None, ID_MembershipType=None, ID_MembershipCategory=None, ID_MembershipReason=None):
+        return self._client.service.MembershipUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_Person": ID_Person, "ID_User": ID_User, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "IsUnique": IsUnique, "CreateNew": CreateNew, "OnlyValidate": OnlyValidate, "IsFunction": IsFunction, "IsUnitFunction": IsUnitFunction, "IsSts": IsSts, "IsDelegate": IsDelegate, "PersonDateBirth": PersonDateBirth, "Person": Person, "ID_MembershipType": ID_MembershipType, "ID_MembershipCategory": ID_MembershipCategory, "ID_MembershipReason": ID_MembershipReason})
 
     # Načíst seznam užívání nemovitosti
     def OccupationAll(self, ID_Login, ID_Application, ID_Unit, IncludeChildUnits, ID_Realty, Publish, ID_RealtyType, Distance, GpsLatitude, GpsLongitude, GpsLatitudeStart, GpsLongitudeStart, GpsLatitudeEnd, GpsLongitudeEnd, AdvertisingCategories=None):
@@ -564,17 +584,17 @@ class OrganizationUnit(object):
     def StatementTypeAll(self, ID_Login, DisplayName=None):
         return self._client.service.StatementTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
-    # Upravit hospodářský výkaz
-    def StatementUpdate(self, ID_Login, ID, ID_Unit, Year, IsError, IsDelivered, DateDelivered, DateCreated, IsThousands, IsConsultant, ID_Document, ID_DocumentTempFile, DateSent, ID_PersonSent, DateConfirmed, ID_PersonConfirmed, ID_Registry, ShowOverview, Unit=None, RegistrationNumber=None, ID_StatementType=None, StatementType=None, ID_StatementState=None, StatementState=None, PersonSent=None, PersonConfirmed=None):
-        return self._client.service.StatementUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "IsError": IsError, "IsDelivered": IsDelivered, "DateDelivered": DateDelivered, "DateCreated": DateCreated, "IsThousands": IsThousands, "IsConsultant": IsConsultant, "ID_Document": ID_Document, "ID_DocumentTempFile": ID_DocumentTempFile, "DateSent": DateSent, "ID_PersonSent": ID_PersonSent, "DateConfirmed": DateConfirmed, "ID_PersonConfirmed": ID_PersonConfirmed, "ID_Registry": ID_Registry, "ShowOverview": ShowOverview, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StatementType": ID_StatementType, "StatementType": StatementType, "ID_StatementState": ID_StatementState, "StatementState": StatementState, "PersonSent": PersonSent, "PersonConfirmed": PersonConfirmed})
+    # Načíst seznam evidencí provedených kontrol
+    def UnitAuditRegisterAll(self, ID_Login, ID, ID_Unit):
+        return self._client.service.UnitAuditRegisterAll({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit})
 
-    # Načíst seznam  typů oddílu
-    def TroopArtAll(self, ID_Login, DisplayName=None):
-        return self._client.service.TroopArtAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
+    # Načíst detail evidence provedené kontroly
+    def UnitAuditRegisterDetail(self, ID_Login, ID):
+        return self._client.service.UnitAuditRegisterDetail({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst seznam jednotek
-    def UnitAll(self, ID_Login, ID_Application, ID, ID_Group, ID_UnitParent, ID_UnitChild, ID_UnitTree, RegistrationNumberStartWith, ID_AlignmentType, ID_UnitType=None, RegistrationNumber=None, DisplayName=None, Location=None, AccountNumber=None, IC=None):
-        return self._client.service.UnitAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_Group": ID_Group, "ID_UnitParent": ID_UnitParent, "ID_UnitChild": ID_UnitChild, "ID_UnitTree": ID_UnitTree, "RegistrationNumberStartWith": RegistrationNumberStartWith, "ID_AlignmentType": ID_AlignmentType, "ID_UnitType": ID_UnitType, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "Location": Location, "AccountNumber": AccountNumber, "IC": IC})
+    # Založit evidenci provedené kontroly
+    def UnitAuditRegisterInsert(self, ID_Login, ID, ID_Unit, Year, ID_DocumentReport, ID_PersonReport, ReportDone, ID_DocumentAudit, ID_PersonAudit, AuditDone, ID_TempFileReport, ID_TempFileAudit, Unit=None, RegistrationNumber=None, PersonReport=None, ReportText=None, PersonAudit=None, AuditText=None):
+        return self._client.service.UnitAuditRegisterInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "ID_DocumentReport": ID_DocumentReport, "ID_PersonReport": ID_PersonReport, "ReportDone": ReportDone, "ID_DocumentAudit": ID_DocumentAudit, "ID_PersonAudit": ID_PersonAudit, "AuditDone": AuditDone, "ID_TempFileReport": ID_TempFileReport, "ID_TempFileAudit": ID_TempFileAudit, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "PersonReport": PersonReport, "ReportText": ReportText, "PersonAudit": PersonAudit, "AuditText": AuditText})
 
     # Zadat soubory
     def UnitAuditRegisterUpdate(self, ID_Login, ID, ID_Unit, Year, ID_DocumentReport, ID_PersonReport, ReportDone, ID_DocumentAudit, ID_PersonAudit, AuditDone, ID_TempFileReport, ID_TempFileAudit, Unit=None, RegistrationNumber=None, PersonReport=None, ReportText=None, PersonAudit=None, AuditText=None):
@@ -1068,13 +1088,17 @@ class OrganizationUnit(object):
     def PersonOtherUpdate(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, IdCardValidTo, IsAdult, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None, ParentNote=None, IdCardNumber=None):
         return self._client.service.PersonOtherUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "IdCardValidTo": IdCardValidTo, "IsAdult": IsAdult, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note, "ParentNote": ParentNote, "IdCardNumber": IdCardNumber})
 
-    # Načte fotografii osoby
-    def PersonPhoto(self, ID_Login, ID, Size=None):
-        return self._client.service.PersonPhoto({"ID_Login": ID_Login, "ID": ID, "Size": Size})
+    # Načíst detail potvrzení o studiu pro osobu
+    def PersonSchoolDetailPerson(self, ID_Login, ID_Person):
+        return self._client.service.PersonSchoolDetailPerson({"ID_Login": ID_Login, "ID_Person": ID_Person})
 
-    # Načíst obsazení funkcí v jednotce pro zobrazení v registru OJ
-    def FunctionAllRegistry(self, ID_Login, ID_Application, ID_Unit, ReturnStatutory, ReturnAssistant, ReturnContact):
-        return self._client.service.FunctionAllRegistry({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Unit": ID_Unit, "ReturnStatutory": ReturnStatutory, "ReturnAssistant": ReturnAssistant, "ReturnContact": ReturnContact})
+    # Upravit údaje k potvrzení o studiu
+    def PersonSchoolUpdateSchool(self, ID_Login, ID, ID_Person, DateCreate, ID_TempFile, ID_PersonSchoolTempFile, ID_DocumentPhoto, ID_DocumentScan, Person=None, DisplayName=None, City=None, Extension=None, Scan=None, PhotoExtension=None, Photo=None):
+        return self._client.service.PersonSchoolUpdateSchool({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "DateCreate": DateCreate, "ID_TempFile": ID_TempFile, "ID_PersonSchoolTempFile": ID_PersonSchoolTempFile, "ID_DocumentPhoto": ID_DocumentPhoto, "ID_DocumentScan": ID_DocumentScan, "Person": Person, "DisplayName": DisplayName, "City": City, "Extension": Extension, "Scan": Scan, "PhotoExtension": PhotoExtension, "Photo": Photo})
+
+    # Editace osoby
+    def PersonDeletePhoto(self, ID_Login, ID):
+        return self._client.service.PersonDeletePhoto({"ID_Login": ID_Login, "ID": ID})
 
     # Změna údajů osoby
     def PersonUpdatePersonChange(self, ID_Login, ID_Application, Code, Birthday, BirthdayYear, IsForeign, YearFrom, ID_User, OnlyValidate, IsPostalAuthenticated, IsAddressAuthenticated, RejectDataStorage, IdentificationCodeForce, GenerateSecurityCode, ID_TempFile, ID_PersonPhotoBig, ID_PersonPhotoMedium, ID_PersonPhotoNormal, ID_PersonPhotoSmall, IdentificationCode=None, FirstName=None, LastName=None, NickName=None, Address=None, Street=None, City=None, Postcode=None, State=None, PostalFirstLine=None, PostalAddress=None, PostalStreet=None, PostalCity=None, PostalPostcode=None, PostalState=None, Note=None, ID_Sex=None, RegistrationNumber=None, PhotoExtension=None, PhotoContent=None, MaidenName=None, AddressDistrict=None, PostalDistrict=None, UnitEnrollExtension=None, UnitEnroll=None):
@@ -1536,18 +1560,6 @@ class OrganizationUnit(object):
     def UnitAuditRegisterAllUnit(self, ID_Login, ID_Unit):
         return self._client.service.UnitAuditRegisterAllUnit({"ID_Login": ID_Login, "ID_Unit": ID_Unit})
 
-    # Načíst seznam evidencí provedených kontrol
-    def UnitAuditRegisterAll(self, ID_Login, ID, ID_Unit):
-        return self._client.service.UnitAuditRegisterAll({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit})
-
-    # Načíst detail evidence provedené kontroly
-    def UnitAuditRegisterDetail(self, ID_Login, ID):
-        return self._client.service.UnitAuditRegisterDetail({"ID_Login": ID_Login, "ID": ID})
-
-    # Založit evidenci provedené kontroly
-    def UnitAuditRegisterInsert(self, ID_Login, ID, ID_Unit, Year, ID_DocumentReport, ID_PersonReport, ReportDone, ID_DocumentAudit, ID_PersonAudit, AuditDone, ID_TempFileReport, ID_TempFileAudit, Unit=None, RegistrationNumber=None, PersonReport=None, ReportText=None, PersonAudit=None, AuditText=None):
-        return self._client.service.UnitAuditRegisterInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "ID_DocumentReport": ID_DocumentReport, "ID_PersonReport": ID_PersonReport, "ReportDone": ReportDone, "ID_DocumentAudit": ID_DocumentAudit, "ID_PersonAudit": ID_PersonAudit, "AuditDone": AuditDone, "ID_TempFileReport": ID_TempFileReport, "ID_TempFileAudit": ID_TempFileAudit, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "PersonReport": PersonReport, "ReportText": ReportText, "PersonAudit": PersonAudit, "AuditText": AuditText})
-
     # Naèíst detail zobrazení osoby v adresáři
     def CatalogDisplayDetail(self, ID_Login, ID_Person):
         return self._client.service.CatalogDisplayDetail({"ID_Login": ID_Login, "ID_Person": ID_Person})
@@ -1619,6 +1631,18 @@ class OrganizationUnit(object):
     # Načíst seznam osob týmu vzdělávací akce
     def PersonAllEventEducationTeam(self, ID_Login, ID_EventEducation, DisplayName=None):
         return self._client.service.PersonAllEventEducationTeam({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "DisplayName": DisplayName})
+
+    # Založit změnu u osoby zákonným zástupcem
+    def PersonChangeInsertPersonParent(self, ID_Login, ID_Person):
+        return self._client.service.PersonChangeInsertPersonParent({"ID_Login": ID_Login, "ID_Person": ID_Person})
+
+    # Načtení informací o dětech osoby
+    def PersonDetailChildren(self, ID_Login, ID):
+        return self._client.service.PersonDetailChildren({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst seznam potomků osoby
+    def PersonParentAllPersonChildren(self, ID_Login, ID_Application, ID_Person, ID, ID_PersonParent, ID_ParentType=None):
+        return self._client.service.PersonParentAllPersonChildren({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Person": ID_Person, "ID": ID, "ID_PersonParent": ID_PersonParent, "ID_ParentType": ID_ParentType})
 
     # Načíst seznam náborových kategorií
     def AdvertisingCategoryAllOccupation(self, ID_Login, ID_Application, ID_Occupation, ID_MeetingDate, ID_Sex=None):
@@ -2031,16 +2055,4 @@ class OrganizationUnit(object):
     # Upravit zákonného zástupce osoby
     def PersonParentUpdate(self, ID_Login, ID, ID_Person, ID_PersonParent, ParentHasAccount, Person=None, Parent=None, ID_ParentType=None, ParentType=None, FirstName=None, LastName=None, Phone=None, Email=None, Note=None, ParentNote=None, ParentCode=None):
         return self._client.service.PersonParentUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_PersonParent": ID_PersonParent, "ParentHasAccount": ParentHasAccount, "Person": Person, "Parent": Parent, "ID_ParentType": ID_ParentType, "ParentType": ParentType, "FirstName": FirstName, "LastName": LastName, "Phone": Phone, "Email": Email, "Note": Note, "ParentNote": ParentNote, "ParentCode": ParentCode})
-
-    # Načíst detail potvrzení o studiu pro osobu
-    def PersonSchoolDetailPerson(self, ID_Login, ID_Person):
-        return self._client.service.PersonSchoolDetailPerson({"ID_Login": ID_Login, "ID_Person": ID_Person})
-
-    # Upravit údaje k potvrzení o studiu
-    def PersonSchoolUpdateSchool(self, ID_Login, ID, ID_Person, DateCreate, ID_TempFile, ID_PersonSchoolTempFile, ID_DocumentPhoto, ID_DocumentScan, Person=None, DisplayName=None, City=None, Extension=None, Scan=None, PhotoExtension=None, Photo=None):
-        return self._client.service.PersonSchoolUpdateSchool({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "DateCreate": DateCreate, "ID_TempFile": ID_TempFile, "ID_PersonSchoolTempFile": ID_PersonSchoolTempFile, "ID_DocumentPhoto": ID_DocumentPhoto, "ID_DocumentScan": ID_DocumentScan, "Person": Person, "DisplayName": DisplayName, "City": City, "Extension": Extension, "Scan": Scan, "PhotoExtension": PhotoExtension, "Photo": Photo})
-
-    # Editace osoby
-    def PersonDeletePhoto(self, ID_Login, ID):
-        return self._client.service.PersonDeletePhoto({"ID_Login": ID_Login, "ID": ID})
 

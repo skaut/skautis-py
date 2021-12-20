@@ -12,6 +12,10 @@ class UserManagement(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/UserManagement.asmx?wsdl')
 
+    # Načíst seznam rolí uživatele v jednotce
+    def UserRoleAllUserUnit(self, ID_Login, ID_User, ID_Unit):
+        return self._client.service.UserRoleAllUserUnit({"ID_Login": ID_Login, "ID_User": ID_User, "ID_Unit": ID_Unit})
+
     # K danému datu vrátí nejbližší možný pracovní den
     def HolidayDetailNotHoliday(self, ID_Login, Date):
         return self._client.service.HolidayDetailNotHoliday({"ID_Login": ID_Login, "Date": Date})

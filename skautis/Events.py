@@ -981,8 +981,8 @@ class Events(object):
         return self._client.service.ParticipantEducationAllEventEducationExam({"ID_Login": ID_Login, "ID_EventEducationExam": ID_EventEducationExam, "ExcludeExisting": ExcludeExisting})
 
     # No documentation
-    def ParticipantEducationAll(self, ID_Login, ID_EventEducation, ID, ID_Participant, ShowPossibleGraduates, ShowSubstitutes, IsActive, ID_EventEducationCourse=None, ID_EventEducationType=None):
-        return self._client.service.ParticipantEducationAll({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID": ID, "ID_Participant": ID_Participant, "ShowPossibleGraduates": ShowPossibleGraduates, "ShowSubstitutes": ShowSubstitutes, "IsActive": IsActive, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_EventEducationType": ID_EventEducationType})
+    def ParticipantEducationAll(self, ID_Login, ID_EventEducation, ID, ID_Participant, ShowPossibleGraduates, ShowSubstitutes, ShowOnlyAccepted, IsActive, ID_EventEducationCourse=None, ID_EventEducationType=None):
+        return self._client.service.ParticipantEducationAll({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID": ID, "ID_Participant": ID_Participant, "ShowPossibleGraduates": ShowPossibleGraduates, "ShowSubstitutes": ShowSubstitutes, "ShowOnlyAccepted": ShowOnlyAccepted, "IsActive": IsActive, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_EventEducationType": ID_EventEducationType})
 
     # Smazat účastníka vzdělávací akce
     def ParticipantEducationDelete(self, ID_Login, ID, SignOutNote=None):
