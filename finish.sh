@@ -1,4 +1,5 @@
 #!/bin/bash
+set -u
 
 # Check if there are new changes to the API
 if ! [[ `git status --porcelain skautis` ]]; then
@@ -23,7 +24,7 @@ echo "$COMMIT_MESSAGE"
 git add --all skautis setup.py
 git commit -m "$COMMIT_MESSAGE"
 
-git tag -a "v${NEW_VERSION}" -m "Automatically generated version ${NEW_VERSION}"
+git tag -a "v${VERSION}" -m "Automatically generated version ${VERSION}"
 
 # push changes
 git push --follow-tags
