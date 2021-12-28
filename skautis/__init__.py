@@ -45,6 +45,10 @@ class SkautisApi(object):
         self.UserManagement = UserManagement(test)
         self.Welcome = Welcome(test)
 
+    def init_app(self, app):
+        self._appId = app.config.setdefault("SKAUTIS_APPID", None)
+        self._test = app.config.setdefault("SKAUTIS_TEST", self._test)
+
     def get_login_url(self):
         if self._test:
             return "https://test-is.skaut.cz/Login/?appid={}".format(self._appId)
