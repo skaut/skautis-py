@@ -1,7 +1,6 @@
 import logging
 
 from flask import Flask
-from flask import g
 from flask import render_template
 from flask import redirect
 from flask import request
@@ -14,19 +13,16 @@ app.config.from_pyfile('config.py')
 
 logger = logging.getLogger(__name__)
 
-skautis = SkautisApi(app.config['SKAUTIS_APPID'], test=True)
+skautis = SkautisApi(app.config['SKAUTIS_APPID'], test=app.config['SKAUTIS_TEST'])
 
-
-@app.route('/hello')
-def authors():
-    return 'Hello World!', 200
 
 @app.route('/')
 def index():
     # Render out the login page
-    return render_template('login.html', 
+    return render_template('login.html',
                            login_link=skautis.get_login_url(),
                            app_name=app.config['APP_NAME'])
+
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -47,6 +43,7 @@ def login():
                            skautis_datelogout=skautis_datelogout,
                            user_info=user_info,
                            logout_link=logout_link)
+
 
 @app.route('/logout', methods=['POST'])
 def logout():
