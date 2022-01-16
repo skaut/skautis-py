@@ -6,14 +6,17 @@ from flask import redirect
 from flask import request
 from flask import url_for
 
-from skautis import SkautisApi
-
 app = Flask(__name__)
 app.config.from_pyfile('config.py')
 
 logger = logging.getLogger(__name__)
 
+from skautis import SkautisApi
 skautis = SkautisApi(app.config['SKAUTIS_APPID'], test=app.config['SKAUTIS_TEST'])
+
+#from factory import SkautisApi
+#skautis = SkautisApi()
+#skautis.init_app(app)
 
 
 @app.route('/')
