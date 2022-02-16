@@ -1057,8 +1057,8 @@ class OrganizationUnit(object):
         return self._client.service.BankDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Načíst seznam typů kontaktů
-    def ContactTypeAll(self, ID_Login, IsForPerson, IsForUnit, DisplayName=None, ID=None):
-        return self._client.service.ContactTypeAll({"ID_Login": ID_Login, "IsForPerson": IsForPerson, "IsForUnit": IsForUnit, "DisplayName": DisplayName, "ID": ID})
+    def ContactTypeAll(self, ID_Login, IsForPerson, IsForUnit, ID=None, DisplayName=None):
+        return self._client.service.ContactTypeAll({"ID_Login": ID_Login, "IsForPerson": IsForPerson, "IsForUnit": IsForUnit, "ID": ID, "DisplayName": DisplayName})
 
     # Načíst seznam vzdělávacích akcí
     def EducatationSeminaryAll(self, ID_Login, ID_Person, DisplayName=None):
