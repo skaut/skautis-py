@@ -152,10 +152,6 @@ class Reports(object):
     def RegistryMinistry(self, ID_Login):
         return self._client.service.RegistryMinistry({"ID_Login": ID_Login})
 
-    # Tisková sestava: Výpis z registru OJ
-    def UnitRegistry(self, ID_Login, ID, Account, Contact, MembersCount, FileFormat=None):
-        return self._client.service.UnitRegistry({"ID_Login": ID_Login, "ID": ID, "Account": Account, "Contact": Contact, "MembersCount": MembersCount, "FileFormat": FileFormat})
-
     # Tisková sestava: Hodnocení kvality
     def EvaluationDetail(self, ID_Login, ID, EvaluationPersonCount, FileFormat=None):
         return self._client.service.EvaluationDetail({"ID_Login": ID_Login, "ID": ID, "EvaluationPersonCount": EvaluationPersonCount, "FileFormat": FileFormat})
