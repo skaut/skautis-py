@@ -12,6 +12,10 @@ class Reports(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Reports.asmx?wsdl')
 
+    # Tisková sestava: Přehled účastníků tábora
+    def ParticipantCampExcel(self, ID_Login, ID_EventCamp):
+        return self._client.service.ParticipantCampExcel({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp})
+
     # Tisková sestava: Přehled žádostí o dotaci pro OJ
     def GrantHeadquartersUniversal(self, ID_Login, Year, Format, ID_GrantState=None):
         return self._client.service.GrantHeadquartersUniversal({"ID_Login": ID_Login, "Year": Year, "Format": Format, "ID_GrantState": ID_GrantState})
