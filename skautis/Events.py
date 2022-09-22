@@ -12,6 +12,10 @@ class Events(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Events.asmx?wsdl')
 
+    # Založit účastníka VSJ
+    def ParticipantInsertUstredi(self, ID_Login, ID_EventCongress, ID_Person, ID_ParticipantType=None, Person=None, Note=None):
+        return self._client.service.ParticipantInsertUstredi({"ID_Login": ID_Login, "ID_EventCongress": ID_EventCongress, "ID_Person": ID_Person, "ID_ParticipantType": ID_ParticipantType, "Person": Person, "Note": Note})
+
     # Načíst poplatek účastníka akce
     def ParticipantFee(self, ID_Login, ID_EventCongress, ID_Person):
         return self._client.service.ParticipantFee({"ID_Login": ID_Login, "ID_EventCongress": ID_EventCongress, "ID_Person": ID_Person})
@@ -263,6 +267,10 @@ class Events(object):
     # Upravit sněm
     def EventCongressUpdate(self, ID_Login, ID, ID_Event, ID_UnitRegistration, PromulgationDeadline, CommissionDeadline, CandidateDeadline, ID_Unit, StartDate, EndDate, GpsLatitude, GpsLongitude, AlternateStartDate, AlternateEndDate, AlternateGpsLatitude, AlternateGpsLongitude, CandidateAfterDeadline, ArriveDeadline, DepartureDeadline, TransportDeadline, AccommodationDeadline, FoodDeadline, ParticipantFee, ID_TempFileSimplifiedEntry, DelegateQuota, IsDelegateQuotaParentSet, ID_DocumentProtocol, ID_DocumentSimplifiedEntry, Event=None, UnitRegistration=None, ID_EventCongressType=None, EventCongressType=None, ID_EventCongressState=None, EventCongressState=None, Unit=None, RegistrationNumber=None, ID_UnitType=None, Location=None, AlternateLocation=None, Note=None, ProtocolExtension=None, ProtocolContent=None, FunctionAgreementExtension=None, SimplifiedEntryExtension=None, SimplifiedEntryTemplateExtension=None):
         return self._client.service.EventCongressUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Event": ID_Event, "ID_UnitRegistration": ID_UnitRegistration, "PromulgationDeadline": PromulgationDeadline, "CommissionDeadline": CommissionDeadline, "CandidateDeadline": CandidateDeadline, "ID_Unit": ID_Unit, "StartDate": StartDate, "EndDate": EndDate, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "AlternateStartDate": AlternateStartDate, "AlternateEndDate": AlternateEndDate, "AlternateGpsLatitude": AlternateGpsLatitude, "AlternateGpsLongitude": AlternateGpsLongitude, "CandidateAfterDeadline": CandidateAfterDeadline, "ArriveDeadline": ArriveDeadline, "DepartureDeadline": DepartureDeadline, "TransportDeadline": TransportDeadline, "AccommodationDeadline": AccommodationDeadline, "FoodDeadline": FoodDeadline, "ParticipantFee": ParticipantFee, "ID_TempFileSimplifiedEntry": ID_TempFileSimplifiedEntry, "DelegateQuota": DelegateQuota, "IsDelegateQuotaParentSet": IsDelegateQuotaParentSet, "ID_DocumentProtocol": ID_DocumentProtocol, "ID_DocumentSimplifiedEntry": ID_DocumentSimplifiedEntry, "Event": Event, "UnitRegistration": UnitRegistration, "ID_EventCongressType": ID_EventCongressType, "EventCongressType": EventCongressType, "ID_EventCongressState": ID_EventCongressState, "EventCongressState": EventCongressState, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_UnitType": ID_UnitType, "Location": Location, "AlternateLocation": AlternateLocation, "Note": Note, "ProtocolExtension": ProtocolExtension, "ProtocolContent": ProtocolContent, "FunctionAgreementExtension": FunctionAgreementExtension, "SimplifiedEntryExtension": SimplifiedEntryExtension, "SimplifiedEntryTemplateExtension": SimplifiedEntryTemplateExtension})
+
+    # Načíst seznam účastníků zkoušek
+    def ParticipantEducationExamAll(self, ID_Login, ID_EventEducationExam, ID, ID_Person, ID_ParticipantEducation):
+        return self._client.service.ParticipantEducationExamAll({"ID_Login": ID_Login, "ID_EventEducationExam": ID_EventEducationExam, "ID": ID, "ID_Person": ID_Person, "ID_ParticipantEducation": ID_ParticipantEducation})
 
     # Smazat účastníka zkoušky
     def ParticipantEducationExamDelete(self, ID_Login, ID):
@@ -740,9 +748,9 @@ class Events(object):
     def ParticipantAllUstredi(self, ID_Login, ID_EventCongress, HasPreference, ID_ParticipantType=None, Person=None):
         return self._client.service.ParticipantAllUstredi({"ID_Login": ID_Login, "ID_EventCongress": ID_EventCongress, "HasPreference": HasPreference, "ID_ParticipantType": ID_ParticipantType, "Person": Person})
 
-    # Založit účastníka VSJ
-    def ParticipantInsertUstredi(self, ID_Login, ID_EventCongress, ID_Person, ID_ParticipantType=None, Person=None, Note=None):
-        return self._client.service.ParticipantInsertUstredi({"ID_Login": ID_Login, "ID_EventCongress": ID_EventCongress, "ID_Person": ID_Person, "ID_ParticipantType": ID_ParticipantType, "Person": Person, "Note": Note})
+    # Uzavřít vzdělávací akci
+    def EventEducationUpdateClose(self, ID_Login, ID):
+        return self._client.service.EventEducationUpdateClose({"ID_Login": ID_Login, "ID": ID})
 
     # Zadat datum schválení pořádající jednotkou
     def EventEducationUpdateUnitApproved(self, ID_Login, ID, DateApproved, Grant, DateClosed, ID_PersonClosed, LoginSkautis, ID_Unit, StartDate, EndDate, ID_EventEducationType, ID_Event, ID_PersonLeader, ID_PersonAssistant, ID_PersonSecretary, ID_PersonEconomist, RegistrationDeadline, ID_DocumentLogo, ID_DocumentLogoPreview, ID_DocumentLogoMiniature, ID_TempFileLogo, ID_TempFileProject, ProjectDelete, ID_PersonProject, ProjectApproved, ProjectUpdate, ID_TempFileFinalReport, FinalReportDelete, ID_PersonFinalReport, FinalReportUpdate, FinalReportApproved, IsWaterman, IsForester, IsPossibleToGraduate, Published, Confirmed, Approved, ApprovedWater, GrantNew, GrantApproved, GrantDecisionNew, GrantDecisionConfirmed, AdvanceSent, ID_Grant, Fulfilment, Publicized, IsQualifyingExam, HasGrantRequest, HasTermsOnlyForNextYear, LastTerm, IsCounselor, DateUnitApproved, IsProjectRequired, IsFinalReportRequired, IsConditionCheckManual, LoginFrom, LoginTo, IsEditable, ParticipantSubstitute, ParticipantEstimated, CapacityCourse, ID_EventEducationState=None, EventEducationState=None, Web=None, EmailContact=None, PhoneContact=None, ID_GrantType=None, GrantType=None, ID_GrantAdvanceType=None, GrantAdvanceType=None, PersonClosed=None, LogoFileName=None, PropagationFileName1=None, PropagationFileName2=None, PropagationFileName3=None, LoginLocation=None, Description=None, DisplayName=None, Location=None, Note=None, Unit=None, RegistrationNumber=None, PersonLeader=None, LeaderPhone=None, LeaderPhoneDisplay=None, LeaderEmail=None, LeaderEmailDisplay=None, LeaderNote=None, AssistantNote=None, SecretaryNote=None, EconomistNote=None, LogoContent=None, Project=None, ProjectExtension=None, ProjectNote=None, ProjectContent=None, PersonProject=None, FinalReport=None, FinalReportExtension=None, FinalReportNote=None, FinalReportContent=None, PersonFinalReport=None, RejectionNote=None, DisapproveNote=None, WaterDisapproveNote=None, ID_GrantState=None, IsConditionCheckManualNote=None, DisplayNameCourse=None):
@@ -1244,10 +1252,6 @@ class Events(object):
     def ParticipantEducationDetail(self, ID_Login, ID, ID_EventEducation, ID_Person, ID_EventEducationCourse):
         return self._client.service.ParticipantEducationDetail({"ID_Login": ID_Login, "ID": ID, "ID_EventEducation": ID_EventEducation, "ID_Person": ID_Person, "ID_EventEducationCourse": ID_EventEducationCourse})
 
-    # Načíst seznam účastníků zkoušek
-    def ParticipantEducationExamAll(self, ID_Login, ID_EventEducationExam, ID, ID_Person, ID_ParticipantEducation):
-        return self._client.service.ParticipantEducationExamAll({"ID_Login": ID_Login, "ID_EventEducationExam": ID_EventEducationExam, "ID": ID, "ID_Person": ID_Person, "ID_ParticipantEducation": ID_ParticipantEducation})
-
     # Načíst seznam akcí osoby
     def EventAllPersonParticipation(self, ID_Login, ID_Person, Year, ID_EventType=None, DisplayName=None):
         return self._client.service.EventAllPersonParticipation({"ID_Login": ID_Login, "ID_Person": ID_Person, "Year": Year, "ID_EventType": ID_EventType, "DisplayName": DisplayName})
@@ -1257,8 +1261,8 @@ class Events(object):
         return self._client.service.CampAnswerAll({"ID_Login": ID_Login, "ID": ID, "ID_CampQuestion": ID_CampQuestion, "ID_EventCamp": ID_EventCamp})
 
     # Načíst seznam otázek online přihlašování
-    def CampLoginQuestionAllAnswer(self, ID_Login, ID_Application, AccessKey, ID_EventCampEnroll):
-        return self._client.service.CampLoginQuestionAllAnswer({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "ID_EventCampEnroll": ID_EventCampEnroll})
+    def CampLoginQuestionAllAnswer(self, ID_Login, ID_Application, AccessKey, ID_EventCampEnroll, ID_EventCamp):
+        return self._client.service.CampLoginQuestionAllAnswer({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "ID_EventCampEnroll": ID_EventCampEnroll, "ID_EventCamp": ID_EventCamp})
 
     # Načíst seznam otázek online přihlašování
     def CampLoginQuestionAll(self, ID_Login, ID_EventCamp):
@@ -1311,6 +1315,10 @@ class Events(object):
     # Založit 
     def CampSurveyInsert(self, ID_Login, ID, ID_Person, ID_Event, ID_CampQuestion, ID_CampAnswer, Event=None, CampQuestion=None, CampSurveyQuestionAnswer=None):
         return self._client.service.CampSurveyInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Event": ID_Event, "ID_CampQuestion": ID_CampQuestion, "ID_CampAnswer": ID_CampAnswer, "Event": Event, "CampQuestion": CampQuestion, "CampSurveyQuestionAnswer": CampSurveyQuestionAnswer})
+
+    # Načíst náhled přihlášky do tábora
+    def EventCampEnrollDetailPreview(self, ID_Login, ID_EventCamp):
+        return self._client.service.EventCampEnrollDetailPreview({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp})
 
     # Procedura pro aktualizaci dokumentů
     def LoginQuestionAnswerUpdateDocument(self, ID_Login, ID_Application, ID, ID_TempFile, ID_DocumentClass=None):
@@ -1735,8 +1743,4 @@ class Events(object):
     # No documentation
     def EventEducationTermUpdateIsRealParticipationSet(self, ID_Login, ID, IsActive, ID_EventEducation, ID_EventEducationLocation, DateFrom, DateTo, IsRealParticipationSet, DisplayName=None, EventEducationLocation=None, Note=None):
         return self._client.service.EventEducationTermUpdateIsRealParticipationSet({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_EventEducation": ID_EventEducation, "ID_EventEducationLocation": ID_EventEducationLocation, "DateFrom": DateFrom, "DateTo": DateTo, "IsRealParticipationSet": IsRealParticipationSet, "DisplayName": DisplayName, "EventEducationLocation": EventEducationLocation, "Note": Note})
-
-    # Uzavřít vzdělávací akci
-    def EventEducationUpdateClose(self, ID_Login, ID):
-        return self._client.service.EventEducationUpdateClose({"ID_Login": ID_Login, "ID": ID})
 
