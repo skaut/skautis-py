@@ -12,6 +12,10 @@ class Events(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Events.asmx?wsdl')
 
+    # Načíst seznam účastníků VSJ
+    def ParticipantAllUstredi(self, ID_Login, ID_EventCongress, HasPreference, ID_ParticipantType=None, Person=None):
+        return self._client.service.ParticipantAllUstredi({"ID_Login": ID_Login, "ID_EventCongress": ID_EventCongress, "HasPreference": HasPreference, "ID_ParticipantType": ID_ParticipantType, "Person": Person})
+
     # Založit účastníka VSJ
     def ParticipantInsertUstredi(self, ID_Login, ID_EventCongress, ID_Person, ID_ParticipantType=None, Person=None, Note=None):
         return self._client.service.ParticipantInsertUstredi({"ID_Login": ID_Login, "ID_EventCongress": ID_EventCongress, "ID_Person": ID_Person, "ID_ParticipantType": ID_ParticipantType, "Person": Person, "Note": Note})
@@ -661,6 +665,10 @@ class Events(object):
         return self._client.service.ParticipantCampAll({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "Estimate": Estimate, "Real": Real})
 
     # Smazat účastníka tábora
+    def ParticipantCampDeleteFromList(self, IsManual, Birthday, Age, ID_Unit, CanDelete, IdCardValidTo, Accepted, IsAccepted, Price, ID_EventCampEnroll, Person=None, ID_ParticipantType=None, ParticipantType=None, Assurance=None, Street=None, City=None, Postcode=None, State=None, FullAddress=None, Unit=None, UnitRegistrationNumber=None, Category=None, IdCardNumber=None, ID_CampEnrollState=None, CampEnrollState=None, Icon=None, IconClass=None):
+        return self._client.service.ParticipantCampDeleteFromList({"IsManual": IsManual, "Birthday": Birthday, "Age": Age, "ID_Unit": ID_Unit, "CanDelete": CanDelete, "IdCardValidTo": IdCardValidTo, "Accepted": Accepted, "IsAccepted": IsAccepted, "Price": Price, "ID_EventCampEnroll": ID_EventCampEnroll, "Person": Person, "ID_ParticipantType": ID_ParticipantType, "ParticipantType": ParticipantType, "Assurance": Assurance, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "FullAddress": FullAddress, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber, "Category": Category, "IdCardNumber": IdCardNumber, "ID_CampEnrollState": ID_CampEnrollState, "CampEnrollState": CampEnrollState, "Icon": Icon, "IconClass": IconClass})
+
+    # Smazat účastníka tábora
     def ParticipantCampDelete(self, ID_Login, ID, DeletePerson):
         return self._client.service.ParticipantCampDelete({"ID_Login": ID_Login, "ID": ID, "DeletePerson": DeletePerson})
 
@@ -743,10 +751,6 @@ class Events(object):
     # Načíst seznam krajů
     def RegionAll(self, ID_Login, ID, DisplayName=None):
         return self._client.service.RegionAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
-
-    # Načíst seznam účastníků VSJ
-    def ParticipantAllUstredi(self, ID_Login, ID_EventCongress, HasPreference, ID_ParticipantType=None, Person=None):
-        return self._client.service.ParticipantAllUstredi({"ID_Login": ID_Login, "ID_EventCongress": ID_EventCongress, "HasPreference": HasPreference, "ID_ParticipantType": ID_ParticipantType, "Person": Person})
 
     # Uzavřít vzdělávací akci
     def EventEducationUpdateClose(self, ID_Login, ID):

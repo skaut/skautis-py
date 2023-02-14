@@ -12,6 +12,14 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Upravit položku hospodářského výkazu
+    def StatementEntryUpdate(self, ID_Login, ID, ID_Statement, ID_StatementEntryType, Amount, AmountLastYear, AmountMain, AmountEconomic):
+        return self._client.service.StatementEntryUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Statement": ID_Statement, "ID_StatementEntryType": ID_StatementEntryType, "Amount": Amount, "AmountLastYear": AmountLastYear, "AmountMain": AmountMain, "AmountEconomic": AmountEconomic})
+
+    # Založit hospodářský výkaz
+    def StatementInsert(self, ID_Login, ID, ID_Unit, Year, IsError, IsDelivered, DateDelivered, DateCreated, IsThousands, IsConsultant, ID_Document, ID_DocumentTempFile, DateSent, ID_PersonSent, DateConfirmed, ID_PersonConfirmed, ID_Registry, ShowOverview, Unit=None, RegistrationNumber=None, ID_StatementType=None, StatementType=None, ID_StatementState=None, StatementState=None, PersonSent=None, PersonConfirmed=None):
+        return self._client.service.StatementInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "IsError": IsError, "IsDelivered": IsDelivered, "DateDelivered": DateDelivered, "DateCreated": DateCreated, "IsThousands": IsThousands, "IsConsultant": IsConsultant, "ID_Document": ID_Document, "ID_DocumentTempFile": ID_DocumentTempFile, "DateSent": DateSent, "ID_PersonSent": ID_PersonSent, "DateConfirmed": DateConfirmed, "ID_PersonConfirmed": ID_PersonConfirmed, "ID_Registry": ID_Registry, "ShowOverview": ShowOverview, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StatementType": ID_StatementType, "StatementType": StatementType, "ID_StatementState": ID_StatementState, "StatementState": StatementState, "PersonSent": PersonSent, "PersonConfirmed": PersonConfirmed})
+
     # Načíst seznam typů hospodářského výkazu
     def StatementTypeAll(self, ID_Login, DisplayName=None):
         return self._client.service.StatementTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
@@ -25,8 +33,8 @@ class OrganizationUnit(object):
         return self._client.service.TroopArtAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
     # Načíst seznam jednotek
-    def UnitAll(self, ID_Login, ID_Application, ID, ID_Group, ID_UnitParent, ID_UnitChild, ID_UnitTree, RegistrationNumberStartWith, ID_AlignmentType, ID_UnitType=None, RegistrationNumber=None, DisplayName=None, Location=None, AccountNumber=None, IC=None):
-        return self._client.service.UnitAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_Group": ID_Group, "ID_UnitParent": ID_UnitParent, "ID_UnitChild": ID_UnitChild, "ID_UnitTree": ID_UnitTree, "RegistrationNumberStartWith": RegistrationNumberStartWith, "ID_AlignmentType": ID_AlignmentType, "ID_UnitType": ID_UnitType, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "Location": Location, "AccountNumber": AccountNumber, "IC": IC})
+    def UnitAll(self, ID_Login, ID_Application, ID, ID_Group, ID_UnitParent, ID_UnitChild, ID_UnitTree, RegistrationNumberStartWith, ID_AlignmentType, ID_UnitType=None, RegistrationNumber=None, DisplayName=None, Location=None, AccountNumber=None, IC=None, Email=None, Phone=None):
+        return self._client.service.UnitAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_Group": ID_Group, "ID_UnitParent": ID_UnitParent, "ID_UnitChild": ID_UnitChild, "ID_UnitTree": ID_UnitTree, "RegistrationNumberStartWith": RegistrationNumberStartWith, "ID_AlignmentType": ID_AlignmentType, "ID_UnitType": ID_UnitType, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "Location": Location, "AccountNumber": AccountNumber, "IC": IC, "Email": Email, "Phone": Phone})
 
     # Načíst seznam kontaktů jednotky
     def UnitContactAll(self, ID_Login, ID_Application, ID_Unit, Publish, ID_ContactType=None):
@@ -111,6 +119,14 @@ class OrganizationUnit(object):
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Načíst seznam osob členem kandidátní komise
+    def PersonAllEventCongressFunction(self, ID_Login, ID, ID_EventCongressFunction, DisplayName=None):
+        return self._client.service.PersonAllEventCongressFunction({"ID_Login": ID_Login, "ID": ID, "ID_EventCongressFunction": ID_EventCongressFunction, "DisplayName": DisplayName})
+
+    # Načíst detail dalších údajů osoby
+    def PersonOtherDetail(self, ID_Login, ID):
+        return self._client.service.PersonOtherDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Upravit další údaje osoby
     def PersonOtherUpdate(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, IdCardValidTo, IsAdult, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None, ParentNote=None, IdCardNumber=None):
@@ -580,13 +596,13 @@ class OrganizationUnit(object):
     def StatementEntryTypeAll(self, ID_Login, DisplayName=None, ID_StatementType=None):
         return self._client.service.StatementEntryTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "ID_StatementType": ID_StatementType})
 
-    # Upravit položku hospodářského výkazu
-    def StatementEntryUpdate(self, ID_Login, ID, ID_Statement, ID_StatementEntryType, Amount, AmountLastYear, AmountMain, AmountEconomic):
-        return self._client.service.StatementEntryUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Statement": ID_Statement, "ID_StatementEntryType": ID_StatementEntryType, "Amount": Amount, "AmountLastYear": AmountLastYear, "AmountMain": AmountMain, "AmountEconomic": AmountEconomic})
+    # Načíst seznam jednotek v STS
+    def UnitAllTelephony(self, ID_Login, ID_Application, ID, ID_Group, RegistrationNumberStartWith, ID_UnitType=None, RegistrationNumber=None, DisplayName=None, Location=None, AccountNumber=None, IC=None):
+        return self._client.service.UnitAllTelephony({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_Group": ID_Group, "RegistrationNumberStartWith": RegistrationNumberStartWith, "ID_UnitType": ID_UnitType, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "Location": Location, "AccountNumber": AccountNumber, "IC": IC})
 
-    # Založit hospodářský výkaz
-    def StatementInsert(self, ID_Login, ID, ID_Unit, Year, IsError, IsDelivered, DateDelivered, DateCreated, IsThousands, IsConsultant, ID_Document, ID_DocumentTempFile, DateSent, ID_PersonSent, DateConfirmed, ID_PersonConfirmed, ID_Registry, ShowOverview, Unit=None, RegistrationNumber=None, ID_StatementType=None, StatementType=None, ID_StatementState=None, StatementState=None, PersonSent=None, PersonConfirmed=None):
-        return self._client.service.StatementInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Year": Year, "IsError": IsError, "IsDelivered": IsDelivered, "DateDelivered": DateDelivered, "DateCreated": DateCreated, "IsThousands": IsThousands, "IsConsultant": IsConsultant, "ID_Document": ID_Document, "ID_DocumentTempFile": ID_DocumentTempFile, "DateSent": DateSent, "ID_PersonSent": ID_PersonSent, "DateConfirmed": DateConfirmed, "ID_PersonConfirmed": ID_PersonConfirmed, "ID_Registry": ID_Registry, "ShowOverview": ShowOverview, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_StatementType": ID_StatementType, "StatementType": StatementType, "ID_StatementState": ID_StatementState, "StatementState": StatementState, "PersonSent": PersonSent, "PersonConfirmed": PersonConfirmed})
+    # Načíst seznam jednotek pro menu
+    def UnitAllMenu(self, ID_Login, ID_Application, ID, ID_UnitParent, ID_UnitChild):
+        return self._client.service.UnitAllMenu({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_UnitParent": ID_UnitParent, "ID_UnitChild": ID_UnitChild})
 
     # Načíst seznam evidencí provedených kontrol
     def UnitAuditRegisterAllUnit(self, ID_Login, ID_Unit):
@@ -1084,13 +1100,13 @@ class OrganizationUnit(object):
     def EducatationSeminaryUpdate(self, ID_Login, ID_Person, ID, YearFrom, DisplayName=None, Note=None):
         return self._client.service.EducatationSeminaryUpdate({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "YearFrom": YearFrom, "DisplayName": DisplayName, "Note": Note})
 
-    # Načíst seznam osob členem kandidátní komise
-    def PersonAllEventCongressFunction(self, ID_Login, ID, ID_EventCongressFunction, DisplayName=None):
-        return self._client.service.PersonAllEventCongressFunction({"ID_Login": ID_Login, "ID": ID, "ID_EventCongressFunction": ID_EventCongressFunction, "DisplayName": DisplayName})
+    # Načíst detail zákonného zástupce osoby
+    def PersonParentDetail(self, ID_Login, ID):
+        return self._client.service.PersonParentDetail({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst detail dalších údajů osoby
-    def PersonOtherDetail(self, ID_Login, ID):
-        return self._client.service.PersonOtherDetail({"ID_Login": ID_Login, "ID": ID})
+    # Založit zákonného zástupce osoby
+    def PersonParentInsert(self, ID_Login, ID, ID_Person, ID_PersonParent, ParentHasAccount, Person=None, Parent=None, ID_ParentType=None, ParentType=None, FirstName=None, LastName=None, Phone=None, Email=None, Note=None, ParentNote=None, ParentCode=None):
+        return self._client.service.PersonParentInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_PersonParent": ID_PersonParent, "ParentHasAccount": ParentHasAccount, "Person": Person, "Parent": Parent, "ID_ParentType": ID_ParentType, "ParentType": ParentType, "FirstName": FirstName, "LastName": LastName, "Phone": Phone, "Email": Email, "Note": Note, "ParentNote": ParentNote, "ParentCode": ParentCode})
 
     # Upravit zákonného zástupce osoby
     def PersonParentUpdate(self, ID_Login, ID, ID_Person, ID_PersonParent, ParentHasAccount, Person=None, Parent=None, ID_ParentType=None, ParentType=None, FirstName=None, LastName=None, Phone=None, Email=None, Note=None, ParentNote=None, ParentCode=None):
@@ -1556,14 +1572,6 @@ class OrganizationUnit(object):
     def UnitAllGoogleGroupSync(self, ID_Login, ID_GoogleGroup):
         return self._client.service.UnitAllGoogleGroupSync({"ID_Login": ID_Login, "ID_GoogleGroup": ID_GoogleGroup})
 
-    # Načíst seznam jednotek v STS
-    def UnitAllTelephony(self, ID_Login, ID_Application, ID, ID_Group, RegistrationNumberStartWith, ID_UnitType=None, RegistrationNumber=None, DisplayName=None, Location=None, AccountNumber=None, IC=None):
-        return self._client.service.UnitAllTelephony({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_Group": ID_Group, "RegistrationNumberStartWith": RegistrationNumberStartWith, "ID_UnitType": ID_UnitType, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "Location": Location, "AccountNumber": AccountNumber, "IC": IC})
-
-    # Načíst seznam jednotek pro menu
-    def UnitAllMenu(self, ID_Login, ID_Application, ID, ID_UnitParent, ID_UnitChild):
-        return self._client.service.UnitAllMenu({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_UnitParent": ID_UnitParent, "ID_UnitChild": ID_UnitChild})
-
     # Načíst seznam účtů tábora
     def AccountAllEventCamp(self, ID_Login, ID_Application, ID_EventCamp):
         return self._client.service.AccountAllEventCamp({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_EventCamp": ID_EventCamp})
@@ -1651,6 +1659,14 @@ class OrganizationUnit(object):
     # Načíst seznam potomků osoby
     def PersonParentAllPersonChildren(self, ID_Login, ID_Application, ID_Person, ID, ID_PersonParent, ID_ParentType=None):
         return self._client.service.PersonParentAllPersonChildren({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Person": ID_Person, "ID": ID, "ID_PersonParent": ID_PersonParent, "ID_ParentType": ID_ParentType})
+
+    # Načíst seznam žádostí ke zpracování o kvalifikaci osoby
+    def QualificationRequestAllPerson(self, ID_Login, ID_Person):
+        return self._client.service.QualificationRequestAllPerson({"ID_Login": ID_Login, "ID_Person": ID_Person})
+
+    # Načtení zjednodušených informací o jednotce
+    def UnitDetailSimple(self, ID_Login, ID_Application, ID):
+        return self._client.service.UnitDetailSimple({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
 
     # Načíst seznam náborových kategorií
     def AdvertisingCategoryAllOccupation(self, ID_Login, ID_Application, ID_Occupation, ID_MeetingDate, ID_Sex=None):
@@ -2051,12 +2067,4 @@ class OrganizationUnit(object):
     # Smazat zákonného zástupce osoby
     def PersonParentDelete(self, ID_Login, ID):
         return self._client.service.PersonParentDelete({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst detail zákonného zástupce osoby
-    def PersonParentDetail(self, ID_Login, ID):
-        return self._client.service.PersonParentDetail({"ID_Login": ID_Login, "ID": ID})
-
-    # Založit zákonného zástupce osoby
-    def PersonParentInsert(self, ID_Login, ID, ID_Person, ID_PersonParent, ParentHasAccount, Person=None, Parent=None, ID_ParentType=None, ParentType=None, FirstName=None, LastName=None, Phone=None, Email=None, Note=None, ParentNote=None, ParentCode=None):
-        return self._client.service.PersonParentInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_PersonParent": ID_PersonParent, "ParentHasAccount": ParentHasAccount, "Person": Person, "Parent": Parent, "ID_ParentType": ID_ParentType, "ParentType": ParentType, "FirstName": FirstName, "LastName": LastName, "Phone": Phone, "Email": Email, "Note": Note, "ParentNote": ParentNote, "ParentCode": ParentCode})
 
