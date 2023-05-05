@@ -2,7 +2,7 @@
 
 import zeep
 
-# Webová služba pro export dat do jiných systémů
+# Webová služba pro export dat do jiných systémù
 class Exports(object):
     __module__ = 'skautis'
 

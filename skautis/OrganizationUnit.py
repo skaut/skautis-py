@@ -413,12 +413,12 @@ class OrganizationUnit(object):
         return self._client.service.FunctionTypeDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit typ funkce
-    def FunctionTypeInsert(self, ID_Login, ID, ID_Role, MinCount, MaxCount, IsStatutory, IsAssistant, IsAudit, IsOficial, IsElective, IsNotCongress, IsSpecification, ID_Agency, Order, DisplayName=None, Code=None, ID_UnitType=None, Note=None, Agency=None):
-        return self._client.service.FunctionTypeInsert({"ID_Login": ID_Login, "ID": ID, "ID_Role": ID_Role, "MinCount": MinCount, "MaxCount": MaxCount, "IsStatutory": IsStatutory, "IsAssistant": IsAssistant, "IsAudit": IsAudit, "IsOficial": IsOficial, "IsElective": IsElective, "IsNotCongress": IsNotCongress, "IsSpecification": IsSpecification, "ID_Agency": ID_Agency, "Order": Order, "DisplayName": DisplayName, "Code": Code, "ID_UnitType": ID_UnitType, "Note": Note, "Agency": Agency})
+    def FunctionTypeInsert(self, ID_Login, ID, ID_Role, MinCount, MaxCount, IsStatutory, IsAssistant, IsAudit, IsOficial, IsElective, IsNotCongress, IsSpecification, IsAgencyMember, IsAgencyLeader, ID_Agency, Order, DisplayName=None, Code=None, ID_UnitType=None, Note=None, Agency=None):
+        return self._client.service.FunctionTypeInsert({"ID_Login": ID_Login, "ID": ID, "ID_Role": ID_Role, "MinCount": MinCount, "MaxCount": MaxCount, "IsStatutory": IsStatutory, "IsAssistant": IsAssistant, "IsAudit": IsAudit, "IsOficial": IsOficial, "IsElective": IsElective, "IsNotCongress": IsNotCongress, "IsSpecification": IsSpecification, "IsAgencyMember": IsAgencyMember, "IsAgencyLeader": IsAgencyLeader, "ID_Agency": ID_Agency, "Order": Order, "DisplayName": DisplayName, "Code": Code, "ID_UnitType": ID_UnitType, "Note": Note, "Agency": Agency})
 
     # Upravit typ funkce
-    def FunctionTypeUpdate(self, ID_Login, ID, ID_Role, MinCount, MaxCount, IsStatutory, IsAssistant, IsAudit, IsOficial, IsElective, IsNotCongress, IsSpecification, ID_Agency, Order, DisplayName=None, Code=None, ID_UnitType=None, Note=None, Agency=None):
-        return self._client.service.FunctionTypeUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Role": ID_Role, "MinCount": MinCount, "MaxCount": MaxCount, "IsStatutory": IsStatutory, "IsAssistant": IsAssistant, "IsAudit": IsAudit, "IsOficial": IsOficial, "IsElective": IsElective, "IsNotCongress": IsNotCongress, "IsSpecification": IsSpecification, "ID_Agency": ID_Agency, "Order": Order, "DisplayName": DisplayName, "Code": Code, "ID_UnitType": ID_UnitType, "Note": Note, "Agency": Agency})
+    def FunctionTypeUpdate(self, ID_Login, ID, ID_Role, MinCount, MaxCount, IsStatutory, IsAssistant, IsAudit, IsOficial, IsElective, IsNotCongress, IsSpecification, IsAgencyMember, IsAgencyLeader, ID_Agency, Order, DisplayName=None, Code=None, ID_UnitType=None, Note=None, Agency=None):
+        return self._client.service.FunctionTypeUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Role": ID_Role, "MinCount": MinCount, "MaxCount": MaxCount, "IsStatutory": IsStatutory, "IsAssistant": IsAssistant, "IsAudit": IsAudit, "IsOficial": IsOficial, "IsElective": IsElective, "IsNotCongress": IsNotCongress, "IsSpecification": IsSpecification, "IsAgencyMember": IsAgencyMember, "IsAgencyLeader": IsAgencyLeader, "ID_Agency": ID_Agency, "Order": Order, "DisplayName": DisplayName, "Code": Code, "ID_UnitType": ID_UnitType, "Note": Note, "Agency": Agency})
 
     # Upravit funkci
     def FunctionUpdate(self, ID_Login, ID, ValidFrom, ValidTo, ID_Person, ID_Unit, ID_FunctionType, ID_Role, IsDeleteRole, AgreementConfirmed, ID_TempFile, AgreementNeeded, AgreementCanUpload, AgreementCanConfirm, AgreementCanView, ID_FunctionReason=None, Specification=None, AgreementExtension=None, Code=None, Number=None):
@@ -832,11 +832,11 @@ class OrganizationUnit(object):
     def HonourAllGrant(self, ID_Login, ID, DisplayName=None):
         return self._client.service.HonourAllGrant({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
-    # Načíst seznam vyznamenání
+    # Naèíst seznam vyznamenání
     def HonourAll(self, ID_Login, ID, IsActive, DisplayName=None):
         return self._client.service.HonourAll({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "DisplayName": DisplayName})
 
-    # Načíst detail vyznamenání
+    # Naèíst detail vyznamenání
     def HonourDetail(self, ID_Login, ID):
         return self._client.service.HonourDetail({"ID_Login": ID_Login, "ID": ID})
 
@@ -848,15 +848,15 @@ class OrganizationUnit(object):
     def HonourInsert(self, ID_Login, ID, IsActive, MaxCount, DisplayName=None, Description=None, FileName=None, ImageContent=None, StateUrl=None, DescriptionUrl=None):
         return self._client.service.HonourInsert({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "MaxCount": MaxCount, "DisplayName": DisplayName, "Description": Description, "FileName": FileName, "ImageContent": ImageContent, "StateUrl": StateUrl, "DescriptionUrl": DescriptionUrl})
 
-    # Načíst seznam jednotek vyznamenání
+    # Naèíst seznam jednotek vyznamenání
     def HonourUnitAll(self, ID_Login, ID_Honour, ID_Unit):
         return self._client.service.HonourUnitAll({"ID_Login": ID_Login, "ID_Honour": ID_Honour, "ID_Unit": ID_Unit})
 
-    # Smazat jednotku,  ve které se vyznamenání uděluje
+    # Smazat jednotku,  ve které se vyznamenání udìluje
     def HonourUnitDelete(self, ID_Login, ID):
         return self._client.service.HonourUnitDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Založit jednotku,  ve které se vyznamenání uděluje
+    # Založit jednotku,  ve které se vyznamenání udìluje
     def HonourUnitInsert(self, ID_Login, ID_Honour, ID_Unit):
         return self._client.service.HonourUnitInsert({"ID_Login": ID_Login, "ID_Honour": ID_Honour, "ID_Unit": ID_Unit})
 
@@ -880,7 +880,7 @@ class OrganizationUnit(object):
     def PersonHonourAllLogin(self, IsValid, ID_Login, ID_Person, ID_Honour, YearValidFrom, PersonDisplayName=None, LetterNumber=None, Suggester=None):
         return self._client.service.PersonHonourAllLogin({"IsValid": IsValid, "ID_Login": ID_Login, "ID_Person": ID_Person, "ID_Honour": ID_Honour, "YearValidFrom": YearValidFrom, "PersonDisplayName": PersonDisplayName, "LetterNumber": LetterNumber, "Suggester": Suggester})
 
-    # Načíst seznam vyznamenání osoby
+    # Naèíst seznam vyznamenání osoby
     def PersonHonourAllPerson(self, ShowHistory, ID_Login, ID_Person, ID_Honour, IsValid):
         return self._client.service.PersonHonourAllPerson({"ShowHistory": ShowHistory, "ID_Login": ID_Login, "ID_Person": ID_Person, "ID_Honour": ID_Honour, "IsValid": IsValid})
 
@@ -888,7 +888,7 @@ class OrganizationUnit(object):
     def PersonHonourDelete(self, ID_Login, ID):
         return self._client.service.PersonHonourDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst detail vyznamenání osoby
+    # Naèíst detail vyznamenání osoby
     def PersonHonourDetail(self, ID_Login, ID):
         return self._client.service.PersonHonourDetail({"ID_Login": ID_Login, "ID": ID})
 
@@ -904,7 +904,7 @@ class OrganizationUnit(object):
     def PersonUpdatePersonType(self, ID_Login, ID, ID_PersonType=None):
         return self._client.service.PersonUpdatePersonType({"ID_Login": ID_Login, "ID": ID, "ID_PersonType": ID_PersonType})
 
-    # Načíst seznam služeb registrace
+    # Naèíst seznam služeb registrace
     def RegistrationServiceAll(self, ID_Login, ID_UnitRegistration, ID_RegistrationServiceType=None):
         return self._client.service.RegistrationServiceAll({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "ID_RegistrationServiceType": ID_RegistrationServiceType})
 
@@ -912,7 +912,7 @@ class OrganizationUnit(object):
     def RegistrationServiceInsert(self, ID_Login, ID_UnitRegistration, Ammount, ID_VatRate, ID_RegistrationServiceType=None):
         return self._client.service.RegistrationServiceInsert({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "Ammount": Ammount, "ID_VatRate": ID_VatRate, "ID_RegistrationServiceType": ID_RegistrationServiceType})
 
-    # Načíst seznam typů služeb registrace
+    # Naèíst seznam typù služeb registrace
     def RegistrationServiceTypeAll(self, ID_Login, DisplayName=None):
         return self._client.service.RegistrationServiceTypeAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
@@ -980,7 +980,7 @@ class OrganizationUnit(object):
     def PersonAllEventCamp(self, ID_Login, ID_EventCamp, ID, DisplayName=None, IdentificationCode=None, IdentificationCodeStartsWith=None):
         return self._client.service.PersonAllEventCamp({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "ID": ID, "DisplayName": DisplayName, "IdentificationCode": IdentificationCode, "IdentificationCodeStartsWith": IdentificationCodeStartsWith})
 
-    # Hledání osob pro hromadné přidání účastníků tábora
+    # Hledání osob pro hromadné pøidání úèastníkù tábora
     def PersonAllEventCampMulti(self, ID_Login, ID_EventCamp):
         return self._client.service.PersonAllEventCampMulti({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp})
 
@@ -1580,11 +1580,11 @@ class OrganizationUnit(object):
     def CatalogDisplayDetail(self, ID_Login, ID_Person):
         return self._client.service.CatalogDisplayDetail({"ID_Login": ID_Login, "ID_Person": ID_Person})
 
-    # Upravit zobrazení osoby v adresáři
+    # Upravit zobrazení osoby v adresáøi
     def CatalogDisplayUpdate(self, ID_Login, ID, ID_Person, Birthday, YearFrom, Adress, PostalAdress, School, Function, Qualification, EducationSeminary, Offer, Education, Membership, Person=None):
         return self._client.service.CatalogDisplayUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "YearFrom": YearFrom, "Adress": Adress, "PostalAdress": PostalAdress, "School": School, "Function": Function, "Qualification": Qualification, "EducationSeminary": EducationSeminary, "Offer": Offer, "Education": Education, "Membership": Membership, "Person": Person})
 
-    # Načíst detail limitu pro vyhledávání osob v adresáři
+    # Naèíst detail limitu pro vyhledávání osob v adresáøi
     def CatalogLimitDetail(self, ID_Login, ID_Person):
         return self._client.service.CatalogLimitDetail({"ID_Login": ID_Login, "ID_Person": ID_Person})
 

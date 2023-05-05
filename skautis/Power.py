@@ -44,7 +44,7 @@ class Power(object):
     def AdvanceTypeDetail(self, ID_Login, ID_Application, ID=None):
         return self._client.service.AdvanceTypeDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
 
-    # Načíst soubor z přihlášky energie
+    # Naèíst soubor z pøihlášky energie
     def EnrollEnergyDownload(self, ID_Login, ID, ID_Application, Type=None):
         return self._client.service.EnrollEnergyDownload({"ID_Login": ID_Login, "ID": ID, "ID_Application": ID_Application, "Type": Type})
 

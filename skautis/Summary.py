@@ -28,7 +28,7 @@ class Summary(object):
     def ExportPersonDelete(self, ID_Login, ID):
         return self._client.service.ExportPersonDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst detail šablony exportu osob
+    # Naèíst detail šablony exportu osob
     def ExportPersonDetail(self, ID_Login, ID):
         return self._client.service.ExportPersonDetail({"ID_Login": ID_Login, "ID": ID})
 
