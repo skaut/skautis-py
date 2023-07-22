@@ -41,8 +41,8 @@ class Welcome(object):
         return self._client.service.WelcomeUpdateSend({"ID_Login": ID_Login, "ID": ID})
 
     # Upravit uvítací balíček
-    def WelcomeUpdate(self, ID_Login, ID, IsEnabled, IsParentUnit, SendToAll, IsFinal, DisplayName=None, Functions=None):
-        return self._client.service.WelcomeUpdate({"ID_Login": ID_Login, "ID": ID, "IsEnabled": IsEnabled, "IsParentUnit": IsParentUnit, "SendToAll": SendToAll, "IsFinal": IsFinal, "DisplayName": DisplayName, "Functions": Functions})
+    def WelcomeUpdate(self, ID_Login, ID, IsEnabled, IsParentUnit, IsSupervisorSent, SendToAll, IsFinal, DisplayName=None, Functions=None):
+        return self._client.service.WelcomeUpdate({"ID_Login": ID_Login, "ID": ID, "IsEnabled": IsEnabled, "IsParentUnit": IsParentUnit, "IsSupervisorSent": IsSupervisorSent, "SendToAll": SendToAll, "IsFinal": IsFinal, "DisplayName": DisplayName, "Functions": Functions})
 
     # Načíst seznam pruhů balíčku
     def StripeAll(self, ID_Login, ID_Welcome, ID_AlignmentType, DisplayName=None, ID_Sex=None):
