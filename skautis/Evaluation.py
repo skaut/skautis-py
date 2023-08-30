@@ -136,7 +136,7 @@ class Evaluation(object):
     def EvaluationSubtypeAllType(self, ID_Login, EvaluationTypeID=None):
         return self._client.service.EvaluationSubtypeAllType({"ID_Login": ID_Login, "EvaluationTypeID": EvaluationTypeID})
 
-    # Naèíst seznam celkových hodnocení
+    # Načíst seznam celkových hodnocení
     def RatingAll(self, ID_Login, DisplayName=None):
         return self._client.service.RatingAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
@@ -144,7 +144,7 @@ class Evaluation(object):
     def RatingUpdate(self, ID_Login, ID, ScoreFrom, ScoreTo, DisplayName=None, Color=None):
         return self._client.service.RatingUpdate({"ID_Login": ID_Login, "ID": ID, "ScoreFrom": ScoreFrom, "ScoreTo": ScoreTo, "DisplayName": DisplayName, "Color": Color})
 
-    # Vìøejná sumarizovaná data hodnocení kvality
+    # Věřejná sumarizovaná data hodnocení kvality
     def EvaluationSummaryPublic(self, ID_Login, Year, ID_EvaluationSubtype, ID_UnitArray=None, ID_UnitType=None):
         return self._client.service.EvaluationSummaryPublic({"ID_Login": ID_Login, "Year": Year, "ID_EvaluationSubtype": ID_EvaluationSubtype, "ID_UnitArray": ID_UnitArray, "ID_UnitType": ID_UnitType})
 
@@ -156,11 +156,11 @@ class Evaluation(object):
     def EvaluationInsertEvent(self, ID_Login, ID, ID_EvaluationSubtype, EvaluationCount, ID_EvaluationVersion, ID_Unit, ID_Event, ID_EventParent, Year, DateLastUpdate, ID_PersonClose, DateClose, Score, ID_EvaluationRating, HideDetail, EvaluationSubtype=None, Description=None, EvaluationVersion=None, Unit=None, RegistrationNumber=None, Event=None, ID_EvaluationState=None, EvaluationState=None, Note=None, NoteParent=None, PersonClose=None, EvaluationRating=None, Color=None, ID_UnitType=None, UnitType=None):
         return self._client.service.EvaluationInsertEvent({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationSubtype": ID_EvaluationSubtype, "EvaluationCount": EvaluationCount, "ID_EvaluationVersion": ID_EvaluationVersion, "ID_Unit": ID_Unit, "ID_Event": ID_Event, "ID_EventParent": ID_EventParent, "Year": Year, "DateLastUpdate": DateLastUpdate, "ID_PersonClose": ID_PersonClose, "DateClose": DateClose, "Score": Score, "ID_EvaluationRating": ID_EvaluationRating, "HideDetail": HideDetail, "EvaluationSubtype": EvaluationSubtype, "Description": Description, "EvaluationVersion": EvaluationVersion, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Event": Event, "ID_EvaluationState": ID_EvaluationState, "EvaluationState": EvaluationState, "Note": Note, "NoteParent": NoteParent, "PersonClose": PersonClose, "EvaluationRating": EvaluationRating, "Color": Color, "ID_UnitType": ID_UnitType, "UnitType": UnitType})
 
-    # Naèíst seznam hodnocení kvality akcí
+    # Načíst seznam hodnocení kvality akcí
     def EvaluationAllEvent(self, ID_Login, Year, NotExists, ID_EvaluationState=None, Unit=None, ID_EventType=None):
         return self._client.service.EvaluationAllEvent({"ID_Login": ID_Login, "Year": Year, "NotExists": NotExists, "ID_EvaluationState": ID_EvaluationState, "Unit": Unit, "ID_EventType": ID_EventType})
 
-    # Naèíst seznam akcí posunù
+    # Načíst seznam akcí posunů
     def EvaluationAnswerAllShift(self, ID_Login, ID_Evaluation, ID_EvaluationSection, Count, RowMin):
         return self._client.service.EvaluationAnswerAllShift({"ID_Login": ID_Login, "ID_Evaluation": ID_Evaluation, "ID_EvaluationSection": ID_EvaluationSection, "Count": Count, "RowMin": RowMin})
 
@@ -168,11 +168,11 @@ class Evaluation(object):
     def EvaluationSummaryRegion(self, ID_Login, Year, ID_EvaluationSubtype, ID_UnitType=None):
         return self._client.service.EvaluationSummaryRegion({"ID_Login": ID_Login, "Year": Year, "ID_EvaluationSubtype": ID_EvaluationSubtype, "ID_UnitType": ID_UnitType})
 
-    # Otevøít hodnocení
+    # Otevřít hodnocení
     def EvaluationUpdateOpen(self, ID_Login, ID, ID_EvaluationSubtype, EvaluationCount, ID_EvaluationVersion, ID_Unit, ID_Event, ID_EventParent, Year, DateLastUpdate, ID_PersonClose, DateClose, Score, ID_EvaluationRating, HideDetail, EvaluationSubtype=None, Description=None, EvaluationVersion=None, Unit=None, RegistrationNumber=None, Event=None, ID_EvaluationState=None, EvaluationState=None, Note=None, NoteParent=None, PersonClose=None, EvaluationRating=None, Color=None, ID_UnitType=None, UnitType=None):
         return self._client.service.EvaluationUpdateOpen({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationSubtype": ID_EvaluationSubtype, "EvaluationCount": EvaluationCount, "ID_EvaluationVersion": ID_EvaluationVersion, "ID_Unit": ID_Unit, "ID_Event": ID_Event, "ID_EventParent": ID_EventParent, "Year": Year, "DateLastUpdate": DateLastUpdate, "ID_PersonClose": ID_PersonClose, "DateClose": DateClose, "Score": Score, "ID_EvaluationRating": ID_EvaluationRating, "HideDetail": HideDetail, "EvaluationSubtype": EvaluationSubtype, "Description": Description, "EvaluationVersion": EvaluationVersion, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Event": Event, "ID_EvaluationState": ID_EvaluationState, "EvaluationState": EvaluationState, "Note": Note, "NoteParent": NoteParent, "PersonClose": PersonClose, "EvaluationRating": EvaluationRating, "Color": Color, "ID_UnitType": ID_UnitType, "UnitType": UnitType})
 
-    # Uzavøít hodnocení
+    # Uzavřít hodnocení
     def EvaluationUpdateClose(self, ID_Login, ID, ID_EvaluationSubtype, EvaluationCount, ID_EvaluationVersion, ID_Unit, ID_Event, ID_EventParent, Year, DateLastUpdate, ID_PersonClose, DateClose, Score, ID_EvaluationRating, HideDetail, EvaluationSubtype=None, Description=None, EvaluationVersion=None, Unit=None, RegistrationNumber=None, Event=None, ID_EvaluationState=None, EvaluationState=None, Note=None, NoteParent=None, PersonClose=None, EvaluationRating=None, Color=None, ID_UnitType=None, UnitType=None):
         return self._client.service.EvaluationUpdateClose({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationSubtype": ID_EvaluationSubtype, "EvaluationCount": EvaluationCount, "ID_EvaluationVersion": ID_EvaluationVersion, "ID_Unit": ID_Unit, "ID_Event": ID_Event, "ID_EventParent": ID_EventParent, "Year": Year, "DateLastUpdate": DateLastUpdate, "ID_PersonClose": ID_PersonClose, "DateClose": DateClose, "Score": Score, "ID_EvaluationRating": ID_EvaluationRating, "HideDetail": HideDetail, "EvaluationSubtype": EvaluationSubtype, "Description": Description, "EvaluationVersion": EvaluationVersion, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Event": Event, "ID_EvaluationState": ID_EvaluationState, "EvaluationState": EvaluationState, "Note": Note, "NoteParent": NoteParent, "PersonClose": PersonClose, "EvaluationRating": EvaluationRating, "Color": Color, "ID_UnitType": ID_UnitType, "UnitType": UnitType})
 
@@ -180,15 +180,15 @@ class Evaluation(object):
     def EvaluationAllYear(self, ID_Login):
         return self._client.service.EvaluationAllYear({"ID_Login": ID_Login})
 
-    # Naèíst seznam hodnocení kvality jednoty
+    # Načíst seznam hodnocení kvality jednoty
     def EvaluationAllUnit(self, ID_Login, Year, NotExists, ID_EvaluationState=None, Unit=None):
         return self._client.service.EvaluationAllUnit({"ID_Login": ID_Login, "Year": Year, "NotExists": NotExists, "ID_EvaluationState": ID_EvaluationState, "Unit": Unit})
 
-    # Naèíst seznam odpovìdí hodnocení kvality
+    # Načíst seznam odpovědí hodnocení kvality
     def EvaluationAnswerAll(self, ID_Login, ID_Evaluation, EvaluationPersonCount):
         return self._client.service.EvaluationAnswerAll({"ID_Login": ID_Login, "ID_Evaluation": ID_Evaluation, "EvaluationPersonCount": EvaluationPersonCount})
 
-    # Naèíst detail hodnocení kvality
+    # Načíst detail hodnocení kvality
     def EvaluationDetail(self, ID_Login, ID, ID_EvaluationPerson):
         return self._client.service.EvaluationDetail({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationPerson": ID_EvaluationPerson})
 
@@ -196,23 +196,23 @@ class Evaluation(object):
     def EvaluationInsert(self, ID_Login, ID, ID_EvaluationSubtype, EvaluationCount, ID_EvaluationVersion, ID_Unit, ID_Event, ID_EventParent, Year, DateLastUpdate, ID_PersonClose, DateClose, Score, ID_EvaluationRating, HideDetail, EvaluationSubtype=None, Description=None, EvaluationVersion=None, Unit=None, RegistrationNumber=None, Event=None, ID_EvaluationState=None, EvaluationState=None, Note=None, NoteParent=None, PersonClose=None, EvaluationRating=None, Color=None, ID_UnitType=None, UnitType=None):
         return self._client.service.EvaluationInsert({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationSubtype": ID_EvaluationSubtype, "EvaluationCount": EvaluationCount, "ID_EvaluationVersion": ID_EvaluationVersion, "ID_Unit": ID_Unit, "ID_Event": ID_Event, "ID_EventParent": ID_EventParent, "Year": Year, "DateLastUpdate": DateLastUpdate, "ID_PersonClose": ID_PersonClose, "DateClose": DateClose, "Score": Score, "ID_EvaluationRating": ID_EvaluationRating, "HideDetail": HideDetail, "EvaluationSubtype": EvaluationSubtype, "Description": Description, "EvaluationVersion": EvaluationVersion, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "Event": Event, "ID_EvaluationState": ID_EvaluationState, "EvaluationState": EvaluationState, "Note": Note, "NoteParent": NoteParent, "PersonClose": PersonClose, "EvaluationRating": EvaluationRating, "Color": Color, "ID_UnitType": ID_UnitType, "UnitType": UnitType})
 
-    # Naèíst seznam celkových èíselných hodnocení
+    # Načíst seznam celkových číselných hodnocení
     def EvaluationRatingAll(self, ID_Login, ID_EvaluationVersion, DisplayName=None):
         return self._client.service.EvaluationRatingAll({"ID_Login": ID_Login, "ID_EvaluationVersion": ID_EvaluationVersion, "DisplayName": DisplayName})
 
-    # Smazat celkové èíselné hodnocení
+    # Smazat celkové číselné hodnocení
     def EvaluationRatingDelete(self, ID_Login, ID):
         return self._client.service.EvaluationRatingDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Založit celkové èíselné hodnocení
+    # Založit celkové číselné hodnocení
     def EvaluationRatingInsert(self, ID_Login, ID, ID_EvaluationVersion, ScoreFrom, ScoreTo, DisplayName=None):
         return self._client.service.EvaluationRatingInsert({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationVersion": ID_EvaluationVersion, "ScoreFrom": ScoreFrom, "ScoreTo": ScoreTo, "DisplayName": DisplayName})
 
-    # Upravit celkové èíselné hodnocení
+    # Upravit celkové ?íselné hodnocení
     def EvaluationRatingUpdate(self, ID_Login, ID, ID_EvaluationVersion, ScoreFrom, ScoreTo, DisplayName=None):
         return self._client.service.EvaluationRatingUpdate({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationVersion": ID_EvaluationVersion, "ScoreFrom": ScoreFrom, "ScoreTo": ScoreTo, "DisplayName": DisplayName})
 
-    # Naèíst seznam stavù hodnocení kvality
+    # Načíst seznam stavů hodnocení kvality
     def EvaluationStateAll(self, ID_Login, DisplayName=None):
         return self._client.service.EvaluationStateAll({"ID_Login": ID_Login, "DisplayName": DisplayName})
 
@@ -220,11 +220,11 @@ class Evaluation(object):
     def EvaluationUpdate(self, ID_Login, ID, Answers=None):
         return self._client.service.EvaluationUpdate({"ID_Login": ID_Login, "ID": ID, "Answers": Answers})
 
-    # Otevøít publikovanou verzi typu pro úpravy
+    # Otevřít publikovanou verzi typu pro úpravy
     def EvaluationVersionInsertEvaluationSubtype(self, ID_Login, ID_EvaluationSubtype):
         return self._client.service.EvaluationVersionInsertEvaluationSubtype({"ID_Login": ID_Login, "ID_EvaluationSubtype": ID_EvaluationSubtype})
 
-    # Otevøít publikovanou verzi typu pro úpravy
+    # Otevřít publikovanou verzi typu pro úpravy
     def EvaluationSubtypeUpdateOpen(self, ID_Login, ID):
         return self._client.service.EvaluationSubtypeUpdateOpen({"ID_Login": ID_Login, "ID": ID})
 
@@ -232,7 +232,7 @@ class Evaluation(object):
     def EvaluationSubtypeUpdate(self, ID_Login, ID, ID_EventEducationType, ID_EvaluationVersion, DisplayName=None, ID_UnitType=None, UnitType=None, ID_EventType=None, EventType=None, EventEducationType=None, Description=None, Note=None):
         return self._client.service.EvaluationSubtypeUpdate({"ID_Login": ID_Login, "ID": ID, "ID_EventEducationType": ID_EventEducationType, "ID_EvaluationVersion": ID_EvaluationVersion, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "UnitType": UnitType, "ID_EventType": ID_EventType, "EventType": EventType, "EventEducationType": EventEducationType, "Description": Description, "Note": Note})
 
-    # Naèíst seznam kritérií hodnocení
+    # Načíst seznam kritérií hodnocení
     def EvaluationCriteriaAll(self, ID_Login, ID_EvaluationSet, DisplayName=None):
         return self._client.service.EvaluationCriteriaAll({"ID_Login": ID_Login, "ID_EvaluationSet": ID_EvaluationSet, "DisplayName": DisplayName})
 
@@ -240,7 +240,7 @@ class Evaluation(object):
     def EvaluationCriteriaDelete(self, ID_Login, ID):
         return self._client.service.EvaluationCriteriaDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Naèíst detail kritéria hodnocení
+    # Načíst detail kritéria hodnocení
     def EvaluationCriteriaDetail(self, ID_Login, ID):
         return self._client.service.EvaluationCriteriaDetail({"ID_Login": ID_Login, "ID": ID})
 
@@ -256,7 +256,7 @@ class Evaluation(object):
     def EvaluationSectionDelete(self, ID_Login, ID):
         return self._client.service.EvaluationSectionDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Naèíst detail oblasti kvality
+    # Načíst detail oblasti kvality
     def EvaluationSectionDetail(self, ID_Login, ID):
         return self._client.service.EvaluationSectionDetail({"ID_Login": ID_Login, "ID": ID})
 
@@ -268,7 +268,7 @@ class Evaluation(object):
     def EvaluationSectionUpdate(self, ID_Login, ID, ID_EvaluationVersion, Order, Weight, ID_EvaluationSubtype, DisplayName=None, Note=None, Description=None, EvaluationSubtype=None, Color=None):
         return self._client.service.EvaluationSectionUpdate({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationVersion": ID_EvaluationVersion, "Order": Order, "Weight": Weight, "ID_EvaluationSubtype": ID_EvaluationSubtype, "DisplayName": DisplayName, "Note": Note, "Description": Description, "EvaluationSubtype": EvaluationSubtype, "Color": Color})
 
-    # Naèíst seznam skupin kritérií
+    # Načíst seznam skupin kritérií
     def EvaluationSetAll(self, ID_Login, ID_EvaluationVersion, DisplayName=None):
         return self._client.service.EvaluationSetAll({"ID_Login": ID_Login, "ID_EvaluationVersion": ID_EvaluationVersion, "DisplayName": DisplayName})
 
@@ -276,7 +276,7 @@ class Evaluation(object):
     def EvaluationSetDelete(self, ID_Login, ID):
         return self._client.service.EvaluationSetDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Naèíst detail bodu vize
+    # Načíst detail bodu vize
     def EvaluationSetDetail(self, ID_Login, ID):
         return self._client.service.EvaluationSetDetail({"ID_Login": ID_Login, "ID": ID})
 
@@ -288,7 +288,7 @@ class Evaluation(object):
     def EvaluationSetUpdate(self, ID_Login, ID, ID_EvaluationSection, Order, Weight, ID_EvaluationSubtype, EvaluationSection=None, DisplayName=None, Note=None, Description=None):
         return self._client.service.EvaluationSetUpdate({"ID_Login": ID_Login, "ID": ID, "ID_EvaluationSection": ID_EvaluationSection, "Order": Order, "Weight": Weight, "ID_EvaluationSubtype": ID_EvaluationSubtype, "EvaluationSection": EvaluationSection, "DisplayName": DisplayName, "Note": Note, "Description": Description})
 
-    # Naèíst seznam typù hodnocení kvality
+    # Načíst seznam typů hodnocení kvality
     def EvaluationSubtypeAll(self, ID_Login, ID_EvaluationVersion, IsEvent, IsPublished, DisplayName=None, ID_UnitType=None, ID_EventType=None):
         return self._client.service.EvaluationSubtypeAll({"ID_Login": ID_Login, "ID_EvaluationVersion": ID_EvaluationVersion, "IsEvent": IsEvent, "IsPublished": IsPublished, "DisplayName": DisplayName, "ID_UnitType": ID_UnitType, "ID_EventType": ID_EventType})
 
@@ -296,7 +296,7 @@ class Evaluation(object):
     def EvaluationSubtypeDelete(self, ID_Login, ID):
         return self._client.service.EvaluationSubtypeDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Naèíst detail typu hodnocení kvality
+    # Načíst detail typu hodnocení kvality
     def EvaluationSubtypeDetail(self, ID_Login, ID):
         return self._client.service.EvaluationSubtypeDetail({"ID_Login": ID_Login, "ID": ID})
 
@@ -308,11 +308,11 @@ class Evaluation(object):
     def EvaluationSubtypeUpdatePublish(self, ID_Login, ID):
         return self._client.service.EvaluationSubtypeUpdatePublish({"ID_Login": ID_Login, "ID": ID})
 
-    # Naèíst seznam verzí typu hodnocení kvality
+    # Načíst seznam verzí typu hodnocení kvality
     def EvaluationVersionAll(self, ID_Login, ID_EvaluationSubtype, ID_EvaluationVersionState=None):
         return self._client.service.EvaluationVersionAll({"ID_Login": ID_Login, "ID_EvaluationSubtype": ID_EvaluationSubtype, "ID_EvaluationVersionState": ID_EvaluationVersionState})
 
-    # Pøepoèítat výsledky hodnocení kvality
+    # Přepočítat výsledky hodnocení kvality
     def EvaluationVersionUpdateCache(self, ID_Login, ID):
         return self._client.service.EvaluationVersionUpdateCache({"ID_Login": ID_Login, "ID": ID})
 

@@ -20,11 +20,11 @@ class UserManagement(object):
     def HolidayDetailNotHoliday(self, ID_Login, Date):
         return self._client.service.HolidayDetailNotHoliday({"ID_Login": ID_Login, "Date": Date})
 
-    # Naèíst informace o pøihlášení pro 2F
+    # Načíst informace o přihlášení pro 2F
     def LoginDetailTwoFactor(self, ID_Login):
         return self._client.service.LoginDetailTwoFactor({"ID_Login": ID_Login})
 
-    # Naèíst informace o pøihlášení
+    # Načíst informace o přihlášení
     def LoginDetail(self, ID_Login):
         return self._client.service.LoginDetail({"ID_Login": ID_Login})
 
@@ -48,7 +48,7 @@ class UserManagement(object):
     def PluginUpdate(self, ID_Login, IsEnabled, ID=None, DisplayName=None, Description=None):
         return self._client.service.PluginUpdate({"ID_Login": ID_Login, "IsEnabled": IsEnabled, "ID": ID, "DisplayName": DisplayName, "Description": Description})
 
-    # Upravit poøadí tabulky
+    # Upravit pořadí tabulky
     def TableSetOrder(self, ID_Login, TableSetOrderType, ID, OrderInc, ID_Table=None, ID_ParentTable=None, FilterValues=None):
         return self._client.service.TableSetOrder({"ID_Login": ID_Login, "TableSetOrderType": TableSetOrderType, "ID": ID, "OrderInc": OrderInc, "ID_Table": ID_Table, "ID_ParentTable": ID_ParentTable, "FilterValues": FilterValues})
 
@@ -88,7 +88,7 @@ class UserManagement(object):
     def RoleAllFunction(self, ID_Login, ID_User):
         return self._client.service.RoleAllFunction({"ID_Login": ID_Login, "ID_User": ID_User})
 
-    # Naèíst seznam pøihlášení
+    # Načíst seznam přihlášení
     def LoginAll(self, ID_ApplicationNotCurrent, ID_Login, Count, NotEqual, ID_Application, Success):
         return self._client.service.LoginAll({"ID_ApplicationNotCurrent": ID_ApplicationNotCurrent, "ID_Login": ID_Login, "Count": Count, "NotEqual": NotEqual, "ID_Application": ID_Application, "Success": Success})
 
@@ -96,7 +96,7 @@ class UserManagement(object):
     def PersistentIPDetailIsPersitent(self, ID_Login, IP=None):
         return self._client.service.PersistentIPDetailIsPersitent({"ID_Login": ID_Login, "IP": IP})
 
-    # Naèíst seznam Nastavení
+    # Načíst seznam Nastavení
     def SettingsAllPublic(self, ID_Login, ID_Application):
         return self._client.service.SettingsAllPublic({"ID_Login": ID_Login, "ID_Application": ID_Application})
 
@@ -104,15 +104,15 @@ class UserManagement(object):
     def GroupMemberApplication(self, ID_Login, Grant):
         return self._client.service.GroupMemberApplication({"ID_Login": ID_Login, "Grant": Grant})
 
-    # Naèíst detail instance skautISu
+    # Načíst detail instance skautISu
     def InstanceDetail(self, ID_Login, ID_Application):
         return self._client.service.InstanceDetail({"ID_Login": ID_Login, "ID_Application": ID_Application})
 
-    # Naèíst seznam Nastavení
+    # Načíst seznam Nastavení
     def SettingsAll(self, ID_Login, ID_SettingsGroup, DisplayName=None):
         return self._client.service.SettingsAll({"ID_Login": ID_Login, "ID_SettingsGroup": ID_SettingsGroup, "DisplayName": DisplayName})
 
-    # Naèíst detail Nastavení
+    # Načíst detail Nastavení
     def SettingsDetail(self, ID_Login, ID_Application, ID=None):
         return self._client.service.SettingsDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
 

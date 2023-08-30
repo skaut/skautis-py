@@ -12,7 +12,7 @@ class Message(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Message.asmx?wsdl')
 
-    # Naèíst seznam skupin zpráv
+    # Načíst seznam skupin zpráv
     def MessageGroupAll(self, ID_Login, DisplayName=None, ReplyTo=None):
         return self._client.service.MessageGroupAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "ReplyTo": ReplyTo})
 
@@ -20,7 +20,7 @@ class Message(object):
     def MessageGroupDelete(self, ID_Login, ID):
         return self._client.service.MessageGroupDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Naèíst detail skupiny zpráv
+    # Načíst detail skupiny zpráv
     def MessageGroupDetail(self, ID_Login, ID):
         return self._client.service.MessageGroupDetail({"ID_Login": ID_Login, "ID": ID})
 
@@ -28,7 +28,7 @@ class Message(object):
     def MessageGroupInsert(self, ID_Login, ID, DisplayName=None, ReplyTo=None, Footer=None, FooterHtml=None, Note=None):
         return self._client.service.MessageGroupInsert({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName, "ReplyTo": ReplyTo, "Footer": Footer, "FooterHtml": FooterHtml, "Note": Note})
 
-    # Naèíst seznam zasílaných skupin zpráv osobì
+    # Načíst seznam zasílaných skupin zpráv osobě
     def MessageGroupPersonAll(self, ID_Login, ID_Person, ID_MessageGroup):
         return self._client.service.MessageGroupPersonAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_MessageGroup": ID_MessageGroup})
 
@@ -36,7 +36,7 @@ class Message(object):
     def MessageGroupUpdate(self, ID_Login, ID, DisplayName=None, ReplyTo=None, Footer=None, FooterHtml=None, Note=None):
         return self._client.service.MessageGroupUpdate({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName, "ReplyTo": ReplyTo, "Footer": Footer, "FooterHtml": FooterHtml, "Note": Note})
 
-    # Naèíst detail typu zprávy
+    # Načíst detail typu zprávy
     def MessageTypeDetail(self, ID_Login, ID=None):
         return self._client.service.MessageTypeDetail({"ID_Login": ID_Login, "ID": ID})
 
