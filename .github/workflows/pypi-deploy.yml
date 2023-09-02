@@ -8,10 +8,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     if: "startsWith(github.event.head_commit.message, 'Auto commit')"
+    environment: release
+    permissions:
+      id-token: write  # mandatory for trusted publishing
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Python 3.9
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: 3.9
       - name: Build a wheel and a source tarball
@@ -19,6 +22,4 @@ jobs:
           python -m pip install --user build
           python -m build --wheel --sdist --outdir dist/
       - name: Publish package to PyPI
-        uses: pypa/gh-action-pypi-publish@master
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+        uses: pypa/gh-action-pypi-publish@release/v1
