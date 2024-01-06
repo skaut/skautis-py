@@ -12,6 +12,34 @@ class Summary(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Summary.asmx?wsdl')
 
+    # Zobrazit export jednotek
+    def ExportUnitView(self, ID_Login, ID, Units=None):
+        return self._client.service.ExportUnitView({"ID_Login": ID_Login, "ID": ID, "Units": Units})
+
+    # Načíst seznam šablon exportu jednotek
+    def ExportUnitAll(self, ID_Login, ID, ID_Person, DisplayName=None):
+        return self._client.service.ExportUnitAll({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "DisplayName": DisplayName})
+
+    # Smazat šablonu exportu jednotek
+    def ExportUnitDelete(self, ID_Login, ID):
+        return self._client.service.ExportUnitDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst detail šablony exportu jednotek
+    def ExportUnitDetail(self, ID_Login, ID):
+        return self._client.service.ExportUnitDetail({"ID_Login": ID_Login, "ID": ID})
+
+    # Kopie šablonu exportu jednotek
+    def ExportUnitClone(self, ID_Login, ID, ID_Person, RegistrationYear, Contact, Aligment, Leaders, Location, Address, ViewDisplayName, RegistrationNumber, Street, City, Postcode, State, PostalFirstLine, PostalStreet, PostalCity, PostalPostcode, PostalState, Person=None, DisplayName=None):
+        return self._client.service.ExportUnitClone({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "RegistrationYear": RegistrationYear, "Contact": Contact, "Aligment": Aligment, "Leaders": Leaders, "Location": Location, "Address": Address, "ViewDisplayName": ViewDisplayName, "RegistrationNumber": RegistrationNumber, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Person": Person, "DisplayName": DisplayName})
+
+    # Založit šablonu exportu jednotek
+    def ExportUnitInsert(self, ID_Login, ID, ID_Person, RegistrationYear, Contact, Aligment, Leaders, Location, Address, ViewDisplayName, RegistrationNumber, Street, City, Postcode, State, PostalFirstLine, PostalStreet, PostalCity, PostalPostcode, PostalState, Person=None, DisplayName=None):
+        return self._client.service.ExportUnitInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "RegistrationYear": RegistrationYear, "Contact": Contact, "Aligment": Aligment, "Leaders": Leaders, "Location": Location, "Address": Address, "ViewDisplayName": ViewDisplayName, "RegistrationNumber": RegistrationNumber, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Person": Person, "DisplayName": DisplayName})
+
+    # Upravit šablonu exportu jednotek
+    def ExportUnitUpdate(self, ID_Login, ID, ID_Person, RegistrationYear, Contact, Aligment, Leaders, Location, Address, ViewDisplayName, RegistrationNumber, Street, City, Postcode, State, PostalFirstLine, PostalStreet, PostalCity, PostalPostcode, PostalState, Person=None, DisplayName=None):
+        return self._client.service.ExportUnitUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "RegistrationYear": RegistrationYear, "Contact": Contact, "Aligment": Aligment, "Leaders": Leaders, "Location": Location, "Address": Address, "ViewDisplayName": ViewDisplayName, "RegistrationNumber": RegistrationNumber, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "PostalFirstLine": PostalFirstLine, "PostalStreet": PostalStreet, "PostalCity": PostalCity, "PostalPostcode": PostalPostcode, "PostalState": PostalState, "Person": Person, "DisplayName": DisplayName})
+
     # Zobrazit export osob
     def ExportPersonView(self, ID_Login, ID, Units=None):
         return self._client.service.ExportPersonView({"ID_Login": ID_Login, "ID": ID, "Units": Units})
