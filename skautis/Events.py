@@ -1517,8 +1517,8 @@ class Events(object):
         return self._client.service.EventEducationAllPublic({"ID_Login": ID_Login, "ID_Application": ID_Application, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "Distance": Distance, "IsQualificationExam": IsQualificationExam, "From": From, "To": To, "StartsTo": StartsTo, "EndsTo": EndsTo, "ParticipantFeeFrom": ParticipantFeeFrom, "ParticipantFeeTo": ParticipantFeeTo, "DurationFrom": DurationFrom, "DurationTo": DurationTo, "ParticipantCountFrom": ParticipantCountFrom, "ParticipantCountTo": ParticipantCountTo, "IsApproved": IsApproved, "IsRegistrationOpen": IsRegistrationOpen, "EventEducationType": EventEducationType, "DisplayName": DisplayName, "ID_EventEducationGroup": ID_EventEducationGroup, "ID_RegionList": ID_RegionList, "ID_DistrictList": ID_DistrictList, "ID_OccupancyList": ID_OccupancyList})
 
     # Načíst přehled vzdělávacích akcí
-    def EventEducationAllOverview(self, ID_Login, ShowAll, ShowValid, Year, ID_EventEducationType=None, ID_EventEducationState=None, ID_GrantState=None, ID_EventEducationCommissionState=None):
-        return self._client.service.EventEducationAllOverview({"ID_Login": ID_Login, "ShowAll": ShowAll, "ShowValid": ShowValid, "Year": Year, "ID_EventEducationType": ID_EventEducationType, "ID_EventEducationState": ID_EventEducationState, "ID_GrantState": ID_GrantState, "ID_EventEducationCommissionState": ID_EventEducationCommissionState})
+    def EventEducationAllOverview(self, ID_Login, Year, ID_EventEducationType=None, ID_EventEducationState=None, ID_GrantState=None, ID_EventEducationCommissionState=None):
+        return self._client.service.EventEducationAllOverview({"ID_Login": ID_Login, "Year": Year, "ID_EventEducationType": ID_EventEducationType, "ID_EventEducationState": ID_EventEducationState, "ID_GrantState": ID_GrantState, "ID_EventEducationCommissionState": ID_EventEducationCommissionState})
 
     # Načíst seznam akcí jednotky u kterých není žádost o dotaci
     def EventEducationAllUnitNoGrant(self, ID_Login, ID_Unit, ID_EventType=None):
