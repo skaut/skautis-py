@@ -17,8 +17,8 @@ class Summary(object):
         return self._client.service.ExportUnitView({"ID_Login": ID_Login, "ID": ID, "Units": Units})
 
     # Načíst seznam šablon exportu jednotek
-    def ExportUnitAll(self, ID_Login, ID, ID_Person, DisplayName=None):
-        return self._client.service.ExportUnitAll({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "DisplayName": DisplayName})
+    def ExportUnitAll(self, ID_Login, ID, DisplayName=None):
+        return self._client.service.ExportUnitAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
     # Smazat šablonu exportu jednotek
     def ExportUnitDelete(self, ID_Login, ID):
