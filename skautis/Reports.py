@@ -13,8 +13,8 @@ class Reports(object):
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Reports.asmx?wsdl')
 
     # Tisková sestava: Export jednotek
-    def ExportUnit(self, ID_Login, ID, FileFormat=None):
-        return self._client.service.ExportUnit({"ID_Login": ID_Login, "ID": ID, "FileFormat": FileFormat})
+    def ExportUnit(self, ID_Login, ID, ID_UnitFilter, FileFormat=None):
+        return self._client.service.ExportUnit({"ID_Login": ID_Login, "ID": ID, "ID_UnitFilter": ID_UnitFilter, "FileFormat": FileFormat})
 
     # Tisková sestava: Přehled účastníků tábora
     def ParticipantCampExcel(self, ID_Login, ID_EventCamp):
