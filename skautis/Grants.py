@@ -177,8 +177,8 @@ class Grants(object):
         return self._client.service.GrantProjectFixedQuestionAll({"ID_Login": ID_Login, "ID": ID, "ID_ProjectQuestionType": ID_ProjectQuestionType, "DisplayName": DisplayName, "ID_GrantType": ID_GrantType, "ID_ProjectQuestionRequirement": ID_ProjectQuestionRequirement})
 
     # Načíst seznam otázek projektu dotace pro export
-    def ProjectQuestionAnswerAllGrantExport(self, ID_Login, ID_Grant, IsEvaluation):
-        return self._client.service.ProjectQuestionAnswerAllGrantExport({"ID_Login": ID_Login, "ID_Grant": ID_Grant, "IsEvaluation": IsEvaluation})
+    def ProjectQuestionAnswerAllGrantExport(self, ID_Login, ID_Grant, IsEvaluation, IsExport):
+        return self._client.service.ProjectQuestionAnswerAllGrantExport({"ID_Login": ID_Login, "ID_Grant": ID_Grant, "IsEvaluation": IsEvaluation, "IsExport": IsExport})
 
     # Načíst seznam otázek projektu dotace
     def ProjectQuestionAnswerAllGrant(self, ID_Login, ID_Application, AccessKey, ID_Grant, IsEvaluation, Year):
