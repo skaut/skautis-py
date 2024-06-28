@@ -12,6 +12,14 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Smazat hospodářský výkaz
+    def StatementDelete(self, ID_Login, ID):
+        return self._client.service.StatementDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst detail hospodářského výkazu
+    def StatementDetail(self, ID_Login, ID):
+        return self._client.service.StatementDetail({"ID_Login": ID_Login, "ID": ID})
+
     # Načíst seznam položek hospodářského výkazu
     def StatementEntryAll(self, ID_Login, ID_Statement, ID_StatementEntryType, IsMoney):
         return self._client.service.StatementEntryAll({"ID_Login": ID_Login, "ID_Statement": ID_Statement, "ID_StatementEntryType": ID_StatementEntryType, "IsMoney": IsMoney})
@@ -128,13 +136,21 @@ class OrganizationUnit(object):
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
 
+    # Načíst seznam vzdělávacích akcí
+    def EducatationSeminaryAll(self, ID_Login, ID_Person, DisplayName=None):
+        return self._client.service.EducatationSeminaryAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "DisplayName": DisplayName})
+
+    # Smazat vzdělávací akci
+    def EducatationSeminaryDelete(self, ID_Login, ID):
+        return self._client.service.EducatationSeminaryDelete({"ID_Login": ID_Login, "ID": ID})
+
     # Založit vzdělávací akci
-    def EducatationSeminaryInsert(self, ID_Login, ID_Person, ID, YearFrom, DisplayName=None, Note=None):
-        return self._client.service.EducatationSeminaryInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "YearFrom": YearFrom, "DisplayName": DisplayName, "Note": Note})
+    def EducatationSeminaryInsert(self, ID_Login, ID_Person, ID, YearFrom, ID_EventEducationType, DisplayName=None, Note=None, ParticipationType=None):
+        return self._client.service.EducatationSeminaryInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "YearFrom": YearFrom, "ID_EventEducationType": ID_EventEducationType, "DisplayName": DisplayName, "Note": Note, "ParticipationType": ParticipationType})
 
     # Upravit vzdělávací akci
-    def EducatationSeminaryUpdate(self, ID_Login, ID_Person, ID, YearFrom, DisplayName=None, Note=None):
-        return self._client.service.EducatationSeminaryUpdate({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "YearFrom": YearFrom, "DisplayName": DisplayName, "Note": Note})
+    def EducatationSeminaryUpdate(self, ID_Login, ID_Person, ID, YearFrom, ID_EventEducationType, DisplayName=None, Note=None, ParticipationType=None):
+        return self._client.service.EducatationSeminaryUpdate({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "YearFrom": YearFrom, "ID_EventEducationType": ID_EventEducationType, "DisplayName": DisplayName, "Note": Note, "ParticipationType": ParticipationType})
 
     # Načíst seznam osob členem kandidátní komise
     def PersonAllEventCongressFunction(self, ID_Login, ID, ID_EventCongressFunction, DisplayName=None):
@@ -145,8 +161,8 @@ class OrganizationUnit(object):
         return self._client.service.PersonOtherDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Upravit další údaje osoby
-    def PersonOtherUpdate(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, IdCardValidTo, IsAdult, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None, ParentNote=None, IdCardNumber=None):
-        return self._client.service.PersonOtherUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "IdCardValidTo": IdCardValidTo, "IsAdult": IsAdult, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note, "ParentNote": ParentNote, "IdCardNumber": IdCardNumber})
+    def PersonOtherUpdate(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, IdCardValidTo, IsAdult, IsNonMemberWithGoogleServicesAccess, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None, ParentNote=None, IdCardNumber=None):
+        return self._client.service.PersonOtherUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "IdCardValidTo": IdCardValidTo, "IsAdult": IsAdult, "IsNonMemberWithGoogleServicesAccess": IsNonMemberWithGoogleServicesAccess, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note, "ParentNote": ParentNote, "IdCardNumber": IdCardNumber})
 
     # Načte fotografii osoby
     def PersonPhoto(self, ID_Login, ID, Size=None):
@@ -596,13 +612,13 @@ class OrganizationUnit(object):
     def StatementAll(self, ID_Login, ID_Unit, Year, ID_StatementType=None):
         return self._client.service.StatementAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "Year": Year, "ID_StatementType": ID_StatementType})
 
-    # Smazat hospodářský výkaz
-    def StatementDelete(self, ID_Login, ID):
-        return self._client.service.StatementDelete({"ID_Login": ID_Login, "ID": ID})
+    # Načíst detail hospodářského výkazu pro sestavu
+    def StatementDetailReport(self, ID_Login, ID):
+        return self._client.service.StatementDetailReport({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst detail hospodářského výkazu
-    def StatementDetail(self, ID_Login, ID):
-        return self._client.service.StatementDetail({"ID_Login": ID_Login, "ID": ID})
+    # Načíst seznam stavů hospodářského výkazu
+    def StatementStateAll(self, ID_Login, ID=None, DisplayName=None):
+        return self._client.service.StatementStateAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
     # Upravit stav hospodářského výkazu
     def StatementUpdateState(self, ID_Login, ID, ID_Unit, Year, IsError, IsDelivered, DateDelivered, DateCreated, IsThousands, IsConsultant, ID_Document, ID_DocumentTempFile, DateSent, ID_PersonSent, DateConfirmed, ID_PersonConfirmed, ID_Registry, ShowOverview, Unit=None, RegistrationNumber=None, ID_StatementType=None, StatementType=None, ID_StatementState=None, StatementState=None, PersonSent=None, PersonConfirmed=None):
@@ -993,8 +1009,8 @@ class OrganizationUnit(object):
         return self._client.service.PersonUpdateBasic({"ID_Login": ID_Login, "ID": ID, "Birthday": Birthday, "YearFrom": YearFrom, "ID_Sex": ID_Sex, "FirstName": FirstName, "LastName": LastName, "NickName": NickName, "MaidenName": MaidenName, "Street": Street, "City": City, "Postcode": Postcode, "State": State})
 
     # Hledání osob pro účastníky tábora
-    def PersonAllEventCamp(self, ID_Login, ID_EventCamp, ID, DisplayName=None, IdentificationCode=None, IdentificationCodeStartsWith=None):
-        return self._client.service.PersonAllEventCamp({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "ID": ID, "DisplayName": DisplayName, "IdentificationCode": IdentificationCode, "IdentificationCodeStartsWith": IdentificationCodeStartsWith})
+    def PersonAllEventCamp(self, ID_Login, ID_EventCamp, ID, DisplayName=None, IdentificationCode=None, IdentificationCodeStartsWith=None, EventFunctionTypeKey=None):
+        return self._client.service.PersonAllEventCamp({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "ID": ID, "DisplayName": DisplayName, "IdentificationCode": IdentificationCode, "IdentificationCodeStartsWith": IdentificationCodeStartsWith, "EventFunctionTypeKey": EventFunctionTypeKey})
 
     # Hledání osob pro hromadné přidání účastníků tábora
     def PersonAllEventCampMulti(self, ID_Login, ID_EventCamp):
@@ -1100,13 +1116,13 @@ class OrganizationUnit(object):
     def ContactTypeAll(self, ID_Login, IsForPerson, IsForUnit, ID=None, DisplayName=None):
         return self._client.service.ContactTypeAll({"ID_Login": ID_Login, "IsForPerson": IsForPerson, "IsForUnit": IsForUnit, "ID": ID, "DisplayName": DisplayName})
 
-    # Načíst seznam vzdělávacích akcí
-    def EducatationSeminaryAll(self, ID_Login, ID_Person, DisplayName=None):
-        return self._client.service.EducatationSeminaryAll({"ID_Login": ID_Login, "ID_Person": ID_Person, "DisplayName": DisplayName})
+    # Načtení počtu přijatých a nepřečtených zpráv osoby
+    def PersonDetailMessageCount(self, ID_Login):
+        return self._client.service.PersonDetailMessageCount({"ID_Login": ID_Login})
 
-    # Smazat vzdělávací akci
-    def EducatationSeminaryDelete(self, ID_Login, ID):
-        return self._client.service.EducatationSeminaryDelete({"ID_Login": ID_Login, "ID": ID})
+    # Ověření, zda je osoba členem organizace
+    def PersonDetailMembership(self, ID_Login, ID_Application, IdentificationCode=None):
+        return self._client.service.PersonDetailMembership({"ID_Login": ID_Login, "ID_Application": ID_Application, "IdentificationCode": IdentificationCode})
 
     # Načíst seznam zákonných zástupce osoby
     def PersonParentAll(self, ID_Login, ID_Application, ID_Person, ID, ID_PersonParent, ID_ParentType=None):
@@ -1313,16 +1329,16 @@ class OrganizationUnit(object):
         return self._client.service.PersonOtherUpdateClear({"ID_Login": ID_Login})
 
     # Upravit odvolání souhlasů z přihlášky osoby
-    def PersonOtherUpdateReject(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, IdCardValidTo, IsAdult, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None, ParentNote=None, IdCardNumber=None):
-        return self._client.service.PersonOtherUpdateReject({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "IdCardValidTo": IdCardValidTo, "IsAdult": IsAdult, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note, "ParentNote": ParentNote, "IdCardNumber": IdCardNumber})
+    def PersonOtherUpdateReject(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, IdCardValidTo, IsAdult, IsNonMemberWithGoogleServicesAccess, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None, ParentNote=None, IdCardNumber=None):
+        return self._client.service.PersonOtherUpdateReject({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "IdCardValidTo": IdCardValidTo, "IsAdult": IsAdult, "IsNonMemberWithGoogleServicesAccess": IsNonMemberWithGoogleServicesAccess, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note, "ParentNote": ParentNote, "IdCardNumber": IdCardNumber})
 
     # Upravit přihlášku osoby
     def PersonOtherUpdateUnitEnroll(self, ID_Login, ID, ID_UnitEnrollTempFile, UnitEnrollExtension=None):
         return self._client.service.PersonOtherUpdateUnitEnroll({"ID_Login": ID_Login, "ID": ID, "ID_UnitEnrollTempFile": ID_UnitEnrollTempFile, "UnitEnrollExtension": UnitEnrollExtension})
 
     # Potvrdit přihlášku osoby
-    def PersonOtherUpdateUnitEnrollCondition(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, IdCardValidTo, IsAdult, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None, ParentNote=None, IdCardNumber=None):
-        return self._client.service.PersonOtherUpdateUnitEnrollCondition({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "IdCardValidTo": IdCardValidTo, "IsAdult": IsAdult, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note, "ParentNote": ParentNote, "IdCardNumber": IdCardNumber})
+    def PersonOtherUpdateUnitEnrollCondition(self, ID_Login, ID, ID_Person, ID_DistrictBirth, ID_Assurance, AllowDataStorage, AllowAudiovisual, AllowSocialNetwork, AllowMarketing, DateChangeSocialNetwork, DateChangeMarketing, DateChangeDataStorage, DateChangeAudiovisual, IsRPS, IsEPS, IsEduParticipantExt, OnlyValidate, ID_EventCongress, ID_TempFileHealth, ID_DocumentHealth, IdCardValidTo, IsAdult, IsNonMemberWithGoogleServicesAccess, BirthCity=None, ID_Citizenship=None, Citizenship=None, CitizenshipCustom=None, Person=None, MaidenName=None, DistrictBirth=None, Assurance=None, InsuranceNumber=None, Allergy=None, Drugs=None, HealthLimitation=None, BodySkills=None, School=None, Note=None, ParentNote=None, IdCardNumber=None):
+        return self._client.service.PersonOtherUpdateUnitEnrollCondition({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_DistrictBirth": ID_DistrictBirth, "ID_Assurance": ID_Assurance, "AllowDataStorage": AllowDataStorage, "AllowAudiovisual": AllowAudiovisual, "AllowSocialNetwork": AllowSocialNetwork, "AllowMarketing": AllowMarketing, "DateChangeSocialNetwork": DateChangeSocialNetwork, "DateChangeMarketing": DateChangeMarketing, "DateChangeDataStorage": DateChangeDataStorage, "DateChangeAudiovisual": DateChangeAudiovisual, "IsRPS": IsRPS, "IsEPS": IsEPS, "IsEduParticipantExt": IsEduParticipantExt, "OnlyValidate": OnlyValidate, "ID_EventCongress": ID_EventCongress, "ID_TempFileHealth": ID_TempFileHealth, "ID_DocumentHealth": ID_DocumentHealth, "IdCardValidTo": IdCardValidTo, "IsAdult": IsAdult, "IsNonMemberWithGoogleServicesAccess": IsNonMemberWithGoogleServicesAccess, "BirthCity": BirthCity, "ID_Citizenship": ID_Citizenship, "Citizenship": Citizenship, "CitizenshipCustom": CitizenshipCustom, "Person": Person, "MaidenName": MaidenName, "DistrictBirth": DistrictBirth, "Assurance": Assurance, "InsuranceNumber": InsuranceNumber, "Allergy": Allergy, "Drugs": Drugs, "HealthLimitation": HealthLimitation, "BodySkills": BodySkills, "School": School, "Note": Note, "ParentNote": ParentNote, "IdCardNumber": IdCardNumber})
 
     # Stáhnout dekret kvalifikace
     def PersonQualificationLetterDownload(self, ID_Login, ID_Qualification):
@@ -1572,14 +1588,6 @@ class OrganizationUnit(object):
     def StampTypeAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.StampTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
-    # Načíst detail hospodářského výkazu pro sestavu
-    def StatementDetailReport(self, ID_Login, ID):
-        return self._client.service.StatementDetailReport({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst seznam stavů hospodářského výkazu
-    def StatementStateAll(self, ID_Login, ID=None, DisplayName=None):
-        return self._client.service.StatementStateAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
-
     # Načíst seznam účtů tábora
     def AccountAllEventCamp(self, ID_Login, ID_Application, ID_EventCamp):
         return self._client.service.AccountAllEventCamp({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_EventCamp": ID_EventCamp})
@@ -1611,6 +1619,14 @@ class OrganizationUnit(object):
     # Zrušit objednání ztracené karty
     def MemberCardUpdateCancelRerequest(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentPersonSchool, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
         return self._client.service.MemberCardUpdateCancelRerequest({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentPersonSchool": ID_DocumentPersonSchool, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
+
+    # Odeslat email o vyzvednutí kódu pro vstup do STS
+    def PersonOtherTelephonyEnroll(self, ID_Login, ID_Person):
+        return self._client.service.PersonOtherTelephonyEnroll({"ID_Login": ID_Login, "ID_Person": ID_Person})
+
+    # Načíst seznam typů účastí
+    def ParticipationTypeAll(self, ID_Application, ID_Login, ID=None, DisplayName=None):
+        return self._client.service.ParticipationTypeAll({"ID_Application": ID_Application, "ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
     # Načtení míst působení
     def UnitLocations(self, ID_Login, ID_Application, Top, SearchQuery=None):
@@ -2067,12 +2083,4 @@ class OrganizationUnit(object):
     # Načíst informace pro dashboard
     def PersonDetailDashboard(self, ID_Login):
         return self._client.service.PersonDetailDashboard({"ID_Login": ID_Login})
-
-    # Načtení počtu přijatých a nepřečtených zpráv osoby
-    def PersonDetailMessageCount(self, ID_Login):
-        return self._client.service.PersonDetailMessageCount({"ID_Login": ID_Login})
-
-    # Ověření, zda je osoba členem organizace
-    def PersonDetailMembership(self, ID_Login, ID_Application, IdentificationCode=None):
-        return self._client.service.PersonDetailMembership({"ID_Login": ID_Login, "ID_Application": ID_Application, "IdentificationCode": IdentificationCode})
 

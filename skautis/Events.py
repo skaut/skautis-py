@@ -277,6 +277,10 @@ class Events(object):
         return self._client.service.EventCongressUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Event": ID_Event, "ID_UnitRegistration": ID_UnitRegistration, "PromulgationDeadline": PromulgationDeadline, "CommissionDeadline": CommissionDeadline, "CandidateDeadline": CandidateDeadline, "ID_Unit": ID_Unit, "StartDate": StartDate, "EndDate": EndDate, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "AlternateStartDate": AlternateStartDate, "AlternateEndDate": AlternateEndDate, "AlternateGpsLatitude": AlternateGpsLatitude, "AlternateGpsLongitude": AlternateGpsLongitude, "CandidateAfterDeadline": CandidateAfterDeadline, "ArriveDeadline": ArriveDeadline, "DepartureDeadline": DepartureDeadline, "TransportDeadline": TransportDeadline, "AccommodationDeadline": AccommodationDeadline, "FoodDeadline": FoodDeadline, "ParticipantFee": ParticipantFee, "ID_TempFileSimplifiedEntry": ID_TempFileSimplifiedEntry, "DelegateQuota": DelegateQuota, "IsDelegateQuotaParentSet": IsDelegateQuotaParentSet, "ID_DocumentProtocol": ID_DocumentProtocol, "ID_DocumentSimplifiedEntry": ID_DocumentSimplifiedEntry, "Event": Event, "UnitRegistration": UnitRegistration, "ID_EventCongressType": ID_EventCongressType, "EventCongressType": EventCongressType, "ID_EventCongressState": ID_EventCongressState, "EventCongressState": EventCongressState, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_UnitType": ID_UnitType, "Location": Location, "AlternateLocation": AlternateLocation, "Note": Note, "ProtocolExtension": ProtocolExtension, "ProtocolContent": ProtocolContent, "FunctionAgreementExtension": FunctionAgreementExtension, "SimplifiedEntryExtension": SimplifiedEntryExtension, "SimplifiedEntryTemplateExtension": SimplifiedEntryTemplateExtension})
 
     # No documentation
+    def ParticipantEducationAllEventEducationExam(self, ID_Login, ID_EventEducationExam, ExcludeExisting):
+        return self._client.service.ParticipantEducationAllEventEducationExam({"ID_Login": ID_Login, "ID_EventEducationExam": ID_EventEducationExam, "ExcludeExisting": ExcludeExisting})
+
+    # No documentation
     def ParticipantEducationAll(self, ID_Login, ID_EventEducation, ID, ID_Participant, ShowPossibleGraduates, ShowSubstitutes, ShowOnlyAccepted, IsActive, ID_EventEducationCourse=None, ID_EventEducationType=None):
         return self._client.service.ParticipantEducationAll({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID": ID, "ID_Participant": ID_Participant, "ShowPossibleGraduates": ShowPossibleGraduates, "ShowSubstitutes": ShowSubstitutes, "ShowOnlyAccepted": ShowOnlyAccepted, "IsActive": IsActive, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_EventEducationType": ID_EventEducationType})
 
@@ -389,8 +393,8 @@ class Events(object):
         return self._client.service.InstructorInsert({"ID_Login": ID_Login, "ID": ID, "ID_EventEducation": ID_EventEducation, "ID_Person": ID_Person, "IsSystem": IsSystem, "EventEducation": EventEducation, "Person": Person, "ID_InstructorType": ID_InstructorType, "InstructorType": InstructorType, "ScoutExperience": ScoutExperience, "EventFocus": EventFocus, "ProfessionalExperience": ProfessionalExperience, "Email": Email})
 
     # Načíst seznam typů instruktora
-    def InstructorTypeAll(self, ID_Login, ID=None, DisplayName=None):
-        return self._client.service.InstructorTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+    def InstructorTypeAll(self, ID_Login, ID_EventEducation, ID=None, DisplayName=None):
+        return self._client.service.InstructorTypeAll({"ID_Login": ID_Login, "ID_EventEducation": ID_EventEducation, "ID": ID, "DisplayName": DisplayName})
 
     # Načíst seznam míst
     def LocationAll(self, ID_Login, ID, DisplayName=None):
@@ -760,6 +764,10 @@ class Events(object):
     def ParticipantDetailUstredi(self, ID_Login, ID):
         return self._client.service.ParticipantDetailUstredi({"ID_Login": ID_Login, "ID": ID})
 
+    # Hlídá dobu po kterou je dekrety možné předávat
+    def EventEducationtExamAllCheckLetter(self, ID_Login):
+        return self._client.service.EventEducationtExamAllCheckLetter({"ID_Login": ID_Login})
+
     # Dekrety pro zkoušku byly odeslány
     def EventEducationLetterRequestAllCheckDateSent(self, ID_Login):
         return self._client.service.EventEducationLetterRequestAllCheckDateSent({"ID_Login": ID_Login})
@@ -1065,16 +1073,16 @@ class Events(object):
         return self._client.service.EventEducationExamExceptionUpdate({"ID_Login": ID_Login, "ID": ID, "ID_EventEducationExam": ID_EventEducationExam, "ID_Person": ID_Person, "Person": Person, "Note": Note})
 
     # Založit zkoušku
-    def EventEducationExamInsert(self, ID_Login, ID, IsActive, ID_QualificationType, ID_EventEducation, Capacity, Date, ID_EventEducationTypeExam, ID_EventEducationCourse, ID_PersonLeader, HasLeaderQualification, EventLastDay, CanChangeQualificationType, IsQualificationAutomatic, QualificationType=None, EventEducation=None, ID_EventEducationCommissionState=None, EventEducationCommissionState=None, CommissionNote=None, PersonLeader=None, LeaderQualifications=None):
-        return self._client.service.EventEducationExamInsert({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_QualificationType": ID_QualificationType, "ID_EventEducation": ID_EventEducation, "Capacity": Capacity, "Date": Date, "ID_EventEducationTypeExam": ID_EventEducationTypeExam, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_PersonLeader": ID_PersonLeader, "HasLeaderQualification": HasLeaderQualification, "EventLastDay": EventLastDay, "CanChangeQualificationType": CanChangeQualificationType, "IsQualificationAutomatic": IsQualificationAutomatic, "QualificationType": QualificationType, "EventEducation": EventEducation, "ID_EventEducationCommissionState": ID_EventEducationCommissionState, "EventEducationCommissionState": EventEducationCommissionState, "CommissionNote": CommissionNote, "PersonLeader": PersonLeader, "LeaderQualifications": LeaderQualifications})
+    def EventEducationExamInsert(self, ID_Login, ID, IsActive, ID_QualificationType, ID_EventEducation, Capacity, Date, ID_EventEducationTypeExam, ID_EventEducationCourse, ID_PersonLeader, HasLeaderQualification, EventLastDay, CanChangeQualificationType, IsQualificationAutomatic, QualificationType=None, QualificationTypeKey=None, EventEducation=None, ID_EventEducationCommissionState=None, EventEducationCommissionState=None, CommissionNote=None, PersonLeader=None, LeaderQualifications=None):
+        return self._client.service.EventEducationExamInsert({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_QualificationType": ID_QualificationType, "ID_EventEducation": ID_EventEducation, "Capacity": Capacity, "Date": Date, "ID_EventEducationTypeExam": ID_EventEducationTypeExam, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_PersonLeader": ID_PersonLeader, "HasLeaderQualification": HasLeaderQualification, "EventLastDay": EventLastDay, "CanChangeQualificationType": CanChangeQualificationType, "IsQualificationAutomatic": IsQualificationAutomatic, "QualificationType": QualificationType, "QualificationTypeKey": QualificationTypeKey, "EventEducation": EventEducation, "ID_EventEducationCommissionState": ID_EventEducationCommissionState, "EventEducationCommissionState": EventEducationCommissionState, "CommissionNote": CommissionNote, "PersonLeader": PersonLeader, "LeaderQualifications": LeaderQualifications})
 
     # Upravit zkoušku
-    def EventEducationExamUpdate(self, ID_Login, ID, IsActive, ID_QualificationType, ID_EventEducation, Capacity, Date, ID_EventEducationTypeExam, ID_EventEducationCourse, ID_PersonLeader, HasLeaderQualification, EventLastDay, CanChangeQualificationType, IsQualificationAutomatic, QualificationType=None, EventEducation=None, ID_EventEducationCommissionState=None, EventEducationCommissionState=None, CommissionNote=None, PersonLeader=None, LeaderQualifications=None):
-        return self._client.service.EventEducationExamUpdate({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_QualificationType": ID_QualificationType, "ID_EventEducation": ID_EventEducation, "Capacity": Capacity, "Date": Date, "ID_EventEducationTypeExam": ID_EventEducationTypeExam, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_PersonLeader": ID_PersonLeader, "HasLeaderQualification": HasLeaderQualification, "EventLastDay": EventLastDay, "CanChangeQualificationType": CanChangeQualificationType, "IsQualificationAutomatic": IsQualificationAutomatic, "QualificationType": QualificationType, "EventEducation": EventEducation, "ID_EventEducationCommissionState": ID_EventEducationCommissionState, "EventEducationCommissionState": EventEducationCommissionState, "CommissionNote": CommissionNote, "PersonLeader": PersonLeader, "LeaderQualifications": LeaderQualifications})
+    def EventEducationExamUpdate(self, ID_Login, ID, IsActive, ID_QualificationType, ID_EventEducation, Capacity, Date, ID_EventEducationTypeExam, ID_EventEducationCourse, ID_PersonLeader, HasLeaderQualification, EventLastDay, CanChangeQualificationType, IsQualificationAutomatic, QualificationType=None, QualificationTypeKey=None, EventEducation=None, ID_EventEducationCommissionState=None, EventEducationCommissionState=None, CommissionNote=None, PersonLeader=None, LeaderQualifications=None):
+        return self._client.service.EventEducationExamUpdate({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_QualificationType": ID_QualificationType, "ID_EventEducation": ID_EventEducation, "Capacity": Capacity, "Date": Date, "ID_EventEducationTypeExam": ID_EventEducationTypeExam, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_PersonLeader": ID_PersonLeader, "HasLeaderQualification": HasLeaderQualification, "EventLastDay": EventLastDay, "CanChangeQualificationType": CanChangeQualificationType, "IsQualificationAutomatic": IsQualificationAutomatic, "QualificationType": QualificationType, "QualificationTypeKey": QualificationTypeKey, "EventEducation": EventEducation, "ID_EventEducationCommissionState": ID_EventEducationCommissionState, "EventEducationCommissionState": EventEducationCommissionState, "CommissionNote": CommissionNote, "PersonLeader": PersonLeader, "LeaderQualifications": LeaderQualifications})
 
     # Změnit stav zkušební komise
-    def EventEducationExamUpdateCommissionState(self, ID_Login, ID, IsActive, ID_QualificationType, ID_EventEducation, Capacity, Date, ID_EventEducationTypeExam, ID_EventEducationCourse, ID_PersonLeader, HasLeaderQualification, EventLastDay, CanChangeQualificationType, IsQualificationAutomatic, QualificationType=None, EventEducation=None, ID_EventEducationCommissionState=None, EventEducationCommissionState=None, CommissionNote=None, PersonLeader=None, LeaderQualifications=None):
-        return self._client.service.EventEducationExamUpdateCommissionState({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_QualificationType": ID_QualificationType, "ID_EventEducation": ID_EventEducation, "Capacity": Capacity, "Date": Date, "ID_EventEducationTypeExam": ID_EventEducationTypeExam, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_PersonLeader": ID_PersonLeader, "HasLeaderQualification": HasLeaderQualification, "EventLastDay": EventLastDay, "CanChangeQualificationType": CanChangeQualificationType, "IsQualificationAutomatic": IsQualificationAutomatic, "QualificationType": QualificationType, "EventEducation": EventEducation, "ID_EventEducationCommissionState": ID_EventEducationCommissionState, "EventEducationCommissionState": EventEducationCommissionState, "CommissionNote": CommissionNote, "PersonLeader": PersonLeader, "LeaderQualifications": LeaderQualifications})
+    def EventEducationExamUpdateCommissionState(self, ID_Login, ID, IsActive, ID_QualificationType, ID_EventEducation, Capacity, Date, ID_EventEducationTypeExam, ID_EventEducationCourse, ID_PersonLeader, HasLeaderQualification, EventLastDay, CanChangeQualificationType, IsQualificationAutomatic, QualificationType=None, QualificationTypeKey=None, EventEducation=None, ID_EventEducationCommissionState=None, EventEducationCommissionState=None, CommissionNote=None, PersonLeader=None, LeaderQualifications=None):
+        return self._client.service.EventEducationExamUpdateCommissionState({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_QualificationType": ID_QualificationType, "ID_EventEducation": ID_EventEducation, "Capacity": Capacity, "Date": Date, "ID_EventEducationTypeExam": ID_EventEducationTypeExam, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_PersonLeader": ID_PersonLeader, "HasLeaderQualification": HasLeaderQualification, "EventLastDay": EventLastDay, "CanChangeQualificationType": CanChangeQualificationType, "IsQualificationAutomatic": IsQualificationAutomatic, "QualificationType": QualificationType, "QualificationTypeKey": QualificationTypeKey, "EventEducation": EventEducation, "ID_EventEducationCommissionState": ID_EventEducationCommissionState, "EventEducationCommissionState": EventEducationCommissionState, "CommissionNote": CommissionNote, "PersonLeader": PersonLeader, "LeaderQualifications": LeaderQualifications})
 
     # Načíst seznam skupin typů vzdělávacích akcí
     def EventEducationGroupAll(self, ID_Login, ID_Application, ID=None, DisplayName=None):
@@ -1259,10 +1267,6 @@ class Events(object):
     # Upravit zástupce vedoucího vzdělávací akce
     def EventFunctionUpdateEducationAssistant(self, ID_Login, ID, ID_Event, ID_EventEducation, ID_Person, ID_EventFunctionType, HealthQualification, HealthQualificationDate, Event=None, Person=None, EventFunctionType=None, Note=None):
         return self._client.service.EventFunctionUpdateEducationAssistant({"ID_Login": ID_Login, "ID": ID, "ID_Event": ID_Event, "ID_EventEducation": ID_EventEducation, "ID_Person": ID_Person, "ID_EventFunctionType": ID_EventFunctionType, "HealthQualification": HealthQualification, "HealthQualificationDate": HealthQualificationDate, "Event": Event, "Person": Person, "EventFunctionType": EventFunctionType, "Note": Note})
-
-    # No documentation
-    def ParticipantEducationAllEventEducationExam(self, ID_Login, ID_EventEducationExam, ExcludeExisting):
-        return self._client.service.ParticipantEducationAllEventEducationExam({"ID_Login": ID_Login, "ID_EventEducationExam": ID_EventEducationExam, "ExcludeExisting": ExcludeExisting})
 
     # Načíst seznam akcí osoby
     def EventAllPersonParticipation(self, ID_Login, ID_Person, Year, ID_EventType=None, DisplayName=None):
@@ -1696,6 +1700,10 @@ class Events(object):
     def EventEducationExamAllPublicApi(self, ID_Login, ID_Application, ID_EventEducation):
         return self._client.service.EventEducationExamAllPublicApi({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_EventEducation": ID_EventEducation})
 
+    # Odeslat výzvy k zaslání seznamu vydaných dekretů na kurzu
+    def EventEducationCourseCheckLetterReminder(self, ID_Login):
+        return self._client.service.EventEducationCourseCheckLetterReminder({"ID_Login": ID_Login})
+
     # Načíst seznam ilustračních fotek dalších údajů VzA
     def EventEducationOtherIllustrativePhotoAll(self, ID_Login, ID_Application, ID, ID_EventEducation, ID_EventEducationCourse, ID_EventEducationOther, ID_Document, ID_DocumentSmall):
         return self._client.service.EventEducationOtherIllustrativePhotoAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_EventEducation": ID_EventEducation, "ID_EventEducationCourse": ID_EventEducationCourse, "ID_EventEducationOther": ID_EventEducationOther, "ID_Document": ID_Document, "ID_DocumentSmall": ID_DocumentSmall})
@@ -1751,8 +1759,4 @@ class Events(object):
     # Generovat číslo k žádosti
     def EventEducationLetterRequestUpdateGenerate(self, ID_Login, ID, ID_ParticipantEducationExam, ID_ParticipantEducation, Date, DateSent, ID_EventEducationLetterRequestState=None, EventEducationLetterRequestState=None, LetterNumber=None):
         return self._client.service.EventEducationLetterRequestUpdateGenerate({"ID_Login": ID_Login, "ID": ID, "ID_ParticipantEducationExam": ID_ParticipantEducationExam, "ID_ParticipantEducation": ID_ParticipantEducation, "Date": Date, "DateSent": DateSent, "ID_EventEducationLetterRequestState": ID_EventEducationLetterRequestState, "EventEducationLetterRequestState": EventEducationLetterRequestState, "LetterNumber": LetterNumber})
-
-    # Hlídá dobu po kterou je dekrety možné předávat
-    def EventEducationtExamAllCheckLetter(self, ID_Login):
-        return self._client.service.EventEducationtExamAllCheckLetter({"ID_Login": ID_Login})
 
