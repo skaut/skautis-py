@@ -12,6 +12,14 @@ class Message(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Message.asmx?wsdl')
 
+    # Načíst seznam typů příloh zpráv pro editaci šablony zprávy
+    def MessageAttachmentTypeAllMultiple(self, ID_Login, ID_MessageType=None):
+        return self._client.service.MessageAttachmentTypeAllMultiple({"ID_Login": ID_Login, "ID_MessageType": ID_MessageType})
+
+    # Načíst seznam typů příloh zpráv
+    def MessageAttachmentTypeAll(self, ID_Login, ID_MessageType=None):
+        return self._client.service.MessageAttachmentTypeAll({"ID_Login": ID_Login, "ID_MessageType": ID_MessageType})
+
     # Načíst seznam skupin zpráv
     def MessageGroupAll(self, ID_Login, DisplayName=None, ReplyTo=None):
         return self._client.service.MessageGroupAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "ReplyTo": ReplyTo})
@@ -89,8 +97,8 @@ class Message(object):
         return self._client.service.MessageTemplateDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Upravit šablonu zprávy
-    def MessageTemplateUpdate(self, ID_Login, ID, ID_MessageType=None, MessageType=None, ID_MessageMedium=None, MessageMedium=None, DisplayName=None, Body=None):
-        return self._client.service.MessageTemplateUpdate({"ID_Login": ID_Login, "ID": ID, "ID_MessageType": ID_MessageType, "MessageType": MessageType, "ID_MessageMedium": ID_MessageMedium, "MessageMedium": MessageMedium, "DisplayName": DisplayName, "Body": Body})
+    def MessageTemplateUpdate(self, ID_Login, ID, IsAttachmentVisible, ID_MessageType=None, MessageType=None, ID_MessageMedium=None, MessageMedium=None, DisplayName=None, Body=None):
+        return self._client.service.MessageTemplateUpdate({"ID_Login": ID_Login, "ID": ID, "IsAttachmentVisible": IsAttachmentVisible, "ID_MessageType": ID_MessageType, "MessageType": MessageType, "ID_MessageMedium": ID_MessageMedium, "MessageMedium": MessageMedium, "DisplayName": DisplayName, "Body": Body})
 
     # Načíst seznam příjemců zprávy
     def MessageToAll(self, ID_Login, ID_Message):
