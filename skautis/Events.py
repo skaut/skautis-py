@@ -12,6 +12,10 @@ class Events(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Events.asmx?wsdl')
 
+    # Smazat účastníka VSJ
+    def ParticipantDeleteUstredi(self, ID_Login, ID, DeletePerson):
+        return self._client.service.ParticipantDeleteUstredi({"ID_Login": ID_Login, "ID": ID, "DeletePerson": DeletePerson})
+
     # Načíst detail účastníka VSJ
     def ParticipantDetailUstredi(self, ID_Login, ID):
         return self._client.service.ParticipantDetailUstredi({"ID_Login": ID_Login, "ID": ID})
@@ -428,6 +432,10 @@ class Events(object):
     def OccupancyAll(self, ID_Login, ID, DisplayName=None):
         return self._client.service.OccupancyAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
+    # Načíst seznam zákonných zástupců osoby pro táborovou přihlášku
+    def PersonParentAllEventCampEnroll(self, ID_Login, ID_Application, AccessKey, ID_EventCampEnroll, IsNameStrong):
+        return self._client.service.PersonParentAllEventCampEnroll({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "ID_EventCampEnroll": ID_EventCampEnroll, "IsNameStrong": IsNameStrong})
+
     # Načíst seznam táborů
     def EventCampAllZip(self, ID_Login, ID_Unit, IsFuture, Started, Year, IsRelation, IsChildDirect, IsChildUnit, ForEvaluation, IsKraj, DisplayName=None, ID_EventCampState=None, RegistrationNumber=None, Location=None):
         return self._client.service.EventCampAllZip({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsFuture": IsFuture, "Started": Started, "Year": Year, "IsRelation": IsRelation, "IsChildDirect": IsChildDirect, "IsChildUnit": IsChildUnit, "ForEvaluation": ForEvaluation, "IsKraj": IsKraj, "DisplayName": DisplayName, "ID_EventCampState": ID_EventCampState, "RegistrationNumber": RegistrationNumber, "Location": Location})
@@ -493,8 +501,8 @@ class Events(object):
         return self._client.service.EventCampUpdateReOpen({"ID_Login": ID_Login, "ID": ID, "ID_Group": ID_Group, "ID_UserCreate": ID_UserCreate, "DateCreate": DateCreate, "ID_Unit": ID_Unit, "StartDate": StartDate, "EndDate": EndDate, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "ID_Event": ID_Event, "RegistrationDeadline": RegistrationDeadline, "ID_Region": ID_Region, "IsFloodArea": IsFloodArea, "IsAutoComputed": IsAutoComputed, "ID_PersonApproved": ID_PersonApproved, "DateApproved": DateApproved, "ID_PersonApprovedParent": ID_PersonApprovedParent, "DateApprovedParent": DateApprovedParent, "DateApprovedExecutive": DateApprovedExecutive, "TotalDays": TotalDays, "IsRecovering": IsRecovering, "EstimateChild": EstimateChild, "EstimateAdult": EstimateAdult, "EstimateAdultYoung": EstimateAdultYoung, "EstimateCount": EstimateCount, "EstimateChildDays": EstimateChildDays, "EstimatePersonDays": EstimatePersonDays, "IsAutoComputedDays": IsAutoComputedDays, "RealTotalCost": RealTotalCost, "IsRealTotalCostAutoComputed": IsRealTotalCostAutoComputed, "IsRealAutoComputed": IsRealAutoComputed, "IsRealAutoComputedDays": IsRealAutoComputedDays, "ID_PersonReal": ID_PersonReal, "DateReal": DateReal, "RealAdult": RealAdult, "RealAdultYoung": RealAdultYoung, "RealChild": RealChild, "RealCount": RealCount, "RealChildDays": RealChildDays, "RealPersonDays": RealPersonDays, "HasEstimateStatement": HasEstimateStatement, "ID_PersonLeader": ID_PersonLeader, "Profit": Profit, "ProfitComputed": ProfitComputed, "ProfitComputedEstimation": ProfitComputedEstimation, "ID_CampPlace": ID_CampPlace, "IsOnlineLogin": IsOnlineLogin, "CanUpdate": CanUpdate, "CanUpdateReal": CanUpdateReal, "AdultYoung": AdultYoung, "ID_EventType": ID_EventType, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "GpsLatitudeText": GpsLatitudeText, "GpsLongitudeText": GpsLongitudeText, "Location": Location, "Note": Note, "CancelDecision": CancelDecision, "ID_EventCampState": ID_EventCampState, "EventCampState": EventCampState, "MobileContact": MobileContact, "MobileContactDisplay": MobileContactDisplay, "Region": Region, "Postcode": Postcode, "PersonApproved": PersonApproved, "PersonApprovedParent": PersonApprovedParent, "CampType": CampType, "ID_CampTypeArray": ID_CampTypeArray, "ID_UnitArray": ID_UnitArray, "Units": Units, "PersonReal": PersonReal, "PersonLeader": PersonLeader, "PersonLeaderFirstName": PersonLeaderFirstName, "PersonLeaderLastName": PersonLeaderLastName, "PersonLeaderCivilName": PersonLeaderCivilName, "LeaderPhone": LeaderPhone, "LeaderPhoneDisplay": LeaderPhoneDisplay, "LeaderEmail": LeaderEmail, "LeaderEmailDisplay": LeaderEmailDisplay, "LeaderCity": LeaderCity, "UnitLocation": UnitLocation, "PersonStatutory": PersonStatutory, "CampPlace": CampPlace})
 
     # Upravit tabořícího
-    def ParticipantCampUpdate(self, IsManual, Birthday, Age, ID_Unit, CanDelete, IdCardValidTo, Accepted, IsAccepted, Price, ID_EventCampEnroll, IsPaid, Person=None, ID_ParticipantType=None, ParticipantType=None, Assurance=None, Street=None, City=None, Postcode=None, State=None, FullAddress=None, Unit=None, UnitRegistrationNumber=None, Category=None, IdCardNumber=None, ID_CampEnrollState=None, CampEnrollState=None, Icon=None, IconClass=None, VariableSymbol=None, MembershipCategory=None, ParticipationTerm=None):
-        return self._client.service.ParticipantCampUpdate({"IsManual": IsManual, "Birthday": Birthday, "Age": Age, "ID_Unit": ID_Unit, "CanDelete": CanDelete, "IdCardValidTo": IdCardValidTo, "Accepted": Accepted, "IsAccepted": IsAccepted, "Price": Price, "ID_EventCampEnroll": ID_EventCampEnroll, "IsPaid": IsPaid, "Person": Person, "ID_ParticipantType": ID_ParticipantType, "ParticipantType": ParticipantType, "Assurance": Assurance, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "FullAddress": FullAddress, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber, "Category": Category, "IdCardNumber": IdCardNumber, "ID_CampEnrollState": ID_CampEnrollState, "CampEnrollState": CampEnrollState, "Icon": Icon, "IconClass": IconClass, "VariableSymbol": VariableSymbol, "MembershipCategory": MembershipCategory, "ParticipationTerm": ParticipationTerm})
+    def ParticipantCampUpdate(self, IsManual, Birthday, Age, ID_Unit, CanDelete, IdCardValidTo, Accepted, IsAccepted, Price, ID_EventCampEnroll, IsPaid, ParticipationTermDifferentThanEventCamp, Person=None, ID_ParticipantType=None, ParticipantType=None, Assurance=None, Street=None, City=None, Postcode=None, State=None, FullAddress=None, Unit=None, UnitRegistrationNumber=None, Category=None, IdCardNumber=None, ID_CampEnrollState=None, CampEnrollState=None, Icon=None, IconClass=None, VariableSymbol=None, MembershipCategory=None, ParticipationTerm=None):
+        return self._client.service.ParticipantCampUpdate({"IsManual": IsManual, "Birthday": Birthday, "Age": Age, "ID_Unit": ID_Unit, "CanDelete": CanDelete, "IdCardValidTo": IdCardValidTo, "Accepted": Accepted, "IsAccepted": IsAccepted, "Price": Price, "ID_EventCampEnroll": ID_EventCampEnroll, "IsPaid": IsPaid, "ParticipationTermDifferentThanEventCamp": ParticipationTermDifferentThanEventCamp, "Person": Person, "ID_ParticipantType": ID_ParticipantType, "ParticipantType": ParticipantType, "Assurance": Assurance, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "FullAddress": FullAddress, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber, "Category": Category, "IdCardNumber": IdCardNumber, "ID_CampEnrollState": ID_CampEnrollState, "CampEnrollState": CampEnrollState, "Icon": Icon, "IconClass": IconClass, "VariableSymbol": VariableSymbol, "MembershipCategory": MembershipCategory, "ParticipationTerm": ParticipationTerm})
 
     # Načíst seznam typů akcí
     def EventTypeAll(self, ID_Login, DisplayName=None, ID_Table=None):
@@ -705,8 +713,8 @@ class Events(object):
         return self._client.service.ParticipantCampAll({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "Estimate": Estimate, "Real": Real})
 
     # Smazat účastníka tábora
-    def ParticipantCampDeleteFromList(self, IsManual, Birthday, Age, ID_Unit, CanDelete, IdCardValidTo, Accepted, IsAccepted, Price, ID_EventCampEnroll, IsPaid, Person=None, ID_ParticipantType=None, ParticipantType=None, Assurance=None, Street=None, City=None, Postcode=None, State=None, FullAddress=None, Unit=None, UnitRegistrationNumber=None, Category=None, IdCardNumber=None, ID_CampEnrollState=None, CampEnrollState=None, Icon=None, IconClass=None, VariableSymbol=None, MembershipCategory=None, ParticipationTerm=None):
-        return self._client.service.ParticipantCampDeleteFromList({"IsManual": IsManual, "Birthday": Birthday, "Age": Age, "ID_Unit": ID_Unit, "CanDelete": CanDelete, "IdCardValidTo": IdCardValidTo, "Accepted": Accepted, "IsAccepted": IsAccepted, "Price": Price, "ID_EventCampEnroll": ID_EventCampEnroll, "IsPaid": IsPaid, "Person": Person, "ID_ParticipantType": ID_ParticipantType, "ParticipantType": ParticipantType, "Assurance": Assurance, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "FullAddress": FullAddress, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber, "Category": Category, "IdCardNumber": IdCardNumber, "ID_CampEnrollState": ID_CampEnrollState, "CampEnrollState": CampEnrollState, "Icon": Icon, "IconClass": IconClass, "VariableSymbol": VariableSymbol, "MembershipCategory": MembershipCategory, "ParticipationTerm": ParticipationTerm})
+    def ParticipantCampDeleteFromList(self, IsManual, Birthday, Age, ID_Unit, CanDelete, IdCardValidTo, Accepted, IsAccepted, Price, ID_EventCampEnroll, IsPaid, ParticipationTermDifferentThanEventCamp, Person=None, ID_ParticipantType=None, ParticipantType=None, Assurance=None, Street=None, City=None, Postcode=None, State=None, FullAddress=None, Unit=None, UnitRegistrationNumber=None, Category=None, IdCardNumber=None, ID_CampEnrollState=None, CampEnrollState=None, Icon=None, IconClass=None, VariableSymbol=None, MembershipCategory=None, ParticipationTerm=None):
+        return self._client.service.ParticipantCampDeleteFromList({"IsManual": IsManual, "Birthday": Birthday, "Age": Age, "ID_Unit": ID_Unit, "CanDelete": CanDelete, "IdCardValidTo": IdCardValidTo, "Accepted": Accepted, "IsAccepted": IsAccepted, "Price": Price, "ID_EventCampEnroll": ID_EventCampEnroll, "IsPaid": IsPaid, "ParticipationTermDifferentThanEventCamp": ParticipationTermDifferentThanEventCamp, "Person": Person, "ID_ParticipantType": ID_ParticipantType, "ParticipantType": ParticipantType, "Assurance": Assurance, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "FullAddress": FullAddress, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber, "Category": Category, "IdCardNumber": IdCardNumber, "ID_CampEnrollState": ID_CampEnrollState, "CampEnrollState": CampEnrollState, "Icon": Icon, "IconClass": IconClass, "VariableSymbol": VariableSymbol, "MembershipCategory": MembershipCategory, "ParticipationTerm": ParticipationTerm})
 
     # Smazat účastníka tábora
     def ParticipantCampDelete(self, ID_Login, ID, DeletePerson):
@@ -779,10 +787,6 @@ class Events(object):
     # Upravit typ jídla
     def FoodUpdate(self, ID_Login, ID, ID_EventCongress, Day, DisplayName=None):
         return self._client.service.FoodUpdate({"ID_Login": ID_Login, "ID": ID, "ID_EventCongress": ID_EventCongress, "Day": Day, "DisplayName": DisplayName})
-
-    # Smazat účastníka VSJ
-    def ParticipantDeleteUstredi(self, ID_Login, ID, DeletePerson):
-        return self._client.service.ParticipantDeleteUstredi({"ID_Login": ID_Login, "ID": ID, "DeletePerson": DeletePerson})
 
     # Odeslat výzvy k zadání výsledků proběhlé zkoušky
     def EventEducationExamCheckReminder(self, ID_Login):
@@ -1297,16 +1301,16 @@ class Events(object):
         return self._client.service.CampAnswerAll({"ID_Login": ID_Login, "ID": ID, "ID_CampQuestion": ID_CampQuestion, "ID_EventCamp": ID_EventCamp})
 
     # Načíst seznam otázek online přihlašování
-    def CampLoginQuestionAllAnswer(self, ID_Login, ID_Application, AccessKey, ID_EventCampEnroll, ID_EventCamp):
-        return self._client.service.CampLoginQuestionAllAnswer({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "ID_EventCampEnroll": ID_EventCampEnroll, "ID_EventCamp": ID_EventCamp})
+    def CampLoginQuestionAllAnswer(self, ID_Login, ID_Application, AccessKey, ID_EventCampEnroll, ID_EventCamp, ID_CampOnlineLogin):
+        return self._client.service.CampLoginQuestionAllAnswer({"ID_Login": ID_Login, "ID_Application": ID_Application, "AccessKey": AccessKey, "ID_EventCampEnroll": ID_EventCampEnroll, "ID_EventCamp": ID_EventCamp, "ID_CampOnlineLogin": ID_CampOnlineLogin})
 
     # Načíst seznam otázek online přihlašování
     def CampLoginQuestionAll(self, ID_Login, ID_EventCamp, ID_CampOnlineLogin):
         return self._client.service.CampLoginQuestionAll({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "ID_CampOnlineLogin": ID_CampOnlineLogin})
 
     # Načíst seznam otázek online přihlašování
-    def CampLoginQuestionAllEventCampList(self, ID_Login, ID_EventCamp, AddEmptyItem):
-        return self._client.service.CampLoginQuestionAllEventCampList({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "AddEmptyItem": AddEmptyItem})
+    def CampLoginQuestionAllEventCampList(self, ID_Login, ID_EventCamp, AddEmptyItem, OnlyBeforeDeadline):
+        return self._client.service.CampLoginQuestionAllEventCampList({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "AddEmptyItem": AddEmptyItem, "OnlyBeforeDeadline": OnlyBeforeDeadline})
 
     # Smazat otázku online přihlašování
     def CampLoginQuestionDelete(self, ID_Login, ID_EventCamp, ID_CampOnlineLogin, ID_CampLoginQuestionGroup, ID=None, ID_LoginQuestionType=None, LoginQuestionType=None, CampOnlineLogin=None, CampLoginQuestionGroup=None, DisplayName=None, RawText=None, Help=None, HelpRaw=None, Note=None, ID_LoginQuestionRequirement=None, LoginQuestionRequirement=None):
