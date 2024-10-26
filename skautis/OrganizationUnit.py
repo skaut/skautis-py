@@ -12,6 +12,14 @@ class OrganizationUnit(object):
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Načíst seznam pohlaví
+    def SexAll(self, ID_Login, ID_Application, DisplayName=None):
+        return self._client.service.SexAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "DisplayName": DisplayName})
+
+    # Načíst seznam hospodářských výkazů
+    def StatementAll(self, ID_Login, ID_Unit, Year, ID_StatementType=None):
+        return self._client.service.StatementAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "Year": Year, "ID_StatementType": ID_StatementType})
+
     # Smazat hospodářský výkaz
     def StatementDelete(self, ID_Login, ID):
         return self._client.service.StatementDelete({"ID_Login": ID_Login, "ID": ID})
@@ -135,6 +143,14 @@ class OrganizationUnit(object):
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Načíst detail banky
+    def BankDetail(self, ID_Login, ID):
+        return self._client.service.BankDetail({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst seznam typů kontaktů
+    def ContactTypeAll(self, ID_Login, IsForPerson, IsForUnit, ID=None, DisplayName=None):
+        return self._client.service.ContactTypeAll({"ID_Login": ID_Login, "IsForPerson": IsForPerson, "IsForUnit": IsForUnit, "ID": ID, "DisplayName": DisplayName})
 
     # Načíst seznam vzdělávacích akcí
     def EducatationSeminaryAll(self, ID_Login, ID_Person, DisplayName=None):
@@ -461,8 +477,8 @@ class OrganizationUnit(object):
         return self._client.service.MembershipAllUnitUpdate({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "OnlyDirectMember": OnlyDirectMember, "LastValidOnly": LastValidOnly})
 
     # Načíst seznam výchovných kategorií
-    def MembershipCategoryAll(self, ID_Login, Age, ID_Unit, ID=None, DisplayName=None, ID_Sex=None):
-        return self._client.service.MembershipCategoryAll({"ID_Login": ID_Login, "Age": Age, "ID_Unit": ID_Unit, "ID": ID, "DisplayName": DisplayName, "ID_Sex": ID_Sex})
+    def MembershipCategoryAll(self, ID_Login, Age, ID_Unit, AddCombinations, ID=None, DisplayName=None, ID_Sex=None):
+        return self._client.service.MembershipCategoryAll({"ID_Login": ID_Login, "Age": Age, "ID_Unit": ID_Unit, "AddCombinations": AddCombinations, "ID": ID, "DisplayName": DisplayName, "ID_Sex": ID_Sex})
 
     # Načíst detail členství osoby v jednotce
     def MembershipDetail(self, ID_Login, ID):
@@ -604,13 +620,13 @@ class OrganizationUnit(object):
     def RegistrationCategoryInsert(self, ID_Login, ID_UnitRegistration, ID_RegistrationCategoryParent, Amount, IsAfterDeadline, IsJournal, DisplayName=None, ID_MembershipType=None, Note=None):
         return self._client.service.RegistrationCategoryInsert({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "ID_RegistrationCategoryParent": ID_RegistrationCategoryParent, "Amount": Amount, "IsAfterDeadline": IsAfterDeadline, "IsJournal": IsJournal, "DisplayName": DisplayName, "ID_MembershipType": ID_MembershipType, "Note": Note})
 
-    # Načíst seznam pohlaví
-    def SexAll(self, ID_Login, ID_Application, DisplayName=None):
-        return self._client.service.SexAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "DisplayName": DisplayName})
+    # upravit poznámku registru OJ
+    def RegistryUpdateNote(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
+        return self._client.service.RegistryUpdateNote({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
 
-    # Načíst seznam hospodářských výkazů
-    def StatementAll(self, ID_Login, ID_Unit, Year, ID_StatementType=None):
-        return self._client.service.StatementAll({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "Year": Year, "ID_StatementType": ID_StatementType})
+    # Načíst seznam typů razítka
+    def StampTypeAll(self, ID_Login, ID=None, DisplayName=None):
+        return self._client.service.StampTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
     # Načíst detail hospodářského výkazu pro sestavu
     def StatementDetailReport(self, ID_Login, ID):
@@ -1108,13 +1124,13 @@ class OrganizationUnit(object):
     def BankAll(self, ID_Login, DisplayName=None, Code=None):
         return self._client.service.BankAll({"ID_Login": ID_Login, "DisplayName": DisplayName, "Code": Code})
 
-    # Načíst detail banky
-    def BankDetail(self, ID_Login, ID):
-        return self._client.service.BankDetail({"ID_Login": ID_Login, "ID": ID})
+    # Ověření, zda má osoba nárok na časopis zdarma
+    def PersonDetailCanHaveFreeJournal(self, ID_Login, ID):
+        return self._client.service.PersonDetailCanHaveFreeJournal({"ID_Login": ID_Login, "ID": ID})
 
-    # Načíst seznam typů kontaktů
-    def ContactTypeAll(self, ID_Login, IsForPerson, IsForUnit, ID=None, DisplayName=None):
-        return self._client.service.ContactTypeAll({"ID_Login": ID_Login, "IsForPerson": IsForPerson, "IsForUnit": IsForUnit, "ID": ID, "DisplayName": DisplayName})
+    # Načíst informace pro dashboard
+    def PersonDetailDashboard(self, ID_Login):
+        return self._client.service.PersonDetailDashboard({"ID_Login": ID_Login})
 
     # Načtení počtu přijatých a nepřečtených zpráv osoby
     def PersonDetailMessageCount(self, ID_Login):
@@ -1580,14 +1596,6 @@ class OrganizationUnit(object):
     def RegistryDetailExport(self, ID_Login, ID):
         return self._client.service.RegistryDetailExport({"ID_Login": ID_Login, "ID": ID})
 
-    # upravit poznámku registru OJ
-    def RegistryUpdateNote(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
-        return self._client.service.RegistryUpdateNote({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
-
-    # Načíst seznam typů razítka
-    def StampTypeAll(self, ID_Login, ID=None, DisplayName=None):
-        return self._client.service.StampTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
-
     # Načíst seznam účtů tábora
     def AccountAllEventCamp(self, ID_Login, ID_Application, ID_EventCamp):
         return self._client.service.AccountAllEventCamp({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_EventCamp": ID_EventCamp})
@@ -1620,6 +1628,10 @@ class OrganizationUnit(object):
     def MemberCardUpdateCancelRerequest(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentPersonSchool, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
         return self._client.service.MemberCardUpdateCancelRerequest({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentPersonSchool": ID_DocumentPersonSchool, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
 
+    # Detail osoby jako účastníka sněmu
+    def PersonDetailEventCongressParticipant(self, ID_Login, ID_EventCongress, ID_Participant):
+        return self._client.service.PersonDetailEventCongressParticipant({"ID_Login": ID_Login, "ID_EventCongress": ID_EventCongress, "ID_Participant": ID_Participant})
+
     # Odeslat email o vyzvednutí kódu pro vstup do STS
     def PersonOtherTelephonyEnroll(self, ID_Login, ID_Person):
         return self._client.service.PersonOtherTelephonyEnroll({"ID_Login": ID_Login, "ID_Person": ID_Person})
@@ -1627,6 +1639,10 @@ class OrganizationUnit(object):
     # Načíst seznam typů účastí
     def ParticipationTypeAll(self, ID_Application, ID_Login, ID=None, DisplayName=None):
         return self._client.service.ParticipationTypeAll({"ID_Application": ID_Application, "ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
+
+    # Editace účastníka sněmu
+    def PersonUpdateEventCongressParticipant(self, ID_Login, ID_Participant, IdCardValidTo, IsAddressAuthenticated, Email=None, Phone=None, Street=None, City=None, Postcode=None, State=None, IdCardNumber=None):
+        return self._client.service.PersonUpdateEventCongressParticipant({"ID_Login": ID_Login, "ID_Participant": ID_Participant, "IdCardValidTo": IdCardValidTo, "IsAddressAuthenticated": IsAddressAuthenticated, "Email": Email, "Phone": Phone, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "IdCardNumber": IdCardNumber})
 
     # Načtení míst působení
     def UnitLocations(self, ID_Login, ID_Application, Top, SearchQuery=None):
@@ -2075,12 +2091,4 @@ class OrganizationUnit(object):
     # Načtení informací o datech pro změnu
     def PersonDetailPersonChange(self, ID_Login, ID_Application, Code):
         return self._client.service.PersonDetailPersonChange({"ID_Login": ID_Login, "ID_Application": ID_Application, "Code": Code})
-
-    # Ověření, zda má osoba nárok na časopis zdarma
-    def PersonDetailCanHaveFreeJournal(self, ID_Login, ID):
-        return self._client.service.PersonDetailCanHaveFreeJournal({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst informace pro dashboard
-    def PersonDetailDashboard(self, ID_Login):
-        return self._client.service.PersonDetailDashboard({"ID_Login": ID_Login})
 
