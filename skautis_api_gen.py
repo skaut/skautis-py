@@ -12,7 +12,7 @@ import requests
 
 from bs4 import BeautifulSoup
 
-INDEX = 'https://test-is.skaut.cz/JunakWebservice/'
+INDEX = 'https://is.skaut.cz/JunakWebservice/'
 LIB_PATH = 'skautis'
 
 
