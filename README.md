@@ -6,7 +6,7 @@ Python knihovna pro připojení do [Skautisu](https://is.skaut.cz/)
 Pokud na nějakou narazíte, případně máte nápad na vylepšení generování, určitě dejte vědět. Nicméně vzhledem k jednoduché architektuře a stáří projektu jsou chyby nepravděpodobné.
 
 ## Instalace a použití
-Knihovna se instaluje pomocí setup scriptu:
+Knihovna je dostupná na [PyPI](https://pypi.org/project/skautis-py), případně se dá nainstalovat přímo ze zdroje pomocí setup scriptu:
 
     python setup.py install
 
