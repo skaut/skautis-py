@@ -45,6 +45,9 @@ def get_sections():
 
     ul = soup.find('ul')
     for li in ul.findAll('li', recursive=False):
+        # Task service was removed - filter it out until the dead link is removed as well.
+        if 'Task.asmx' in li.a['href']:
+            continue
         sections.append(urljoin(INDEX, li.a['href']) + '?wsdl')
     return sections
 
