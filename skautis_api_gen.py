@@ -61,9 +61,7 @@ def parse_wsdl(section_url):
 
     # extract service documentation
     doc_tree = tree.find('wsdl:documentation', ns)
-    main_doc = "No documentation"
-    if doc_tree is not None:
-        main_doc = doc_tree.text
+    main_doc = doc_tree.text if doc_tree is not None else None
 
     # load interesting parts of wsdl file
     ports = tree.find('wsdl:portType', ns)
@@ -81,7 +79,7 @@ def parse_wsdl(section_url):
     for port in ports:
         # load and check port documentation
         doc_tag = port.find('wsdl:documentation', ns)
-        doc = doc_tag.text if doc_tag is not None else "No documentation"
+        doc = doc_tag.text.strip() if doc_tag is not None else None
 
         # load port name
         name = port.attrib['name']

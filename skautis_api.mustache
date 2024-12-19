@@ -6,7 +6,7 @@ class SkautisApi:
     def __init__(self, appId, test=False):
         self._appId = appId
         self._test = test
-        
+
         {{#sections}}
         self.{{module}} = {{class}}(test)
         {{/sections}}

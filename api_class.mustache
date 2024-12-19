@@ -1,6 +1,8 @@
 import zeep
 
+{{#doc}}
 # {{doc}}
+{{/doc}}
 class {{class_name}}:
     __module__ = 'skautis'
 
@@ -11,7 +13,9 @@ class {{class_name}}:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/{{class_name}}.asmx?wsdl')
 
     {{#methods}}
+    {{#doc}}
     # {{doc}}
+    {{/doc}}
     def {{name}}({{def_args}}):
         return self._client.service.{{name}}({{args}})
 
