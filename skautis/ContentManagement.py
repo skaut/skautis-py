@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Webová služba pro správu obsahu (redakční systém)
-class ContentManagement(object):
+class ContentManagement:
     __module__ = 'skautis'
 
     def __init__(self, test):
@@ -56,7 +54,7 @@ class ContentManagement(object):
     def PageStateItemAll(self, ID_Login, ID, ID_PageState):
         return self._client.service.PageStateItemAll({"ID_Login": ID_Login, "ID": ID, "ID_PageState": ID_PageState})
 
-    # Smazat 
+    # Smazat
     def PageStateItemDelete(self, ID_Login, ID_Page):
         return self._client.service.PageStateItemDelete({"ID_Login": ID_Login, "ID_Page": ID_Page})
 

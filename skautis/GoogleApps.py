@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Webová služba pro práci s GoogleApps (zápis dat do databáze, komunikace s GoogleApps)
-class GoogleApps(object):
+class GoogleApps:
     __module__ = 'skautis'
 
     def __init__(self, test):
@@ -11,6 +9,26 @@ class GoogleApps(object):
             self._client = zeep.Client('https://test-is.skaut.cz/JunakWebservice/GoogleApps.asmx?wsdl')
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/GoogleApps.asmx?wsdl')
+
+    # Načíst seznam GA účtů k synchronizaci
+    def GoogleAccountAllSync(self, ID_Login):
+        return self._client.service.GoogleAccountAllSync({"ID_Login": ID_Login})
+
+    # Načíst detail užití úložiště daného účtu v GA
+    def GoogleAccountDetailStorage(self, ID_Login, ID):
+        return self._client.service.GoogleAccountDetailStorage({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst detail hlavního účtu jednotky v GA
+    def GoogleAccountDetailOrganizationUnit(self, ID_Login, ID):
+        return self._client.service.GoogleAccountDetailOrganizationUnit({"ID_Login": ID_Login, "ID": ID})
+
+    # Nastavit organizační jednotku pro google účet
+    def GoogleAccountUpdateOrganizationUnit(self, ID_Login, ID, OrganizationUnitId=None):
+        return self._client.service.GoogleAccountUpdateOrganizationUnit({"ID_Login": ID_Login, "ID": ID, "OrganizationUnitId": OrganizationUnitId})
+
+    # Načíst seznam organizačních jednotek v GA
+    def GoogleUnitAll(self, ID_Login):
+        return self._client.service.GoogleUnitAll({"ID_Login": ID_Login})
 
     # Načíst seznam google skupin pro synchronizaci
     def GoogleGroupAllSync(self, ID_Login):
@@ -31,6 +49,10 @@ class GoogleApps(object):
     # Založit nastavení synchronizace Google skupiny
     def GoogleGroupSyncSettingsInsert(self, ID_Login, ID, ID_GoogleGroup, IsFunction, ID_Unit, GoogleGroup=None, ID_SyncLevelType=None, SyncLevelType=None, Units=None, SyncContactTypes=None, MembershipCategories=None, FunctionsDirect=None, Functions=None, ID_UnitType=None):
         return self._client.service.GoogleGroupSyncSettingsInsert({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroup": ID_GoogleGroup, "IsFunction": IsFunction, "ID_Unit": ID_Unit, "GoogleGroup": GoogleGroup, "ID_SyncLevelType": ID_SyncLevelType, "SyncLevelType": SyncLevelType, "Units": Units, "SyncContactTypes": SyncContactTypes, "MembershipCategories": MembershipCategories, "FunctionsDirect": FunctionsDirect, "Functions": Functions, "ID_UnitType": ID_UnitType})
+
+    # Synchronizovat google účet
+    def GoogleAccountUpdateSync(self, ID_Login, ID, UnitEmail=None, PersonEmail=None, OldGroup=None, NewGroup=None):
+        return self._client.service.GoogleAccountUpdateSync({"ID_Login": ID_Login, "ID": ID, "UnitEmail": UnitEmail, "PersonEmail": PersonEmail, "OldGroup": OldGroup, "NewGroup": NewGroup})
 
     # Upravit typ synchronizace google skupiny
     def GoogleGroupUpdateSyncType(self, ID_Login, ID, ID_Unit, DateCreate, ID_GoogleGroupMain, ID_Domain, MemberCount, Valid, LastSync, DisplayName=None, Email=None, Unit=None, RegistrationNumber=None, GoogleGroupMainEmail=None, Description=None, EmailName=None, OwnerEmail=None, ID_SyncType=None):
@@ -64,7 +86,6 @@ class GoogleApps(object):
     def SyncContactTypeAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.SyncContactTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
-    # No documentation
     def SyncLevelTypeAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.SyncLevelTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
@@ -116,7 +137,6 @@ class GoogleApps(object):
     def SyncSettingsUnitInsert(self, ID_Login, ID, ID_GoogleGroupSyncSettings, ID_Unit, Units=None, Unit=None, RegistrationNumber=None, DisplayName=None):
         return self._client.service.SyncSettingsUnitInsert({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroupSyncSettings": ID_GoogleGroupSyncSettings, "ID_Unit": ID_Unit, "Units": Units, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName})
 
-    # No documentation
     def SyncTypeAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.SyncTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
@@ -204,7 +224,7 @@ class GoogleApps(object):
     def DomainUpdateApprove(self, ID_Login, ID, ID_Unit, ID_PersonCreated, OnlyMember, OnlyAfter15, OnlyCinovnik, OnlyAdminCreate, DateActivate, IsUsed, ID_PersonAdmin, ActivateGA, ID_DomainMain, ValidateDomain, ValidateAdmin, Hosting, DisplayName=None, Description=None, Unit=None, RegistrationNumber=None, ID_DomainState=None, DomainState=None, PersonCreated=None, Note=None, Alias=None, DNS=None):
         return self._client.service.DomainUpdateApprove({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_PersonCreated": ID_PersonCreated, "OnlyMember": OnlyMember, "OnlyAfter15": OnlyAfter15, "OnlyCinovnik": OnlyCinovnik, "OnlyAdminCreate": OnlyAdminCreate, "DateActivate": DateActivate, "IsUsed": IsUsed, "ID_PersonAdmin": ID_PersonAdmin, "ActivateGA": ActivateGA, "ID_DomainMain": ID_DomainMain, "ValidateDomain": ValidateDomain, "ValidateAdmin": ValidateAdmin, "Hosting": Hosting, "DisplayName": DisplayName, "Description": Description, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_DomainState": ID_DomainState, "DomainState": DomainState, "PersonCreated": PersonCreated, "Note": Note, "Alias": Alias, "DNS": DNS})
 
-    #  Upravit DNS záznam domény 
+    # Upravit DNS záznam domény
     def DomainUpdateDNS(self, ID_Login, ID, ID_Unit, ID_PersonCreated, OnlyMember, OnlyAfter15, OnlyCinovnik, OnlyAdminCreate, DateActivate, IsUsed, ID_PersonAdmin, ActivateGA, ID_DomainMain, ValidateDomain, ValidateAdmin, Hosting, DisplayName=None, Description=None, Unit=None, RegistrationNumber=None, ID_DomainState=None, DomainState=None, PersonCreated=None, Note=None, Alias=None, DNS=None):
         return self._client.service.DomainUpdateDNS({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "ID_PersonCreated": ID_PersonCreated, "OnlyMember": OnlyMember, "OnlyAfter15": OnlyAfter15, "OnlyCinovnik": OnlyCinovnik, "OnlyAdminCreate": OnlyAdminCreate, "DateActivate": DateActivate, "IsUsed": IsUsed, "ID_PersonAdmin": ID_PersonAdmin, "ActivateGA": ActivateGA, "ID_DomainMain": ID_DomainMain, "ValidateDomain": ValidateDomain, "ValidateAdmin": ValidateAdmin, "Hosting": Hosting, "DisplayName": DisplayName, "Description": Description, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_DomainState": ID_DomainState, "DomainState": DomainState, "PersonCreated": PersonCreated, "Note": Note, "Alias": Alias, "DNS": DNS})
 
@@ -249,16 +269,16 @@ class GoogleApps(object):
         return self._client.service.GoogleAccountDetailMain({"ID_Login": ID_Login, "ID_Person": ID_Person, "LoadMainEmail": LoadMainEmail})
 
     # Založit účet v GA osobě
-    def GoogleAccountInsert(self, ID_Login, ID, ID_Person, ID_Unit, ID_Domain, IsMain, IsMainContact, Agrees, ID_UnitContact, ID_PersonContact, ID_PersonCreated, DateCreated, ID_GoogleAccount, OnlyValidate, ShareAllAdded, Person=None, Unit=None, UserName=None, Domain=None, Password=None, Password2=None, PersonCreated=None, Value=None, LoginUrl=None, DisplayNameFirst=None, DisplayNameLast=None):
-        return self._client.service.GoogleAccountInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_Domain": ID_Domain, "IsMain": IsMain, "IsMainContact": IsMainContact, "Agrees": Agrees, "ID_UnitContact": ID_UnitContact, "ID_PersonContact": ID_PersonContact, "ID_PersonCreated": ID_PersonCreated, "DateCreated": DateCreated, "ID_GoogleAccount": ID_GoogleAccount, "OnlyValidate": OnlyValidate, "ShareAllAdded": ShareAllAdded, "Person": Person, "Unit": Unit, "UserName": UserName, "Domain": Domain, "Password": Password, "Password2": Password2, "PersonCreated": PersonCreated, "Value": Value, "LoginUrl": LoginUrl, "DisplayNameFirst": DisplayNameFirst, "DisplayNameLast": DisplayNameLast})
+    def GoogleAccountInsert(self, ID_Login, ID, ID_Person, ID_Unit, ID_Domain, IsMain, IsMainContact, Agrees, ID_UnitContact, ID_PersonContact, ID_PersonCreated, DateCreated, ID_GoogleAccount, OnlyValidate, ShareAllAdded, StorageCapacity, IsAdult, Person=None, Unit=None, UserName=None, Domain=None, Password=None, Password2=None, PersonCreated=None, Value=None, LoginUrl=None, DisplayNameFirst=None, DisplayNameLast=None, OrgUnitPath=None):
+        return self._client.service.GoogleAccountInsert({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_Domain": ID_Domain, "IsMain": IsMain, "IsMainContact": IsMainContact, "Agrees": Agrees, "ID_UnitContact": ID_UnitContact, "ID_PersonContact": ID_PersonContact, "ID_PersonCreated": ID_PersonCreated, "DateCreated": DateCreated, "ID_GoogleAccount": ID_GoogleAccount, "OnlyValidate": OnlyValidate, "ShareAllAdded": ShareAllAdded, "StorageCapacity": StorageCapacity, "IsAdult": IsAdult, "Person": Person, "Unit": Unit, "UserName": UserName, "Domain": Domain, "Password": Password, "Password2": Password2, "PersonCreated": PersonCreated, "Value": Value, "LoginUrl": LoginUrl, "DisplayNameFirst": DisplayNameFirst, "DisplayNameLast": DisplayNameLast, "OrgUnitPath": OrgUnitPath})
 
     # Vynutit změnu hesla při dalším přihlášení do GA
-    def GoogleAccountUpdateChangePassword(self, ID_Login, ID, ID_Person, ID_Unit, ID_Domain, IsMain, IsMainContact, Agrees, ID_UnitContact, ID_PersonContact, ID_PersonCreated, DateCreated, ID_GoogleAccount, OnlyValidate, ShareAllAdded, Person=None, Unit=None, UserName=None, Domain=None, Password=None, Password2=None, PersonCreated=None, Value=None, LoginUrl=None, DisplayNameFirst=None, DisplayNameLast=None):
-        return self._client.service.GoogleAccountUpdateChangePassword({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_Domain": ID_Domain, "IsMain": IsMain, "IsMainContact": IsMainContact, "Agrees": Agrees, "ID_UnitContact": ID_UnitContact, "ID_PersonContact": ID_PersonContact, "ID_PersonCreated": ID_PersonCreated, "DateCreated": DateCreated, "ID_GoogleAccount": ID_GoogleAccount, "OnlyValidate": OnlyValidate, "ShareAllAdded": ShareAllAdded, "Person": Person, "Unit": Unit, "UserName": UserName, "Domain": Domain, "Password": Password, "Password2": Password2, "PersonCreated": PersonCreated, "Value": Value, "LoginUrl": LoginUrl, "DisplayNameFirst": DisplayNameFirst, "DisplayNameLast": DisplayNameLast})
+    def GoogleAccountUpdateChangePassword(self, ID_Login, ID, ID_Person, ID_Unit, ID_Domain, IsMain, IsMainContact, Agrees, ID_UnitContact, ID_PersonContact, ID_PersonCreated, DateCreated, ID_GoogleAccount, OnlyValidate, ShareAllAdded, StorageCapacity, IsAdult, Person=None, Unit=None, UserName=None, Domain=None, Password=None, Password2=None, PersonCreated=None, Value=None, LoginUrl=None, DisplayNameFirst=None, DisplayNameLast=None, OrgUnitPath=None):
+        return self._client.service.GoogleAccountUpdateChangePassword({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_Domain": ID_Domain, "IsMain": IsMain, "IsMainContact": IsMainContact, "Agrees": Agrees, "ID_UnitContact": ID_UnitContact, "ID_PersonContact": ID_PersonContact, "ID_PersonCreated": ID_PersonCreated, "DateCreated": DateCreated, "ID_GoogleAccount": ID_GoogleAccount, "OnlyValidate": OnlyValidate, "ShareAllAdded": ShareAllAdded, "StorageCapacity": StorageCapacity, "IsAdult": IsAdult, "Person": Person, "Unit": Unit, "UserName": UserName, "Domain": Domain, "Password": Password, "Password2": Password2, "PersonCreated": PersonCreated, "Value": Value, "LoginUrl": LoginUrl, "DisplayNameFirst": DisplayNameFirst, "DisplayNameLast": DisplayNameLast, "OrgUnitPath": OrgUnitPath})
 
     # Změna hesla
-    def GoogleAccountUpdatePassword(self, ID_Login, ID, ID_Person, ID_Unit, ID_Domain, IsMain, IsMainContact, Agrees, ID_UnitContact, ID_PersonContact, ID_PersonCreated, DateCreated, ID_GoogleAccount, OnlyValidate, ShareAllAdded, Person=None, Unit=None, UserName=None, Domain=None, Password=None, Password2=None, PersonCreated=None, Value=None, LoginUrl=None, DisplayNameFirst=None, DisplayNameLast=None):
-        return self._client.service.GoogleAccountUpdatePassword({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_Domain": ID_Domain, "IsMain": IsMain, "IsMainContact": IsMainContact, "Agrees": Agrees, "ID_UnitContact": ID_UnitContact, "ID_PersonContact": ID_PersonContact, "ID_PersonCreated": ID_PersonCreated, "DateCreated": DateCreated, "ID_GoogleAccount": ID_GoogleAccount, "OnlyValidate": OnlyValidate, "ShareAllAdded": ShareAllAdded, "Person": Person, "Unit": Unit, "UserName": UserName, "Domain": Domain, "Password": Password, "Password2": Password2, "PersonCreated": PersonCreated, "Value": Value, "LoginUrl": LoginUrl, "DisplayNameFirst": DisplayNameFirst, "DisplayNameLast": DisplayNameLast})
+    def GoogleAccountUpdatePassword(self, ID_Login, ID, ID_Person, ID_Unit, ID_Domain, IsMain, IsMainContact, Agrees, ID_UnitContact, ID_PersonContact, ID_PersonCreated, DateCreated, ID_GoogleAccount, OnlyValidate, ShareAllAdded, StorageCapacity, IsAdult, Person=None, Unit=None, UserName=None, Domain=None, Password=None, Password2=None, PersonCreated=None, Value=None, LoginUrl=None, DisplayNameFirst=None, DisplayNameLast=None, OrgUnitPath=None):
+        return self._client.service.GoogleAccountUpdatePassword({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "ID_Unit": ID_Unit, "ID_Domain": ID_Domain, "IsMain": IsMain, "IsMainContact": IsMainContact, "Agrees": Agrees, "ID_UnitContact": ID_UnitContact, "ID_PersonContact": ID_PersonContact, "ID_PersonCreated": ID_PersonCreated, "DateCreated": DateCreated, "ID_GoogleAccount": ID_GoogleAccount, "OnlyValidate": OnlyValidate, "ShareAllAdded": ShareAllAdded, "StorageCapacity": StorageCapacity, "IsAdult": IsAdult, "Person": Person, "Unit": Unit, "UserName": UserName, "Domain": Domain, "Password": Password, "Password2": Password2, "PersonCreated": PersonCreated, "Value": Value, "LoginUrl": LoginUrl, "DisplayNameFirst": DisplayNameFirst, "DisplayNameLast": DisplayNameLast, "OrgUnitPath": OrgUnitPath})
 
     # Načíst seznam google skupin
     def GoogleGroupAll(self, ID_Login, ID_Unit, ID, ID_GoogleGroupMain, IncludeChildUnits, DisplayName=None):

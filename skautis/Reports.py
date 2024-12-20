@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Generovaní tiskových sestav
-class Reports(object):
+class Reports:
     __module__ = 'skautis'
 
     def __init__(self, test):

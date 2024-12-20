@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Exporty/přehledy
-class Summary(object):
+class Summary:
     __module__ = 'skautis'
 
     def __init__(self, test):

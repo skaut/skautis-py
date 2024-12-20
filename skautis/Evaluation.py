@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Webová služba pro práci s hodnocením kvality
-class Evaluation(object):
+class Evaluation:
     __module__ = 'skautis'
 
     def __init__(self, test):

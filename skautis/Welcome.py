@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Uvítací balíčky
-class Welcome(object):
+class Welcome:
     __module__ = 'skautis'
 
     def __init__(self, test):

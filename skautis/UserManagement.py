@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Webová služba pro práci s uživateli (zakládání, přidělování rolí, přihlašování apod.)
-class UserManagement(object):
+class UserManagement:
     __module__ = 'skautis'
 
     def __init__(self, test):
@@ -64,15 +62,12 @@ class UserManagement(object):
     def TempFileInsertDocument(self, Size, ImageWidth, ImageHeigth, ID_Login, ID_Application, ContentType=None, Extension=None, HashMD5=None, Content=None, DisplayName=None, Filename=None):
         return self._client.service.TempFileInsertDocument({"Size": Size, "ImageWidth": ImageWidth, "ImageHeigth": ImageHeigth, "ID_Login": ID_Login, "ID_Application": ID_Application, "ContentType": ContentType, "Extension": Extension, "HashMD5": HashMD5, "Content": Content, "DisplayName": DisplayName, "Filename": Filename})
 
-    # No documentation
     def TempFileMaintrance(self, ID_Login):
         return self._client.service.TempFileMaintrance({"ID_Login": ID_Login})
 
-    # No documentation
     def TableMaintrance(self, ID_Login, Databases=None):
         return self._client.service.TableMaintrance({"ID_Login": ID_Login, "Databases": Databases})
 
-    # No documentation
     def TableRebuild(self, ID_Login, OnlyFast):
         return self._client.service.TableRebuild({"ID_Login": ID_Login, "OnlyFast": OnlyFast})
 
@@ -116,11 +111,10 @@ class UserManagement(object):
     def SettingsDetail(self, ID_Login, ID_Application, ID=None):
         return self._client.service.SettingsDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
 
-    # Upravit 
+    # Upravit
     def SettingsUpdate(self, ID_Login, ID=None, DisplayName=None, Value=None, Note=None):
         return self._client.service.SettingsUpdate({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName, "Value": Value, "Note": Note})
 
-    # No documentation
     def TableArchive(self, ID_Login):
         return self._client.service.TableArchive({"ID_Login": ID_Login})
 
@@ -156,11 +150,9 @@ class UserManagement(object):
     def UserAuthenticationInsert(self, ID_Login, ID_Person, ID_User, Number=None, Code=None, NumberDataBox=None):
         return self._client.service.UserAuthenticationInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_User": ID_User, "Number": Number, "Code": Code, "NumberDataBox": NumberDataBox})
 
-    # No documentation
     def UserAuthenticationStateAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.UserAuthenticationStateAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
-    # No documentation
     def UserAuthenticationTypeAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.UserAuthenticationTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
@@ -273,12 +265,12 @@ class UserManagement(object):
         return self._client.service.ErrorDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Založit chybu
-    def ErrorInsert(self, ID_Login, ID, ID_User, ID_Person, Date, IsProcessed, DisplayName=None, Person=None, ID_ErrorType=None, ErrorType=None, URL=None, Description=None, Browser=None, IP=None):
-        return self._client.service.ErrorInsert({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Person": ID_Person, "Date": Date, "IsProcessed": IsProcessed, "DisplayName": DisplayName, "Person": Person, "ID_ErrorType": ID_ErrorType, "ErrorType": ErrorType, "URL": URL, "Description": Description, "Browser": Browser, "IP": IP})
+    def ErrorInsert(self, ID_Login, ID, ID_User, ID_Person, Date, IsProcessed, DisplayName=None, Person=None, ID_ErrorType=None, ErrorType=None, URL=None, Description=None, Browser=None, IP=None, ID_ErrorSeverity=None, ErrorSeverity=None):
+        return self._client.service.ErrorInsert({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Person": ID_Person, "Date": Date, "IsProcessed": IsProcessed, "DisplayName": DisplayName, "Person": Person, "ID_ErrorType": ID_ErrorType, "ErrorType": ErrorType, "URL": URL, "Description": Description, "Browser": Browser, "IP": IP, "ID_ErrorSeverity": ID_ErrorSeverity, "ErrorSeverity": ErrorSeverity})
 
     # Upravit chybu
-    def ErrorUpdate(self, ID_Login, ID, ID_User, ID_Person, Date, IsProcessed, DisplayName=None, Person=None, ID_ErrorType=None, ErrorType=None, URL=None, Description=None, Browser=None, IP=None):
-        return self._client.service.ErrorUpdate({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Person": ID_Person, "Date": Date, "IsProcessed": IsProcessed, "DisplayName": DisplayName, "Person": Person, "ID_ErrorType": ID_ErrorType, "ErrorType": ErrorType, "URL": URL, "Description": Description, "Browser": Browser, "IP": IP})
+    def ErrorUpdate(self, ID_Login, ID, ID_User, ID_Person, Date, IsProcessed, DisplayName=None, Person=None, ID_ErrorType=None, ErrorType=None, URL=None, Description=None, Browser=None, IP=None, ID_ErrorSeverity=None, ErrorSeverity=None):
+        return self._client.service.ErrorUpdate({"ID_Login": ID_Login, "ID": ID, "ID_User": ID_User, "ID_Person": ID_Person, "Date": Date, "IsProcessed": IsProcessed, "DisplayName": DisplayName, "Person": Person, "ID_ErrorType": ID_ErrorType, "ErrorType": ErrorType, "URL": URL, "Description": Description, "Browser": Browser, "IP": IP, "ID_ErrorSeverity": ID_ErrorSeverity, "ErrorSeverity": ErrorSeverity})
 
     # Načíst seznam typů skupin
     def GroupTypeAll(self, ID_Login, CanLogin, DisplayName=None, ID_Table=None):

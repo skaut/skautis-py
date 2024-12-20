@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Webová služba pro práci s časopisy a fakturami
-class Journal(object):
+class Journal:
     __module__ = 'skautis'
 
     def __init__(self, test):
@@ -64,7 +62,6 @@ class Journal(object):
     def JournalCopyOrderDetail(self, ID_Login, ID):
         return self._client.service.JournalCopyOrderDetail({"ID_Login": ID_Login, "ID": ID})
 
-    # No documentation
     def JournalCopyOrderItemAll(self, ID_Login, ID_JournalCopyOrder, ID, DisplayName=None):
         return self._client.service.JournalCopyOrderItemAll({"ID_Login": ID_Login, "ID_JournalCopyOrder": ID_JournalCopyOrder, "ID": ID, "DisplayName": DisplayName})
 

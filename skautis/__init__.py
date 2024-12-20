@@ -14,16 +14,15 @@ from .OrganizationUnit import OrganizationUnit
 from .Power import Power
 from .Reports import Reports
 from .Summary import Summary
-from .Task import Task
 from .TelephonyNetwork import TelephonyNetwork
 from .UserManagement import UserManagement
 from .Welcome import Welcome
 
-class SkautisApi(object):
+class SkautisApi:
     def __init__(self, appId, test=False):
         self._appId = appId
         self._test = test
-        
+
         self.ApplicationManagement = ApplicationManagement(test)
         self.ContentManagement = ContentManagement(test)
         self.DocumentStorage = DocumentStorage(test)
@@ -40,7 +39,6 @@ class SkautisApi(object):
         self.Power = Power(test)
         self.Reports = Reports(test)
         self.Summary = Summary(test)
-        self.Task = Task(test)
         self.TelephonyNetwork = TelephonyNetwork(test)
         self.UserManagement = UserManagement(test)
         self.Welcome = Welcome(test)

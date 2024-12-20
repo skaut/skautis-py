@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Webová služba pro export dat do jiných systémů
-class Exports(object):
+class Exports:
     __module__ = 'skautis'
 
     def __init__(self, test):

@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Správa externích aplikací přistupujících ke skautISu
-class ApplicationManagement(object):
+class ApplicationManagement:
     __module__ = 'skautis'
 
     def __init__(self, test):

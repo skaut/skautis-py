@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Webová služba pro práci s organizačními jednotkami a osobami
-class OrganizationUnit(object):
+class OrganizationUnit:
     __module__ = 'skautis'
 
     def __init__(self, test):
@@ -11,6 +9,14 @@ class OrganizationUnit(object):
             self._client = zeep.Client('https://test-is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
+
+    # Smazat registrační kategorii
+    def RegistrationCategoryDelete(self, ID_Login, ID):
+        return self._client.service.RegistrationCategoryDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit registrační kategorii
+    def RegistrationCategoryInsert(self, ID_Login, ID_UnitRegistration, ID_RegistrationCategoryParent, Amount, IsAfterDeadline, IsJournal, DisplayName=None, ID_MembershipType=None, Note=None):
+        return self._client.service.RegistrationCategoryInsert({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "ID_RegistrationCategoryParent": ID_RegistrationCategoryParent, "Amount": Amount, "IsAfterDeadline": IsAfterDeadline, "IsJournal": IsJournal, "DisplayName": DisplayName, "ID_MembershipType": ID_MembershipType, "Note": Note})
 
     # Načíst seznam pohlaví
     def SexAll(self, ID_Login, ID_Application, DisplayName=None):
@@ -612,14 +618,6 @@ class OrganizationUnit(object):
     def RegistrationCategoryAll(self, ID_Login, ID_UnitRegistration, ID_RegistrationCategoryParent, ShowParentUnit, ShowUsable, IsAfterDeadline, DisplayName=None, ID_MembershipType=None):
         return self._client.service.RegistrationCategoryAll({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "ID_RegistrationCategoryParent": ID_RegistrationCategoryParent, "ShowParentUnit": ShowParentUnit, "ShowUsable": ShowUsable, "IsAfterDeadline": IsAfterDeadline, "DisplayName": DisplayName, "ID_MembershipType": ID_MembershipType})
 
-    # Smazat registrační kategorii
-    def RegistrationCategoryDelete(self, ID_Login, ID):
-        return self._client.service.RegistrationCategoryDelete({"ID_Login": ID_Login, "ID": ID})
-
-    # Založit registrační kategorii
-    def RegistrationCategoryInsert(self, ID_Login, ID_UnitRegistration, ID_RegistrationCategoryParent, Amount, IsAfterDeadline, IsJournal, DisplayName=None, ID_MembershipType=None, Note=None):
-        return self._client.service.RegistrationCategoryInsert({"ID_Login": ID_Login, "ID_UnitRegistration": ID_UnitRegistration, "ID_RegistrationCategoryParent": ID_RegistrationCategoryParent, "Amount": Amount, "IsAfterDeadline": IsAfterDeadline, "IsJournal": IsJournal, "DisplayName": DisplayName, "ID_MembershipType": ID_MembershipType, "Note": Note})
-
     # upravit poznámku registru OJ
     def RegistryUpdateNote(self, ID_Login, ID, Sequence, ID_Unit, IsPropertyOwner, IsPropertyOwnerOld, OldHistoryObjectId, NewHistoryObjectId, ID_PersonCreate, DateCreate, ID_PersonUpdate, DateUpdate, ID_PersonSent, DateSent, ID_PersonClosed, DateClosed, ID_PersonCancel, DateCancel, ID_Function, ID_FunctionType, NewAccount, ID_PersonFunction, ID_PersonFunctionOld, ID_PersonSolving, DateSolving, ID_Document, ID_Statement, StatementYear, ID_DocumentStatement, ID_DocumentDecision, ID_DocumentPropertyAgreement, DisplayName=None, Unit=None, RegistrationNumber=None, IC=None, Street=None, City=None, Postcode=None, PropertyAgreementExtension=None, UnitOld=None, StreetOld=None, CityOld=None, PostcodeOld=None, ID_RegistryObject=None, RegistryObject=None, ID_RegistryType=None, RegistryType=None, ID_RegistryState=None, RegistryState=None, PersonCreate=None, PersonUpdate=None, PersonSent=None, PersonClosed=None, PersonCancel=None, CancelDecision=None, FunctionType=None, PersonFunction=None, PersonFunctionOld=None, Account=None, Note=None, PersonSolving=None, DecisionSeatChangeExtension=None):
         return self._client.service.RegistryUpdateNote({"ID_Login": ID_Login, "ID": ID, "Sequence": Sequence, "ID_Unit": ID_Unit, "IsPropertyOwner": IsPropertyOwner, "IsPropertyOwnerOld": IsPropertyOwnerOld, "OldHistoryObjectId": OldHistoryObjectId, "NewHistoryObjectId": NewHistoryObjectId, "ID_PersonCreate": ID_PersonCreate, "DateCreate": DateCreate, "ID_PersonUpdate": ID_PersonUpdate, "DateUpdate": DateUpdate, "ID_PersonSent": ID_PersonSent, "DateSent": DateSent, "ID_PersonClosed": ID_PersonClosed, "DateClosed": DateClosed, "ID_PersonCancel": ID_PersonCancel, "DateCancel": DateCancel, "ID_Function": ID_Function, "ID_FunctionType": ID_FunctionType, "NewAccount": NewAccount, "ID_PersonFunction": ID_PersonFunction, "ID_PersonFunctionOld": ID_PersonFunctionOld, "ID_PersonSolving": ID_PersonSolving, "DateSolving": DateSolving, "ID_Document": ID_Document, "ID_Statement": ID_Statement, "StatementYear": StatementYear, "ID_DocumentStatement": ID_DocumentStatement, "ID_DocumentDecision": ID_DocumentDecision, "ID_DocumentPropertyAgreement": ID_DocumentPropertyAgreement, "DisplayName": DisplayName, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "IC": IC, "Street": Street, "City": City, "Postcode": Postcode, "PropertyAgreementExtension": PropertyAgreementExtension, "UnitOld": UnitOld, "StreetOld": StreetOld, "CityOld": CityOld, "PostcodeOld": PostcodeOld, "ID_RegistryObject": ID_RegistryObject, "RegistryObject": RegistryObject, "ID_RegistryType": ID_RegistryType, "RegistryType": RegistryType, "ID_RegistryState": ID_RegistryState, "RegistryState": RegistryState, "PersonCreate": PersonCreate, "PersonUpdate": PersonUpdate, "PersonSent": PersonSent, "PersonClosed": PersonClosed, "PersonCancel": PersonCancel, "CancelDecision": CancelDecision, "FunctionType": FunctionType, "PersonFunction": PersonFunction, "PersonFunctionOld": PersonFunctionOld, "Account": Account, "Note": Note, "PersonSolving": PersonSolving, "DecisionSeatChangeExtension": DecisionSeatChangeExtension})
@@ -1220,7 +1218,6 @@ class OrganizationUnit(object):
     def RealtyDocumentDelete(self, ID_Login, ID):
         return self._client.service.RealtyDocumentDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # No documentation
     def RealtyDocumentDetail(self, ID_Login, ID):
         return self._client.service.RealtyDocumentDetail({"ID_Login": ID_Login, "ID": ID})
 
@@ -1300,7 +1297,7 @@ class OrganizationUnit(object):
     def PersonAllGoogleGroup(self, ID_Login, ID_GoogleGroup):
         return self._client.service.PersonAllGoogleGroup({"ID_Login": ID_Login, "ID_GoogleGroup": ID_GoogleGroup})
 
-    # Vrátí 
+    # Vrátí
     def PersonAllJournalRover(self, ID_Login, Unit_ID):
         return self._client.service.PersonAllJournalRover({"ID_Login": ID_Login, "Unit_ID": Unit_ID})
 
@@ -1432,11 +1429,11 @@ class OrganizationUnit(object):
     def RealtyCollectionAdminAll(self, ID_Login, ID_RealtyCollection, ID, ID_Person):
         return self._client.service.RealtyCollectionAdminAll({"ID_Login": ID_Login, "ID_RealtyCollection": ID_RealtyCollection, "ID": ID, "ID_Person": ID_Person})
 
-    # Smazat 
+    # Smazat
     def RealtyCollectionAdminDelete(self, ID_Login, ID):
         return self._client.service.RealtyCollectionAdminDelete({"ID_Login": ID_Login, "ID": ID})
 
-    # Založit 
+    # Založit
     def RealtyCollectionAdminInsert(self, ID_Login, ID, ID_RealtyCollection, ID_Person, RealtyCollection=None, Person=None):
         return self._client.service.RealtyCollectionAdminInsert({"ID_Login": ID_Login, "ID": ID, "ID_RealtyCollection": ID_RealtyCollection, "ID_Person": ID_Person, "RealtyCollection": RealtyCollection, "Person": Person})
 

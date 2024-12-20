@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Webová služba pro práci s materiálem a sklady
-class Material(object):
+class Material:
     __module__ = 'skautis'
 
     def __init__(self, test):
@@ -140,7 +138,6 @@ class Material(object):
     def WarehouseItemCategoryAll(self, ID_Login, ID=None, DisplayName=None, ID_WarehouseItemCategoryParent=None):
         return self._client.service.WarehouseItemCategoryAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName, "ID_WarehouseItemCategoryParent": ID_WarehouseItemCategoryParent})
 
-    # No documentation
     def WarehouseItemDelete(self, ID_Login, ID):
         return self._client.service.WarehouseItemDelete({"ID_Login": ID_Login, "ID": ID})
 

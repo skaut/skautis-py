@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Interní zpravodajský systém
-class Message(object):
+class Message:
     __module__ = 'skautis'
 
     def __init__(self, test):

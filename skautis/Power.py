@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Skautská energie
-class Power(object):
+class Power:
     __module__ = 'skautis'
 
     def __init__(self, test):

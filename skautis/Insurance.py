@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Webová služba pro práci s pojištěním osoby
-class Insurance(object):
+class Insurance:
     __module__ = 'skautis'
 
     def __init__(self, test):

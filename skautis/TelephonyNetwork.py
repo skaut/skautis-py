@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 import zeep
 
 # Skautská telefonní síť (nová)
-class TelephonyNetwork(object):
+class TelephonyNetwork:
     __module__ = 'skautis'
 
     def __init__(self, test):
