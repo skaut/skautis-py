@@ -4,7 +4,7 @@ Tato složka obsahuje jednoduchý příklad použití knihovny s web frameworkem
 
 ```sh
 python -m venv venv
-./venv/bin/pip install -r requirements
+./venv/bin/pip install -r requirements.txt
 ./venv/bin/python run.py
 ```
 
