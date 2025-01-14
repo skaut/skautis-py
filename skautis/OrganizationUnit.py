@@ -647,8 +647,8 @@ class OrganizationUnit:
         return self._client.service.UnitAllTelephony({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_Group": ID_Group, "RegistrationNumberStartWith": RegistrationNumberStartWith, "ID_UnitType": ID_UnitType, "RegistrationNumber": RegistrationNumber, "DisplayName": DisplayName, "Location": Location, "AccountNumber": AccountNumber, "IC": IC})
 
     # Načíst seznam jednotek pro menu
-    def UnitAllMenu(self, ID_Login, ID_UnitParent, ID_Application, ID, ID_UnitChild):
-        return self._client.service.UnitAllMenu({"ID_Login": ID_Login, "ID_UnitParent": ID_UnitParent, "ID_Application": ID_Application, "ID": ID, "ID_UnitChild": ID_UnitChild})
+    def UnitAllMenu(self, ID_Login, ID_Application, ID, ID_UnitParent, ID_UnitChild):
+        return self._client.service.UnitAllMenu({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_UnitParent": ID_UnitParent, "ID_UnitChild": ID_UnitChild})
 
     # Načíst seznam evidencí provedených kontrol
     def UnitAuditRegisterAllUnit(self, ID_Login, ID_Unit):
