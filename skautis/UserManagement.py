@@ -111,9 +111,9 @@ class UserManagement:
     def SettingsDetail(self, ID_Login, ID_Application, ID=None):
         return self._client.service.SettingsDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID})
 
-    # Upravit
-    def SettingsUpdate(self, ID_Login, ID=None, DisplayName=None, Value=None, Note=None):
-        return self._client.service.SettingsUpdate({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName, "Value": Value, "Note": Note})
+    # Upravit hodnotu nastavení
+    def SettingsUpdate(self, ID_Login, IsPublic, IsAuthentized, ID=None, DisplayName=None, Value=None, Note=None, ID_Permission=None):
+        return self._client.service.SettingsUpdate({"ID_Login": ID_Login, "IsPublic": IsPublic, "IsAuthentized": IsAuthentized, "ID": ID, "DisplayName": DisplayName, "Value": Value, "Note": Note, "ID_Permission": ID_Permission})
 
     def TableArchive(self, ID_Login):
         return self._client.service.TableArchive({"ID_Login": ID_Login})
