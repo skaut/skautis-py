@@ -44,7 +44,7 @@ def get_sections():
     soup = get_soup(INDEX)
 
     ul = soup.find('ul')
-    for li in ul.findAll('li', recursive=False):
+    for li in ul.find_all('li', recursive=False):
         # Task service was removed - filter it out until the dead link is removed as well.
         if 'Task.asmx' in li.a['href']:
             continue
