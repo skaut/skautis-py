@@ -10,6 +10,10 @@ class GoogleApps:
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/GoogleApps.asmx?wsdl')
 
+    # Smazat doménu pouze ze skautISu
+    def DomainDelete(self, ID_Login, ID):
+        return self._client.service.DomainDelete({"ID_Login": ID_Login, "ID": ID})
+
     # Načíst seznam využití sdílených disků jednotky
     def SharedDriveAllUnitUsage(self, ID_Login, ID_Unit):
         return self._client.service.SharedDriveAllUnitUsage({"ID_Login": ID_Login, "ID_Unit": ID_Unit})
@@ -114,8 +118,9 @@ class GoogleApps:
     def GoogleGroupSyncSettingsUpdate(self, ID_Login, ID, ID_GoogleGroup, IsFunction, ID_Unit, GoogleGroup=None, ID_SyncLevelType=None, SyncLevelType=None, Units=None, SyncContactTypes=None, MembershipCategories=None, FunctionsDirect=None, Functions=None, ID_UnitType=None, DisplayName=None):
         return self._client.service.GoogleGroupSyncSettingsUpdate({"ID_Login": ID_Login, "ID": ID, "ID_GoogleGroup": ID_GoogleGroup, "IsFunction": IsFunction, "ID_Unit": ID_Unit, "GoogleGroup": GoogleGroup, "ID_SyncLevelType": ID_SyncLevelType, "SyncLevelType": SyncLevelType, "Units": Units, "SyncContactTypes": SyncContactTypes, "MembershipCategories": MembershipCategories, "FunctionsDirect": FunctionsDirect, "Functions": Functions, "ID_UnitType": ID_UnitType, "DisplayName": DisplayName})
 
-    def SharedDriveDelete(self, ID_Login, ID):
-        return self._client.service.SharedDriveDelete({"ID_Login": ID_Login, "ID": ID})
+    # Smazat sdílený disk
+    def SharedDriveDelete(self, ID_Login, ID, IsComplete):
+        return self._client.service.SharedDriveDelete({"ID_Login": ID_Login, "ID": ID, "IsComplete": IsComplete})
 
     # Načíst detail sdíleného disku
     def SharedDriveDetail(self, ID_Login, ID):

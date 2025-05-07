@@ -10,6 +10,30 @@ class DocumentStorage:
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/DocumentStorage.asmx?wsdl')
 
+    # Načíst seznam verzí dokumentu
+    def DocumentVersionAllToBackup(self, ID_Login):
+        return self._client.service.DocumentVersionAllToBackup({"ID_Login": ID_Login})
+
+    # Načíst seznam verzí dokumentu
+    def DocumentVersionAll(self, ID_Login, ID, ID_Document, ID_User, DisplayName=None):
+        return self._client.service.DocumentVersionAll({"ID_Login": ID_Login, "ID": ID, "ID_Document": ID_Document, "ID_User": ID_User, "DisplayName": DisplayName})
+
+    # Smazat verzi dokumentu
+    def DocumentVersionDelete(self, ID_Login, ID):
+        return self._client.service.DocumentVersionDelete({"ID_Login": ID_Login, "ID": ID})
+
+    # Načíst detail verze dokumentu
+    def DocumentVersionDetail(self, ID_Login, ID):
+        return self._client.service.DocumentVersionDetail({"ID_Login": ID_Login, "ID": ID})
+
+    # Založit verzi dokumentu
+    def DocumentVersionInsert(self, ID_Login, ID, Date, ID_Document, ID_User, Size, Version, ImageWidth, ImageHeight, DisplayName=None, FileName=None, ContentType=None, Extension=None, Hash=None, Storage=None, FileNameExtension=None):
+        return self._client.service.DocumentVersionInsert({"ID_Login": ID_Login, "ID": ID, "Date": Date, "ID_Document": ID_Document, "ID_User": ID_User, "Size": Size, "Version": Version, "ImageWidth": ImageWidth, "ImageHeight": ImageHeight, "DisplayName": DisplayName, "FileName": FileName, "ContentType": ContentType, "Extension": Extension, "Hash": Hash, "Storage": Storage, "FileNameExtension": FileNameExtension})
+
+    # Upravit verzi dokumentu
+    def DocumentVersionUpdate(self, ID_Login, ID, Date, ID_Document, ID_User, Size, Version, ImageWidth, ImageHeight, DisplayName=None, FileName=None, ContentType=None, Extension=None, Hash=None, Storage=None, FileNameExtension=None):
+        return self._client.service.DocumentVersionUpdate({"ID_Login": ID_Login, "ID": ID, "Date": Date, "ID_Document": ID_Document, "ID_User": ID_User, "Size": Size, "Version": Version, "ImageWidth": ImageWidth, "ImageHeight": ImageHeight, "DisplayName": DisplayName, "FileName": FileName, "ContentType": ContentType, "Extension": Extension, "Hash": Hash, "Storage": Storage, "FileNameExtension": FileNameExtension})
+
     # Načíst seznam cloudových záznamů
     def CloudAll(self, ID_Login, ID, ID_DocumentVersion, ID_CloudState=None):
         return self._client.service.CloudAll({"ID_Login": ID_Login, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "ID_CloudState": ID_CloudState})
@@ -113,28 +137,4 @@ class DocumentStorage:
     # Upravit dokument
     def DocumentUpdate(self, ID_Login, ID, ID_DocumentVersion, Created, Date, ID_Document, ID_User, ID_Person, Size, Version, ImageWidth, ImageHeight, UseCurrentVersion, ID_Cloud, CloudValidTo, DocumentVersion=None, ID_DocumentClass=None, DocumentClass=None, DisplayName=None, Person=None, FileName=None, ContentType=None, Extension=None, Hash=None, Storage=None, FileNameExtension=None, ID_CloudState=None, CloudGuid=None):
         return self._client.service.DocumentUpdate({"ID_Login": ID_Login, "ID": ID, "ID_DocumentVersion": ID_DocumentVersion, "Created": Created, "Date": Date, "ID_Document": ID_Document, "ID_User": ID_User, "ID_Person": ID_Person, "Size": Size, "Version": Version, "ImageWidth": ImageWidth, "ImageHeight": ImageHeight, "UseCurrentVersion": UseCurrentVersion, "ID_Cloud": ID_Cloud, "CloudValidTo": CloudValidTo, "DocumentVersion": DocumentVersion, "ID_DocumentClass": ID_DocumentClass, "DocumentClass": DocumentClass, "DisplayName": DisplayName, "Person": Person, "FileName": FileName, "ContentType": ContentType, "Extension": Extension, "Hash": Hash, "Storage": Storage, "FileNameExtension": FileNameExtension, "ID_CloudState": ID_CloudState, "CloudGuid": CloudGuid})
-
-    # Načíst seznam verzí dokumentu
-    def DocumentVersionAllToBackup(self, ID_Login):
-        return self._client.service.DocumentVersionAllToBackup({"ID_Login": ID_Login})
-
-    # Načíst seznam verzí dokumentu
-    def DocumentVersionAll(self, ID_Login, ID, ID_Document, ID_User, DisplayName=None):
-        return self._client.service.DocumentVersionAll({"ID_Login": ID_Login, "ID": ID, "ID_Document": ID_Document, "ID_User": ID_User, "DisplayName": DisplayName})
-
-    # Smazat verzi dokumentu
-    def DocumentVersionDelete(self, ID_Login, ID):
-        return self._client.service.DocumentVersionDelete({"ID_Login": ID_Login, "ID": ID})
-
-    # Načíst detail verze dokumentu
-    def DocumentVersionDetail(self, ID_Login, ID):
-        return self._client.service.DocumentVersionDetail({"ID_Login": ID_Login, "ID": ID})
-
-    # Založit verzi dokumentu
-    def DocumentVersionInsert(self, ID_Login, ID, Date, ID_Document, ID_User, Size, Version, ImageWidth, ImageHeight, DisplayName=None, FileName=None, ContentType=None, Extension=None, Hash=None, Storage=None, FileNameExtension=None):
-        return self._client.service.DocumentVersionInsert({"ID_Login": ID_Login, "ID": ID, "Date": Date, "ID_Document": ID_Document, "ID_User": ID_User, "Size": Size, "Version": Version, "ImageWidth": ImageWidth, "ImageHeight": ImageHeight, "DisplayName": DisplayName, "FileName": FileName, "ContentType": ContentType, "Extension": Extension, "Hash": Hash, "Storage": Storage, "FileNameExtension": FileNameExtension})
-
-    # Upravit verzi dokumentu
-    def DocumentVersionUpdate(self, ID_Login, ID, Date, ID_Document, ID_User, Size, Version, ImageWidth, ImageHeight, DisplayName=None, FileName=None, ContentType=None, Extension=None, Hash=None, Storage=None, FileNameExtension=None):
-        return self._client.service.DocumentVersionUpdate({"ID_Login": ID_Login, "ID": ID, "Date": Date, "ID_Document": ID_Document, "ID_User": ID_User, "Size": Size, "Version": Version, "ImageWidth": ImageWidth, "ImageHeight": ImageHeight, "DisplayName": DisplayName, "FileName": FileName, "ContentType": ContentType, "Extension": Extension, "Hash": Hash, "Storage": Storage, "FileNameExtension": FileNameExtension})
 
