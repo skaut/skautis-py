@@ -393,8 +393,8 @@ class UserManagement:
         return self._client.service.LoginInsert({"ID_UserRole": ID_UserRole, "ID_Application": ID_Application, "IsPersistent": IsPersistent, "ID_PersistentLogin": ID_PersistentLogin, "IsMobile": IsMobile, "UserName": UserName, "Password": Password, "IP": IP, "Token": Token, "UserAgent": UserAgent, "Place": Place})
 
     # Načtení informací o uživateli
-    def UserDetail(self, ID_Login, ID):
-        return self._client.service.UserDetail({"ID_Login": ID_Login, "ID": ID})
+    def UserDetail(self, ID_Login, ID, Username=None):
+        return self._client.service.UserDetail({"ID_Login": ID_Login, "ID": ID, "Username": Username})
 
     # Registrace uživatele
     def UserInsert(self, Birthday, UserName=None, Password=None, FirstName=None, LastName=None, NickName=None, Email=None, ID_Sex=None):
