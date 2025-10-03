@@ -14,6 +14,10 @@ class GoogleApps:
     def DomainDelete(self, ID_Login, ID):
         return self._client.service.DomainDelete({"ID_Login": ID_Login, "ID": ID})
 
+    # Načíst seznam sdílených disků k synchronizaci
+    def SharedDriveAllSync(self, ID_Login):
+        return self._client.service.SharedDriveAllSync({"ID_Login": ID_Login})
+
     # Načíst seznam využití sdílených disků jednotky
     def SharedDriveAllUnitUsage(self, ID_Login, ID_Unit):
         return self._client.service.SharedDriveAllUnitUsage({"ID_Login": ID_Login, "ID_Unit": ID_Unit})
@@ -26,9 +30,17 @@ class GoogleApps:
     def SharedDriveAllEvents(self, ID_Login, ID_Unit, AddSystemItem, DisplayName=None):
         return self._client.service.SharedDriveAllEvents({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "AddSystemItem": AddSystemItem, "DisplayName": DisplayName})
 
-    # Aktualizovat využití sdíleného disku
-    def SharedDriveUpdateUsage(self, ID_Login, ID, ID_Unit, DateCreated, ID_UserCreated, SpaceUsed, ID_PersonAdmin, DateUpdated, CheckConditions, ID_PersonCreated, ShowEventName, ShowAdminLink, DriveId=None, Unit=None, ID_SharedDriveType=None, SharedDriveType=None, DisplayName=None, EventName=None, UserCreated=None, AdminEmail=None, Note=None, OrgUnitPath=None, DateUpdatedClass=None):
-        return self._client.service.SharedDriveUpdateUsage({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreated": DateCreated, "ID_UserCreated": ID_UserCreated, "SpaceUsed": SpaceUsed, "ID_PersonAdmin": ID_PersonAdmin, "DateUpdated": DateUpdated, "CheckConditions": CheckConditions, "ID_PersonCreated": ID_PersonCreated, "ShowEventName": ShowEventName, "ShowAdminLink": ShowAdminLink, "DriveId": DriveId, "Unit": Unit, "ID_SharedDriveType": ID_SharedDriveType, "SharedDriveType": SharedDriveType, "DisplayName": DisplayName, "EventName": EventName, "UserCreated": UserCreated, "AdminEmail": AdminEmail, "Note": Note, "OrgUnitPath": OrgUnitPath, "DateUpdatedClass": DateUpdatedClass})
+    # Zapsat chybnou synchronizaci sdíleného disku
+    def SharedDriveUpdateSyncError(self, ID_Login, ID, ID_Unit, DateCreated, ID_UserCreated, SpaceUsed, ID_PersonAdmin, DateUpdated, CheckConditions, ID_PersonCreated, ShowEventName, ShowAdminLink, DateSyncError, DriveId=None, Unit=None, ID_SharedDriveType=None, SharedDriveType=None, DisplayName=None, EventName=None, UserCreated=None, AdminEmail=None, Note=None, OrgUnitPath=None, DateUpdatedClass=None, SyncError=None):
+        return self._client.service.SharedDriveUpdateSyncError({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreated": DateCreated, "ID_UserCreated": ID_UserCreated, "SpaceUsed": SpaceUsed, "ID_PersonAdmin": ID_PersonAdmin, "DateUpdated": DateUpdated, "CheckConditions": CheckConditions, "ID_PersonCreated": ID_PersonCreated, "ShowEventName": ShowEventName, "ShowAdminLink": ShowAdminLink, "DateSyncError": DateSyncError, "DriveId": DriveId, "Unit": Unit, "ID_SharedDriveType": ID_SharedDriveType, "SharedDriveType": SharedDriveType, "DisplayName": DisplayName, "EventName": EventName, "UserCreated": UserCreated, "AdminEmail": AdminEmail, "Note": Note, "OrgUnitPath": OrgUnitPath, "DateUpdatedClass": DateUpdatedClass, "SyncError": SyncError})
+
+    # Synchronizovat sdílený disk
+    def SharedDriveUpdateSync(self, ID_Login, ID, ID_Unit, DateCreated, ID_UserCreated, SpaceUsed, ID_PersonAdmin, DateUpdated, CheckConditions, ID_PersonCreated, ShowEventName, ShowAdminLink, DateSyncError, DriveId=None, Unit=None, ID_SharedDriveType=None, SharedDriveType=None, DisplayName=None, EventName=None, UserCreated=None, AdminEmail=None, Note=None, OrgUnitPath=None, DateUpdatedClass=None, SyncError=None):
+        return self._client.service.SharedDriveUpdateSync({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreated": DateCreated, "ID_UserCreated": ID_UserCreated, "SpaceUsed": SpaceUsed, "ID_PersonAdmin": ID_PersonAdmin, "DateUpdated": DateUpdated, "CheckConditions": CheckConditions, "ID_PersonCreated": ID_PersonCreated, "ShowEventName": ShowEventName, "ShowAdminLink": ShowAdminLink, "DateSyncError": DateSyncError, "DriveId": DriveId, "Unit": Unit, "ID_SharedDriveType": ID_SharedDriveType, "SharedDriveType": SharedDriveType, "DisplayName": DisplayName, "EventName": EventName, "UserCreated": UserCreated, "AdminEmail": AdminEmail, "Note": Note, "OrgUnitPath": OrgUnitPath, "DateUpdatedClass": DateUpdatedClass, "SyncError": SyncError})
+
+    # Načíst detail výchozí organizační jednotky Google pro jednotku
+    def UnitDefaultOrganizationUnitDetailUnit(self, ID_Login, ID_Unit):
+        return self._client.service.UnitDefaultOrganizationUnitDetailUnit({"ID_Login": ID_Login, "ID_Unit": ID_Unit})
 
     # Založit fixně nastavenou emailovou adresu v Google skupině dle emailu
     def SyncSettingsEmailInsertEmail(self, ID_Login, ID_GoogleGroup, EmailArray=None):
@@ -126,16 +138,16 @@ class GoogleApps:
     def SharedDriveDetail(self, ID_Login, ID):
         return self._client.service.SharedDriveDetail({"ID_Login": ID_Login, "ID": ID})
 
-    def SharedDriveInsert(self, ID_Login, ID, ID_Unit, DateCreated, ID_UserCreated, SpaceUsed, ID_PersonAdmin, DateUpdated, CheckConditions, ID_PersonCreated, ShowEventName, ShowAdminLink, DriveId=None, Unit=None, ID_SharedDriveType=None, SharedDriveType=None, DisplayName=None, EventName=None, UserCreated=None, AdminEmail=None, Note=None, OrgUnitPath=None, DateUpdatedClass=None):
-        return self._client.service.SharedDriveInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreated": DateCreated, "ID_UserCreated": ID_UserCreated, "SpaceUsed": SpaceUsed, "ID_PersonAdmin": ID_PersonAdmin, "DateUpdated": DateUpdated, "CheckConditions": CheckConditions, "ID_PersonCreated": ID_PersonCreated, "ShowEventName": ShowEventName, "ShowAdminLink": ShowAdminLink, "DriveId": DriveId, "Unit": Unit, "ID_SharedDriveType": ID_SharedDriveType, "SharedDriveType": SharedDriveType, "DisplayName": DisplayName, "EventName": EventName, "UserCreated": UserCreated, "AdminEmail": AdminEmail, "Note": Note, "OrgUnitPath": OrgUnitPath, "DateUpdatedClass": DateUpdatedClass})
+    def SharedDriveInsert(self, ID_Login, ID, ID_Unit, DateCreated, ID_UserCreated, SpaceUsed, ID_PersonAdmin, DateUpdated, CheckConditions, ID_PersonCreated, ShowEventName, ShowAdminLink, DateSyncError, DriveId=None, Unit=None, ID_SharedDriveType=None, SharedDriveType=None, DisplayName=None, EventName=None, UserCreated=None, AdminEmail=None, Note=None, OrgUnitPath=None, DateUpdatedClass=None, SyncError=None):
+        return self._client.service.SharedDriveInsert({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreated": DateCreated, "ID_UserCreated": ID_UserCreated, "SpaceUsed": SpaceUsed, "ID_PersonAdmin": ID_PersonAdmin, "DateUpdated": DateUpdated, "CheckConditions": CheckConditions, "ID_PersonCreated": ID_PersonCreated, "ShowEventName": ShowEventName, "ShowAdminLink": ShowAdminLink, "DateSyncError": DateSyncError, "DriveId": DriveId, "Unit": Unit, "ID_SharedDriveType": ID_SharedDriveType, "SharedDriveType": SharedDriveType, "DisplayName": DisplayName, "EventName": EventName, "UserCreated": UserCreated, "AdminEmail": AdminEmail, "Note": Note, "OrgUnitPath": OrgUnitPath, "DateUpdatedClass": DateUpdatedClass, "SyncError": SyncError})
 
     # Načíst seznam typů sdíleného disku
     def SharedDriveTypeAll(self, ID_Login, ID=None, DisplayName=None):
         return self._client.service.SharedDriveTypeAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName})
 
     # Upravit sdílený disk
-    def SharedDriveUpdate(self, ID_Login, ID, ID_Unit, DateCreated, ID_UserCreated, SpaceUsed, ID_PersonAdmin, DateUpdated, CheckConditions, ID_PersonCreated, ShowEventName, ShowAdminLink, DriveId=None, Unit=None, ID_SharedDriveType=None, SharedDriveType=None, DisplayName=None, EventName=None, UserCreated=None, AdminEmail=None, Note=None, OrgUnitPath=None, DateUpdatedClass=None):
-        return self._client.service.SharedDriveUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreated": DateCreated, "ID_UserCreated": ID_UserCreated, "SpaceUsed": SpaceUsed, "ID_PersonAdmin": ID_PersonAdmin, "DateUpdated": DateUpdated, "CheckConditions": CheckConditions, "ID_PersonCreated": ID_PersonCreated, "ShowEventName": ShowEventName, "ShowAdminLink": ShowAdminLink, "DriveId": DriveId, "Unit": Unit, "ID_SharedDriveType": ID_SharedDriveType, "SharedDriveType": SharedDriveType, "DisplayName": DisplayName, "EventName": EventName, "UserCreated": UserCreated, "AdminEmail": AdminEmail, "Note": Note, "OrgUnitPath": OrgUnitPath, "DateUpdatedClass": DateUpdatedClass})
+    def SharedDriveUpdate(self, ID_Login, ID, ID_Unit, DateCreated, ID_UserCreated, SpaceUsed, ID_PersonAdmin, DateUpdated, CheckConditions, ID_PersonCreated, ShowEventName, ShowAdminLink, DateSyncError, DriveId=None, Unit=None, ID_SharedDriveType=None, SharedDriveType=None, DisplayName=None, EventName=None, UserCreated=None, AdminEmail=None, Note=None, OrgUnitPath=None, DateUpdatedClass=None, SyncError=None):
+        return self._client.service.SharedDriveUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "DateCreated": DateCreated, "ID_UserCreated": ID_UserCreated, "SpaceUsed": SpaceUsed, "ID_PersonAdmin": ID_PersonAdmin, "DateUpdated": DateUpdated, "CheckConditions": CheckConditions, "ID_PersonCreated": ID_PersonCreated, "ShowEventName": ShowEventName, "ShowAdminLink": ShowAdminLink, "DateSyncError": DateSyncError, "DriveId": DriveId, "Unit": Unit, "ID_SharedDriveType": ID_SharedDriveType, "SharedDriveType": SharedDriveType, "DisplayName": DisplayName, "EventName": EventName, "UserCreated": UserCreated, "AdminEmail": AdminEmail, "Note": Note, "OrgUnitPath": OrgUnitPath, "DateUpdatedClass": DateUpdatedClass, "SyncError": SyncError})
 
     # Typ kontaktu pro synchronizaci
     def SyncContactTypeAll(self, ID_Login, ID=None, DisplayName=None):

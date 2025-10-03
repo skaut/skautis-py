@@ -456,12 +456,12 @@ class Events:
         return self._client.service.ParticipantEducationExamDelete({"ID_Login": ID_Login, "ID": ID})
 
     # Založit účastníka zkoušky
-    def ParticipantEducationExamInsert(self, ID_Login, ID, IsActive, ID_Person, ID_ParticipantEducation, DateExam, DateLetter, ID_EventEducationExam, LetterNumber=None):
-        return self._client.service.ParticipantEducationExamInsert({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_Person": ID_Person, "ID_ParticipantEducation": ID_ParticipantEducation, "DateExam": DateExam, "DateLetter": DateLetter, "ID_EventEducationExam": ID_EventEducationExam, "LetterNumber": LetterNumber})
+    def ParticipantEducationExamInsert(self, ID_Login, ID, IsActive, ID_Person, ID_ParticipantEducation, DateExam, DateLetter, ID_EventEducationExam, QualificationFailed, LetterNumber=None):
+        return self._client.service.ParticipantEducationExamInsert({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_Person": ID_Person, "ID_ParticipantEducation": ID_ParticipantEducation, "DateExam": DateExam, "DateLetter": DateLetter, "ID_EventEducationExam": ID_EventEducationExam, "QualificationFailed": QualificationFailed, "LetterNumber": LetterNumber})
 
     # Upravit účastníka zkoušky
-    def ParticipantEducationExamUpdate(self, ID_Login, ID, IsActive, ID_Person, ID_ParticipantEducation, DateExam, DateLetter, ID_EventEducationExam, LetterNumber=None):
-        return self._client.service.ParticipantEducationExamUpdate({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_Person": ID_Person, "ID_ParticipantEducation": ID_ParticipantEducation, "DateExam": DateExam, "DateLetter": DateLetter, "ID_EventEducationExam": ID_EventEducationExam, "LetterNumber": LetterNumber})
+    def ParticipantEducationExamUpdate(self, ID_Login, ID, IsActive, ID_Person, ID_ParticipantEducation, DateExam, DateLetter, ID_EventEducationExam, QualificationFailed, LetterNumber=None):
+        return self._client.service.ParticipantEducationExamUpdate({"ID_Login": ID_Login, "ID": ID, "IsActive": IsActive, "ID_Person": ID_Person, "ID_ParticipantEducation": ID_ParticipantEducation, "DateExam": DateExam, "DateLetter": DateLetter, "ID_EventEducationExam": ID_EventEducationExam, "QualificationFailed": QualificationFailed, "LetterNumber": LetterNumber})
 
     def ParticipantEducationInsert(self, ID_Login, ID_Person, ID_EventEducation, ID_EventEducationCourse, Person=None):
         return self._client.service.ParticipantEducationInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID_EventEducation": ID_EventEducation, "ID_EventEducationCourse": ID_EventEducationCourse, "Person": Person})
@@ -1367,8 +1367,8 @@ class Events:
         return self._client.service.CampLoginQuestionAll({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "ID_CampOnlineLogin": ID_CampOnlineLogin})
 
     # Načíst seznam otázek online přihlašování
-    def CampLoginQuestionAllEventCampList(self, ID_Login, ID_EventCamp, AddEmptyItem, OnlyBeforeDeadline):
-        return self._client.service.CampLoginQuestionAllEventCampList({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "AddEmptyItem": AddEmptyItem, "OnlyBeforeDeadline": OnlyBeforeDeadline})
+    def CampLoginQuestionAllEventCampList(self, ID_Login, ID_EventCamp, AddEmptyItem, OnlyBeforeDeadline, AddDeadlineToDisplayName):
+        return self._client.service.CampLoginQuestionAllEventCampList({"ID_Login": ID_Login, "ID_EventCamp": ID_EventCamp, "AddEmptyItem": AddEmptyItem, "OnlyBeforeDeadline": OnlyBeforeDeadline, "AddDeadlineToDisplayName": AddDeadlineToDisplayName})
 
     # Smazat otázku online přihlašování
     def CampLoginQuestionDelete(self, ID_Login, ID_EventCamp, ID_CampOnlineLogin, ID_CampLoginQuestionGroup, ID=None, ID_LoginQuestionType=None, LoginQuestionType=None, CampOnlineLogin=None, CampLoginQuestionGroup=None, DisplayName=None, RawText=None, Help=None, HelpRaw=None, Note=None, ID_LoginQuestionRequirement=None, LoginQuestionRequirement=None):

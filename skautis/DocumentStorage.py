@@ -87,8 +87,8 @@ class DocumentStorage:
         return self._client.service.DocumentClassDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Smazat dokument
-    def DocumentDelete(self, ID_Login, ID, CheckPermissions):
-        return self._client.service.DocumentDelete({"ID_Login": ID_Login, "ID": ID, "CheckPermissions": CheckPermissions})
+    def DocumentDelete(self, ID_Login, ID):
+        return self._client.service.DocumentDelete({"ID_Login": ID_Login, "ID": ID})
 
     # Načíst data dokumentu
     def DocumentDetailData(self, ID_Application, ID_Login, ID):

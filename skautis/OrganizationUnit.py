@@ -10,6 +10,10 @@ class OrganizationUnit:
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/OrganizationUnit.asmx?wsdl')
 
+    # Založit kvalifikaci
+    def QualificationInsert(self, ID_Login, ID_Person, ID, ValidFrom, ValidTo, ID_QualificationType, IsUsed, SendMessage, ID_Document, Person=None, QualificationType=None, LetterNumber=None, Note=None):
+        return self._client.service.QualificationInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_QualificationType": ID_QualificationType, "IsUsed": IsUsed, "SendMessage": SendMessage, "ID_Document": ID_Document, "Person": Person, "QualificationType": QualificationType, "LetterNumber": LetterNumber, "Note": Note})
+
     # Načíst seznam typů kvalfikace
     def QualificationTypeAll(self, ID_Login, IsExam, ShowManualIssue, DisplayName=None):
         return self._client.service.QualificationTypeAll({"ID_Login": ID_Login, "IsExam": IsExam, "ShowManualIssue": ShowManualIssue, "DisplayName": DisplayName})
@@ -181,6 +185,10 @@ class OrganizationUnit:
     # Načtení informací o jednotce
     def UnitDetail(self, ID_Login, ID_Application, ID, FindStredisko, FindUstredi):
         return self._client.service.UnitDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "FindStredisko": FindStredisko, "FindUstredi": FindUstredi})
+
+    # Velká přehledová tabulka náborových údajů
+    def AdvertisingSummary(self, ID_Login, ID_Application, ID_Unit, IncludeChildUnits, ID_Realty, Distance, GpsLatitude, GpsLongitude):
+        return self._client.service.AdvertisingSummary({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Unit": ID_Unit, "IncludeChildUnits": IncludeChildUnits, "ID_Realty": ID_Realty, "Distance": Distance, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude})
 
     # Upravit náborové informace
     def AdvertisingUpdate(self, ID_Login, ID, ID_Unit, IsWater, Unit=None, RegistrationNumber=None, ID_UnitType=None, UnitType=None, Note=None):
@@ -646,9 +654,9 @@ class OrganizationUnit:
     def QualificationDetail(self, ID_Login, ID):
         return self._client.service.QualificationDetail({"ID_Login": ID_Login, "ID": ID})
 
-    # Založit kvalifikaci
-    def QualificationInsert(self, ID_Login, ID_Person, ID, ValidFrom, ValidTo, ID_QualificationType, IsUsed, SendMessage, ID_Document, Person=None, QualificationType=None, LetterNumber=None, Note=None):
-        return self._client.service.QualificationInsert({"ID_Login": ID_Login, "ID_Person": ID_Person, "ID": ID, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_QualificationType": ID_QualificationType, "IsUsed": IsUsed, "SendMessage": SendMessage, "ID_Document": ID_Document, "Person": Person, "QualificationType": QualificationType, "LetterNumber": LetterNumber, "Note": Note})
+    # Načtení statistiky dle věku registrací zadané jednotky
+    def UnitRegistrationAllStatsAge(self, ID_Login, ID_Unit, IsExpanded, LastNYears, PrepareInvertedDatatable):
+        return self._client.service.UnitRegistrationAllStatsAge({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsExpanded": IsExpanded, "LastNYears": LastNYears, "PrepareInvertedDatatable": PrepareInvertedDatatable})
 
     # Načtení statistiky dle kategorie registrací zadané jednotky (datatable)
     def UnitRegistrationAllStatsCategoryTable(self, ID_Login, ID_Unit, LastNYears, IsExpanded):
@@ -1150,9 +1158,9 @@ class OrganizationUnit:
     def AdvertisingDetail(self, ID_Login, ID_Application, ID_Unit):
         return self._client.service.AdvertisingDetail({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Unit": ID_Unit})
 
-    # Velká přehledová tabulka náborových údajů
-    def AdvertisingSummary(self, ID_Login, ID_Application, ID_Unit, IncludeChildUnits, ID_Realty, Distance, GpsLatitude, GpsLongitude):
-        return self._client.service.AdvertisingSummary({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_Unit": ID_Unit, "IncludeChildUnits": IncludeChildUnits, "ID_Realty": ID_Realty, "Distance": Distance, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude})
+    # Dokončit změny u osoby
+    def PersonChangeUpdateFinish(self, ID_Login, ID):
+        return self._client.service.PersonChangeUpdateFinish({"ID_Login": ID_Login, "ID": ID})
 
     # Změnit stav u změny u osoby
     def PersonChangeUpdateState(self, ID_Login, ID, ID_PersonChangeState=None):
@@ -1621,10 +1629,6 @@ class OrganizationUnit:
     def UnitRegistrationAllStatsAgeTable(self, ID_Login, ID_Unit, IsExpanded, LastNYears):
         return self._client.service.UnitRegistrationAllStatsAgeTable({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsExpanded": IsExpanded, "LastNYears": LastNYears})
 
-    # Načtení statistiky dle věku registrací zadané jednotky
-    def UnitRegistrationAllStatsAge(self, ID_Login, ID_Unit, IsExpanded, LastNYears, PrepareInvertedDatatable):
-        return self._client.service.UnitRegistrationAllStatsAge({"ID_Login": ID_Login, "ID_Unit": ID_Unit, "IsExpanded": IsExpanded, "LastNYears": LastNYears, "PrepareInvertedDatatable": PrepareInvertedDatatable})
-
     # Načíst seznam účtů tábora
     def AccountAllEventCamp(self, ID_Login, ID_Application, ID_EventCamp):
         return self._client.service.AccountAllEventCamp({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID_EventCamp": ID_EventCamp})
@@ -1656,6 +1660,10 @@ class OrganizationUnit:
     # Zrušit objednání ztracené karty
     def MemberCardUpdateCancelRerequest(self, ID_Login, ID, ID_Person, Birthday, Year, DateCreate, Price, IsAuthorized, IsPaid, ValidFrom, ValidTo, ID_PersonSchool, ID_PersonRegistration, ID_DocumentPersonSchool, ID_DocumentMediumPhoto, ID_MemberCardState=None, MemberCardState=None, DisplayName=None, Person=None, ID_MemberCardType=None, MemberCardType=None, PersonSchool=None, PersonSchoolCity=None, UnitStredisko=None, LeaderContact=None, StorageMediumPhoto=None):
         return self._client.service.MemberCardUpdateCancelRerequest({"ID_Login": ID_Login, "ID": ID, "ID_Person": ID_Person, "Birthday": Birthday, "Year": Year, "DateCreate": DateCreate, "Price": Price, "IsAuthorized": IsAuthorized, "IsPaid": IsPaid, "ValidFrom": ValidFrom, "ValidTo": ValidTo, "ID_PersonSchool": ID_PersonSchool, "ID_PersonRegistration": ID_PersonRegistration, "ID_DocumentPersonSchool": ID_DocumentPersonSchool, "ID_DocumentMediumPhoto": ID_DocumentMediumPhoto, "ID_MemberCardState": ID_MemberCardState, "MemberCardState": MemberCardState, "DisplayName": DisplayName, "Person": Person, "ID_MemberCardType": ID_MemberCardType, "MemberCardType": MemberCardType, "PersonSchool": PersonSchool, "PersonSchoolCity": PersonSchoolCity, "UnitStredisko": UnitStredisko, "LeaderContact": LeaderContact, "StorageMediumPhoto": StorageMediumPhoto})
+
+    # Načíst seznam osob podle jména pro ScoutDMS
+    def PersonAllExternalDMS(self, ID_Login, ID_Application, ID, ID_User, Top, DisplayName=None):
+        return self._client.service.PersonAllExternalDMS({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "ID_User": ID_User, "Top": Top, "DisplayName": DisplayName})
 
     # Načíst seznam osob pro selecty, využívá logiku PersonAll
     def PersonAllList(self, ID_Login, ID, ID_Unit, OnlyDirectMember, ID_FunctionType, ID_QualificationType, DisplayName=None, ID_Sex=None, IdentificationCode=None, IdentificationCodeStartsWith=None, FirstName=None, LastName=None, SecurityCode=None, RegistrationNumber=None):
@@ -2116,8 +2124,4 @@ class OrganizationUnit:
     # Odeslat žádosti změn u osoby
     def PersonChangeRequestUpdate(self, ID_Login, ID, ID_Unit, Created, Sent, Text=None, Persons=None):
         return self._client.service.PersonChangeRequestUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Unit": ID_Unit, "Created": Created, "Sent": Sent, "Text": Text, "Persons": Persons})
-
-    # Dokončit změny u osoby
-    def PersonChangeUpdateFinish(self, ID_Login, ID):
-        return self._client.service.PersonChangeUpdateFinish({"ID_Login": ID_Login, "ID": ID})
 
