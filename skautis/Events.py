@@ -10,6 +10,10 @@ class Events:
         else:
             self._client = zeep.Client('https://is.skaut.cz/JunakWebservice/Events.asmx?wsdl')
 
+    # Smazat účastníka tábora
+    def ParticipantCampDelete(self, ID_Login, ID, DeletePerson):
+        return self._client.service.ParticipantCampDelete({"ID_Login": ID_Login, "ID": ID, "DeletePerson": DeletePerson})
+
     # Načíst detail účastníka tábora
     def ParticipantCampDetail(self, ID_Login, ID):
         return self._client.service.ParticipantCampDetail({"ID_Login": ID_Login, "ID": ID})
@@ -349,6 +353,10 @@ class Events:
     # Upravit sněm
     def EventCongressUpdate(self, ID_Login, ID, ID_Event, ID_UnitRegistration, PromulgationDeadline, CommissionDeadline, CandidateDeadline, ID_Unit, StartDate, EndDate, GpsLatitude, GpsLongitude, AlternateStartDate, AlternateEndDate, AlternateGpsLatitude, AlternateGpsLongitude, CandidateAfterDeadline, ArriveDeadline, DepartureDeadline, TransportDeadline, AccommodationDeadline, FoodDeadline, ParticipantFee, ID_TempFileSimplifiedEntry, DelegateQuota, IsDelegateQuotaParentSet, ID_DocumentProtocol, ID_DocumentSimplifiedEntry, Event=None, UnitRegistration=None, ID_EventCongressType=None, EventCongressType=None, ID_EventCongressState=None, EventCongressState=None, Unit=None, RegistrationNumber=None, ID_UnitType=None, Location=None, AlternateLocation=None, Note=None, ProtocolExtension=None, ProtocolContent=None, FunctionAgreementExtension=None, SimplifiedEntryExtension=None, SimplifiedEntryTemplateExtension=None):
         return self._client.service.EventCongressUpdate({"ID_Login": ID_Login, "ID": ID, "ID_Event": ID_Event, "ID_UnitRegistration": ID_UnitRegistration, "PromulgationDeadline": PromulgationDeadline, "CommissionDeadline": CommissionDeadline, "CandidateDeadline": CandidateDeadline, "ID_Unit": ID_Unit, "StartDate": StartDate, "EndDate": EndDate, "GpsLatitude": GpsLatitude, "GpsLongitude": GpsLongitude, "AlternateStartDate": AlternateStartDate, "AlternateEndDate": AlternateEndDate, "AlternateGpsLatitude": AlternateGpsLatitude, "AlternateGpsLongitude": AlternateGpsLongitude, "CandidateAfterDeadline": CandidateAfterDeadline, "ArriveDeadline": ArriveDeadline, "DepartureDeadline": DepartureDeadline, "TransportDeadline": TransportDeadline, "AccommodationDeadline": AccommodationDeadline, "FoodDeadline": FoodDeadline, "ParticipantFee": ParticipantFee, "ID_TempFileSimplifiedEntry": ID_TempFileSimplifiedEntry, "DelegateQuota": DelegateQuota, "IsDelegateQuotaParentSet": IsDelegateQuotaParentSet, "ID_DocumentProtocol": ID_DocumentProtocol, "ID_DocumentSimplifiedEntry": ID_DocumentSimplifiedEntry, "Event": Event, "UnitRegistration": UnitRegistration, "ID_EventCongressType": ID_EventCongressType, "EventCongressType": EventCongressType, "ID_EventCongressState": ID_EventCongressState, "EventCongressState": EventCongressState, "Unit": Unit, "RegistrationNumber": RegistrationNumber, "ID_UnitType": ID_UnitType, "Location": Location, "AlternateLocation": AlternateLocation, "Note": Note, "ProtocolExtension": ProtocolExtension, "ProtocolContent": ProtocolContent, "FunctionAgreementExtension": FunctionAgreementExtension, "SimplifiedEntryExtension": SimplifiedEntryExtension, "SimplifiedEntryTemplateExtension": SimplifiedEntryTemplateExtension})
+
+    # Načíst detail typu vzdělávací akce
+    def EventEducationTypeDetail(self, ID_Login, ID):
+        return self._client.service.EventEducationTypeDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Schválit závěrečnou zprávu
     def EventEducationUpdateFinalReportConfirm(self, ID_Login, ID, DateApproved, Grant, DateClosed, ID_PersonClosed, LoginSkautis, ID_Unit, StartDate, EndDate, ID_EventEducationType, ID_Event, ID_PersonLeader, ID_PersonAssistant, ID_PersonSecretary, ID_PersonEconomist, RegistrationDeadline, ID_DocumentLogo, ID_DocumentLogoPreview, ID_DocumentLogoMiniature, ID_TempFileLogo, ID_TempFileProject, ProjectDelete, ID_DocumentProject, ID_PersonProject, ProjectApproved, ProjectUpdate, ID_TempFileFinalReport, FinalReportDelete, ID_DocumentFinalReport, ID_PersonFinalReport, FinalReportUpdate, FinalReportApproved, IsWaterman, IsForester, IsPossibleToGraduate, Published, Confirmed, Approved, ApprovedWater, GrantNew, GrantApproved, GrantDecisionNew, GrantDecisionConfirmed, AdvanceSent, ID_Grant, Fulfilment, Publicized, IsQualifyingExam, HasGrantRequest, HasTermsOnlyForNextYear, LastTerm, IsCounselor, DateUnitApproved, IsProjectRequired, IsFinalReportRequired, IsConditionCheckManual, LoginFrom, LoginTo, IsEditable, ParticipantSubstitute, ParticipantEstimated, CapacityCourse, ID_EventEducationState=None, EventEducationState=None, Web=None, EmailContact=None, PhoneContact=None, ID_GrantType=None, GrantType=None, ID_GrantAdvanceType=None, GrantAdvanceType=None, PersonClosed=None, LogoFileName=None, PropagationFileName1=None, PropagationFileName2=None, PropagationFileName3=None, LoginLocation=None, Description=None, DisplayName=None, Location=None, Note=None, Unit=None, RegistrationNumber=None, PersonLeader=None, LeaderPhone=None, LeaderPhoneDisplay=None, LeaderEmail=None, LeaderEmailDisplay=None, LeaderNote=None, AssistantNote=None, SecretaryNote=None, EconomistNote=None, LogoContent=None, Project=None, ProjectExtension=None, ProjectNote=None, ProjectContent=None, PersonProject=None, FinalReport=None, FinalReportExtension=None, FinalReportNote=None, FinalReportContent=None, PersonFinalReport=None, RejectionNote=None, DisapproveNote=None, WaterDisapproveNote=None, ID_GrantState=None, IsConditionCheckManualNote=None, DisplayNameCourse=None):
@@ -842,10 +850,6 @@ class Events:
     def ParticipantCampDeleteFromList(self, IsManual, Birthday, Age, ID_Unit, CanDelete, IdCardValidTo, Accepted, IsAccepted, Price, ID_EventCampEnroll, IsPaid, ParticipationTermDifferentThanEventCamp, Person=None, ID_ParticipantType=None, ParticipantType=None, Assurance=None, Street=None, City=None, Postcode=None, State=None, FullAddress=None, Unit=None, UnitRegistrationNumber=None, Category=None, IdCardNumber=None, ID_CampEnrollState=None, CampEnrollState=None, Icon=None, IconClass=None, VariableSymbol=None, MembershipCategory=None, ParticipationTerm=None, CampOnlineLogin=None, PaymentType=None):
         return self._client.service.ParticipantCampDeleteFromList({"IsManual": IsManual, "Birthday": Birthday, "Age": Age, "ID_Unit": ID_Unit, "CanDelete": CanDelete, "IdCardValidTo": IdCardValidTo, "Accepted": Accepted, "IsAccepted": IsAccepted, "Price": Price, "ID_EventCampEnroll": ID_EventCampEnroll, "IsPaid": IsPaid, "ParticipationTermDifferentThanEventCamp": ParticipationTermDifferentThanEventCamp, "Person": Person, "ID_ParticipantType": ID_ParticipantType, "ParticipantType": ParticipantType, "Assurance": Assurance, "Street": Street, "City": City, "Postcode": Postcode, "State": State, "FullAddress": FullAddress, "Unit": Unit, "UnitRegistrationNumber": UnitRegistrationNumber, "Category": Category, "IdCardNumber": IdCardNumber, "ID_CampEnrollState": ID_CampEnrollState, "CampEnrollState": CampEnrollState, "Icon": Icon, "IconClass": IconClass, "VariableSymbol": VariableSymbol, "MembershipCategory": MembershipCategory, "ParticipationTerm": ParticipationTerm, "CampOnlineLogin": CampOnlineLogin, "PaymentType": PaymentType})
 
-    # Smazat účastníka tábora
-    def ParticipantCampDelete(self, ID_Login, ID, DeletePerson):
-        return self._client.service.ParticipantCampDelete({"ID_Login": ID_Login, "ID": ID, "DeletePerson": DeletePerson})
-
     # Načíst detail vzdělávací akce
     def EventEducationDetailEvent(self, ID_Login, ID_Event):
         return self._client.service.EventEducationDetailEvent({"ID_Login": ID_Login, "ID_Event": ID_Event})
@@ -865,6 +869,10 @@ class Events:
     # Odeslat výzvy k zaslání seznamu vydaných dekretů na kurzu
     def EventEducationCourseCheckLetterReminder(self, ID_Login):
         return self._client.service.EventEducationCourseCheckLetterReminder({"ID_Login": ID_Login})
+
+    # Načíst seznam kolizních dekretů
+    def EventEducationLetterRequestAllConflictCheck(self, ID_Login, IsParticipantEducation, ID_Items=None):
+        return self._client.service.EventEducationLetterRequestAllConflictCheck({"ID_Login": ID_Login, "IsParticipantEducation": IsParticipantEducation, "ID_Items": ID_Items})
 
     # Načíst zda má akce duplicitní čísla dekretů
     def EventEducationLetterRequestOtherCourseDuplicates(self, ID_Login, ID_EventEducation, ID_EventEducationExam):
@@ -1345,10 +1353,6 @@ class Events:
     # Načíst seznam typů vzdělávacích akcí
     def EventEducationTypeAll(self, ID_Login, ID_Application, ID, IsQualificationExam, ID_EventEducationGroup=None, DisplayName=None):
         return self._client.service.EventEducationTypeAll({"ID_Login": ID_Login, "ID_Application": ID_Application, "ID": ID, "IsQualificationExam": IsQualificationExam, "ID_EventEducationGroup": ID_EventEducationGroup, "DisplayName": DisplayName})
-
-    # Načíst detail typu vzdělávací akce
-    def EventEducationTypeDetail(self, ID_Login, ID):
-        return self._client.service.EventEducationTypeDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Načíst seznam akcí osoby
     def EventAllPersonParticipation(self, ID_Login, ID_Person, Year, ID_EventType=None, DisplayName=None):
