@@ -35,16 +35,16 @@ class UserManagement:
         return self._client.service.LoginUpdateRoleAuto({"ID_Login": ID_Login, "ID": ID, "ID_Group": ID_Group, "ID_Table": ID_Table, "ID_Action": ID_Action, "RequiredPermissions": RequiredPermissions})
 
     # Načíst seznam pluginů
-    def PluginAll(self, ID_Login, ID=None, DisplayName=None, InstanceKey=None):
-        return self._client.service.PluginAll({"ID_Login": ID_Login, "ID": ID, "DisplayName": DisplayName, "InstanceKey": InstanceKey})
+    def PluginAll(self, ID_Login, ShowAll, ID=None, InstanceKey=None, DisplayName=None):
+        return self._client.service.PluginAll({"ID_Login": ID_Login, "ShowAll": ShowAll, "ID": ID, "InstanceKey": InstanceKey, "DisplayName": DisplayName})
 
     # Načíst detail pluginu
     def PluginDetail(self, ID_Login, ID=None):
         return self._client.service.PluginDetail({"ID_Login": ID_Login, "ID": ID})
 
     # Upravit plugin
-    def PluginUpdate(self, ID_Login, IsEnabled, ID=None, DisplayName=None, Description=None):
-        return self._client.service.PluginUpdate({"ID_Login": ID_Login, "IsEnabled": IsEnabled, "ID": ID, "DisplayName": DisplayName, "Description": Description})
+    def PluginUpdate(self, ID_Login, IsEnabled, ID=None, DisplayName=None, Description=None, InstanceKey=None):
+        return self._client.service.PluginUpdate({"ID_Login": ID_Login, "IsEnabled": IsEnabled, "ID": ID, "DisplayName": DisplayName, "Description": Description, "InstanceKey": InstanceKey})
 
     # Upravit pořadí tabulky
     def TableSetOrder(self, ID_Login, TableSetOrderType, ID, OrderInc, ID_Table=None, ID_ParentTable=None, FilterValues=None):
